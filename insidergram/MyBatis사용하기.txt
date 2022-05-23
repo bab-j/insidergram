@@ -1,0 +1,38 @@
+MyBatis(마이바티스) 이용한 데이타베이스 연동 프로그램 작성 순서
+
+0. JDBC 라이브러리 등록(사용할 DB)
+	-WebContent > WEB-INF > lib > ojdbc6.jar 또는 ojdbc8.jar
+
+1. MyBatis 라이브러리 등록(사용할 버전)
+	-WebContent > WEB-INF > lib > mybatis-3.5.5.jar 
+	
+2. MyBatis 환경설정(config) XML 파일 작성
+	-DB연결정보, 매핑파일 위치정보, MyBatis 설정정보 등
+
+3. MyBatis 매핑 XML 파일 작성(매퍼: Mapper)
+	-프로그램상에서 사용하는 SQL 문장 작성
+	
+4. MyBatis 설정 정보(config)를 읽어서 사용할 
+	SqlSessionFactory 객체 생성하는 소스 작성
+	- 실제 사용은 SqlSession 객체를 사용
+	- SqlSession 객체를 생성해주는 역할은 SqlSessionFactory 가 한다.
+
+5. Mapper에 등록된 SQL문을 호출해서 사용
+	5-1. Mapper 파일에 사용할 SQL문 작성
+	5-2. Mapper에 등록한 SQL 문을 호출 사용
+		- SqlSession 객체 생성
+		- SqlSession 객체에 있는 메소드 호출
+		  (selectOne, selectList, insert, update, delete ..)
+		- SQL문 실행 결과에 대한 처리
+
+
+
+
+
+
+
+
+
+
+
+
