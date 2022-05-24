@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< Updated upstream
 Built-By: junhee
 Build-Jdk: 16.0.2
+=======
+Built-By: whale
+Build-Jdk: 1.8.0_333
+>>>>>>> Stashed changes
 Created-By: Maven Integration for Eclipse
 
