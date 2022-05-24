@@ -38,10 +38,10 @@ public class UserController {
 		
 		if (user != null) {
 			System.out.println(">> 로그인 성공!!!");
-			return "redirect:../board/getBoardList.do";
+			return "getBoardList.do";
 		} else {
 			System.out.println(">> 로그인 실패~~~");
-			return "/user/login";
+			return "login.jsp";
 		}
 	}
 	
