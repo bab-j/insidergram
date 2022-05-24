@@ -64,36 +64,6 @@ th {
 		let asd = document.getElementById("uid");
 		asd.value = "${uid}";
 	}
-	
-	
-<<<<<<< Updated upstream
-	function confirmID() {
-		alert("confirmID() 실행~~~");
-		$.ajax("confirmID.do", {
-			type: "get",
-			dataType: "json",
-=======
-	
-	function confirmID() {
-		alert("confirmID() 실행~~~");
-		$.ajax({
-			url: "confirmID.do",
-			type: "get",
-			data: "id=" + $("#uid").val(),
->>>>>>> Stashed changes
-			success: function(data){
-				alert("성공~~~");
-				console.log(data);
-				if(data == 1) {
-					alert("아이디가 존재합니다!!");
-				}			
-					
-			},
-			error: function(){
-				alert("실패~~~");
-			}
-		});
-	}
 </script>
 </head>
 
@@ -112,22 +82,11 @@ th {
 			<table>
 				<tr>
 					<th>아이디</th>
-<<<<<<< Updated upstream
-					<td><input type="text" name=uid id="uid"
-						placeholder="Username" style="ime-mode: disabled"
-						onfocus="this.placeholder=''" onblur="this.placeholder='Username'">
-						<input type="button" id="button1" value="중복확인" onclick="idChk()">
-=======
 					<td><input type="text" name=uid id="uid" placeholder="Username" onfocus="this.placeholder=''" onblur="this.placeholder='Username'">
-					<td><input type="text" name=uid id="uid"
-						placeholder="Username" style="ime-mode: disabled"
-						onfocus="this.placeholder=''" onblur="this.placeholder='Username'">
 						<input type="button" id="button1" value="중복확인" onclick="confirmID()">
->>>>>>> Stashed changes
 					</td>
 				</tr>
 			</table>
-			<a href="javascript:confirmID()">중복확인</a>
 			<c:choose>
 				<c:when test="${login == 1 }">
 					<p style="color: red">사용 불가능한 아이디입니다.</p>
@@ -181,6 +140,30 @@ th {
 			 <input type="hidden" name="uID" value="${uid }">
 		</form>
 	</div>
+<script>
+function confirmID() {
+	let id = $("#uid").val();
+	alert("confirmID() 실행~~~");
+	$.ajax("confirmID.do", {
+		type: "get",
+		data: "id=" + id,
+		dataType: "text",
+		success: function(data){
+			alert("성공~~~");
+			console.log(data);
+			if(data === "fail") {
+				alert("아이디가 존재합니다!!");
+			} else {
+				alert("개어렵넸");
+			}
+				
+		},
+		error: function(){
+			alert("실패~~~");
+		}
+	});
+}
+</script>
 </body>
 </html>
 

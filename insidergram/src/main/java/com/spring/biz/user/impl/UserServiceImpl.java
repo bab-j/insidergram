@@ -21,8 +21,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int confirmID(String ID) {
-		return userDAO.confirmID(ID);
+	public int confirmID(UserVO vo) { 
+		return userDAO.confirmID(vo); 
 	}
-
 }
