@@ -96,8 +96,9 @@ public class BoardController {
 		}
 		
 		boardService.insertBoard(vo);
-		return "getBoardList.do";
+		return "redirect:getBoardList.do";
 	}
+	
 	
 	@RequestMapping("/updateBoard.do")
 	public String updateBoard(@ModelAttribute("board") BoardVO vo) {

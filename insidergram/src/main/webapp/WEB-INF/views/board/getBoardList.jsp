@@ -83,7 +83,7 @@
 		</tbody>
 	</table>
 	
-	<p><a href="insertBoard.jsp">새글등록</a></p>
+	<p><a href="../insertBoard.jsp">새글등록</a></p>
 	
 </div>	
 	
