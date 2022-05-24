@@ -2,9 +2,12 @@ package com.spring.biz.view.user;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.biz.board.BoardService;
@@ -29,7 +32,19 @@ public class UserAjaxController {
 		//return boardList;
 //		}
 		@RequestMapping("/confirmID.do")
+<<<<<<< Updated upstream
 		public int confirmID(String id) {
+=======
+<<<<<<< Updated upstream
+		public String confirmID(UserVO vo) {
+			System.out.println("vo : " + vo);
+=======
+		@ResponseBody
+		public int confirmID(String id) {
+			
+			System.out.println(">>id : " + id);
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 			int result = 0;
 			result = userService.confirmID(id);
 			

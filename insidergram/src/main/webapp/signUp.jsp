@@ -66,11 +66,21 @@ th {
 	}
 	
 	
+<<<<<<< Updated upstream
 	function confirmID() {
 		alert("confirmID() 실행~~~");
 		$.ajax("confirmID.do", {
 			type: "get",
 			dataType: "json",
+=======
+	
+	function confirmID() {
+		alert("confirmID() 실행~~~");
+		$.ajax({
+			url: "confirmID.do",
+			type: "get",
+			data: "id=" + $("#uid").val(),
+>>>>>>> Stashed changes
 			success: function(data){
 				alert("성공~~~");
 				console.log(data);
@@ -102,10 +112,18 @@ th {
 			<table>
 				<tr>
 					<th>아이디</th>
+<<<<<<< Updated upstream
 					<td><input type="text" name=uid id="uid"
 						placeholder="Username" style="ime-mode: disabled"
 						onfocus="this.placeholder=''" onblur="this.placeholder='Username'">
 						<input type="button" id="button1" value="중복확인" onclick="idChk()">
+=======
+					<td><input type="text" name=uid id="uid" placeholder="Username" onfocus="this.placeholder=''" onblur="this.placeholder='Username'">
+					<td><input type="text" name=uid id="uid"
+						placeholder="Username" style="ime-mode: disabled"
+						onfocus="this.placeholder=''" onblur="this.placeholder='Username'">
+						<input type="button" id="button1" value="중복확인" onclick="confirmID()">
+>>>>>>> Stashed changes
 					</td>
 				</tr>
 			</table>
