@@ -8,7 +8,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	// Ajax 요청처리에 의해 데이터 가져와서 화면 표시
-	function getJsonBoardListData() {
+/* 	function getJsonBoardListData() {
 		alert("getJsonBoardListData() 실행~~~");
 		$.ajax("getJsonBoardList.do", {
 			type: "get",
@@ -35,7 +35,7 @@
 				alert("실패~~~");
 			}
 		});
-	}
+	} */
 </script>
 </head>
 <body>
@@ -48,20 +48,20 @@
 	</p>
 	<hr><hr>
 	
-	<h2>Ajax 요청 처리</h2>
+	<!-- <h2>Ajax 요청 처리</h2>
 	<p><a href="javascript:getJsonBoardListData()">JSON 데이터 가져오기(BoardList)</a></p>
-	<p><a href="javascript:getJsonBoardData()">JSON 데이터 가져오기(Board)</a></p>
+	<p><a href="javascript:getJsonBoardData()">JSON 데이터 가져오기(Board)</a></p> -->
 	
 	<hr>
-	<div id="listDisp">
+	<!-- <div id="listDisp">
 		<ul>
 			<li>데이터 가져와서 출력하기</li>
 		</ul>
-	</div>
+	</div> -->
 </div>
 
 <script>
-	function getJsonBoardData() {
+	/* function getJsonBoardData() {
 		alert("getJsonBoardData() 실행~~")
 		//let vo = { seq: 1};
 		let vo = {};
@@ -93,7 +93,7 @@
 				alert("실패~~")
 			}
 		});
-	}
+	} */
 </script>
 </body>
 </html>

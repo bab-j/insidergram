@@ -6,42 +6,106 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <style>
-	#container { width: 700px; margin: auto; }
-	h1 { text-align: center; }
-	table { border-collapse: collapse; }
-	table, th, td {
-		border: 1px solid black;
-		margin: 0 auto;
-	}
-	th { background-color: orange; }
-	.center { text-align: center; }
+body {
+	margin-top: 150px; 
+	background-color : #f6f7f7;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Helvetica, Arial, sans-serif;
+}
+
+.bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: left;
+}
+
+.home {
+	margin-left: 100px;
+	font-size: 32px;
+}
+
+.sign {
+	background-color: white;
+	border: 1.5px solid silver;
+	border-radius: 2%;
+	margin-top: 75px;
+	width: 400px;
+	height: 600px;
+	text-align: center;
+}
+
+.sign input {
+	border: 1px solid gray;
+	border-radius: 5px;
+	margin: 5px;
+	width: 230px;
+	height: 40px;
+	font-size: 1em;
+	color: gray;
+	padding-left: 10px;
+}
+
+#logBtn {
+	border: none;
+	margin-bottom: 4%;
+	background-color: #1E82FF;
+	color: white;
+}
+
+#logBtn:hover {
+	background-color: #a7aaad;
+}
+
+#signBtn {
+	border: none;
+	background-color: #50575e;
+	color: white;
+}
+
+#signBtn:hover {
+	background-color: #2c3338;
+}
+
+a {
+	text-decoration: none;
+	color: #3c434a;
+	font-family: monospace;
+	font-size: 1.2em;
+}
 </style>
+<script>
+	function SignUp() {
+		location.href = "usercontroller?type=GoSignUp";
+	}
+</script>
 </head>
 <body>
+	<div class="bar">
+		<div>
+			<h3 class="home">instarkilogram</h3>
+		</div>
+	</div>
 
-<div id="container">
-	<p>\${userVO } : ${userVO }</p>
-	<p>\${user } : ${user }</p>
-	<h1>로그인 [login.jsp]</h1>
-	<form action="login.do" method="post">
-	<table>
-		<tr>
-			<th>아이디</th>
-			<td><input type="text" name="id" value="${user.id }"></td>
-		</tr>
-		<tr>
-			<th>패스워드</th>
-			<td><input type="text" name="password" value="${user.password }"></td>
-		</tr>
-		<tr>
-			<td colspan="2" class="center">
-				<input type="submit" value="로그인">
-			</td>
-		</tr>
-	</table>
-	</form>
 
-</div>
 
+	<div class="sign">
+		<div>
+			<h1>instarkilogram</h1>
+		</div>
+		<form name="inputFrm" action="login.do" method="post">
+			<input type="text" name="id" id="name" placeholder="ID"
+				onfocus="this.placeholder=''" onblur="this.placeholder='Username'"><br>
+			<input type="password" name="password" id="pwd" placeholder="PASSWORD"
+				onfocus="this.placeholder=''" onblur="this.placeholder='Password'"><br>
+			<br> <br>
+			 
+			<input type="submit" id="logBtn" value="로그인" onclick="logIn()"><br> 
+			<br> <br>
+		</form>
+		<a href="../signUp.jsp">회원가입 페이지로 이동</a>
+		<a class="font1" href="../view/findID.jsp">ID 찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a class="font1" href="../view/findPWD.jsp">비밀번호 찾기</a>
+	</div>
 </body>
 </html>

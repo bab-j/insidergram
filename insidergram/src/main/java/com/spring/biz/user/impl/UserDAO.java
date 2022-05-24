@@ -20,4 +20,11 @@ public class UserDAO {
 		
 		return mybatis.selectOne("userDAO.getUser", vo);
 	}
+	
+	public int confirmID(String ID) {
+		System.out.println("===> MyBatis 아이디 확인@!@!@!@!@");
+		System.out.println("mybatis.selectOne(\"userDAO.confirmID\", ID) : " + mybatis.selectOne("userDAO.confirmID", ID));
+		
+		return mybatis.selectOne("userDAO.confirmID", ID);
+	}
 }
