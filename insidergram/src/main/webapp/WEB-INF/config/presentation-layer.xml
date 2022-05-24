@@ -20,7 +20,7 @@
 	</bean>
 	
 	<!-- 예외처리를 위한 설정 -->
-	<bean id="exceptionResolver"
+	<!-- <bean id="exceptionResolver"
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="defaultErrorView" value="../../common/error"></property>
 		<property name="exceptionMappings">
@@ -28,7 +28,7 @@
 				<prop key="java.lang.IllegalArgumentException">../../common/illegaArgError</prop>
 			</props>
 		</property>
-	</bean>
+	</bean> -->
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<!-- 뷰리졸버 적용 -->
