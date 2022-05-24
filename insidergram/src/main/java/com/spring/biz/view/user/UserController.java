@@ -52,9 +52,8 @@ public class UserController {
 	 */
 	//@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	@GetMapping("/login.do")
-	public String loginView(@ModelAttribute("user") UserVO vo) {
+	public String loginView() {
 		System.out.println(">>> 로그인 화면 이동 - loginView()");
-		
 		
 		return "user/login";
 	}
