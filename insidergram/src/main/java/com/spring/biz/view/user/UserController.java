@@ -51,13 +51,13 @@ public class UserController {
 	 * @ModelAttribute("user") UserVO --> 속성명 user 사용
 	 */
 	//@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	@GetMapping("/login.do")
+	@GetMapping("login.do")
 	public String loginView(@ModelAttribute("user") UserVO vo) {
 		System.out.println(">>> 로그인 화면 이동 - loginView()");
 		vo.setId("test");
 		vo.setPassword("test");
 		
-		return "login.jsp";
+		return "user/login";
 	}
 	
 	@RequestMapping("/logout.do")

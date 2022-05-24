@@ -22,10 +22,10 @@
 	<!-- 예외처리를 위한 설정 -->
 	<bean id="exceptionResolver"
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="defaultErrorView" value="/common/error.jsp"></property>
+		<property name="defaultErrorView" value="../../common/error"></property>
 		<property name="exceptionMappings">
 			<props>
-				<prop key="java.lang.IllegalArgumentException">/common/illegaArgError.jsp</prop>
+				<prop key="java.lang.IllegalArgumentException">../../common/illegaArgError</prop>
 			</props>
 		</property>
 	</bean>

@@ -55,7 +55,7 @@ public class BoardController {
 		
 		model.addAttribute("board", board); //Model 객체 사용 View로 데이터 전달
 		
-		return "getBoard.jsp";
+		return "board/getBoard";
 	}	
 	
 	@RequestMapping("/getBoardList.do")
@@ -68,7 +68,7 @@ public class BoardController {
 		
 		model.addAttribute("boardList", boardList);
 		
-		return "getBoardList.jsp";
+		return "board/getBoardList";
 	}
 	
 	@RequestMapping("/insertBoard.do")
