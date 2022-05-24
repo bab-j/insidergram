@@ -66,7 +66,23 @@ th {
 	}
 	
 	
-	
+	function confirmID() {
+		alert("confirmID() 실행~~~");
+		$.ajax("confirmID.do", {
+			type: "get",
+			dataType: "json",
+			success: function(data){
+				alert("성공~~~");
+				console.log(data);
+				if(data == 1) {
+					alert("아이디가 존재합니다!!");
+				}			
+					
+			},
+			error: function(){
+				alert("실패~~~");
+			}
+		});
 	}
 </script>
 </head>
@@ -86,8 +102,10 @@ th {
 			<table>
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" name=uid id="uid" placeholder="Username" onfocus="this.placeholder=''" onblur="this.placeholder='Username'">
-						<input type="button" id="button1" value="중복확인" onclick="confirmID()">
+					<td><input type="text" name=uid id="uid"
+						placeholder="Username" style="ime-mode: disabled"
+						onfocus="this.placeholder=''" onblur="this.placeholder='Username'">
+						<input type="button" id="button1" value="중복확인" onclick="idChk()">
 					</td>
 				</tr>
 			</table>
@@ -145,31 +163,6 @@ th {
 			 <input type="hidden" name="uID" value="${uid }">
 		</form>
 	</div>
-<script>
-
-function confirmID() {
-	let id = $("#uid").val();
-	alert("confirmID() 실행~~~");
-	$.ajax("confirmID.do", {
-		type: "get",
-		data: "id=" + id,
-		dataType: "text",
-		success: function(data){
-			alert("성공~~~");
-			console.log(data);
-			if(data === "fail") {
-				alert("아이디가 존재합니다!!");
-			} else {
-				alert("개어렵넸");
-			}
-				
-		},
-		error: function(){
-			alert("실패~~~");
-		}
-	});
-}
-</script>
 </body>
 </html>
 

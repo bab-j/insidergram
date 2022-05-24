@@ -1,15 +1,15 @@
 package com.spring.biz.view.user;
 
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.RequestContext;
 
+import com.spring.biz.board.BoardService;
+import com.spring.biz.board.BoardVO;
 import com.spring.biz.user.UserService;
-import com.spring.biz.user.UserVO;
 import com.spring.biz.user.impl.UserDAO;
 
 @RestController
@@ -29,17 +29,11 @@ public class UserAjaxController {
 		//return boardList;
 //		}
 		@RequestMapping("/confirmID.do")
-		public String confirmID(UserVO vo) {
-			System.out.println("vo : " + vo);
+		public int confirmID(String id) {
 			int result = 0;
-			String str = "";
-			result = userService.confirmID(vo);
-			if(result == 1) {
-				str = "fail";
-			} else {
-				str = "success";
-			}
-			return str;
+			result = userService.confirmID(id);
+			
+			return result;
 		}
 		
 //		@RequestMapping("/getJsonBoard.do")

@@ -10,10 +10,10 @@
 	</select>
   	
   	<!--아이디 중복체크  -->
-	<select id="confirmID" resultType="int" parameterType="user">
-		SELECT COUNT(ID)
-		FROM USERS
-		WHERE ID = #{id}
+	<select id="exist" resultType="int" parameterType="String">
+		SELECT COUNT(U_ID)
+		FROM USER_INFO
+		WHERE U_ID = #{u_id}
 	</select>
 </mapper>
 
