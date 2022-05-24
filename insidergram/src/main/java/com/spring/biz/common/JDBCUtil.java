@@ -13,7 +13,7 @@ public class JDBCUtil {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			return DriverManager.getConnection(
-					"jdbc:oracle:thin:@DB202203031403_medium?TNS_ADMIN=/Users/babble/git/instarkilogram/Wallet_DB202203031403", 
+					"jdbc:oracle:thin:@DB202203031403_medium?TNS_ADMIN=/Users/junhee/Applications/Wallet_DB202203031403", 
 					"INSIDERGRAM", "Apfhdapfhd11!");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
