@@ -1,105 +1,96 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>로그인</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+	  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+
+    <script>
+        function SignUp() {
+            location.href = "usercontroller?type=GoSignUp";
+        }
+    </script>
+
 <style>
-body {
-	margin-top: 150px; 
-	background-color : #f6f7f7;
-}
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    text-align: center;
+  }
 
-.bar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	text-align: left;
-}
-
-.home {
-	margin-left: 100px;
-	font-size: 32px;
-}
-
-.sign {
-	background-color: white;
-	border: 1.5px solid silver;
-	border-radius: 2%;
-	margin-top: 75px;
-	width: 400px;
-	height: 600px;
-	text-align: center;
-}
-
-.sign input {
-	border: 1px solid gray;
-	border-radius: 5px;
-	margin: 5px;
-	width: 230px;
-	height: 40px;
-	font-size: 1em;
-	color: gray;
-	padding-left: 10px;
-}
-
-#logBtn {
-	border: none;
-	margin-bottom: 4%;
-	background-color: #1E82FF;
-	color: white;
-}
-
-#logBtn:hover {
-	background-color: #a7aaad;
-}
-
-#signBtn {
-	border: none;
-	background-color: #50575e;
-	color: white;
-}
-
-#signBtn:hover {
-	background-color: #2c3338;
-}
-
-a {
-	text-decoration: none;
-	color: #3c434a;
-	font-size: 1.2em;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+  
 </style>
-<script>
-	function SignUp() {
-		location.href = "usercontroller?type=GoSignUp";
-	}
-</script>
+
+  <link rel="stylesheet" href="../css/header.css">
+
 </head>
 <body>
+    
+    <jsp:include page="/header.jsp"></jsp:include>
 
-<jsp:include page="/header.jsp"></jsp:include>
+    <div class="modal modal-signin position-static d-block bg-light py-5" tabindex="-1" role="dialog" id="modalSignin">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content rounded-4 shadow align-items-md-center">
+            <div class="modal-header p-5 pb-4 border-bottom-0 cen">
+              <!-- <h5 class="modal-tit"le">Modal title</h5> -->
+              <h2 class="fw-bold mb-0" style="font-family: 'Lobster', cursive; font-size: 48px;">insidergram</h2>
+            </div>
+      
+            <div class="modal-body p-5 pt-0">
+              <form class='name="inputFrm" action="login.do" method="post"'>
+                <div class="form-floating mb-3">
+                  <input class="form-control rounded-3" type="text" name="uId" id="name" placeholder="ID"
+                  onfocus="this.placeholder=''" onblur="this.placeholder='Username'">
+                  <label for="floatingInput">ID</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input  class="form-control rounded-3" type="password" name="password" id="pwd" placeholder="PASSWORD"
+                  onfocus="this.placeholder=''" onblur="this.placeholder='Password'">
+                  <label for="floatingPassword">Password</label>
+                </div>
+                <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" value="로그인">로그인</button>
+                <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+                <hr class="my-4">
+                
+                <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3" type="submit" href="#">
+                  <svg class="bi me-1" width="16" height="16"></svg>
+                  회원가입
+                </button>
+                <div class="row">
+                  <div class="col-6">
+                    <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3" type="submit" href="#">
+                      <svg class="bi me-1" width="16" height="16"></svg>
+                      Find ID
+                    </button>
+                  </div>
+                  <div class="col-6">
+                    <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3" type="submit" href="#">
+                      <svg class="bi me-1" width="16" height="16"></svg>
+                      Find Password
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
-	<div class="sign">
-		<div>
-			<h1>instarkilogram</h1>
-		</div>
-		<form name="inputFrm" action="login.do" method="post">
-			<input type="text" name="uId" id="name" placeholder="ID"
-				onfocus="this.placeholder=''" onblur="this.placeholder='Username'"><br>
-				
-			<input type="password" name="password" id="pwd" placeholder="PASSWORD"
-				onfocus="this.placeholder=''" onblur="this.placeholder='Password'"><br>
-			<br> <br>
-			 
-			<input type="submit" id="logBtn" value="로그인" onclick="logIn()"><br> 
-			<br> <br>
-		</form>
-		<a href="../signUp.jsp">회원가입 페이지로 이동</a>
-		<a class="font1" href="../view/findID.jsp">ID 찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a class="font1" href="../view/findPWD.jsp">비밀번호 찾기</a>
-	</div>
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+</script>
+
 </body>
 </html>

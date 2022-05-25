@@ -1,0 +1,92 @@
+		@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+        #Header{
+            background-color: white;
+	        border-bottom: 1px solid #dbdbdb;
+            display: flex;
+            justify-content: space-between;
+	        align-items: center;
+            height: 50px;
+        }
+
+        .nav-icon {
+            justify-content: space-between;
+            margin-top: 0px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 30px;
+        }
+
+        .total_search {
+            width: 50%;
+            height: 26px;
+            font-size: 15px;
+            padding-bottom: 0px;
+            border-radius: 4px;
+            border-style: solid;
+        }
+
+        .search_btn {
+            font-size: 15px;
+            height: 30px;
+            padding-bottom: 0px;
+            border-radius: 4px;
+        }
+
+        .container1 {
+            padding-top: 0.8rem;
+            width: 600px;
+            margin-right: 0;
+        }
+
+        /* fallback */
+        @font-face {
+            font-family: 'Material Icons';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.com/s/materialicons/v128/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+        }
+        /* fallback */
+        @font-face {
+            font-family: 'Material Icons Outlined';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.com/s/materialiconsoutlined/v103/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUce.woff2) format('woff2');
+        }
+
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            margin-top: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .material-icons-outlined {
+            font-family: 'Material Icons Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            margin-top: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
