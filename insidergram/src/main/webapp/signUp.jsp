@@ -14,6 +14,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>회원 가입</title>
+
 <style>
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -24,8 +25,21 @@ body {
 @import
 	url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
-.center_ailgn {
+#confirm1 {
 	text-align: center;
+	border: 1px solid silver;
+    border-radius: 3px;
+    height: 34px;
+    margin-top: 2px;
+}
+
+.insiderIcon {
+	font-family: 'Lobster', cursive;
+	font-size: 48px;
+	font-weight: 3px;
+	text-decoration: none;
+	padding-bottom: 20px;
+	color: inherit;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -46,41 +60,32 @@ body {
 </head>
 
 <body>
-	<jsp:include page="/header.jsp"></jsp:include>
+	
 
-	<div class="modal modal-signin position-static d-block bg-light py-5" tabindex="-1" role="dialog" id="modalSignin">
+	<div id="Header" class="modal modal-signin position-static d-block bg-light py-5" tabindex="-1" role="dialog" id="modalSignin">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content rounded-4 shadow align-items-md-center">
 				<div class="modal-header p-5 pb-4 border-bottom-0 cen">
-					<h2 class="fw-bold mb-0"
-						style="font-family: 'Lobster', cursive; font-size: 48px;">insidergram</h2>
+					<h2 class="fw-bold mb-0"><a class="insiderIcon">insidergram</a></h2>
 				</div>
 				<!-- 틀 만들기 -->
 				<div class="modal-body p-5 pt-0">
 					<form action="usercontroller?type=UserIdChk" method="post">
 						<div class="form-floating mb-3">
 							<div class="row">
-								<div class=col-9>
+								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 18px; text-align: left;" 
+								class=col-4> <a>아이디</a></div>
+								<div class=col-5>
 									<input class="form-control rounded-3" type="text" name=u_id id="uid"
-											placeholder="아이디" onfocus="this.placeholder=''"
+											placeholder="ID" onfocus="this.placeholder=''"
 											onblur="this.placeholder='Username'"> 
 								</div>
 								<div class=col-3>
-									<input type="button" id="button1" value="중복확인" onclick="confirmID()">
+									<input class="btn btn-outline-secondary" type="button" id="confirm1" value="중복확인" onclick="confirmID()">
 								</div>
 							</div>
 						</div>
-						<!-- 아이디 -->
-						<table>
-							<tr>
-								<th>아이디</th>
-								<td><input type="text" name=u_id id="uid"
-									placeholder="Username" onfocus="this.placeholder=''"
-									onblur="this.placeholder='Username'"> <input
-									type="button" id="button1" value="중복확인" onclick="confirmID()">
-								</td>
-							</tr>
-						</table>
+						<!-- 아이디 중복 확인-->
 						<c:choose>
 							<c:when test="${login == 1 }">
 								<p style="color: red">사용 불가능한 아이디입니다.</p>
@@ -92,48 +97,107 @@ body {
 							</c:when>
 						</c:choose>
 					</form>
+					<!-- 비밀번호 -->
 					<form action="usercontroller?type=UserSignUp" method="post">
-						<table>
-							<tr>
-								<th>비밀번호</th>
-								<td><input type="password" name=upwd id="pwd"
+						<div class="form-floating mb-3">
+							<div class="row">
+								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 18px; text-align: left;" 
+								class=col-4> <a>비밀번호</a></div>
+								<div class=col-7>
+									<input class="form-control rounded-3" type="password" name=upwd id="pwd"
 									placeholder="Password" onfocus="this.placeholder=''"
-									onblur="this.placeholder='Password'"></td>
-							</tr>
-							<tr>
-								<th>비밀번호 확인</th>
-								<td><input type="password" name=uPwdOk
-									placeholder="Confirm Password" onfocus="this.placeholder=''"
-									onblur="this.placeholder='Confirm Password'"></td>
-							</tr>
-							<tr>
-								<th>이메일</th>
-								<td><input type="email" name="email"
-									placeholder="abc123@abc.com" onfocus="this.placeholder=''"
-									onblur="this.placeholder='abc123@abc.com'"></td>
-							</tr>
-							<tr>
-								<th>이름</th>
-								<td><input type="text" name="name" placeholder="홍길동"
-									onfocus="this.placeholder=''" onblur="this.placeholder='홍길동'"></td>
-							</tr>
-							<tr>
-								<th>전화번호</th>
-								<td><input type="text" name="phone"
-									placeholder="010-0000-0000" onfocus="this.placeholder=''"
-									onblur="this.placeholder='010-0000-0000'"></td>
-							</tr>
-							<tr>
-								<th>생년월일</th>
-								<td><input type="text" name="birth" placeholder="생년월일 6자리"
-									onfocus="this.placeholder=''"
-									onblur="this.placeholder='생년월일 6자리'"></td>
-							</tr>
-						</table>
-						<input type="button" id="butt" value="취소" onclick="goLogIn()">
-						<input type="submit" id="subm" value="가입"> <input
-							type="hidden" name="uID" value="${uid }">
+									onblur="this.placeholder='Password'"> 
+								</div>
+								<div class=col-1></div>
+							</div>
+						</div>
 					</form>
+					<!-- 비밀번호 확인 -->
+					<form method="post">
+						<div class="form-floating mb-3">
+							<div class="row">
+								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;" 
+								class=col-4> <a>비밀번호 확인</a></div>
+								<div class=col-7>
+									<input class="form-control rounded-3" type="password" name=uPwdOk
+									placeholder="Confirm Password" onfocus="this.placeholder=''"
+									onblur="this.placeholder='Confirm Password'"> 
+								</div>
+								<div class=col-1></div>
+							</div>
+						</div>
+					</form>
+					<!-- 이메일 -->
+					<form method="post">
+						<div class="form-floating mb-3">
+							<div class="row">
+								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;" 
+								class=col-4> <a>이메일</a></div>
+								<div class=col-7>
+									<input class="form-control rounded-3" type="email" name="email"
+									placeholder="abc123@abc.com" onfocus="this.placeholder=''"
+									onblur="this.placeholder='abc123@abc.com'"> 
+								</div>
+								<div class=col-1></div>
+							</div>
+						</div>
+					</form>
+					<!-- 이름 -->
+					<form method="post">
+						<div class="form-floating mb-3">
+							<div class="row">
+								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;" 
+								class=col-4> <a>이름</a></div>
+								<div class=col-7>
+									<input class="form-control rounded-3" type="text" name="name" placeholder="홍길동"
+									onfocus="this.placeholder=''" onblur="this.placeholder='홍길동'">
+								</div>
+								<div class=col-1></div>
+							</div>
+						</div>
+					</form>
+					<!-- 전화번호 -->
+					<form method="post">
+						<div class="form-floating mb-3">
+							<div class="row">
+								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;" 
+								class=col-4> <a>전화번호</a></div>
+								<div class=col-7>
+									<input class="form-control rounded-3" type="text" name="phone"
+									placeholder="010-0000-0000" onfocus="this.placeholder=''"
+									onblur="this.placeholder='010-0000-0000'"> 
+								</div>
+								<div class=col-1></div>
+							</div>
+						</div>
+					</form>
+					<!-- 생년월일 -->
+					<form method="post">
+						<div class="form-floating mb-3">
+							<div class="row">
+								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;" 
+								class=col-4> <a>생년월일</a></div>
+								<div class=col-7>
+									<input class="form-control rounded-3" type="text" name="birth" placeholder="생년월일 6자리"
+									onfocus="this.placeholder=''"
+									onblur="this.placeholder='생년월일 6자리'"> 
+								</div>
+								<div class=col-1></div>
+							</div>
+						</div>
+					</form>
+					<hr class="my-4">
+					<div class="row">
+						<div class="col-6">
+							<input class=" center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
+							style="border-color: silver;" type="button" id="butt" value="취소" onclick="goLogIn()">
+						</div>
+						<div class="col-6">
+							<input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
+							style="height: 42px; font-size: 17px" type="submit" id="subm" value="가입"> 
+							<input type="hidden" name="uID" value="${uid }">
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

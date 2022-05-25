@@ -33,12 +33,15 @@ body {
 
 @import
 	url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+	
 .center_ailgn{
 text-align: center;
 }	
+
+
 </style>
 
-<link rel="stylesheet" href="../css/header.css">
+
 
 </head>
 <body>
@@ -48,9 +51,8 @@ text-align: center;
 		<div class="modal-dialog" role="document">
 			<div class="modal-content rounded-4 shadow align-items-md-center">
 				<div class="modal-header p-5 pb-4 border-bottom-0 cen">
-					<!-- <h5 class="modal-tit"le">Modal title</h5> -->
-					<h2 class="fw-bold mb-0"
-						style="font-family: 'Lobster', cursive; font-size: 48px;">insidergram</h2>
+					<h2 class="fw-bold mb-0" 
+						style="font-family: 'Lobster', cursive; font-size: 48px; padding-bottom: 20px;">insidergram</h2>
 				</div>
 
 				<div class="modal-body p-5 pt-0">
@@ -76,20 +78,20 @@ text-align: center;
 
 					</form>
 					<a class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
-						href="../signUp.jsp">
+						style="border-color: silver;" href="../signUp.jsp">
 						<svg class="bi me-1" width="0px" height="16"></svg>
 						회원가입
 					</a>
 					<div class="row">
 						<div class="col-6">
 							<button class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
-								type="submit" href="#">
+								style="border-color: silver;" type="submit" href="#">
 								<svg class="bi me-1 " width="0px" height="16"></svg>아이디 찾기
 							</button>
 						</div>
 						<div class="col-6">
 							<button class=" center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
-								type="submit" href="#">
+								style="border-color: silver;" type="submit" href="#">
 								<svg class="bi me-1 " width="0px" height="16"></svg>
 								비밀번호 찾기
 							</button>
