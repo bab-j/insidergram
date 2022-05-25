@@ -1,20 +1,13 @@
 package com.spring.biz.view.user;
 
-import java.util.List;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.biz.board.BoardService;
-import com.spring.biz.board.BoardVO;
 import com.spring.biz.user.UserService;
 import com.spring.biz.user.UserVO;
-import com.spring.biz.user.impl.UserDAO;
 
 @RestController
 public class UserAjaxController {
