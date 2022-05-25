@@ -81,12 +81,8 @@ a {
 </script>
 </head>
 <body>
-	<div class="bar">
-		<div>
-			<h3 class="home">instarkilogram</h3>
-		</div>
-	</div>
 
+<jsp:include page="/header.jsp"></jsp:include>
 
 
 	<div class="sign">
