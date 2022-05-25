@@ -140,17 +140,26 @@ font-weight: bold;
 	${userVO }
 	${feedList }
 	<!-- 피드 게시물 -->
-	<div class="feedBox">
+	<div class="feedBox" style="border: 1px solid black">
 	<c:choose>
 	<c:when test="${empty feedList }">
 		<h3>게시물이 존재하지 않습니다.</h3>
 	</c:when>
 	<c:otherwise>
 		<c:forEach var="feed" items="${feedList }">
-			<!-- 프사 -->
-			<span class=profileIMG>
-				${feed.u_pic }
-			</span>
+			<!-- 피드 게시물 1개(프사 ~ 댓글) -->
+			<div class="oneFeed" style="border: 1px solid black">
+				<!-- 프사 -->
+				<span class=profileIMG style="border: 1px solid orange">
+					${feed.u_pic } ${feed.u_id } 
+				</span>
+				<div class="imgBox" style="border: 1px solid blue">
+					${feed.f_pic }
+				</div>
+				<div class="contentBox" style="border: 1px solid red">
+					${feed.content }
+				</div>
+			</div>
 		</c:forEach>
 	</c:otherwise>
 	</c:choose>
