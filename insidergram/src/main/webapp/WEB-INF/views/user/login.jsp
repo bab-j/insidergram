@@ -9,8 +9,6 @@
 body {
 	margin-top: 150px; 
 	background-color : #f6f7f7;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-		Helvetica, Arial, sans-serif;
 }
 
 .bar {
