@@ -68,7 +68,6 @@ body {
 a {
 	text-decoration: none;
 	color: #3c434a;
-	font-family: monospace;
 	font-size: 1.2em;
 }
 </style>
