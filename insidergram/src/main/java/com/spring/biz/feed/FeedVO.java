@@ -5,7 +5,6 @@ public class FeedVO {
 	private String regdate;
 	private String content;
 	private String uId;
-	private String uPic;
 	private String fPic;
 	
 	
@@ -37,12 +36,8 @@ public class FeedVO {
 	public void setuId(String uId) {
 		this.uId = uId;
 	}
-	public String getuPic() {
-		return uPic;
-	}
-	public void setuPic(String uPic) {
-		this.uPic = uPic;
-	}
+	
+	
 	public String getfPic() {
 		return fPic;
 	}
@@ -51,8 +46,7 @@ public class FeedVO {
 	}
 	@Override
 	public String toString() {
-		return "FeedVO [fIdx=" + fIdx + ", regdate=" + regdate + ", content=" + content + ", uId=" + uId + ", uPic="
-				+ uPic + ", fPic=" + fPic + "]";
+		return "FeedVO [fIdx=" + fIdx + ", regdate=" + regdate + ", content=" + content + ", uId=" + uId + ", fPic=" + fPic + "]";
 	}
 
 	

@@ -15,28 +15,10 @@ public class FeedServiceImpl implements FeedService {
 	@Autowired // 타입이 일치하는 객체(인스턴스) 주입
 	private FeedDAO feedDAO;
 
-	@Override
-	public void insertFeed(FeedVO vo) {
-		feedDAO.insertBoard(vo);
-	}
-
-	@Override
-	public void updateFeed(FeedVO vo) {
-		feedDAO.updateBoard(vo);
-	}
-
-	@Override
-	public void deleteFeed(FeedVO vo) {
-		feedDAO.deleteBoard(vo);
-	}
-
-	@Override
-	public FeedVO getFeed(FeedVO vo) {
-		return null;
-	}
 
 	@Override
 	public List<FeedVO> getFeedList(FeedVO vo) {
+		feedDAO.getFeedList(vo);
 		return null;
 	}
 

@@ -137,7 +137,7 @@ font-weight: bold;
 	<div class="bar">
 		<div class="home">
 			<h1>
-				<em> <a class="linkLine" href="mainFeed.jsp">instarkilogram</a></em>
+				<em> <a class="linkLine" href="mainFeed.jsp">insidergram</a></em>
 			</h1>
 		</div>
 		

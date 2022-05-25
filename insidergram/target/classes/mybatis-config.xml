@@ -8,7 +8,7 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="com.spring.biz.board.BoardVO" alias="board"/>
+		<typeAlias type="com.spring.biz.feed.FeedVO" alias="feed"/>
 		<typeAlias type="com.spring.biz.user.UserVO" alias="user"/>
 	</typeAliases>
   
