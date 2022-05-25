@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>test~!!~~</h1>
+<h1>채팅을 구현해 보자</h1>
 </body>
 </html>
