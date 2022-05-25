@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>시작페이지</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+<script> 
 	// Ajax 요청처리에 의해 데이터 가져와서 화면 표시
 /* 	function getJsonBoardListData() {
 		alert("getJsonBoardListData() 실행~~~");
