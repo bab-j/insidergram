@@ -132,30 +132,7 @@ font-weight: bold;
 <body>
 
 
-	<div class="bar">
-		<div class="home">
-			<h1>
-				<em> <a class="linkLine" href="mainFeed.jsp">insidergram</a></em>
-			</h1>
-		</div>
-		
-		<div class="container">
-			<form action="feedcontroller?type=search" method="post" >
-				<span> 
-					<input class="total_search" type="text" id="search" name="keyword" placeholder="통합검색">&nbsp; 
-					<input class="search_btn" type="submit"	value="검색">
-				</span>
-			</form>
-		</div>
-		
-		<div class="nav-icon">
-			<ul>
-				<li class="material-icons " ><a href="feedcontroller?type=myHome">home</a></li>
-				<li class="material-icons-outlined "><a href="postWrite.jsp">add_circle_outline</a></li>
-				<li class="material-icons "><a href="logout.jsp">logout</a></li>
-			</ul>
-		</div>
-	</div>
+	<jsp:include page="../../../header.jsp"></jsp:include>
 	<!-- upside bar -->
 
 	<br>

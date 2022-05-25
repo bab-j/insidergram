@@ -4,10 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="feedDAO">
 	
-	<select id="getFeedList" parameterType="feed" resultType="feed">
+	<select id="getFeedList" resultType="feed">
 		SELECT F_IDX, REGDATE, CONTENT, U_ID, F_PIC
 		  FROM FEED
-		 WHERE U_ID = #{uId}
 	</select>
 	
 	
