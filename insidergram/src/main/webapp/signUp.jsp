@@ -61,7 +61,7 @@ body {
 						<div class="form-floating mb-3">
 							<div class="row">
 								<div class=col-9>
-									<input class="form-control rounded-3" type="text" name=uid id="uid"
+									<input class="form-control rounded-3" type="text" name=u_id id="uid"
 											placeholder="아이디" onfocus="this.placeholder=''"
 											onblur="this.placeholder='Username'"> 
 								</div>
@@ -74,7 +74,7 @@ body {
 						<table>
 							<tr>
 								<th>아이디</th>
-								<td><input type="text" name=uid id="uid"
+								<td><input type="text" name=u_id id="uid"
 									placeholder="Username" onfocus="this.placeholder=''"
 									onblur="this.placeholder='Username'"> <input
 									type="button" id="button1" value="중복확인" onclick="confirmID()">
@@ -146,7 +146,7 @@ body {
 				alert("confirmID() 실행~~~");
 				$.ajax("confirmID.do", {
 					type : "get",
-					data : "uId=" + id,
+					data : "u_id=" + id,
 					dataType : "text",
 					success : function(data) {
 						alert("성공~~~");

@@ -77,11 +77,11 @@ text-align: center;
 						<hr class="my-4">
 
 					</form>
-					<button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
-						type="submit" href="#">
+					<a class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
+						href="../signUp.jsp">
 						<svg class="bi me-1" width="0px" height="16"></svg>
 						회원가입
-					</button>
+					</a>
 					<div class="row">
 						<div class="col-6">
 							<button class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
