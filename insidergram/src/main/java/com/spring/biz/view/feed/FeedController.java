@@ -2,6 +2,7 @@ package com.spring.biz.view.feed;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,10 +56,10 @@ import com.spring.biz.feed.FeedVO;
 		}
 		
 		@RequestMapping("getFeedList.do")
-		public String getFeedList(FeedVO vo) {
-			
-			
-			
+		public String getFeedList(Model mo) {
+			List<FeedVO> list = new ArrayList<FeedVO>();
+			list = feedService.getFeedList();
+			mo.addAttribute("feedList", list);
 			return "board/mainFeed";
 		}
 		

@@ -17,9 +17,8 @@ public class FeedServiceImpl implements FeedService {
 
 
 	@Override
-	public List<FeedVO> getFeedList(FeedVO vo) {
-		feedDAO.getFeedList(vo);
-		return null;
+	public List<FeedVO> getFeedList() {
+		return feedDAO.getFeedList();
 	}
 
 	

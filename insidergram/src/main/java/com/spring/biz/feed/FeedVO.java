@@ -1,23 +1,42 @@
 package com.spring.biz.feed;
 
 public class FeedVO {	
-	private int fIdx;
+	private int f_idx;
 	private String regdate;
 	private String content;
-	private String uId;
-	private String fPic;
+	private String u_id;
+	private String f_pic;
+	private String u_pic;
 	
 	
+	public String getU_pic() {
+		return u_pic;
+	}
+
+	public void setU_pic(String u_pic) {
+		this.u_pic = u_pic;
+	}
+
 	public FeedVO() {
 		super();
 	}
 	
-	public int getfIdx() {
-		return fIdx;
+	public int getF_idx() {
+		return f_idx;
 	}
-	public void setfIdx(int fIdx) {
-		this.fIdx = fIdx;
+
+	public void setF_idx(int f_idx) {
+		this.f_idx = f_idx;
 	}
+
+	public String getU_id() {
+		return u_id;
+	}
+
+	public void setU_id(String u_id) {
+		this.u_id = u_id;
+	}
+
 	public String getRegdate() {
 		return regdate;
 	}
@@ -30,24 +49,28 @@ public class FeedVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getuId() {
-		return uId;
+
+	public String getF_pic() {
+		return f_pic;
 	}
-	public void setuId(String uId) {
-		this.uId = uId;
+
+	public void setF_pic(String f_pic) {
+		this.f_pic = f_pic;
 	}
-	
-	
-	public String getfPic() {
-		return fPic;
-	}
-	public void setfPic(String fPic) {
-		this.fPic = fPic;
-	}
+
 	@Override
 	public String toString() {
-		return "FeedVO [fIdx=" + fIdx + ", regdate=" + regdate + ", content=" + content + ", uId=" + uId + ", fPic=" + fPic + "]";
+		return "FeedVO [f_idx=" + f_idx + ", regdate=" + regdate + ", content=" + content + ", u_id=" + u_id
+				+ ", f_pic=" + f_pic + ", u_pic=" + u_pic + "]";
 	}
+
+	
+	
+	
+	
+	
+	
+	
 
 	
 	

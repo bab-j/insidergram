@@ -20,9 +20,9 @@ public class FeedDAO {
 
 	
 	//글 목록 조회
-	public List<FeedVO> getFeedList(FeedVO vo) {
+	public List<FeedVO> getFeedList() {
 		System.out.println("===> MyBatis 사용 getFeedList() 실행");
-		return mybatis.selectList("feedDAO.getFeedList", vo);
+		return mybatis.selectList("feedDAO.getFeedList");
 	}
 	
 	

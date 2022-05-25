@@ -9,7 +9,7 @@ public class UserVO {
 	private String birth;
 	private String name;
 	private String bio;
-	private String uPic;
+	private String u_pic;
 	
 	public UserVO() {
 		super();
@@ -72,19 +72,27 @@ public class UserVO {
 	public void setBio(String bio) {
 		this.bio = bio;
 	}
-	public String getuPic() {
-		return uPic;
+
+
+	public String getU_pic() {
+		return u_pic;
 	}
-	public void setuPic(String uPic) {
-		this.uPic = uPic;
+
+
+	public void setU_pic(String u_pic) {
+		this.u_pic = u_pic;
 	}
 
 
 	@Override
 	public String toString() {
 		return "UserVO [u_idx=" + u_idx + ", u_id=" + u_id + ", password=" + password + ", phone=" + phone + ", email="
-				+ email + ", birth=" + birth + ", name=" + name + ", bio=" + bio + ", uPic=" + uPic + "]";
+				+ email + ", birth=" + birth + ", name=" + name + ", bio=" + bio + ", u_pic=" + u_pic + "]";
 	}
+	
+
+
+	
 	
 	
 }

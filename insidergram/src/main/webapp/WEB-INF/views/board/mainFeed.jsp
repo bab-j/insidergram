@@ -137,7 +137,35 @@ font-weight: bold;
 
 	<br>
 	<br>
-	${userVO.u_id }
+	${userVO }
+	${feedList }
+	<!-- 피드 게시물 -->
+	<div class="feedBox">
+	<c:choose>
+	<c:when test="${empty feedList }">
+		<h3>게시물이 존재하지 않습니다.</h3>
+	</c:when>
+	<c:otherwise>
+		<c:forEach var="feed" items="${feedList }">
+			<!-- 프사 -->
+			<span class=profileIMG>
+				${feed.u_pic }
+			</span>
+		</c:forEach>
+	</c:otherwise>
+	</c:choose>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<%-- <div class="main_body">
 		<!-- 메인 박스 -->
 		<div class="center_body ">
@@ -224,6 +252,7 @@ font-weight: bold;
 			<!--오른쪽  -->
 		</div>
 	</div> --%>
+	
 </body>
 </html>
 
