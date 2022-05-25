@@ -15,6 +15,8 @@
 </head>
 <body>
 	<h1>채팅을 구현해 보자</h1>
-	
+	<c:forEach var="vo" items="${chatHeaderList }">
+		vo.from_id
+	</c:forEach>
 </body>
 </html>

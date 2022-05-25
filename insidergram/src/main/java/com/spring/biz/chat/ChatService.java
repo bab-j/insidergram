@@ -1,5 +1,9 @@
 package com.spring.biz.chat;
 
-public interface ChatService {
+import java.util.List;
 
+import com.spring.biz.user.UserVO;
+
+public interface ChatService {
+	List<ChatHeaderVO> getChatHeaderList(UserVO vo);
 }

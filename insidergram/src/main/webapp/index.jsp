@@ -39,7 +39,6 @@
 </script>
 </head>
 <body>
-<jsp:include page="/header.jsp"/>
 
 <div id="container">
 	<h1>게시판 프로그램</h1>
