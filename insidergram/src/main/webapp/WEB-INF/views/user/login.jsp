@@ -79,20 +79,20 @@ text-align: center;
 					</form>
 					<button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
 						type="submit" href="#">
-						<svg class="bi me-1" width="16" height="16"></svg>
+						<svg class="bi me-1" width="0px" height="16"></svg>
 						회원가입
 					</button>
 					<div class="row">
 						<div class="col-6">
 							<button class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
 								type="submit" href="#">
-								<svg class="bi me-1 " width="1px" height="16"></svg>아이디 찾기
+								<svg class="bi me-1 " width="0px" height="16"></svg>아이디 찾기
 							</button>
 						</div>
 						<div class="col-6">
 							<button class=" center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
 								type="submit" href="#">
-								<svg class="bi me-1 " width="1px" height="16"></svg>
+								<svg class="bi me-1 " width="0px" height="16"></svg>
 								비밀번호 찾기
 							</button>
 						</div>
