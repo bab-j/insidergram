@@ -13,7 +13,6 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,6 +33,9 @@ body {
 
 @import
 	url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+.center_ailgn{
+text-align: center;
+}	
 </style>
 
 <link rel="stylesheet" href="../css/header.css">
@@ -82,17 +84,16 @@ body {
 					</button>
 					<div class="row">
 						<div class="col-6">
-							<button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
+							<button class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
 								type="submit" href="#">
-								<svg class="bi me-1" width="16" height="16"></svg>
-								Find ID
+								<svg class="bi me-1 " width="1px" height="16"></svg>아이디 찾기
 							</button>
 						</div>
 						<div class="col-6">
-							<button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
+							<button class=" center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
 								type="submit" href="#">
-								<svg class="bi me-1" width="16" height="16"></svg>
-								Find Password
+								<svg class="bi me-1 " width="1px" height="16"></svg>
+								비밀번호 찾기
 							</button>
 						</div>
 					</div>
