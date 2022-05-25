@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	UserVO vo = new UserVO();
-vo.setuId("whale");
+vo.setU_id("whale");
 vo.setPassword("11");
 vo.setPhone("010-2548-7326");
 vo.setEmail("zaku20@naver.com");
