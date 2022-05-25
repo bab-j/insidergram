@@ -28,12 +28,14 @@
 	url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 #Header {
-	background-color: white;
+	/*  position: fixed; */ 
+	background-color : white;
 	border-bottom: 1px solid #dbdbdb;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	height: 50px;
+	background-color: white;
 }
 
 .nav-icon {
