@@ -43,5 +43,27 @@ import com.spring.biz.feed.FeedVO;
 //		return "board/getBoardList";
 //	}
 //	
-	
 //}
+	@Controller
+	@RequestMapping("/feed/**")
+	public class FeedController {
+		@Autowired
+		private FeedService feedService;
+		
+		public FeedController() {
+			System.out.println("============= FeedController() 객체 생성 ==================");
+		}
+		
+		@RequestMapping("/user/getFeedList.do")
+		public String getFeedList(FeedVO vo) {
+			
+			
+			
+			return "board/test";
+		}
+		
+		
+		
+		
+		
+	}

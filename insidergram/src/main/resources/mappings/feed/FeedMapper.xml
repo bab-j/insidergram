@@ -5,7 +5,7 @@
 <mapper namespace="feedDAO">
 	
 	<select id="getFeedList" parameterType="feed" resultType="feed">
-		SELECT F_IDX, REGDATE, CONTENT, U_ID, U_LIKE, F_PIC
+		SELECT F_IDX, REGDATE, CONTENT, U_ID, F_PIC
 		  FROM FEED
 		 WHERE U_ID = #{uId}
 	</select>

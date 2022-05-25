@@ -1,8 +1,8 @@
 package com.spring.biz.user;
 
 public class UserVO {
-	private int uIdx;
-	private String uId;
+	private int u_idx;
+	private String u_id;
 	private String password;
 	private String phone;
 	private String email;
@@ -15,18 +15,27 @@ public class UserVO {
 		super();
 	}
 	
-	public int getuIdx() {
-		return uIdx;
+	
+	public int getU_idx() {
+		return u_idx;
 	}
-	public void setuIdx(int uIdx) {
-		this.uIdx = uIdx;
+
+
+	public void setU_idx(int u_idx) {
+		this.u_idx = u_idx;
 	}
-	public String getuId() {
-		return uId;
+
+
+	public String getU_id() {
+		return u_id;
 	}
-	public void setuId(String uId) {
-		this.uId = uId;
+
+
+	public void setU_id(String u_id) {
+		this.u_id = u_id;
 	}
+
+
 	public String getPassword() {
 		return password;
 	}
@@ -69,10 +78,13 @@ public class UserVO {
 	public void setuPic(String uPic) {
 		this.uPic = uPic;
 	}
+
+
 	@Override
 	public String toString() {
-		return "UserVO [uIdx=" + uIdx + ", uId=" + uId + ", password=" + password + ", phone=" + phone + ", email="
+		return "UserVO [u_idx=" + u_idx + ", u_id=" + u_id + ", password=" + password + ", phone=" + phone + ", email="
 				+ email + ", birth=" + birth + ", name=" + name + ", bio=" + bio + ", uPic=" + uPic + "]";
-	}	
+	}
+	
 	
 }

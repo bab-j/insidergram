@@ -29,7 +29,7 @@ public class UserController {
 		System.out.println("vo : " + vo);
 		
 		//일부러 예외 발생
-		if (vo.getuId() == null || vo.getuId().equals("")) {
+		if (vo.getU_id() == null || vo.getU_id().equals("")) {
 			throw new IllegalArgumentException("아이디는 반드시 입력해야 합니다");
 		}
 		
@@ -39,7 +39,7 @@ public class UserController {
 		if (user != null) {
 			System.out.println(">> 로그인 성공!!!");
 			//return "redirect:../board/getBoardList.do";
-			return "board/test";
+			return "redirect:../getFeedList.do";
 		} else {
 			System.out.println(">> 로그인 실패~~~");
 			return "user/login";
