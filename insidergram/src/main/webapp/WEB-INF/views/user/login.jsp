@@ -43,8 +43,6 @@ text-align: center;
 </head>
 <body>
 
-	<jsp:include page="/header.jsp"></jsp:include>
-
 	<div class="modal modal-signin position-static d-block bg-light py-5"
 		tabindex="-1" role="dialog" id="modalSignin">
 		<div class="modal-dialog" role="document">
