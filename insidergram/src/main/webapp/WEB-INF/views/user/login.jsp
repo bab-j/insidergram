@@ -94,8 +94,9 @@ a {
 			<h1>instarkilogram</h1>
 		</div>
 		<form name="inputFrm" action="login.do" method="post">
-			<input type="text" name="id" id="name" placeholder="ID"
+			<input type="text" name="uId" id="name" placeholder="ID"
 				onfocus="this.placeholder=''" onblur="this.placeholder='Username'"><br>
+				
 			<input type="password" name="password" id="pwd" placeholder="PASSWORD"
 				onfocus="this.placeholder=''" onblur="this.placeholder='Password'"><br>
 			<br> <br>

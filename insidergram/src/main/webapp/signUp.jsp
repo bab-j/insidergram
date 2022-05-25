@@ -146,7 +146,7 @@ function confirmID() {
 	alert("confirmID() 실행~~~");
 	$.ajax("confirmID.do", {
 		type: "get",
-		data: "id=" + id,
+		data: "uId=" + id,
 		dataType: "text",
 		success: function(data){
 			alert("성공~~~");
