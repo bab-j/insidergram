@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,7 +23,7 @@ public class UserController {
 
 	//@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	@PostMapping("/login.do") // 4.3 버전부터 사용가능 + <mvc:annotation-driven />
-	public String login(UserVO vo) {
+	public String login(UserVO vo, HttpSession session) {
 		System.out.println(">>> 로그인 처리 - login()");
 		System.out.println("vo : " + vo);
 		
@@ -32,12 +31,12 @@ public class UserController {
 		if (vo.getU_id() == null || vo.getU_id().equals("")) {
 			throw new IllegalArgumentException("아이디는 반드시 입력해야 합니다");
 		}
-		
 		UserVO user = userService.getUser(vo);
 		System.out.println("user : " + user);
 		
 		if (user != null) {
 			System.out.println(">> 로그인 성공!!!");
+			session.setAttribute("userVO", user);
 			//return "redirect:../board/getBoardList.do";
 			return "redirect:getFeedList.do";
 		} else {
