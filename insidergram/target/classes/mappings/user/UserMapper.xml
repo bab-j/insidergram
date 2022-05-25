@@ -6,14 +6,14 @@
 
 	<select id="getUser" parameterType="com.spring.biz.user.UserVO"
 		resultType="user">
-		SELECT * FROM USER_INFO WHERE U_ID = #{uId} AND PASSWORD = #{password}
+		SELECT * FROM USER_INFO WHERE U_ID = #{u_id} AND PASSWORD = #{password}
 	</select>
   	
   	<!--아이디 중복체크  -->
 	<select id="confirmID" resultType="int" parameterType="user"> 
 		SELECT COUNT(U_ID) 
 		FROM USER_INFO 
-		WHERE U_ID = #{uId} 
+		WHERE U_ID = #{u_id} 
 	</select> 
 </mapper>
 

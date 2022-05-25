@@ -45,7 +45,7 @@ import com.spring.biz.feed.FeedVO;
 //	
 //}
 	@Controller
-	@RequestMapping("/feed/**")
+	@RequestMapping("/user/**")
 	public class FeedController {
 		@Autowired
 		private FeedService feedService;
@@ -54,12 +54,12 @@ import com.spring.biz.feed.FeedVO;
 			System.out.println("============= FeedController() 객체 생성 ==================");
 		}
 		
-		@RequestMapping("/user/getFeedList.do")
+		@RequestMapping("getFeedList.do")
 		public String getFeedList(FeedVO vo) {
 			
 			
 			
-			return "board/test";
+			return "board/mainFeed";
 		}
 		
 		

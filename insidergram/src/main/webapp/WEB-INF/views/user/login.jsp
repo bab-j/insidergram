@@ -56,7 +56,7 @@ body {
 				<div class="modal-body p-5 pt-0">
 					<form class="" name="inputFrm" action="login.do" method="post">
 						<div class="form-floating mb-3">
-							<input class="form-control rounded-3" type="text" name="uId"
+							<input class="form-control rounded-3" type="text" name="u_id"
 								id="name" placeholder="ID" onfocus="this.placeholder=''"
 								onblur="this.placeholder='Username'"> <label
 								for="floatingInput">ID</label>
