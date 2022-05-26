@@ -30,17 +30,15 @@ body {
 		Helvetica, Arial, sans-serif;
 	text-align: center;
 }
-
-@import
-	url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 	
 .center_ailgn{
 text-align: center;
 }	
 
-
 </style>
-
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
+</style>
 
 
 </head>
@@ -52,7 +50,7 @@ text-align: center;
 			<div class="modal-content rounded-4 shadow align-items-md-center">
 				<div class="modal-header p-5 pb-4 border-bottom-0 cen">
 					<h2 class="fw-bold mb-0" 
-						style="font-family: 'Lobster', cursive; font-size: 48px; padding-bottom: 20px;">insidergram</h2>
+						style="font-family: 'Carattere', cursive; font-size: 70px; padding-bottom: 20px;">insidergram</h2>
 				</div>
 
 				<div class="modal-body p-5 pt-0">

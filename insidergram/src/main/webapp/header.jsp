@@ -20,12 +20,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Document</title>
-
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
+</style>
 <style>
 
 /* 마지막에 CSS 파일로 만들기 */
-@import
-	url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 #Header {
 	/*  position: fixed;*/ 
@@ -133,9 +133,9 @@ a:hover {
 }
 
 .insiderIcon {
-	font-family: 'Lobster', cursive;
-	font-size: 32px;
-	font-weight: 3px;
+	font-family: 'Carattere', cursive;
+	font-size: 40px;
+	font-weight: bold;
 }
 </style>
 
@@ -193,9 +193,7 @@ a:hover {
 		</div>
 	</div>
 
-	<%
-
-	%>
+	
 	<div id="Header">
 		<div class="container" style="margin-top: 10px;">
 			<div class="row">
