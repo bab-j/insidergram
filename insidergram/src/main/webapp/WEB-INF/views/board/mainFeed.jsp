@@ -1,29 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-<link
+<!-- <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+ -->
+<!-- <link
 	href="https://fonts.googleapis.com/css?family=Material+Icons|
 	Material+Icons+Outlined|Material+Icons+Two+Tone|
 	Material+Icons+Round|Material+Icons+Sharp"
 	rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css"> -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <!--브라우저 적당량  -->
 <title>insidergram : 메인화면</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script
+<!-- <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
 	crossorigin="anonymous">
 </script>
-
+ -->
 <style>
 .feed_name {
 	margin-left: auto;
@@ -127,6 +127,13 @@ font-weight: bold;
 
 
 </style>
+<script>
+	$().ready(function(){
+	});
+		function moreFeed() {
+			alert($("#feedBox div").length )
+		}
+</script>
 </head>
 
 <body>
@@ -137,35 +144,37 @@ font-weight: bold;
 
 	<br>
 	<br>
-	${userVO }
-	${feedList }
+	${userVO } <!-- 세션저장 -->
+	${feedList } <!-- 모델저장소 -->
 	<!-- 피드 게시물 -->
 	<div class="feedBox" style="border: 1px solid black">
-	<c:choose>
-	<c:when test="${empty feedList }">
-		<h3>게시물이 존재하지 않습니다.</h3>
-	</c:when>
-	<c:otherwise>
-		<c:forEach var="feed" items="${feedList }">
-			<!-- 피드 게시물 1개(프사 ~ 댓글) -->
-			<div class="oneFeed" style="border: 1px solid black">
-				<!-- 프사 -->
-				<span class=profileIMG style="border: 1px solid orange">
-					${feed.u_pic } ${feed.u_id } 
-				</span>
-				<div class="imgBox" style="border: 1px solid blue">
-					${feed.f_pic }
-				</div>
-				<div class="contentBox" style="border: 1px solid red">
-					${feed.content }
-				</div>
-			</div>
-		</c:forEach>
-	</c:otherwise>
-	</c:choose>
+		<c:choose>
+			<c:when test="${empty feedList }">
+				<h3>게시물이 존재하지 않습니다.</h3>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="feed" items="${feedList }">
+					<!-- 피드 게시물 1개(프사 ~ 댓글) -->
+					<div class="oneFeed" style="border: 1px solid black">
+						<!-- 프사 -->
+						<span class=profileIMG style="border: 1px solid orange">
+							<img src="${feed.u_pic }"> ${feed.u_id } 
+						</span>
+						<div class="feedIMG" style="border: 1px solid blue">
+							<img src="${feed.f_pic }">
+						</div>
+						<div class="contentBox" style="border: 1px solid red">
+							${feed.content }
+						</div>
+					</div>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	
-	
+	<div class="moreBtn">
+		<a href="javascript:moreFeed()">더보기</a>
+	</div>
 	
 	
 	
