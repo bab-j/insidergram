@@ -22,9 +22,6 @@ body {
 	text-align: center;
 }
 
-@import
-	url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-
 #confirm1 {
 	text-align: center;
 	border: 1px solid silver;
@@ -33,14 +30,9 @@ body {
     margin-top: 2px;
 }
 
-.insiderIcon {
-	font-family: 'Lobster', cursive;
-	font-size: 48px;
-	font-weight: 3px;
-	text-decoration: none;
-	padding-bottom: 20px;
-	color: inherit;
-}
+</style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -66,7 +58,11 @@ body {
 		<div class="modal-dialog" role="document">
 			<div class="modal-content rounded-4 shadow align-items-md-center">
 				<div class="modal-header p-5 pb-4 border-bottom-0 cen">
-					<h2 class="fw-bold mb-0"><a class="insiderIcon">insidergram</a></h2>
+					<h2 class="fw-bold mb-0"
+					style="font-family: 'Carattere', cursive; 
+					font-size: 70px; padding-bottom: 20px;">
+					insidergram
+					</h2>
 				</div>
 				<!-- 틀 만들기 -->
 				<div class="modal-body p-5 pt-0">
