@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,17 +81,38 @@ a:hover {
 			<div>
 				<div class="whale_body">
 					<div class="chat_body">
+						<div>
+							<a class="display_block" href="#"><img class="img_size "
+								src="../img_src/28778_54512_4628.jpeg">
+								<div>
+									<div>이름</div>
+									<div>post 1minutes.</div>
+								</div> </a>
+						</div>
 						<div class="shadow-sm p-3 mb-5 bg-body rounded chat_list ">
-
-							<div>
-								<a class="display_block" href="#"><img class="img_size "
-									src="./img_src/28778_54512_4628.jpeg">
+							${chatHeaderList }
+							<c:forEach var="vo" items="${chatHeaderList }">
+								<c:if test="${vo.from_id }==${userVO.u_id }">
 									<div>
-										<div>id123</div>
-										<div>post 1minutes.</div>
-									</div> 
-									</a>
-							</div>
+										<a class="display_block" href="#"><img class="img_size "
+											src="../img_src/28778_54512_4628.jpeg">
+											<div>
+												<div>${vo.to_id }</div>
+												<div>post 1minutes.</div>
+											</div> </a>
+									</div>
+								</c:if>
+								<c:if test="${vo.from_id }!=${userVO.u_id }">
+									<div>
+										<a class="display_block" href="#"><img class="img_size "
+											src="../img_src/28778_54512_4628.jpeg">
+											<div>
+												<div>${vo.from_id }</div>
+												<div>post 1minutes.</div>
+											</div> </a>
+									</div>
+								</c:if>
+							</c:forEach>
 						</div>
 						<div class="shadow-sm p-3 mb-5 bg-body rounded chat_content">
 							<ul>
