@@ -182,7 +182,7 @@ a:hover {
 					<div class="nav-icon" style="text-align: right;">
 						<ul>
 							<li class="material-symbols-outlined dm_icon"><a
-								href="../dm_test.jsp">send</a></li>
+								href="../chat/getChatHeaderList.do">send</a></li>
 							<li class="material-icons "><a href="mainFeed.jsp">home</a></li>
 							<li class="material-icons-outlined "><a href="postPage.jsp">add_circle_outline</a></li>
 							<li class="material-icons "><a href="#">logout</a></li>
