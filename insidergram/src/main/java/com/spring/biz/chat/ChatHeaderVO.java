@@ -1,9 +1,9 @@
 package com.spring.biz.chat;
 
 public class ChatHeaderVO {
-	private int hIdx;
-	private String fromId;
-	private String toId;
+	private int h_idx;
+	private String from_id;
+	private String to_id;
 	private String subject;
 	private boolean status;
 	
@@ -11,23 +11,23 @@ public class ChatHeaderVO {
 	public ChatHeaderVO() {
 		super();
 	}
-	public int gethIdx() {
-		return hIdx;
+	public int getH_idx() {
+		return h_idx;
 	}
-	public void sethIdx(int hIdx) {
-		this.hIdx = hIdx;
+	public void setH_idx(int hIdx) {
+		this.h_idx = hIdx;
 	}
-	public String getFromId() {
-		return fromId;
+	public String getFrom_id() {
+		return from_id;
 	}
-	public void setFromId(String fromId) {
-		this.fromId = fromId;
+	public void setFrom_id(String from_id) {
+		this.from_id = from_id;
 	}
-	public String getToId() {
-		return toId;
+	public String getTo_id() {
+		return to_id;
 	}
-	public void setToId(String toId) {
-		this.toId = toId;
+	public void setTo_id(String to_id) {
+		this.to_id = to_id;
 	}
 	public String getSubject() {
 		return subject;
@@ -44,7 +44,7 @@ public class ChatHeaderVO {
 	
 	@Override
 	public String toString() {
-		return "ChatHeaderVO [hIdx=" + hIdx + ", fromId=" + fromId + ", toId=" + toId + ", subject=" + subject
+		return "ChatHeaderVO [h_idx=" + h_idx + ", from_id=" + from_id + ", to_id=" + to_id + ", subject=" + subject
 				+ ", status=" + status + "]";
 	}
 

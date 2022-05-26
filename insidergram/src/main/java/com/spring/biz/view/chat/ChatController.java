@@ -27,10 +27,10 @@ public class ChatController {
 
 	@RequestMapping("/chat/getChatHeaderList.do")
 	public String getChatHeaderList(Model mo, HttpSession session) {
-		UserVO uvo = (UserVO)session.getAttribute("userVO");
-		System.out.println("userVOOOOOOOOOOOOOO"+uvo.toString());
-		List<ChatHeaderVO> list = new ArrayList<ChatHeaderVO>();
-		list = chatService.getChatHeaderList(uvo);
+		UserVO vo = (UserVO)session.getAttribute("userVO");
+		System.out.println("userVOOOOOOOOOOOOOO"+vo.toString());
+		List<ChatHeaderVO> list = chatService.getChatHeaderList(vo);
+		System.out.println("listtttttttttttttttttt"+list);
 		mo.addAttribute("chatHeaderList", list);
 		return "board/dm_test";
 	}

@@ -81,18 +81,10 @@ a:hover {
 			<div>
 				<div class="whale_body">
 					<div class="chat_body">
-						<div>
-							<a class="display_block" href="#"><img class="img_size "
-								src="../img_src/28778_54512_4628.jpeg">
-								<div>
-									<div>이름</div>
-									<div>post 1minutes.</div>
-								</div> </a>
-						</div>
+
 						<div class="shadow-sm p-3 mb-5 bg-body rounded chat_list ">
-							${chatHeaderList }
 							<c:forEach var="vo" items="${chatHeaderList }">
-								<c:if test="${vo.from_id }==${userVO.u_id }">
+								<c:if test="${vo.from_id eq userVO.u_id }">
 									<div>
 										<a class="display_block" href="#"><img class="img_size "
 											src="../img_src/28778_54512_4628.jpeg">
@@ -102,7 +94,7 @@ a:hover {
 											</div> </a>
 									</div>
 								</c:if>
-								<c:if test="${vo.from_id }!=${userVO.u_id }">
+								<c:if test="${vo.from_id ne userVO.u_id }">
 									<div>
 										<a class="display_block" href="#"><img class="img_size "
 											src="../img_src/28778_54512_4628.jpeg">
