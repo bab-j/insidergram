@@ -32,7 +32,7 @@ public class ChatController {
 		List<ChatHeaderVO> list = new ArrayList<ChatHeaderVO>();
 		list = chatService.getChatHeaderList(uvo);
 		mo.addAttribute("chatHeaderList", list);
-		return "board/test";
+		return "board/dm_test";
 	}
 	
 }
