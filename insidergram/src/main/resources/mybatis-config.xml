@@ -10,6 +10,7 @@
 	<typeAliases>
 		<typeAlias type="com.spring.biz.feed.FeedVO" alias="feed"/>
 		<typeAlias type="com.spring.biz.user.UserVO" alias="user"/>
+		<typeAlias type="com.spring.biz.follower.FollowerVO" alias="follower"/>
 	</typeAliases>
   
   <!--  applicationContext.xml 에서 dataSource 설정 사용으로 대체

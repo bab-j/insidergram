@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
+import com.spring.biz.user.UserVO;
 
 
 //@Controller
@@ -56,9 +59,9 @@ import com.spring.biz.feed.FeedVO;
 		}
 		
 		@RequestMapping("getFeedList.do")
-		public String getFeedList(Model mo) {
-			List<FeedVO> list = new ArrayList<FeedVO>();
-			list = feedService.getFeedList();
+		public String getFeedList(Model mo, HttpSession session) {
+			
+			List<FeedVO> list = feedService.getFeedList((UserVO)session.getAttribute("userVO"));
 			mo.addAttribute("feedList", list);
 			return "board/mainFeed";
 		}

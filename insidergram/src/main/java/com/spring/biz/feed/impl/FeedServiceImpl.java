@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
+import com.spring.biz.user.UserVO;
 
 // @Service : @Component 상속확장 어노테이션
 //       비즈니스 로직 처리 서비스 영역에 사용
@@ -17,8 +18,8 @@ public class FeedServiceImpl implements FeedService {
 
 
 	@Override
-	public List<FeedVO> getFeedList() {
-		return feedDAO.getFeedList();
+	public List<FeedVO> getFeedList(UserVO vo) {
+		return feedDAO.getFeedList(vo);
 	}
 
 	
