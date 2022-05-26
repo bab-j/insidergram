@@ -28,7 +28,7 @@
 	url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 #Header {
-	/*  position: fixed; */ 
+	/*  position: fixed;*/ 
 	background-color : white;
 	border-bottom: 1px solid #dbdbdb;
 	display: flex;
@@ -182,7 +182,7 @@ a:hover {
 					<div class="nav-icon" style="text-align: right;">
 						<ul>
 							<li class="material-symbols-outlined dm_icon"><a
-								href="chat/getChatHeaderList.do">send</a></li>
+								href="../dm_test.jsp">send</a></li>
 							<li class="material-icons "><a href="mainFeed.jsp">home</a></li>
 							<li class="material-icons-outlined "><a href="postPage.jsp">add_circle_outline</a></li>
 							<li class="material-icons "><a href="#">logout</a></li>

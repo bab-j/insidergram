@@ -1,5 +1,7 @@
+<%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.Import"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +19,6 @@
 	margin-left: 25px;
 	display: inline-flex;
 	float: left;
-	overflow-y: scroll;
 }
 
 .chat_content {
@@ -38,6 +39,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 75px;
+	text-align: center;
 }
 
 .img_size {
@@ -63,8 +65,11 @@ a:hover {
 
 .whale_body {
 	background-color: f6f7f7;
-	width: 1200px;
+	width: 1250px;
 	height: 100%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }
 </style>
 <meta charset="UTF-8">
@@ -78,15 +83,16 @@ a:hover {
 				<div class="whale_body">
 					<div class="chat_body">
 						<div class="shadow-sm p-3 mb-5 bg-body rounded chat_list ">
+
 							<div>
 								<a class="display_block" href="#"><img class="img_size "
 									src="./img_src/28778_54512_4628.jpeg">
-									<div class="display_block">
-										<div>id</div>
+									<div>
+										<div>id123</div>
 										<div>post 1minutes.</div>
-									</div></a>
+									</div> 
+									</a>
 							</div>
-
 						</div>
 						<div class="shadow-sm p-3 mb-5 bg-body rounded chat_content">
 							<ul>
