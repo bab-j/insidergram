@@ -25,7 +25,7 @@ public class ChatController {
 		System.out.println("============= ChatController() 객체 생성 ==================");
 	}
 
-	@GetMapping("getChatHeaderList.do")
+	@RequestMapping("/chat/getChatHeaderList.do")
 	public String getChatHeaderList(Model mo, HttpSession session) {
 		UserVO uvo = (UserVO)session.getAttribute("userVO");
 		System.out.println("userVOOOOOOOOOOOOOO"+uvo.toString());
