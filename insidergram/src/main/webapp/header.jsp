@@ -19,7 +19,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Document</title>
+<title>상단 바</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
 </style>
@@ -142,25 +142,9 @@ a:hover {
 </head>
 <body>
 
-	<!-- 메인 페이지로 접속시 세션에 값이 담겨있는지 체크-->
 
 
-	<!--  로그인 하지 않았을 때 보여지는 화면
-    -->
-	<div id="Header">
-		<div class="container">
-			<div class="row">
-				<div class="col-3 insiderIcon">
-					<a href="#">insidergram</a>
-				</div>
-				<div class="col-6"></div>
-				<div class="col-3"></div>
-			</div>
-		</div>
-	</div>
-
-	<!--  로그인이 되어 있는 상태에서 보여주는 화면
-    -->
+	<!-- 로그인 후 메인페이지 에서 보여주는 화면 -->
 
 	<div id="Header">
 		<div class="container" style="margin-top: 10px;">

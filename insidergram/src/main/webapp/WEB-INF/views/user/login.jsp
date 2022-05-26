@@ -82,17 +82,17 @@ text-align: center;
 					</a>
 					<div class="row">
 						<div class="col-6">
-							<button class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
-								style="border-color: silver;" type="submit" href="#">
+							<a class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
+								style="border-color: silver;" type="submit" href="../find_ID.jsp">
 								<svg class="bi me-1 " width="0px" height="16"></svg>아이디 찾기
-							</button>
+							</a>
 						</div>
 						<div class="col-6">
-							<button class=" center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
-								style="border-color: silver;" type="submit" href="#">
+							<a class=" center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
+								style="border-color: silver;" type="submit" href="../find_PWD.jsp">
 								<svg class="bi me-1 " width="0px" height="16"></svg>
 								비밀번호 찾기
-							</button>
+							</a>
 						</div>
 					</div>
 				</div>
