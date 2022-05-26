@@ -60,9 +60,11 @@ import com.spring.biz.user.UserVO;
 		
 		@RequestMapping("getFeedList.do")
 		public String getFeedList(Model mo, HttpSession session) {
-			
-			List<FeedVO> list = feedService.getFeedList((UserVO)session.getAttribute("userVO"));
+			UserVO uvo = (UserVO)session.getAttribute("userVO");
+			List<FeedVO> list = feedService.getFeedList(uvo);
+			List<Integer> likeList = feedService.confirmLike(uvo);
 			mo.addAttribute("feedList", list);
+			mo.addAttribute("likeList", likeList);
 			return "board/mainFeed";
 		}
 		

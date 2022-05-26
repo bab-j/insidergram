@@ -22,5 +22,11 @@ public class FeedServiceImpl implements FeedService {
 		return feedDAO.getFeedList(vo);
 	}
 
+
+	@Override
+	public List<Integer> confirmLike(UserVO uvo) {
+		return feedDAO.confirmLike(uvo);
+	}
+
 	
 }

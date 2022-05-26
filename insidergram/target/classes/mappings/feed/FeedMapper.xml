@@ -17,6 +17,11 @@
 		 WHERE F.U_ID = #{to_id}
 	</select>
 	
+	<select id="confirmLike" resultType="int" parameterType="user">
+		SELECT F_IDX
+		  FROM LIKE_LIST
+		 WHERE U_ID = #{u_id}
+	</select>
   	
 </mapper>
 

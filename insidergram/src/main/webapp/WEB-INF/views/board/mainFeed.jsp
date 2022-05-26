@@ -144,8 +144,9 @@ font-weight: bold;
 
 	<br>
 	<br>
-	${userVO } <!-- 세션저장 -->
-	${feedList } <!-- 모델저장소 -->
+	${userVO } <!-- session : 로그인한 유저 정보 -->
+	${feedList } <!-- mo : 팔로워한 게시물 리스트 -->
+	${likeList } <!-- mo : 좋아요한 계시물 번호 리스트 -->
 	<!-- 피드 게시물 -->
 	<div class="feedBox" style="border: 1px solid black">
 		<c:choose>
@@ -165,6 +166,16 @@ font-weight: bold;
 						</div>
 						<div class="contentBox" style="border: 1px solid red">
 							${feed.content }
+						</div>
+						<div class="likeCommentBox" style="border: 1px solid red">
+							<c:choose>
+								<c:when test="${feed.f_idx } == ${likeList }">
+									좋아요
+								</c:when>
+								<c:otherwise>
+									안좋아
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</c:forEach>

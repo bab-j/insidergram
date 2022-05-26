@@ -1,7 +1,9 @@
 package com.spring.biz.feed.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,16 @@ public class FeedDAO {
 		}
 		
 		return feedList;
+	}
+	
+	//좋아요 상태 확인
+	public List<Integer> confirmLike(UserVO uvo) {
+		System.out.println("===> MyBatis 사용 confirmLike() 실행!!");
+		
+		System.out.println("uvo : " + uvo.getU_id());
+		List<Integer> likeF_idx = mybatis.selectList("feedDAO.confirmLike", uvo);
+		
+		return likeF_idx;
 	}
 	
 	
