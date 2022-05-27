@@ -44,7 +44,7 @@ text-align: center;
 			<div class="modal-content rounded-4 shadow align-items-md-center">
 					<div class="modal-header p-5 pb-4 border-bottom-0 cen">
 						<h2 class="fw-bold mb-0" 
-							style="font-style: italic; font-size: 50px; padding-bottom: 20px;">계정 삭제</h2>
+							style="font-style: italic; font-size: 45px; padding-bottom: 20px;">계정 삭제</h2>
 					</div>
 
 					<div class="modal-body p-5 pt-0">
