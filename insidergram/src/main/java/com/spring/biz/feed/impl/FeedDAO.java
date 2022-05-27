@@ -31,8 +31,8 @@ public class FeedDAO {
 		System.out.println("followingIdList : " + followingIdList);
 		List<FeedVO> feedList = new ArrayList<FeedVO>();
 		for (FollowerVO fVo:followingIdList) {
+			feedList = mybatis.selectList("feedDAO.getFollowingFeedList", fVo);
 			System.out.println(fVo.getTo_id());
-			feedList.add(mybatis.selectOne("feedDAO.getFollowingFeedList", fVo));
 			System.out.println("feedList : " + feedList);
 		}
 		
