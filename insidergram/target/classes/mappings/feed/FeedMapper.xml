@@ -4,17 +4,25 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="feedDAO">
 	
-	<select id="getFollowingIdList" resultType="follower" parameterType="user">
+	<!-- <select id="getFollowingIdList" resultType="follower" parameterType="user">
 		SELECT TO_ID
 		  FROM FOLLOWER
 		 WHERE FROM_ID = #{u_id}
-	</select>
+	</select> -->
 	
-	<select id="getFollowingFeedList" resultType="feed" parameterType="follower">
-		SELECT F.F_IDX, F.REGDATE, F.CONTENT, F.U_ID, F.F_PIC, U.U_PIC
-		  FROM FEED F JOIN USER_INFO U
-		    ON F.U_ID = U.U_ID
-		 WHERE F.U_ID = #{to_id}
+	<select id="getFollowingFeedList" resultType="feed" parameterType="user">
+		SELECT F.F_IDX, F.REGDATE, F.CONTENT, U.U_ID, F.F_PIC, U.U_PIC
+		  FROM FEED F, USER_INFO U, FOLLOWER FO
+		 WHERE F.U_ID = U.U_ID
+		   AND U.U_ID = FO.TO_ID
+		   AND FO.FROM_ID = #{u_id}
+		UNION
+		SELECT F.F_IDX, F.REGDATE, F.CONTENT, F.U_ID, F.F_PIC, (SELECT U_PIC
+                                                          FROM USER_INFO
+                                                         WHERE U_ID = #{u_id})
+		  FROM FEED F
+		 WHERE F.U_ID = #{u_id}
+		 ORDER BY F_IDX DESC
 	</select>
 	
 	<select id="confirmLike" resultType="int" parameterType="user">

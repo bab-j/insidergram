@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.biz.feed.FeedVO;
-import com.spring.biz.follower.FollowerVO;
 import com.spring.biz.user.UserVO;
 
 
@@ -27,16 +26,16 @@ public class FeedDAO {
 	//글 목록 조회
 	public List<FeedVO> getFeedList(UserVO vo) {
 		System.out.println("===> MyBatis 사용 getFeedList() 실행");
-		List<FollowerVO> followingIdList = mybatis.selectList("feedDAO.getFollowingIdList", vo);
-		System.out.println("followingIdList : " + followingIdList);
-		List<FeedVO> feedList = new ArrayList<FeedVO>();
-		for (FollowerVO fVo:followingIdList) {
-			feedList = mybatis.selectList("feedDAO.getFollowingFeedList", fVo);
-			System.out.println(fVo.getTo_id());
-			System.out.println("feedList : " + feedList);
-		}
-		
-		return feedList;
+		List<FeedVO> list = mybatis.selectList("feedDAO.getFollowingFeedList", vo);
+//		List<FollowerVO> followingIdList = mybatis.selectList("feedDAO.getFollowingIdList", vo);
+//		System.out.println("followingIdList : " + followingIdList);
+//		List<FeedVO> feedList = new ArrayList<FeedVO>();
+//		for (FollowerVO fVo:followingIdList) {
+//			feedList = mybatis.selectList("feedDAO.getFollowingFeedList", fVo);
+//			System.out.println(fVo.getTo_id());
+//			System.out.println("feedList : " + feedList);
+//		}
+		return list;
 	}
 	
 	//좋아요 상태 확인
