@@ -162,9 +162,9 @@ font-weight: bold;
 				<c:forEach var="feed" items="${feedList }">
 					<!-- ================== 피드 게시물 1개(프사 ~ 댓글) ===================== -->
 					<div class="oneFeed" style="border: 1px solid black">
-						<!-- 프사 -->
+						<!-- 프사, id(클릭 시 해당 계정 페이지로 이동) -->
 						<span class=profileIMG style="border: 1px solid orange">
-							<img src="${feed.u_pic }"> ${feed.u_id } 
+							<a href="getIndiFeed.do?u_id=${feed.u_id }"><img src="${feed.u_pic }"> ${feed.u_id }</a> 
 						</span>
 						<div class="feedIMG" style="border: 1px solid blue">
 							<img src="${feed.f_pic }">
@@ -173,11 +173,13 @@ font-weight: bold;
 							${feed.content }
 						</div>
 						<div class="likeCommentBox" style="border: 1px solid red">
-<!---------------------- 게시물 좋아요 상태 -------------------------- -->
+<!---------------------- 게시물 좋아요 상태 설정 -------------------------- -->
 <c:set var="likeFeed" value="${feed.f_idx }" scope="request"/>
 <%
 boolean like = list.contains(request.getAttribute("likeFeed"));
 pageContext.setAttribute("like", like);
+String osName = System.getProperty("os.name").toLowerCase();
+System.out.println("osName : " + osName);
 %>
 <!-- ------------------------------------------------------------- -->
 							<c:choose>
@@ -200,105 +202,6 @@ pageContext.setAttribute("like", like);
 	</div>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	<%-- <div class="main_body">
-		<!-- 메인 박스 -->
-		<div class="center_body ">
-			<!-- 블루 -->
-			
-			<!-- 게시물 시작~~~~~~------- -->
-			<c:choose>
-			<c:when test="${empty pList }">
-				<br><br><h3>게시물이 존재하지 않습니다.</h3>
-			</c:when>
-			
-			<c:otherwise>
-			<c:forEach var="fv" items='${pList }'>
-
-				<div class="feed_box">
-					<!--흰 컨텐츠 -->
-	
-					<div class="feed_name">
-	
-						<table>
-							<thead class="profile_box">
-								<tr>  <!-- 프로필 사진 -->
-								<td>
-									<a href="feedcontroller?type=otherUser&f_id=${fv.u_id }">
-										 <img class="profile_img" src="../imgs/${fv.u_pic }">
-										 </a>
-									</td>
-									<td class="profile_name" >
-										<a href="feedcontroller?type=otherUser&f_id=${fv.u_id }">${fv.u_id }</a>
-									</td>
-									
-									
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td colspan="3">
-										<a href="feedcontroller?type=idvPage&f_idx=${fv.f_idx }">
-										<c:set var="f_idx" value="${fv.f_idx }" scope="request"/>
-											<img class="feed_img" src="../imgs/${fv.f_pic} " id="feed_img" >
-										</a>
-									</td>
-								</tr>
-							</tbody>
-							<tbody class="feed_body">
-								<tr class="feed_row">
-								
-			<!-- 좋아요 상태에 따라 아이콘 색 채우기 -->
-								<c:choose>
-								<c:when test="${result == 0 }">
-									<td class="material-icons-outlined icon_space" id="like"><a href="feedcontroller?type=addLike&f_idx=${fv.f_idx }&cPage=${cPage}">favorite_border</a></td>
-									<td class="material-icons-outlined icon_space">mode_comment</td>
-								</c:when>
-								<c:otherwise>
-									<td class="material-icons-outlined" style="color:red;" id=like><a href="feedcontroller?type=delLike&f_idx=${fv.f_idx }&cPage=${cPage}">favorite</a></td>
-									<td class="material-icons-outlined icon_space">mode_comment</td>
-								</c:otherwise>
-								</c:choose>
-								</tr>
-							</tbody>
-						</table>
-						<div class="u_comment">
-							<div class="like">
-								<span>좋아요 <%= %>개</span> <br> <br>
-							</div>
-							
-							<div class="contain_box">
-							<span class="comment_width">
-							<a href="feedcontroller?type=otherUser&f_id=${fv.u_id }">${fv.u_id }</a></span>
-							<span class="feed_contain_font">
-							<a href="feedcontroller?type=idvPage&f_idx=${fv.f_idx }">${fv.content }</a></span>
-							</div>
-							
-							<hr style="border-top: 0.3px solid #dbdbdb;">
-						</div>
-						<br> <br>
-					</div>
-				</div>
-			</c:forEach>
-			</c:otherwise>
-			</c:choose>
-
-			<!--왼쪽  -->
-			<!--오른쪽  -->
-		</div>
-	</div> --%>
-	
 </body>
 </html>
-
-
-
-
-
 

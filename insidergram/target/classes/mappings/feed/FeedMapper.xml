@@ -24,6 +24,11 @@
 		 WHERE F.U_ID = #{u_id}
 		 ORDER BY F_IDX DESC
 	</select>
+
+  	<select id="getMyFeedList" resultType="feed" parameterType="user">
+  		SELECT F.F_IDX, F.REGDATE, F.CONTENT, U.U_ID, F.F_PIC, U.U_PIC
+  		  FROM FEED
+  	</select>
 	
 	<select id="confirmLike" resultType="int" parameterType="user">
 		SELECT F_IDX

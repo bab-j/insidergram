@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,11 @@ import com.spring.biz.user.UserVO;
 			return "board/mainFeed";
 		}
 		
-		
+		@RequestMapping("getIndiFeed.do")
+		public String getIndiFeed(HttpServletRequest req) {
+			System.out.println("req.getParameter(\"u_id\") : " + req.getParameter("u_id")); 
+			return "board/indiFeed";
+		}
 		
 		
 		
