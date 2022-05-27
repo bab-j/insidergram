@@ -1,4 +1,6 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@page import="java.util.List"%>
+<%@page import="org.springframework.ui.Model"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -147,6 +149,9 @@ font-weight: bold;
 	${userVO } <!-- session : 로그인한 유저 정보 -->
 	${feedList } <!-- mo : 팔로워한 게시물 리스트 -->
 	${likeList } <!-- mo : 좋아요한 계시물 번호 리스트 -->
+	<c:set var="likeList" value="${likeList }" scope="request"/>
+<% List<String> list = (List<String>)request.getAttribute("likeList");
+%>
 	<!-- 피드 게시물 -->
 	<div class="feedBox" style="border: 1px solid black">
 		<c:choose>
@@ -155,7 +160,7 @@ font-weight: bold;
 			</c:when>
 			<c:otherwise>
 				<c:forEach var="feed" items="${feedList }">
-					<!-- 피드 게시물 1개(프사 ~ 댓글) -->
+					<!-- ================== 피드 게시물 1개(프사 ~ 댓글) ===================== -->
 					<div class="oneFeed" style="border: 1px solid black">
 						<!-- 프사 -->
 						<span class=profileIMG style="border: 1px solid orange">
@@ -168,12 +173,19 @@ font-weight: bold;
 							${feed.content }
 						</div>
 						<div class="likeCommentBox" style="border: 1px solid red">
+<!---------------------- 게시물 좋아요 상태 -------------------------- -->
+<c:set var="likeFeed" value="${feed.f_idx }" scope="request"/>
+<%
+boolean like = list.contains(request.getAttribute("likeFeed"));
+pageContext.setAttribute("like", like);
+%>
+<!-- ------------------------------------------------------------- -->
 							<c:choose>
-								<c:when test="${feed.f_idx } == ${likeList }">
+								<c:when test="${like }">
 									좋아요
 								</c:when>
 								<c:otherwise>
-									안좋아
+									안좋아요
 								</c:otherwise>
 							</c:choose>
 						</div>

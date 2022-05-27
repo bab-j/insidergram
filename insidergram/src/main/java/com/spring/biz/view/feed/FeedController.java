@@ -65,6 +65,7 @@ import com.spring.biz.user.UserVO;
 			List<Integer> likeList = feedService.confirmLike(uvo);
 			mo.addAttribute("feedList", list);
 			mo.addAttribute("likeList", likeList);
+			
 			return "board/mainFeed";
 		}
 		
