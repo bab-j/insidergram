@@ -61,66 +61,119 @@
 a:hover {
 	background-color: f6f7f7;
 }
-
-.whale_body {
-	background-color: f6f7f7;
-	width: 1250px;
-	height: 100%;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-}
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta charset="UTF-8">
 <title>insidergram : DM test</title>
 </head>
 <body>
 	<jsp:include page="/header.jsp" />
 	<div>
-		<div>
-			<div>
-				<div class="whale_body">
-					<div class="chat_body">
+		<div class="vh-100" style="background-color: #F5F5F5">
+			<div class="container h-100 pt-5 pb-5" style="width: 1250px;">
 
-						<div class="shadow-sm p-3 mb-5 bg-body rounded chat_list ">
-							<c:forEach var="vo" items="${chatHeaderList }">
-								<c:if test="${vo.from_id eq userVO.u_id }">
-									<div>
-										<a class="display_block" href="#"><img class="img_size "
-											src="../img_src/28778_54512_4628.jpeg">
+				<div class="row h-100">
+					<div class="shadow-sm p-3 mb-5 bg-body rounded col-4 ">
+						<c:forEach var="vo" items="${chatHeaderList }">
+							<c:if test="${vo.from_id eq userVO.u_id }">
+								<div>
+									<a class="display_block"
+										href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')"><img
+										class="img_size " src="../img_src/28778_54512_4628.jpeg">
+										<div>
 											<div>
-												<div>${vo.to_id }</div>
-												<div>post 1minutes.</div>
-											</div> </a>
-									</div>
-								</c:if>
-								<c:if test="${vo.from_id ne userVO.u_id }">
-									<div>
-										<a class="display_block" href="#"><img class="img_size "
-											src="../img_src/28778_54512_4628.jpeg">
-											<div>
-												<div>${vo.from_id }</div>
-												<div>post 1minutes.</div>
-											</div> </a>
-									</div>
-								</c:if>
-							</c:forEach>
-						</div>
-						<div class="shadow-sm p-3 mb-5 bg-body rounded chat_content">
-							<ul>
-								<li>1</li>
-								<li>1</li>
-								<li>1</li>
-								<li>1</li>
-							</ul>
+												<p id="to_id">${vo.to_id }
+												<p>
+											</div>
+										</div> </a>
+								</div>
+							</c:if>
+							<c:if test="${vo.from_id ne userVO.u_id }">
+								<div>
+									<a class="display_block" href="#"><img class="img_size "
+										src="../img_src/28778_54512_4628.jpeg">
+										<div>
+											<div>${vo.from_id }</div>
+										</div> </a>
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
+					<div class="shadow-sm mb-5 bg-body rounded col-8 h-100 container">
+						<div class="container h-100 position-relative d-block">
+							<div class="row myChatMessage" id="chatMessageContainer">
+							</div>
+							<div class="row position-absolute bottom-0 start-0"
+								style="width: 100%;">
+								<div class="col-11">
+									<input class="form-control" type="text" name="content"
+										id="content">
+								</div>
+								<button class="btn btn-primary col-1 " type="submit"
+									onclick="insertChatMessage('${userVO.u_id}', '${userVO.name }', '${userVO.u_pic }')">전송</button>
+							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
 
+	<script>
+	var nowChatHeaderIdx=0;
+		function getChatMessageList(h_idx, u_id) {
+			alert("getChatMessageList() 실행~~~ h_idx:" + h_idx + ", u_id:" + u_id);
+			
+			$.ajax("getChatMessageList.do", {
+				type : "get",
+				data : "h_idx=" + h_idx,
+				dataType : "json",
+				success : function(data) {
+					alert("성공~~~");
+					console.log(data);
+
+					var my_id = u_id;
+					let dispHtml = "";
+					nowChatHeaderIdx = h_idx;
+					$.each(data, function(index, obj) {
+						if(obj.u_id==my_id) {
+							dispHtml += "<div class=\"d-flex justify-content-end align-items-center\">";
+							dispHtml += obj.content + "<img class=\"img_size \" src=\"../img_src/28778_54512_4628.jpeg\">"
+							dispHtml += "</div>"
+						} else {
+							dispHtml += "<div class=\"d-flex justify-content-start align-items-center\">";
+							dispHtml += "<img class=\"img_size \" src=\"../img_src/28778_54512_4628.jpeg\">" + obj.content;
+							dispHtml += "</div>"
+						}
+					});
+					$("#chatMessageContainer").html(dispHtml);
+				},
+				error : function() {
+					alert("실패~~~");
+				}
+			});
+		}
+
+		function insertChatMessage(u_id, u_name, u_pic) {
+			let content = $("#content").val();
+			alert("insertChatMessage() 실행~~~nowChatHeaderIdx: " + nowChatHeaderIdx +", content: " + content);
+			$.ajax("insertChatMessage.do", {
+				type : "get",
+				data :  {"h_idx":nowChatHeaderIdx, "content":content, "u_id":u_id, "u_name":u_name, "u_pic":u_pic },
+				dataType : "json",
+				success : function(data) {
+					alert("성공~~~");
+					console.log(data);
+
+					getChatMessageList(nowChatHeaderIdx, u_id);
+
+				},
+				error : function() {
+					alert("실패~~~");
+				}
+			});
+		}
+	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

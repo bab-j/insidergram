@@ -1,29 +1,29 @@
 package com.spring.biz.chat;
 
 public class ChatMessageVO {
-	private int mIdx;
-	private int hIdx;
+	private int m_idx;
+	private int h_idx;
 	private String content;
 	private String time;
 	private boolean read;
-	private String uId;
-	private String uName;
-	private String uPic;
+	private String u_id;
+	private String u_name;
+	private String u_pic;
 	public ChatMessageVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public int getmIdx() {
-		return mIdx;
+	public int getM_idx() {
+		return m_idx;
 	}
-	public void setmIdx(int mIdx) {
-		this.mIdx = mIdx;
+	public void setM_idx(int m_idx) {
+		this.m_idx = m_idx;
 	}
-	public int gethIdx() {
-		return hIdx;
+	public int getH_idx() {
+		return h_idx;
 	}
-	public void sethIdx(int hIdx) {
-		this.hIdx = hIdx;
+	public void setH_idx(int h_idx) {
+		this.h_idx = h_idx;
 	}
 	public String getContent() {
 		return content;
@@ -43,29 +43,30 @@ public class ChatMessageVO {
 	public void setRead(boolean read) {
 		this.read = read;
 	}
-	public String getuId() {
-		return uId;
+	public String getU_id() {
+		return u_id;
 	}
-	public void setuId(String uId) {
-		this.uId = uId;
+	public void setU_id(String u_id) {
+		this.u_id = u_id;
 	}
-	public String getuName() {
-		return uName;
+	public String getU_name() {
+		return u_name;
 	}
-	public void setuName(String uName) {
-		this.uName = uName;
+	public void setU_name(String u_name) {
+		this.u_name = u_name;
 	}
-	public String getuPic() {
-		return uPic;
+	public String getU_pic() {
+		return u_pic;
 	}
-	public void setuPic(String uPic) {
-		this.uPic = uPic;
+	public void setU_pic(String u_pic) {
+		this.u_pic = u_pic;
 	}
 	@Override
 	public String toString() {
-		return "ChatMessageVO [mIdx=" + mIdx + ", hIdx=" + hIdx + ", content=" + content + ", time=" + time + ", read="
-				+ read + "]";
+		return "ChatMessageVO [m_idx=" + m_idx + ", h_idx=" + h_idx + ", content=" + content + ", time=" + time
+				+ ", read=" + read + ", u_id=" + u_id + ", u_name=" + u_name + ", u_pic=" + u_pic + "]";
 	}
+	
 	
 	
 }

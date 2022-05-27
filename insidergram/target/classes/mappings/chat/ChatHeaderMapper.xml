@@ -7,7 +7,4 @@
 	<select id="getChatHeaderList" resultType="com.spring.biz.chat.ChatHeaderVO" parameterType="com.spring.biz.user.UserVO">
 		SELECT * FROM CHAT_HEADER WHERE FROM_ID = #{u_id} OR TO_ID = #{u_id}
 	</select>
-	
-	
-  	
 </mapper>
