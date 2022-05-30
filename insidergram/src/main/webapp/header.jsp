@@ -150,7 +150,7 @@ a:hover {
 		<div class="container" style="margin-top: 10px;">
 			<div class="row">
 				<div class="col-3 insiderIcon" style="">
-					<a href="#">insidergram</a>
+					<a href="../user/getFeedList.do">insidergram</a>
 				</div>
 				<div class="col-6">
 					<div class="container1">
@@ -183,7 +183,7 @@ a:hover {
 		<div class="container" style="margin-top: 10px;">
 			<div class="row">
 				<div class="col-3 insiderIcon" style="">
-					<a href="#">insidergram</a>
+					<a href="../user/getFeedList.do">insidergram</a>
 				</div>
 				<div class="col-6">
 					<div class="container1">
