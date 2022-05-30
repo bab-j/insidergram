@@ -7,25 +7,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
- -->
-<!-- <link
-	href="https://fonts.googleapis.com/css?family=Material+Icons|
-	Material+Icons+Outlined|Material+Icons+Two+Tone|
-	Material+Icons+Round|Material+Icons+Sharp"
-	rel="stylesheet">
-<link rel="stylesheet" href="style.css"> -->
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<!--브라우저 적당량  -->
 <title>insidergram : 메인화면</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-	crossorigin="anonymous">
-</script>
- -->
+
 <style>
 .feed_name {
 	margin-left: auto;
@@ -151,6 +138,8 @@ font-weight: bold;
 	${likeList } <!-- mo : 좋아요한 계시물 번호 리스트 -->
 	<c:set var="likeList" value="${likeList }" scope="request"/>
 <% List<String> list = (List<String>)request.getAttribute("likeList");
+String osName = System.getProperty("os.name").toLowerCase();
+System.out.println("osName : " + osName);
 %>
 	<!-- 피드 게시물 -->
 	<div class="feedBox" style="border: 1px solid black">
@@ -167,7 +156,7 @@ font-weight: bold;
 							<a href="getIndiFeed.do?u_id=${feed.u_id }"><img src="${feed.u_pic }"> ${feed.u_id }</a> 
 						</span>
 						<div class="feedIMG" style="border: 1px solid blue">
-							<img src="${feed.f_pic }">
+							<img src="../img_src/${feed.f_pic }">
 						</div>
 						<div class="contentBox" style="border: 1px solid red">
 							${feed.content }
@@ -178,8 +167,6 @@ font-weight: bold;
 <%
 boolean like = list.contains(request.getAttribute("likeFeed"));
 pageContext.setAttribute("like", like);
-String osName = System.getProperty("os.name").toLowerCase();
-System.out.println("osName : " + osName);
 %>
 <!-- ------------------------------------------------------------- -->
 							<c:choose>

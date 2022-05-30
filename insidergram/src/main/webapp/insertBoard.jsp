@@ -5,19 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>글등록</title>
-<style>
-	#container { width: 700px; margin: auto; }
-	h1, h3, p { text-align: center; }
-	table { border-collapse: collapse; }
-	table, th, td {
-		border: 1px solid black;
-		margin: 0 auto;
-	}
-	th { background-color: orange; }
-	.center { text-align: center; }
-	
-	.border-none, .border-none td { border: none; }
-</style>
+
 </head>
 <body>
 
@@ -25,7 +13,7 @@
 	<h1>글등록 [insertBoard.jsp]</h1>
 	<p><a href="logout.do">로그아웃</a></p>
 	
-	<form action="board/insertBoard.do" method="post" enctype="multipart/form-data">
+	<form action="board/insertFeed.do" method="post" enctype="multipart/form-data">
 	<table>
 		<tr>
 			<th width="70">제목</th>

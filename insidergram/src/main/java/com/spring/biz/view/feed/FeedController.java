@@ -76,6 +76,11 @@ import com.spring.biz.user.UserVO;
 			return "board/indiFeed";
 		}
 		
+		@RequestMapping("insertFeed.do")
+		public String insertFeed() {
+			
+			return null;
+		}
 		
 		
 	}
