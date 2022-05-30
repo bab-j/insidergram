@@ -77,8 +77,7 @@ a:hover {
 						<c:forEach var="vo" items="${chatHeaderList }">
 							<c:if test="${vo.from_id eq userVO.u_id }">
 								<div>
-									<a class="display_block"
-										href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')"><img
+									<a class="display_block" href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')"><img
 										class="img_size " src="../img_src/28778_54512_4628.jpeg">
 										<div>
 											<div>
@@ -90,7 +89,7 @@ a:hover {
 							</c:if>
 							<c:if test="${vo.from_id ne userVO.u_id }">
 								<div>
-									<a class="display_block" href="#"><img class="img_size "
+									<a class="display_block" href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')"><img class="img_size "
 										src="../img_src/28778_54512_4628.jpeg">
 										<div>
 											<div>${vo.from_id }</div>
