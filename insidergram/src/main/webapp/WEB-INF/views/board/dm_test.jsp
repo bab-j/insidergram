@@ -72,36 +72,51 @@ a:hover {
 		<div class="vh-100" style="background-color: #F5F5F5">
 			<div class="container h-100 pt-5 pb-5" style="width: 1250px;">
 
+				<div></div>
 				<div class="row h-100">
-					<div class="shadow-sm p-3 mb-5 bg-body rounded col-4 ">
+					<div class="shadow-sm p-3 mb-5 bg-body rounded col-4 container">
 						<c:forEach var="vo" items="${chatHeaderList }">
 							<c:if test="${vo.from_id eq userVO.u_id }">
-								<div>
-									<a class="display_block" href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')"><img
-										class="img_size " src="../img_src/28778_54512_4628.jpeg">
-										<div>
-											<div>
-												<p id="to_id">${vo.to_id }
-												<p>
-											</div>
-										</div> </a>
-								</div>
+								<a class="row d-flex"
+									href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
+									<div class="col-2">
+										<img class="img_size "
+											src="../img_src/profile/28778_54512_4628.jpeg">
+										${vo.to_id }
+									</div>
+									<div class="col-8" style="text-overflow: ellipsis;">
+										<c:if test="${ vo.from_status eq '0'}">
+											<p id="subject${vo.h_idx }" style="font-weight: bold;">${vo.subject }</p>
+										</c:if>
+										<c:if test="${vo.from_status ne '0' }">
+											<p id="subject${vo.h_idx }">${vo.subject }</p>
+										</c:if>
+									</div> <small class="col-2">1분전</small>
+								</a>
 							</c:if>
 							<c:if test="${vo.from_id ne userVO.u_id }">
-								<div>
-									<a class="display_block" href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')"><img class="img_size "
-										src="../img_src/28778_54512_4628.jpeg">
-										<div>
-											<div>${vo.from_id }</div>
-										</div> </a>
-								</div>
+								<a class="row d-flex"
+									href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
+									<div class="col-2">
+										<img class="img_size "
+											src="../img_src/profile/28778_54512_4628.jpeg">
+										${vo.from_id }
+									</div>
+									<div class="col-8" style="text-overflow: ellipsis;">
+										<c:if test="${ vo.to_status eq '0'}">
+											<p id="subject${vo.h_idx }" style="font-weight: bold;">${vo.subject }</p>
+										</c:if>
+										<c:if test="${vo.to_status ne '0' }">
+											<p id="subject${vo.h_idx }">${vo.subject }
+										</c:if>
+									</div> <small class="col-2">2분전</small>
+								</a>
 							</c:if>
 						</c:forEach>
 					</div>
 					<div class="shadow-sm mb-5 bg-body rounded col-8 h-100 container">
 						<div class="container h-100 position-relative d-block">
-							<div class="row myChatMessage" id="chatMessageContainer">
-							</div>
+							<div class="row myChatMessage" id="chatMessageContainer"></div>
 							<div class="row position-absolute bottom-0 start-0"
 								style="width: 100%;">
 								<div class="col-11">
@@ -119,46 +134,69 @@ a:hover {
 	</div>
 
 	<script>
-	var nowChatHeaderIdx=0;
+		var nowChatHeaderIdx = 0;
+		
 		function getChatMessageList(h_idx, u_id) {
-			alert("getChatMessageList() 실행~~~ h_idx:" + h_idx + ", u_id:" + u_id);
-			
-			$.ajax("getChatMessageList.do", {
-				type : "get",
-				data : "h_idx=" + h_idx,
-				dataType : "json",
-				success : function(data) {
-					alert("성공~~~");
-					console.log(data);
+			nowChatHeaderIdx = h_idx;
+			alert("getChatMessageList() 실행~~~ h_idx:" + h_idx + ", u_id:"
+					+ u_id);
+			var sid = "subject" + h_idx;
+			document.getElementById(sid).style.fontWeight = "normal";
 
-					var my_id = u_id;
-					let dispHtml = "";
-					nowChatHeaderIdx = h_idx;
-					$.each(data, function(index, obj) {
-						if(obj.u_id==my_id) {
-							dispHtml += "<div class=\"d-flex justify-content-end align-items-center\">";
-							dispHtml += obj.content + "<img class=\"img_size \" src=\"../img_src/28778_54512_4628.jpeg\">"
-							dispHtml += "</div>"
-						} else {
-							dispHtml += "<div class=\"d-flex justify-content-start align-items-center\">";
-							dispHtml += "<img class=\"img_size \" src=\"../img_src/28778_54512_4628.jpeg\">" + obj.content;
-							dispHtml += "</div>"
-						}
-					});
-					$("#chatMessageContainer").html(dispHtml);
-				},
-				error : function() {
-					alert("실패~~~");
-				}
-			});
+			$
+					.ajax(
+							"getChatMessageList.do",
+							{
+								type : "get",
+								data : "h_idx=" + h_idx,
+								dataType : "json",
+								success : function(data) {
+									alert("성공~~~");
+									console.log(data);
+
+									var my_id = u_id;
+									let dispHtml = "";
+									$
+											.each(
+													data,
+													function(index, obj) {
+														if (obj.u_id == my_id) {
+															dispHtml += "<div class=\"d-flex justify-content-end align-items-center\">";
+															dispHtml += obj.content
+																	+ "<img class=\"img_size \" src=\"../img_src/28778_54512_4628.jpeg\">"
+															dispHtml += "</div>"
+														} else {
+															dispHtml += "<div class=\"d-flex justify-content-start align-items-center\">";
+															dispHtml += "<img class=\"img_size \" src=\"../img_src/28778_54512_4628.jpeg\">"
+																	+ obj.content;
+															dispHtml += "</div>"
+														}
+													});
+									$("#chatMessageContainer").html(dispHtml);
+								},
+								error : function() {
+									alert("실패~~~");
+								}
+							});
 		}
 
 		function insertChatMessage(u_id, u_name, u_pic) {
 			let content = $("#content").val();
-			alert("insertChatMessage() 실행~~~nowChatHeaderIdx: " + nowChatHeaderIdx +", content: " + content);
+			alert("insertChatMessage() 실행~~~nowChatHeaderIdx: "
+					+ nowChatHeaderIdx + ", content: " + content);
+			
+			var sid = "subject" + nowChatHeaderIdx;
+			document.getElementById(sid).innerHTML = content;
+			
 			$.ajax("insertChatMessage.do", {
 				type : "get",
-				data :  {"h_idx":nowChatHeaderIdx, "content":content, "u_id":u_id, "u_name":u_name, "u_pic":u_pic },
+				data : {
+					"h_idx" : nowChatHeaderIdx,
+					"content" : content,
+					"u_id" : u_id,
+					"u_name" : u_name,
+					"u_pic" : u_pic
+				},
 				dataType : "json",
 				success : function(data) {
 					alert("성공~~~");

@@ -17,7 +17,7 @@
 <title>insidergram : DM test</title>
 </head>
 <body>
-	
+	<jsp:include page="/header.jsp" />
 
 	<main class="container">  
 	  <div class="container-fluid pb-3 my-3 p-3">
@@ -124,7 +124,7 @@
 			<div class="input-group mb-3">
 				<input style="height: 45px;" type="text" class="form-control" 
 				placeholder="메시지 입력..." aria-label="Recipient's username" aria-describedby="button-addon2">
-				<button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+				<button class="btn btn-outline-secondary" type="button" id="button-addon2">전송</button>
 			</div>
 
 

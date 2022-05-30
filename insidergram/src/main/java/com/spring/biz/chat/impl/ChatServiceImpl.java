@@ -23,6 +23,11 @@ public class ChatServiceImpl implements ChatService{
 	public List<ChatHeaderVO> getChatHeaderList(UserVO vo) {
 		return chatHeaderDAO.getChatHeaderList(vo);
 	}
+	
+	@Override
+	public ChatHeaderVO getChatHeader(int h_idx) {
+		return chatHeaderDAO.getChatHeader(h_idx);
+	}
 
 	@Override
 	public List<ChatMessageVO> getChatMessageList(ChatHeaderVO vo) {
@@ -33,5 +38,34 @@ public class ChatServiceImpl implements ChatService{
 	public void insertChatMessage(ChatMessageVO vo) {
 		chatMessageDAO.insertChatMessage(vo);
 	}
+
+	@Override
+	public void updateSubject(ChatHeaderVO vo) {
+		chatHeaderDAO.updateSubject(vo);
+		
+	}
+
+	@Override
+	public void updateStatus(int h_idx) {
+		chatHeaderDAO.updateStatus(h_idx);
+		
+	}
+
+	@Override
+	public void updateUserRead(ChatHeaderVO chvo, ChatMessageVO cmvo) {
+		chatHeaderDAO.updateUserRead(chvo, cmvo);
+		
+	}
+
+	@Override
+	public void updateStatusOpenChatHeader_FROM(int h_idx) {
+		chatHeaderDAO.updateStatusOpenChatHeader_FROM(h_idx);
+	}
+
+	@Override
+	public void updateStatusOpenChatHeader_TO(int h_idx) {
+		chatHeaderDAO.updateStatusOpenChatHeader_TO(h_idx);
+	}
+
 	
 }

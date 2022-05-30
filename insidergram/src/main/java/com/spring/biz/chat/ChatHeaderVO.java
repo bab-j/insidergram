@@ -5,7 +5,9 @@ public class ChatHeaderVO {
 	private String from_id;
 	private String to_id;
 	private String subject;
-	private boolean status;
+	private boolean from_status;
+	private boolean to_status;
+	private String time;
 	
 	
 	public ChatHeaderVO() {
@@ -35,17 +37,29 @@ public class ChatHeaderVO {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-	public boolean isStatus() {
-		return status;
+	public boolean isFrom_status() {
+		return from_status;
 	}
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setFrom_status(boolean from_status) {
+		this.from_status = from_status;
 	}
 	
+	public boolean isTo_status() {
+		return to_status;
+	}
+	public void setTo_status(boolean to_status) {
+		this.to_status = to_status;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
 	@Override
 	public String toString() {
 		return "ChatHeaderVO [h_idx=" + h_idx + ", from_id=" + from_id + ", to_id=" + to_id + ", subject=" + subject
-				+ ", status=" + status + "]";
+				+ ", from_status=" + from_status + ", to_status=" + to_status + ", time=" + time + "]";
 	}
 
 	

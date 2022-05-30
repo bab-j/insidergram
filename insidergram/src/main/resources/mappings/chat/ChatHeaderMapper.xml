@@ -6,5 +6,35 @@
 	
 	<select id="getChatHeaderList" resultType="com.spring.biz.chat.ChatHeaderVO" parameterType="com.spring.biz.user.UserVO">
 		SELECT * FROM CHAT_HEADER WHERE FROM_ID = #{u_id} OR TO_ID = #{u_id}
+		ORDER BY TO_DATE(time, 'YYYY/MM/DD hh24:mi:ss') DESC
 	</select>
+	
+	<select id="getChatHeader" resultType="com.spring.biz.chat.ChatHeaderVO" parameterType="int">
+		SELECT * FROM CHAT_HEADER WHERE H_IDX = #{h_idx}
+	</select>
+	
+	<update id="updateSubject" parameterType="com.spring.biz.user.UserVO">
+		UPDATE CHAT_HEADER SET SUBJECT = #{subject}, TIME = TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS') WHERE h_idx = #{h_idx}	
+	</update>
+	
+	<update id="updateStatus" parameterType="int">
+		UPDATE CHAT_HEADER SET FROM_STATUS = '0', TO_STATUS = '0' WHERE H_IDX = #{h_idx}	
+	</update>
+	
+	<update id="updateFromUserRead" parameterType="com.spring.biz.chat.ChatHeaderVO">
+		UPDATE CHAT_HEADER SET FROM_STATUS = '1' WHERE H_IDX = #{h_idx}	
+	</update>
+	
+	<update id="updateToUserRead" parameterType="com.spring.biz.chat.ChatHeaderVO">
+		UPDATE CHAT_HEADER SET TO_STATUS = '1' WHERE H_IDX = #{h_idx}	
+	</update>
+	
+	
+	<update id="updateStatusOpenChatHeader_FROM" parameterType="int">
+		UPDATE CHAT_HEADER SET FROM_STATUS = '1' WHERE H_IDX = #{h_idx}	
+	</update>
+	
+	<update id="updateStatusOpenChatHeader_TO" parameterType="int">
+		UPDATE CHAT_HEADER SET TO_STATUS = '1' WHERE H_IDX = #{h_idx}	
+	</update>
 </mapper>

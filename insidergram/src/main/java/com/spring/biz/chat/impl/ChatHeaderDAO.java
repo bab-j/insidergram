@@ -1,12 +1,15 @@
 package com.spring.biz.chat.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.biz.chat.ChatHeaderVO;
+import com.spring.biz.chat.ChatMessageVO;
 import com.spring.biz.user.UserVO;
 
 @Repository
@@ -22,4 +25,33 @@ public class ChatHeaderDAO {
 		System.out.println("===> MyBatis 사용 getchatList() 실행" + vo.toString());
 		return mybatis.selectList("chatHeaderDAO.getChatHeaderList", vo);
 	}
+	
+	public ChatHeaderVO getChatHeader(int h_idx) {
+		return mybatis.selectOne("chatHeaderDAO.getChatHeader", h_idx);
+	}
+	
+	public void updateSubject(ChatHeaderVO vo) {
+		mybatis.update("chatHeaderDAO.updateSubject", vo);
+	}
+	
+	public void updateStatus(int h_idx) {
+		mybatis.update("chatHeaderDAO.updateStatus", h_idx);
+	}
+	
+	public void updateUserRead(ChatHeaderVO chvo, ChatMessageVO cmvo) {
+		if(cmvo.getU_id().equals(chvo.getFrom_id())) {
+			mybatis.update("chatHeaderDAO.updateFromUserRead", chvo);
+		} else {
+			mybatis.update("chatHeaderDAO.updateToUserRead", chvo);
+		}
+	}
+	
+	public void updateStatusOpenChatHeader_FROM(int h_idx) {
+		mybatis.update("chatHeaderDAO.updateStatusOpenChatHeader_FROM", h_idx);
+	}
+	
+	public void updateStatusOpenChatHeader_TO(int h_idx) {
+		mybatis.update("chatHeaderDAO.updateStatusOpenChatHeader_TO", h_idx);
+	}
+	
 }
