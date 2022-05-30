@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글등록</title>
+<title>insidergram : New post</title>
 
 </head>
 <body>
+	<jsp:include page="./header.jsp"></jsp:include>
 
 <div id="container">
 	<h1>글등록 [insertBoard.jsp]</h1>
