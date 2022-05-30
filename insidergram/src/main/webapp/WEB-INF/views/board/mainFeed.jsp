@@ -156,7 +156,7 @@ System.out.println("osName : " + osName);
 							<a href="getIndiFeed.do?u_id=${feed.u_id }"><img src="${feed.u_pic }"> ${feed.u_id }</a> 
 						</span>
 						<div class="feedIMG" style="border: 1px solid blue">
-							<img src="../img_src/${feed.f_pic }">
+							<img src="../img_src/feed/${feed.f_pic }">
 						</div>
 						<div class="contentBox" style="border: 1px solid red">
 							${feed.content }

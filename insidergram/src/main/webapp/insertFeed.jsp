@@ -14,7 +14,7 @@
 	<h1>글등록 [insertBoard.jsp]</h1>
 	
 	
-	<form action="board/insertFeed.do" method="post" enctype="multipart/form-data">
+	<form action="user/insertFeed.do" method="post" enctype="multipart/form-data">
 	<table>
 		<tr>
 			<th>업로드</th>

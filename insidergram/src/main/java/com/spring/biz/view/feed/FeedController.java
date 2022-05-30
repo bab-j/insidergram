@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
@@ -78,18 +79,22 @@ import com.spring.biz.user.UserVO;
 		}
 		
 		@RequestMapping("insertFeed.do")
-		public String insertFeed(FeedVO vo, HttpServletRequest req) {
-			vo.setF_pic(vo.getUploadFile().toString());
-			vo.setContent((String)req.getAttribute("content"));
+		public String insertFeed(FeedVO vo, HttpSession session) {
+			UserVO uvo = (UserVO)session.getAttribute("userVO");			
 			MultipartFile uploadFile = vo.getUploadFile();
 			System.out.println("uploadFile : " + uploadFile);
 			
 			try {
 				if(!uploadFile.isEmpty()) {
+					vo.setU_id(uvo.getU_id());
+					vo.setF_pic(uploadFile.getOriginalFilename());
+					vo.setContent(vo.getContent());
 					String fileName = uploadFile.getOriginalFilename();
 					System.out.println(">>> 원본파일명 : " + fileName);
-					System.out.println(">>> 원본파일명 : " + UUID.randomUUID().toString());
-					uploadFile.transferTo(new File("/Users/junhee/Programming/07_Spring/insidergram/insidergram/src/main/webapp/imp_src/feed" + fileName));
+					System.out.println(">>> 저장파일명 : " + UUID.randomUUID().toString());
+					uploadFile.transferTo(new File("/Users/junhee/Programming/07_Spring/insidergram/insidergram/src/main/webapp/img_src/feed" + fileName));
+					int result = feedService.insertFeed(vo);
+					System.out.println(">>>>>>>최종 insert : " + result);
 				}
 			} catch (IllegalStateException e) {
 				System.out.println(">>파일등록 실패!");
@@ -98,7 +103,7 @@ import com.spring.biz.user.UserVO;
 				System.out.println(">>파일등록 실패!!!");
 				e.printStackTrace();
 			}
-			return "redirct:getFeedList.do";
+			return "redirect:getFeedList.do";
 		}
 		
 		
