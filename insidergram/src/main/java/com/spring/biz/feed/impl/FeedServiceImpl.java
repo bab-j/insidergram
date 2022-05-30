@@ -34,5 +34,11 @@ public class FeedServiceImpl implements FeedService {
 		return feedDAO.insertFeed(vo);
 	}
 
+
+	@Override
+	public int insertLike(FeedVO vo) {
+		return feedDAO.insertLike(vo);
+	}
+
 	
 }

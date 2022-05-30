@@ -9,4 +9,5 @@ public interface FeedService {
 	List<FeedVO> getFeedList(UserVO vo);
 	List<Integer> confirmLike(UserVO uvo);
 	int insertFeed(FeedVO vo);
+	int insertLike(FeedVO vo);
 }

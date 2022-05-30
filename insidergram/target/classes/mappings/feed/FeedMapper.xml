@@ -37,6 +37,11 @@
   		INSERT INTO FEED (f_idx, regdate, f_pic, content, u_id)
 		    VALUES((SELECT NVL(MAX(F_IDX), 0) + 1 FROM FEED), TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS'), #{f_pic}, #{content}, #{u_id})
   	</insert>
+  	<!-- 좋아요 등록 -->
+  	<insert id="insertLike" parameterType="feed">
+  		INSERT INTO LIKE_LIST (L_IDX, F_IDX, U_ID)
+   			VALUES ((SELECT NVL(MAX(L_IDX), 0) + 1 FROM LIKE_LIST), #{f_idx}, #{u_id})
+  	</insert>
 </mapper>
 
 

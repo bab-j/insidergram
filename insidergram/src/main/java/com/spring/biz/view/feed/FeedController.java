@@ -60,8 +60,8 @@ import com.spring.biz.user.UserVO;
 		public FeedController() {
 			System.out.println("============= FeedController() 객체 생성 ==================");
 		}
-		
-		@RequestMapping("getFeedList.do")
+		//팔로워 게시물, 본인 게시물 메인피드 띄우기
+		@RequestMapping("/getFeedList.do")
 		public String getFeedList(Model mo, HttpSession session) {
 			UserVO uvo = (UserVO)session.getAttribute("userVO");
 			List<FeedVO> list = feedService.getFeedList(uvo);
@@ -71,13 +71,13 @@ import com.spring.biz.user.UserVO;
 			
 			return "board/mainFeed";
 		}
-		
+		//내 피드 상세페이지 띄우기
 		@RequestMapping("getIndiFeed.do")
 		public String getIndiFeed(HttpServletRequest req) {
 			System.out.println("req.getParameter(\"u_id\") : " + req.getParameter("u_id")); 
 			return "board/indiFeed";
 		}
-		
+		//게시물 등록
 		@RequestMapping("insertFeed.do")
 		public String insertFeed(FeedVO vo, HttpSession session) {
 			UserVO uvo = (UserVO)session.getAttribute("userVO");			
@@ -92,7 +92,11 @@ import com.spring.biz.user.UserVO;
 					String fileName = uploadFile.getOriginalFilename();
 					System.out.println(">>> 원본파일명 : " + fileName);
 					System.out.println(">>> 저장파일명 : " + UUID.randomUUID().toString());
-					uploadFile.transferTo(new File("/Users/junhee/Programming/07_Spring/insidergram/insidergram/src/main/webapp/img_src/feed" + fileName));
+					if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+						uploadFile.transferTo(new File("/Users/Shared/tempo/feed/" + fileName));						
+					} else {
+						
+					}
 					int result = feedService.insertFeed(vo);
 					System.out.println(">>>>>>>최종 insert : " + result);
 				}
@@ -105,6 +109,5 @@ import com.spring.biz.user.UserVO;
 			}
 			return "redirect:getFeedList.do";
 		}
-		
 		
 	}

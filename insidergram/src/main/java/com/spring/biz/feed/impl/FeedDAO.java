@@ -27,14 +27,6 @@ public class FeedDAO {
 	public List<FeedVO> getFeedList(UserVO vo) {
 		System.out.println("===> MyBatis 사용 getFeedList() 실행");
 		List<FeedVO> list = mybatis.selectList("feedDAO.getFollowingFeedList", vo);
-//		List<FollowerVO> followingIdList = mybatis.selectList("feedDAO.getFollowingIdList", vo);
-//		System.out.println("followingIdList : " + followingIdList);
-//		List<FeedVO> feedList = new ArrayList<FeedVO>();
-//		for (FollowerVO fVo:followingIdList) {
-//			feedList = mybatis.selectList("feedDAO.getFollowingFeedList", fVo);
-//			System.out.println(fVo.getTo_id());
-//			System.out.println("feedList : " + feedList);
-//		}
 		return list;
 	}
 	
@@ -47,7 +39,7 @@ public class FeedDAO {
 		
 		return likeF_idx;
 	}
-	
+	// 게시물 올리기
 	public int insertFeed(FeedVO vo) {
 		int result = mybatis.insert("feedDAO.insertFeed", vo);
 		if (result >= 1) {
@@ -58,6 +50,9 @@ public class FeedDAO {
 		
 		return result;
 	}
-	
-
+	// 좋아요하기
+	public int insertLike(FeedVO vo) {
+		int result = mybatis.insert("feedDAO.insertLike", vo);
+		return result;
+	}
 }
