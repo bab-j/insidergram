@@ -11,20 +11,14 @@
 
 <div id="container">
 	<h1>글등록 [insertBoard.jsp]</h1>
-	<p><a href="logout.do">로그아웃</a></p>
+	
 	
 	<form action="board/insertFeed.do" method="post" enctype="multipart/form-data">
 	<table>
 		<tr>
-			<th width="70">제목</th>
+			<th>업로드</th>
 			<td>
-				<input type="text" name="title">
-			</td>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<td>
-				<input type="text" name="writer">
+				<input type="file" name="uploadFile">
 			</td>
 		</tr>
 		<tr>
@@ -34,10 +28,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th>업로드</th>
-			<td>
-				<input type="file" name="uploadFile">
-			</td>
+
 		</tr>
 		<tr>
 			<td colspan="2" class="center">

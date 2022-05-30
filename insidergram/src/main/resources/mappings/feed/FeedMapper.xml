@@ -4,12 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="feedDAO">
 	
-	<!-- <select id="getFollowingIdList" resultType="follower" parameterType="user">
-		SELECT TO_ID
-		  FROM FOLLOWER
-		 WHERE FROM_ID = #{u_id}
-	</select> -->
-	
+	<!-- 팔로워 게시물과 내 게시물 메인피드에 띄우기 -->
 	<select id="getFollowingFeedList" resultType="feed" parameterType="user">
 		SELECT F.F_IDX, F.REGDATE, F.CONTENT, U.U_ID, F.F_PIC, U.U_PIC
 		  FROM FEED F, USER_INFO U, FOLLOWER FO
@@ -24,18 +19,24 @@
 		 WHERE F.U_ID = #{u_id}
 		 ORDER BY F_IDX DESC
 	</select>
-
+	<!-- 개인 상세 페이지 불러오기 -->
   	<select id="getMyFeedList" resultType="feed" parameterType="user">
   		SELECT F.F_IDX, F.REGDATE, F.CONTENT, U.U_ID, F.F_PIC, U.U_PIC
   		  FROM FEED
   	</select>
-	
+	<!-- 좋아요 상태 확인 -->
 	<select id="confirmLike" resultType="int" parameterType="user">
 		SELECT F_IDX
 		  FROM LIKE_LIST
 		 WHERE U_ID = #{u_id}
 	</select>
   	
+  	
+  	<!-- 게시물 등록 -->
+  	<insert id="insertFeed" parameterType="feed">
+  		INSERT INTO FEED (f_idx, regdate, f_pic, content, u_id)
+		    VALUES((SELECT NVL(MAX(F_IDX), 0) + 1 FROM FEED), TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS'), #{f_pic}, #{content}, #{u_id})
+  	</insert>
 </mapper>
 
 

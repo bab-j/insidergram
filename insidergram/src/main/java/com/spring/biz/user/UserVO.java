@@ -1,7 +1,6 @@
 package com.spring.biz.user;
 
 public class UserVO {
-	private int u_idx;
 	private String u_id;
 	private String password;
 	private String phone;
@@ -16,14 +15,6 @@ public class UserVO {
 	}
 	
 	
-	public int getU_idx() {
-		return u_idx;
-	}
-
-
-	public void setU_idx(int u_idx) {
-		this.u_idx = u_idx;
-	}
 
 
 	public String getU_id() {
@@ -86,7 +77,7 @@ public class UserVO {
 
 	@Override
 	public String toString() {
-		return "UserVO [u_idx=" + u_idx + ", u_id=" + u_id + ", password=" + password + ", phone=" + phone + ", email="
+		return "UserVO [ u_id=" + u_id + ", password=" + password + ", phone=" + phone + ", email="
 				+ email + ", birth=" + birth + ", name=" + name + ", bio=" + bio + ", u_pic=" + u_pic + "]";
 	}
 	

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -77,9 +78,27 @@ import com.spring.biz.user.UserVO;
 		}
 		
 		@RequestMapping("insertFeed.do")
-		public String insertFeed() {
+		public String insertFeed(FeedVO vo, HttpServletRequest req) {
+			vo.setF_pic(vo.getUploadFile().toString());
+			vo.setContent((String)req.getAttribute("content"));
+			MultipartFile uploadFile = vo.getUploadFile();
+			System.out.println("uploadFile : " + uploadFile);
 			
-			return null;
+			try {
+				if(!uploadFile.isEmpty()) {
+					String fileName = uploadFile.getOriginalFilename();
+					System.out.println(">>> 원본파일명 : " + fileName);
+					System.out.println(">>> 원본파일명 : " + UUID.randomUUID().toString());
+					uploadFile.transferTo(new File("/Users/junhee/Programming/07_Spring/insidergram/insidergram/src/main/webapp/imp_src/feed" + fileName));
+				}
+			} catch (IllegalStateException e) {
+				System.out.println(">>파일등록 실패!");
+				e.printStackTrace();
+			} catch (IOException e) {
+				System.out.println(">>파일등록 실패!!!");
+				e.printStackTrace();
+			}
+			return "redirct:getFeedList.do";
 		}
 		
 		

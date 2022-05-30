@@ -48,6 +48,16 @@ public class FeedDAO {
 		return likeF_idx;
 	}
 	
+	public int insertFeed(FeedVO vo) {
+		int result = mybatis.insert("feedDAO.insertFeed", vo);
+		if (result >= 1) {
+			System.out.println(">>> 게시물 등록(DB 입력) 성공띠~");
+		} else {
+			System.out.println(">>>>>> 게시물 등록 실패 띠~!#~!#");
+		}
+		
+		return result;
+	}
 	
 
 }
