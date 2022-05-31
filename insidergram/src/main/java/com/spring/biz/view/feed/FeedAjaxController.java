@@ -1,27 +1,24 @@
 package com.spring.biz.view.feed;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.biz.feed.FeedService;
-import com.spring.biz.feed.FeedVO;
-import com.spring.biz.feed.impl.FeedServiceImpl;
-@Controller
+import com.spring.biz.follower.LikeVO;
+//@Controller
+@RestController
 public class FeedAjaxController {
 	@Autowired
 	private FeedService feedService;
 	
 	//좋아요
 	@RequestMapping("/user/likeFeed.do")
-	public int likeFeed(FeedVO vo) {
-		System.out.println("uid : " + vo.getU_id());
-		System.out.println("fIdx : " + vo.getF_idx());
-		int result = feedService.insertFeed(vo);
+	public int likeFeed(LikeVO lvo) {
+		System.out.println("uid : " + lvo.getU_id());
+		System.out.println("fIdx : " + lvo.getF_idx());
+		int result = feedService.insertLike(lvo);
 		if (result >= 1) {
 			System.out.println(">>>> 좋아요 insert 성공!");
 		} else {

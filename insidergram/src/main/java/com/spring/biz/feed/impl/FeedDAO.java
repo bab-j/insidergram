@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.biz.feed.FeedVO;
+import com.spring.biz.follower.FollowerVO;
+import com.spring.biz.follower.LikeVO;
 import com.spring.biz.user.UserVO;
 
 
@@ -51,8 +53,13 @@ public class FeedDAO {
 		return result;
 	}
 	// 좋아요하기
-	public int insertLike(FeedVO vo) {
-		int result = mybatis.insert("feedDAO.insertLike", vo);
+	public int insertLike(LikeVO lvo) {
+		int result = mybatis.insert("feedDAO.insertLike", lvo);
 		return result;
+	}
+	// 좋아요 갯수
+	public int countLike(int f_idx) {
+		int countLike = mybatis.selectOne("feedDAO.countLike", f_idx);
+		return countLike;
 	}
 }

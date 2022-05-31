@@ -1,4 +1,5 @@
 
+<%@page import="com.spring.biz.feed.impl.FeedDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="org.springframework.ui.Model"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -113,10 +114,9 @@
 </style>
 <script>
 	$().ready(function() {
+		let countLike = countLike();
 	});
-	function moreFeed() {
-		alert($("#feedBox div").length)
-	}
+	
 </script>
 </head>
 
@@ -185,6 +185,7 @@ pageContext.setAttribute("like", like);
 									</a>
 								</c:otherwise>
 							</c:choose>
+							<p>좋아요 ${feed.countLike }개</p>
 						</div>
 					</div>
 				</c:forEach>
@@ -198,7 +199,9 @@ pageContext.setAttribute("like", like);
 
 </body>
 <script>
+	
 	function likeFeed(f_idx) {
+		
 		let fIdx = f_idx
 		let uId = "${ userVO.u_id }"
 		console.log("likeFeed() 온클릭 9 실행~~~");
@@ -210,13 +213,13 @@ pageContext.setAttribute("like", like);
 			success : function(data) {
 				alert("성공~~~");
 				console.log(data);
-
 			},
 			error : function() {
 				alert("실패~~~");
 			}
 		});
 	}
+	
 </script>
 
 </html>

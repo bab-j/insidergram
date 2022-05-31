@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
+import com.spring.biz.follower.FollowerVO;
+import com.spring.biz.follower.LikeVO;
 import com.spring.biz.user.UserVO;
 
 // @Service : @Component 상속확장 어노테이션
@@ -36,8 +38,14 @@ public class FeedServiceImpl implements FeedService {
 
 
 	@Override
-	public int insertLike(FeedVO vo) {
-		return feedDAO.insertLike(vo);
+	public int insertLike(LikeVO lVO) {
+		return feedDAO.insertLike(lVO);
+	}
+
+
+	@Override
+	public int countLike(int f_idx) {
+		return feedDAO.countLike(f_idx);
 	}
 
 	

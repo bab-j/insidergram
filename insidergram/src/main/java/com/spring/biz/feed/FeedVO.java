@@ -10,7 +10,16 @@ public class FeedVO {
 	private String f_pic;
 	private String u_pic;
 	private MultipartFile uploadFile = null;
+	private int countLike;
 	
+	public int getCountLike() {
+		return countLike;
+	}
+
+	public void setCountLike(int countLike) {
+		this.countLike = countLike;
+	}
+
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}
@@ -71,7 +80,8 @@ public class FeedVO {
 	@Override
 	public String toString() {
 		return "FeedVO [f_idx=" + f_idx + ", regdate=" + regdate + ", content=" + content + ", u_id=" + u_id
-				+ ", f_pic=" + f_pic + ", u_pic=" + u_pic + ", uploadFile=" + uploadFile + "]";
+				+ ", f_pic=" + f_pic + ", u_pic=" + u_pic + ", uploadFile=" + uploadFile + ", countLike=" + countLike
+				+ "]";
 	}
 
 	

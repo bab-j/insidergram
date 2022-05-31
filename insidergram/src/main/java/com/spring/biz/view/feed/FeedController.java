@@ -65,7 +65,14 @@ import com.spring.biz.user.UserVO;
 		public String getFeedList(Model mo, HttpSession session) {
 			UserVO uvo = (UserVO)session.getAttribute("userVO");
 			List<FeedVO> list = feedService.getFeedList(uvo);
+			//------------------FeedVO에 좋아요 개수 Set-------------------
+			for(FeedVO fvo : list) {
+				fvo.setCountLike(feedService.countLike(fvo.getF_idx()));
+				System.out.println(fvo.toString());
+			}
+			//----------------------------------------------------------
 			List<Integer> likeList = feedService.confirmLike(uvo);
+			//feedService.countLike();
 			mo.addAttribute("feedList", list);
 			mo.addAttribute("likeList", likeList);
 			
