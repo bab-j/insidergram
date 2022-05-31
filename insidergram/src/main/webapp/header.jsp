@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,7 +145,7 @@ a:hover {
 
 
 	<!-- 로그인 후 메인페이지 에서 보여주는 화면 -->
-
+<c:if test="${userVO!=null }">
 	<div id="Header">
 		<div class="container" style="margin-top: 10px;">
 			<div class="row">
@@ -177,8 +177,8 @@ a:hover {
 			</div>
 		</div>
 	</div>
-
-	
+</c:if>
+<c:if test="${userVO==null }">
 	<div id="Header">
 		<div class="container" style="margin-top: 10px;">
 			<div class="row">
@@ -206,7 +206,7 @@ a:hover {
 			</div>
 		</div>
 	</div>
-
+</c:if>
 
 	<!-- 부트스트랩 -->
 	<script
