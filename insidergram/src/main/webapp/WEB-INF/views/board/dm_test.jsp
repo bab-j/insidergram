@@ -10,6 +10,10 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <style>
+html, 	body {
+width:100%;
+height:100%;
+}
 .chat_list {
 	border: 1px solid silver;
 	width: 500px;
@@ -66,60 +70,59 @@ a:hover {
 <meta charset="UTF-8">
 <title>insidergram : DM test</title>
 </head>
-<body>
+<body >
 	<jsp:include page="/header.jsp" />
-	<div>
-		<div class="vh-100" style="background-color: #F5F5F5">
-			<div class="container h-100 pt-5 pb-5" style="width: 1250px;">
+	<div class="h-100 w-100 position-fixed" style="background-color: #F5F5F5">
 
-				<div></div>
-				<div class="row h-100">
-					<div class="shadow-sm p-3 mb-5 bg-body rounded col-4 container"
-						id="chatHeaderList">
-						<c:forEach var="vo" items="${chatHeaderList }">
-							<c:if test="${vo.from_id eq userVO.u_id }">
-								<a id="hId${vo.h_idx }" class="row d-flex"
-									href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
-									<div class="col-2">
-										<img class="img_size "
-											src="../img_src/profile/28778_54512_4628.jpeg">
-										${vo.to_id }
-									</div>
-									<div class="col-8" style="text-overflow: ellipsis;">
-										<c:if test="${ vo.from_status eq '0'}">
-											<p id="subject${vo.h_idx }" style="font-weight: bold;">${vo.subject }</p>
-										</c:if>
-										<c:if test="${vo.from_status ne '0' }">
-											<p id="subject${vo.h_idx }">${vo.subject }</p>
-										</c:if>
-									</div> <small class="col-2">1분전</small>
-								</a>
-							</c:if>
-							<c:if test="${vo.from_id ne userVO.u_id }">
-								<a id="hId${vo.h_idx }" class="row d-flex"
-									href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
-									<div class="col-2">
-										<img class="img_size "
-											src="../img_src/profile/28778_54512_4628.jpeg">
-										${vo.from_id }
-									</div>
-									<div class="col-8" style="text-overflow: ellipsis;">
-										<c:if test="${ vo.to_status eq '0'}">
-											<p id="subject${vo.h_idx }" style="font-weight: bold;">${vo.subject }</p>
-										</c:if>
-										<c:if test="${vo.to_status ne '0' }">
-											<p id="subject${vo.h_idx }">${vo.subject }
-										</c:if>
-									</div> <small class="col-2">2분전</small>
-								</a>
-							</c:if>
-						</c:forEach>
-					</div>
-					<div class="shadow-sm mb-5 bg-body rounded col-8 h-100 container">
-						<div class="container h-100 position-relative d-block"
-							id="chatMessageView">
-							<h1>채팅하세요.</h1>
-						</div>
+		<div class="container h-100 pt-3 pb-3 " style="width: 1250px;""">
+			<div class="row h-100 pb-5">
+				<div
+					class="shadow-sm p-3 mb-5 bg-body rounded col-4 container border overflow-auto"
+					id="chatHeaderList">
+					<c:forEach var="vo" items="${chatHeaderList }">
+						<c:if test="${vo.from_id eq userVO.u_id }">
+							<a id="hId${vo.h_idx }" class="row d-flex"
+								href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
+								<div class="col-2">
+									<img class="img_size "
+										src="../img_src/profile/28778_54512_4628.jpeg">
+									${vo.to_id }
+								</div>
+								<div class="col-8" style="text-overflow: ellipsis;">
+									<c:if test="${ vo.from_status eq '0'}">
+										<p id="subject${vo.h_idx }" style="font-weight: bold;">${vo.subject }</p>
+									</c:if>
+									<c:if test="${vo.from_status ne '0' }">
+										<p id="subject${vo.h_idx }">${vo.subject }</p>
+									</c:if>
+								</div> <small class="col-2">1분전</small>
+							</a>
+						</c:if>
+						<c:if test="${vo.from_id ne userVO.u_id }">
+							<a id="hId${vo.h_idx }" class="row d-flex"
+								href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
+								<div class="col-2">
+									<img class="img_size "
+										src="../img_src/profile/28778_54512_4628.jpeg">
+									${vo.from_id }
+								</div>
+								<div class="col-8" style="text-overflow: ellipsis;">
+									<c:if test="${ vo.to_status eq '0'}">
+										<p id="subject${vo.h_idx }" style="font-weight: bold;">${vo.subject }</p>
+									</c:if>
+									<c:if test="${vo.to_status ne '0' }">
+										<p id="subject${vo.h_idx }">${vo.subject }
+									</c:if>
+								</div> <small class="col-2">2분전</small>
+							</a>
+						</c:if>
+					</c:forEach>
+				</div>
+				<div
+					class="shadow-sm p-3 mb-5 bg-body rounded col-8 h-100 container border">
+					<div class="container h-100 position-relative"
+						id="chatMessageView">
+						<h1>채팅하세요.</h1>
 					</div>
 				</div>
 			</div>
