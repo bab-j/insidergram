@@ -74,10 +74,10 @@ a:hover {
 
 				<div></div>
 				<div class="row h-100">
-					<div class="shadow-sm p-3 mb-5 bg-body rounded col-4 container">
+					<div class="shadow-sm p-3 mb-5 bg-body rounded col-4 container" id="chatHeaderList">
 						<c:forEach var="vo" items="${chatHeaderList }">
 							<c:if test="${vo.from_id eq userVO.u_id }">
-								<a class="row d-flex"
+								<a id="hId${vo.h_idx }" class="row d-flex"
 									href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
 									<div class="col-2">
 										<img class="img_size "
@@ -95,7 +95,7 @@ a:hover {
 								</a>
 							</c:if>
 							<c:if test="${vo.from_id ne userVO.u_id }">
-								<a class="row d-flex"
+								<a id="hId${vo.h_idx }" class="row d-flex"
 									href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
 									<div class="col-2">
 										<img class="img_size "
@@ -186,7 +186,12 @@ a:hover {
 					+ nowChatHeaderIdx + ", content: " + content);
 			
 			var sid = "subject" + nowChatHeaderIdx;
+			var hId;
+			hId = "hId" + nowChatHeaderIdx;
+			
 			document.getElementById(sid).innerHTML = content;
+			var header = document.getElementById("chatHeaderList");
+			header.insertBefore(document.getElementById(hId), header.firstChild);
 			
 			$.ajax("insertChatMessage.do", {
 				type : "get",
