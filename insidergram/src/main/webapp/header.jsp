@@ -170,7 +170,6 @@ a:hover {
 							<li class="material-icons "><a href="mainFeed.jsp">home</a></li>
 							<li class="material-icons-outlined "><a href="../insertFeed.jsp">add_circle_outline</a></li>
 							<li class="material-icons "><a href="#">logout</a></li>
-							<li class="material-icons "><a href="../chat/getChatHeaderList.do">send</a></li>
 						</ul>
 					</div>
 				</div>

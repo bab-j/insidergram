@@ -19,23 +19,23 @@
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 		Helvetica, Arial, sans-serif;
-	text-align: center;
-	--bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;
-	
+	text-align: center; -
+	-bs-bg-opacity: 1;
+	background-color: rgba(var(- -bs-light-rgb), var(- -bs-bg-opacity))
+		!important;
 }
 
 #confirm1 {
 	text-align: center;
 	border: 1px solid silver;
-    border-radius: 3px;
-    height: 34px;
-    margin-top: 2px;
+	border-radius: 3px;
+	height: 34px;
+	margin-top: 2px;
 }
-
 </style>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -52,187 +52,264 @@ body {
 </head>
 
 <body>
-	
 
-	<div id="Header" class="modal modal-signin position-static d-block bg-light py-5" tabindex="-1" role="dialog" id="modalSignin">
+
+	<div id="Header"
+		class="modal modal-signin position-static d-block bg-light py-5"
+		tabindex="-1" role="dialog" id="modalSignin">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content rounded-4 shadow align-items-md-center">
 				<div class="modal-header p-5 pb-4 border-bottom-0 cen">
 					<h2 class="fw-bold mb-0"
-					style="font-family: 'Carattere', cursive; 
-					font-size: 70px; padding-bottom: 20px;">
-					insidergram
-					</h2>
+						style="font-family: 'Carattere', cursive; font-size: 70px; padding-bottom: 20px;">
+						insidergram</h2>
 				</div>
 				<!-- 틀 만들기 -->
 				<div class="modal-body p-5 pt-0">
-					<form action="usercontroller?type=UserIdChk" method="post">
+					<form action="javascript:signUp()" method="post">
 						<div class="form-floating mb-3">
 							<div class="row">
-								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 18px; text-align: left;" 
-								class=col-4> <a>아이디</a></div>
-								<div class=col-5>
-									<input class="form-control rounded-3" type="text" name=u_id id="uid"
-											placeholder="ID" onfocus="this.placeholder=''"
-											onblur="this.placeholder='Username'"> 
+								<div
+									style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 18px; text-align: left;"
+									class=col-4>
+									<a>아이디</a>
 								</div>
-								<div class=col-3>
-									<input class="btn btn-outline-secondary" type="button" id="confirm1" value="중복확인" onclick="confirmID()">
+								<div class=col-7>
+									<input class="form-control rounded-3" type="text" name=u_id
+										id="uid" placeholder="ID" onfocus="this.placeholder=''"
+										onblur="this.placeholder='Username'" onfocusout="confirmID()"
+										oninvalid="this.setCustomValidity('ID를 입력해 주십시오.')" required>
+									<div id="confirmIdResult" class="float-start"
+										style="display: none;">ID 중복확인</div>
 								</div>
 							</div>
 						</div>
-						<!-- 아이디 중복 확인-->
-						<c:choose>
-							<c:when test="${login == 1 }">
-								<p style="color: red">사용 불가능한 아이디입니다.</p>
-								<input type="hidden" name="clickDu" value="N">
-							</c:when>
-							<c:when test="${login == 0 }">
-								<p style="color: blue">사용 가능한 아이디입니다.</p>
-								<input type="hidden" name="clickDu" value="Y">
-							</c:when>
-						</c:choose>
-					</form>
-					<!-- 비밀번호 -->
-					<form action="usercontroller?type=UserSignUp" method="post">
+						<!-- 비밀번호 -->
 						<div class="form-floating mb-3">
 							<div class="row">
-								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 18px; text-align: left;" 
-								class=col-4> <a>비밀번호</a></div>
+								<div
+									style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 18px; text-align: left;"
+									class=col-4>
+									<a>비밀번호</a>
+								</div>
 								<div class=col-7>
-									<input class="form-control rounded-3" type="password" name=upwd id="pwd"
-									placeholder="Password" onfocus="this.placeholder=''"
-									onblur="this.placeholder='Password'"> 
+									<input class="form-control rounded-3" type="password"
+										name=password id="password" placeholder="Password"
+										onfocus="this.placeholder=''" onfocusout="confirmPassword()"
+										onblur="this.placeholder='Password'"
+										oninvalid="this.setCustomValidity('비밀번호를 입력해 주십시오.')" required>
+									<div id="confirmPasswordResult" class="float-start"
+										style="display: none;">비밀번호 확인</div>
 								</div>
 								<div class=col-1></div>
 							</div>
 						</div>
-					</form>
-					<!-- 비밀번호 확인 -->
-					<form method="post">
+						<!-- 비밀번호 확인 -->
 						<div class="form-floating mb-3">
 							<div class="row">
-								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;" 
-								class=col-4> <a>비밀번호 확인</a></div>
+								<div
+									style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;"
+									class=col-4>
+									<a>비밀번호확인</a>
+								</div>
 								<div class=col-7>
-									<input class="form-control rounded-3" type="password" name=uPwdOk
-									placeholder="Confirm Password" onfocus="this.placeholder=''"
-									onblur="this.placeholder='Confirm Password'"> 
+									<input class="form-control rounded-3" type="password"
+										name="passwordOk" id="passwordOk"
+										placeholder="Confirm Password" onfocus="this.placeholder=''"
+										onblur="this.placeholder='Confirm Password'"
+										onfocusout="confirmPasswordOk()"
+										oninvalid="this.setCustomValidity('비밀번호를 확인해 주십시오.')" required>
+									<div id="confirmPasswordOkResult" class="float-start"
+										style="display: none;">비밀번호확인 확인</div>
 								</div>
 								<div class=col-1></div>
 							</div>
 						</div>
-					</form>
-					<!-- 이메일 -->
-					<form method="post">
+						<!-- 이메일 -->
 						<div class="form-floating mb-3">
 							<div class="row">
-								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;" 
-								class=col-4> <a>이메일</a></div>
+								<div
+									style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;"
+									class=col-4>
+									<a>이메일</a>
+								</div>
 								<div class=col-7>
 									<input class="form-control rounded-3" type="email" name="email"
-									placeholder="abc123@abc.com" onfocus="this.placeholder=''"
-									onblur="this.placeholder='abc123@abc.com'"> 
+										id="email" placeholder="abc123@abc.com"
+										onfocus="this.placeholder=''"
+										onblur="this.placeholder='abc123@abc.com'" required>
 								</div>
 								<div class=col-1></div>
 							</div>
 						</div>
-					</form>
-					<!-- 이름 -->
-					<form method="post">
+						<!-- 이름 -->
 						<div class="form-floating mb-3">
 							<div class="row">
-								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;" 
-								class=col-4> <a>이름</a></div>
+								<div
+									style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;"
+									class=col-4>
+									<a>이름</a>
+								</div>
 								<div class=col-7>
-									<input class="form-control rounded-3" type="text" name="name" placeholder="홍길동"
-									onfocus="this.placeholder=''" onblur="this.placeholder='홍길동'">
+									<input class="form-control rounded-3" type="text" name="name"
+										id="name" placeholder="홍길동" onfocus="this.placeholder=''"
+										onblur="this.placeholder='홍길동'"
+										oninvalid="this.setCustomValidity('이름을 입력해 주십시오.')" required>
 								</div>
 								<div class=col-1></div>
 							</div>
 						</div>
-					</form>
-					<!-- 전화번호 -->
-					<form method="post">
+						<!-- 전화번호 -->
 						<div class="form-floating mb-3">
 							<div class="row">
-								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;" 
-								class=col-4> <a>전화번호</a></div>
+								<div
+									style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;"
+									class=col-4>
+									<a>전화번호</a>
+								</div>
 								<div class=col-7>
 									<input class="form-control rounded-3" type="text" name="phone"
-									placeholder="010-0000-0000" onfocus="this.placeholder=''"
-									onblur="this.placeholder='010-0000-0000'"> 
+										id="phone" placeholder="010-0000-0000"
+										onfocus="this.placeholder=''"
+										onblur="this.placeholder='010-0000-0000'"
+										oninvalid="this.setCustomValidity('전화번호를 입력해주십시오.')" required>
 								</div>
 								<div class=col-1></div>
 							</div>
 						</div>
-					</form>
-					<!-- 생년월일 -->
-					<form method="post">
+						<!-- 생년월일 -->
 						<div class="form-floating mb-3">
 							<div class="row">
-								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;" 
-								class=col-4> <a>생년월일</a></div>
+								<div
+									style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;"
+									class=col-4>
+									<a>생년월일</a>
+								</div>
 								<div class=col-7>
-									<input class="form-control rounded-3" type="text" name="birth" placeholder="생년월일 6자리"
-									onfocus="this.placeholder=''"
-									onblur="this.placeholder='생년월일 6자리'"> 
+									<input class="form-control rounded-3" type="text" name="birth"
+										id="birth" placeholder="생년월일 6자리"
+										onfocus="this.placeholder=''"
+										onblur="this.placeholder='생년월일 6자리'"
+										oninvalid="this.setCustomValidity('생년월일을 입력해 주십시오.')" required>
 								</div>
 								<div class=col-1></div>
 							</div>
 						</div>
+						<hr class="my-4">
+						<div class="row">
+							<div class="col-6">
+								<a
+									class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
+									style="border-color: silver;" type="reset" href="user/login.do">
+									<svg class="bi me-1 " width="0px" height="16"></svg>취소
+								</a>
+							</div>
+							<div class="col-6">
+								<input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
+									style="height: 42px; font-size: 17px" type="submit" id="subm"
+									value="가입"> <input type="hidden" name="uID"
+									value="${uid }">
+							</div>
+						</div>
 					</form>
-					<hr class="my-4">
-					<div class="row">
-						<div class="col-6">
-							<a class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
-								style="border-color: silver;" type="submit" href="user/login.do">
-								<svg class="bi me-1 " width="0px" height="16"></svg>취소
-							</a>
-						</div>
-						<div class="col-6">
-							<input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
-							style="height: 42px; font-size: 17px" type="submit" id="subm" value="가입"> 
-							<input type="hidden" name="uID" value="${uid }">
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
 
-		<script>
-			function confirmID() {
-				let id = $("#uid").val();
-				alert("confirmID() 실행~~~");
-				$.ajax("confirmID.do", {
-					type : "get",
-					data : "u_id=" + id,
-					dataType : "text",
-					success : function(data) {
-						alert("성공~~~");
-						console.log(data);
-						if (data === "fail") {
-							alert("아이디가 존재합니다!!");
-						} else {
-							alert("개어렵넸");
-						}
+	<script>
+		function confirmID() {
+			let id = $("#uid").val();
+			$
+					.ajax(
+							"confirmID.do",
+							{
+								type : "get",
+								data : "u_id=" + id,
+								dataType : "text",
+								success : function(data) {
+									console.log(data);
+									if (data === "fail") {
+										document
+												.getElementById("confirmIdResult").style.color = "red";
+										document
+												.getElementById("confirmIdResult").innerHTML = "존재하는 ID입니다.";
+										document
+												.getElementById("confirmIdResult").style.display = "inline";
+									} else {
+										if (id == "") {
+											document
+													.getElementById("confirmIdResult").style.color = "red";
+											document
+													.getElementById("confirmIdResult").innerHTML = "ID를 입력해 주세요.";
+											document
+													.getElementById("confirmIdResult").style.display = "inline";
+										} else {
+											document
+													.getElementById("confirmIdResult").style.color = "blue";
+											document
+													.getElementById("confirmIdResult").innerHTML = "사용가능한 ID입니다.";
+											document
+													.getElementById("confirmIdResult").style.display = "inline";
+										}
 
-					},
-					error : function() {
-						alert("실패~~~");
-					}
-				});
+									}
+
+								},
+								error : function() {
+									alert("실패~~~");
+								}
+							});
+		}
+
+		function confirmPassword() {
+			var password = $("#password").val();
+			if (password === "") {
+				document.getElementById("confirmPasswordResult").style.color = "red";
+				document.getElementById("confirmPasswordResult").innerHTML = "비밀번호를 입력해주세요.";
+				document.getElementById("confirmPasswordResult").style.display = "inline";
+			} else {
+				document.getElementById("confirmPasswordResult").style.display = "none";
 			}
-		</script>
 
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-			crossorigin="anonymous">
+		}
+
+		function confirmPasswordOk() {
+			var passwordOk = $("#passwordOk").val();
+			var password = $("#password").val();
+			if (password === passwordOk) {
+				if (password == "") {
+					document.getElementById("confirmPasswordOkResult").style.color = "red";
+					document.getElementById("confirmPasswordOkResult").innerHTML = "비밀번호를 입력해주세요.";
+					document.getElementById("confirmPasswordOkResult").style.display = "inline";
+				} else {
+					document.getElementById("confirmPasswordOkResult").style.color = "blue";
+					document.getElementById("confirmPasswordOkResult").innerHTML = "비밀번호가 일치합니다.";
+					document.getElementById("confirmPasswordOkResult").style.display = "inline";
+				}
+
+			}
+		}
+
+		function signUp() {
+			alert("signUp() 실행~~~");
+
+			var password = $("#password").val();
+			var passwordOk = $("#passwordOk").val();
+			if (password != passwordOk) {
+				alert("비밀번호를 확인해주세요.")
+			}
+
+		}
+	</script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous">
 		
-		</script>
+	</script>
 </body>
 </html>
 
