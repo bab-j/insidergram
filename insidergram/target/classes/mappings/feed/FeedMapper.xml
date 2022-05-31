@@ -24,24 +24,33 @@
   		SELECT F.F_IDX, F.REGDATE, F.CONTENT, U.U_ID, F.F_PIC, U.U_PIC
   		  FROM FEED
   	</select>
-	<!-- 좋아요 상태 확인 -->
-	<select id="confirmLike" resultType="int" parameterType="user">
-		SELECT F_IDX
-		  FROM LIKE_LIST
-		 WHERE U_ID = #{u_id}
-	</select>
-  	
   	
   	<!-- 게시물 등록 -->
   	<insert id="insertFeed" parameterType="feed">
   		INSERT INTO FEED (f_idx, regdate, f_pic, content, u_id)
 		    VALUES((SELECT NVL(MAX(F_IDX), 0) + 1 FROM FEED), TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS'), #{f_pic}, #{content}, #{u_id})
   	</insert>
+  	
+	<!-- 좋아요 상태 확인 -->
+	<select id="confirmLike" resultType="int" parameterType="user">
+		SELECT F_IDX
+		  FROM LIKE_LIST
+		 WHERE U_ID = #{u_id}
+	</select>
+	
   	<!-- 좋아요 등록 -->
   	<insert id="insertLike" parameterType="like">
   		INSERT INTO LIKE_LIST (L_IDX, F_IDX, U_ID)
    			VALUES ((SELECT NVL(MAX(L_IDX), 0) + 1 FROM LIKE_LIST), #{f_idx}, #{u_id})
   	</insert>
+  	
+  	<!-- 좋아요 삭제 -->
+  	<delete id="deleteLike" parameterType="like">
+  		DELETE FROM LIKE_LIST
+  		 WHERE F_IDX = #{f_idx}
+  		   AND U_ID = #{u_id}
+  	</delete>
+  	
   	<!-- 좋아요 갯수 -->
   	<select id="countLike" resultType="int" parameterType="int">
   		SELECT COUNT(L_IDX)
@@ -49,10 +58,5 @@
   		 WHERE F_IDX = #{f_idx}
   	</select>
 </mapper>
-
-
-
-
-
 
 

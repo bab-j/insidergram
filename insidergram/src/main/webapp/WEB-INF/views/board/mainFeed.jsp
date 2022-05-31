@@ -114,7 +114,6 @@
 </style>
 <script>
 	$().ready(function() {
-		let countLike = countLike();
 	});
 	
 </script>
@@ -167,7 +166,7 @@ pageContext.setAttribute("like", like);
 							<!-- ------------------------------------------------------------- -->
 							<c:choose>
 								<c:when test="${like }">
-									<a href="javascript:likeFeed(${feed.f_idx})">
+									<a href="javascript:unLikeFeed(${feed.f_idx})">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 											fill="currentColor" class="bi bi-balloon-heart-fill"
 											viewBox="0 0 16 16" style="color : red;">
@@ -201,12 +200,29 @@ pageContext.setAttribute("like", like);
 <script>
 	
 	function likeFeed(f_idx) {
-		
 		let fIdx = f_idx
 		let uId = "${ userVO.u_id }"
 		console.log("likeFeed() 온클릭 9 실행~~~");
 		console.log("fIdx : " + fIdx + ", uID : " + uId);
 		$.ajax("likeFeed.do", {
+			type : "get",
+			data : { "f_idx":fIdx, "u_id":uId },
+			dataType : "text",
+			success : function(data) {
+				alert("성공~~~");
+				console.log(data);
+			},
+			error : function() {
+				alert("실패~~~");
+			}
+		});
+	}
+	function unLikeFeed(f_idx) {
+		let fIdx = f_idx
+		let uId = "${ userVO.u_id }"
+		console.log("unLikeFeed() 실행~~~");
+		console.log("fIdx : " + fIdx + ", uID : " + uId);
+		$.ajax("unLikeFeed.do", {
 			type : "get",
 			data : { "f_idx":fIdx, "u_id":uId },
 			dataType : "text",

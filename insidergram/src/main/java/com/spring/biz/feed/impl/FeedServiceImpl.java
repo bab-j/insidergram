@@ -42,11 +42,17 @@ public class FeedServiceImpl implements FeedService {
 		return feedDAO.insertLike(lVO);
 	}
 
+	@Override
+	public int deleteLike(LikeVO lvo) {
+		return feedDAO.deleteLike(lvo);
+	}
 
 	@Override
 	public int countLike(int f_idx) {
 		return feedDAO.countLike(f_idx);
 	}
+
+
 
 	
 }

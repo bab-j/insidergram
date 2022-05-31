@@ -26,4 +26,17 @@ public class FeedAjaxController {
 		}
 		return result;
 	}
+	//좋아요 해제
+	@RequestMapping("/user/unLikeFeed.do")
+	public int unLikeFeed(LikeVO lvo) {
+		System.out.println("uid : " + lvo.getU_id());
+		System.out.println("fIdx : " + lvo.getF_idx());
+		int result = feedService.deleteLike(lvo);
+		if (result >= 1) {
+			System.out.println(">>>> 좋아요 delete 성공!");
+		} else {
+			System.out.println("..... 좋아요 delete 실패!!");
+		}
+		return result;
+	}
 }

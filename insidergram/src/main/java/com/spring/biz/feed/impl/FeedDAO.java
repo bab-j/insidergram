@@ -57,6 +57,11 @@ public class FeedDAO {
 		int result = mybatis.insert("feedDAO.insertLike", lvo);
 		return result;
 	}
+	// 좋아요 해제 하기
+	public int deleteLike(LikeVO lvo) {
+		int result = mybatis.delete("feedDAO.deleteLike", lvo);
+		return result;
+	}
 	// 좋아요 갯수
 	public int countLike(int f_idx) {
 		int countLike = mybatis.selectOne("feedDAO.countLike", f_idx);

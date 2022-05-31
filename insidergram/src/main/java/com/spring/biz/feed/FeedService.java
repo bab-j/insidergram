@@ -11,5 +11,6 @@ public interface FeedService {
 	List<Integer> confirmLike(UserVO uvo);
 	int insertFeed(FeedVO vo);
 	int insertLike(LikeVO lvo);
+	int deleteLike(LikeVO lvo);
 	int countLike(int f_idx);
 }
