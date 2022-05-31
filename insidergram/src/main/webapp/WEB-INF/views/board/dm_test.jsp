@@ -74,7 +74,8 @@ a:hover {
 
 				<div></div>
 				<div class="row h-100">
-					<div class="shadow-sm p-3 mb-5 bg-body rounded col-4 container" id="chatHeaderList">
+					<div class="shadow-sm p-3 mb-5 bg-body rounded col-4 container"
+						id="chatHeaderList">
 						<c:forEach var="vo" items="${chatHeaderList }">
 							<c:if test="${vo.from_id eq userVO.u_id }">
 								<a id="hId${vo.h_idx }" class="row d-flex"
@@ -115,17 +116,9 @@ a:hover {
 						</c:forEach>
 					</div>
 					<div class="shadow-sm mb-5 bg-body rounded col-8 h-100 container">
-						<div class="container h-100 position-relative d-block">
-							<div class="row myChatMessage" id="chatMessageContainer"></div>
-							<div class="row position-absolute bottom-0 start-0"
-								style="width: 100%;">
-								<div class="col-11">
-									<input class="form-control" type="text" name="content"
-										id="content">
-								</div>
-								<button class="btn btn-primary col-1 " type="submit"
-									onclick="insertChatMessage('${userVO.u_id}', '${userVO.name }', '${userVO.u_pic }')">전송</button>
-							</div>
+						<div class="container h-100 position-relative d-block"
+							id="chatMessageView">
+							<h1>채팅하세요.</h1>
 						</div>
 					</div>
 				</div>
@@ -135,7 +128,7 @@ a:hover {
 
 	<script>
 		var nowChatHeaderIdx = 0;
-		
+
 		function getChatMessageList(h_idx, u_id) {
 			nowChatHeaderIdx = h_idx;
 			alert("getChatMessageList() 실행~~~ h_idx:" + h_idx + ", u_id:"
@@ -156,6 +149,7 @@ a:hover {
 
 									var my_id = u_id;
 									let dispHtml = "";
+									dispHtml += "<div class=\"row myChatMessage\" id=\"chatMessageContainer\">";
 									$
 											.each(
 													data,
@@ -172,7 +166,14 @@ a:hover {
 															dispHtml += "</div>"
 														}
 													});
-									$("#chatMessageContainer").html(dispHtml);
+									dispHtml += "</div>";
+									dispHtml += "<div class=\"row position-absolute bottom-0 start-0\" style=\"width: 100%;\">";
+									dispHtml += "<div class=\"col-11\">";
+									dispHtml += "<input class=\"form-control\" type=\"text\" name=\"content\" id=\"content\">";
+									dispHtml += "</div>";
+									dispHtml += "<button class=\"btn btn-primary col-1 \" type=\"submit\" onclick=\"insertChatMessage(\'${userVO.u_id}\', \'${userVO.name }\', \'${userVO.u_pic }\')\">전송</button>";
+									dispHtml += "</div>";
+									$("#chatMessageView").html(dispHtml);
 								},
 								error : function() {
 									alert("실패~~~");
@@ -184,36 +185,57 @@ a:hover {
 			let content = $("#content").val();
 			alert("insertChatMessage() 실행~~~nowChatHeaderIdx: "
 					+ nowChatHeaderIdx + ", content: " + content);
-			
+
 			var sid = "subject" + nowChatHeaderIdx;
 			var hId;
 			hId = "hId" + nowChatHeaderIdx;
-			
+
 			document.getElementById(sid).innerHTML = content;
 			var header = document.getElementById("chatHeaderList");
-			header.insertBefore(document.getElementById(hId), header.firstChild);
-			
-			$.ajax("insertChatMessage.do", {
-				type : "get",
-				data : {
-					"h_idx" : nowChatHeaderIdx,
-					"content" : content,
-					"u_id" : u_id,
-					"u_name" : u_name,
-					"u_pic" : u_pic
-				},
-				dataType : "json",
-				success : function(data) {
-					alert("성공~~~");
-					console.log(data);
+			header
+					.insertBefore(document.getElementById(hId),
+							header.firstChild);
 
-					getChatMessageList(nowChatHeaderIdx, u_id);
+			$
+					.ajax(
+							"insertChatMessage.do",
+							{
+								type : "get",
+								data : {
+									"h_idx" : nowChatHeaderIdx,
+									"content" : content,
+									"u_id" : u_id,
+									"u_name" : u_name,
+									"u_pic" : u_pic
+								},
+								dataType : "json",
+								success : function(data) {
+									alert("성공~~~");
+									console.log(data);
+									var dispHtml = "";
+									$
+											.each(
+													data,
+													function(index, obj) {
+														if (obj.u_id == u_id) {
+															dispHtml += "<div class=\"d-flex justify-content-end align-items-center\">";
+															dispHtml += obj.content
+																	+ "<img class=\"img_size \" src=\"../img_src/28778_54512_4628.jpeg\">"
+															dispHtml += "</div>"
+														} else {
+															dispHtml += "<div class=\"d-flex justify-content-start align-items-center\">";
+															dispHtml += "<img class=\"img_size \" src=\"../img_src/28778_54512_4628.jpeg\">"
+																	+ obj.content;
+															dispHtml += "</div>"
+														}
+													});
+									$("#chatMessageContainer").html(dispHtml);
 
-				},
-				error : function() {
-					alert("실패~~~");
-				}
-			});
+								},
+								error : function() {
+									alert("실패~~~");
+								}
+							});
 		}
 	</script>
 	<script
