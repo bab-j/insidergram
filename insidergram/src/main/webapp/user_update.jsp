@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>회원 가입</title>
+<title>회원 수정</title>
 
 <style>
 body {
@@ -149,7 +149,7 @@ body {
 					<div class="row">
 						<div class="col-6">
 							<a class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
-								style="border-color: silver;" type="submit" href="user/login.do">
+								style="border-color: silver;" type="submit" href="./Personal_story.jsp">
 								<svg class="bi me-1 " width="0px" height="16"></svg>취소
 							</a>
 						</div>

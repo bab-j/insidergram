@@ -151,11 +151,11 @@
 					<!-- 1 -->
 					<div class="col-12 my-4">
 						<a style="font-size: xx-large;">tldhsrkwhr11</a>
-						<button class="center_ailgn py-2 mb-2 btn btn-outline-dark rounded-3"
+						<a href="./user_update.jsp"><button class="center_ailgn py-2 mb-2 btn btn-outline-dark rounded-3"
 								style="border-color: silver; text-align: center; margin-left: 20px;"
-								type="submit" href="#">
-								<svg class="bi me-1 " style="width: 0px; height: 12px;" ></svg>프로필 편집
-						</button>
+								type="submit">
+								<svg class="bi me-1 " style="width: 0px; height: 12px;"></svg>프로필 편집
+						</button></a>
 						
 					</div>
 					<!-- 2 -->
