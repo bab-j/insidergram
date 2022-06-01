@@ -65,10 +65,19 @@ text-align: center;
 								</div>
 							</div>
 							<hr class="my-4">
-							<button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
-								type="submit" value="삭제">삭제</button>
-							
 						</form>
+						<div class="row">
+							<div class="col-6">
+								<a class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
+									style="border-color: silver;" type="submit" href="./Personal_story.jsp">
+									<svg class="bi me-1 " width="0px" height="16"></svg>취소
+								</a>
+							</div>
+							<div class="col-6">
+								<input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
+								style="height: 42px; font-size: 17px" type="submit" id="subm" value="수정"> 
+							</div>
+						</div>
 				
 					</div>
 				</div>
