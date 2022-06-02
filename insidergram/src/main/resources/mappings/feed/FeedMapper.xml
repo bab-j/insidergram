@@ -4,20 +4,36 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="feedDAO">
 	
+	<select id="getTotalCount" resultType="int" parameterType="String">
+	SELECT COUNT(F_IDX) FROM
+	(SELECT F.F_IDX
+  	FROM FEED F, FOLLOWER FO
+ 	WHERE F.U_ID = FO.TO_ID
+   	AND FO.FROM_ID = #{u_id}
+UNION
+	SELECT F.F_IDX
+  	FROM FEED F
+ 	WHERE F.U_ID = #{u_id})
+	</select>
 	<!-- 팔로워 게시물과 내 게시물 메인피드에 띄우기 -->
-	<select id="getFollowingFeedList" resultType="feed" parameterType="user">
-		SELECT F.F_IDX, F.REGDATE, F.CONTENT, U.U_ID, F.F_PIC, U.U_PIC
-		  FROM FEED F, USER_INFO U, FOLLOWER FO
-		 WHERE F.U_ID = U.U_ID
-		   AND U.U_ID = FO.TO_ID
-		   AND FO.FROM_ID = #{u_id}
-		UNION
-		SELECT F.F_IDX, F.REGDATE, F.CONTENT, F.U_ID, F.F_PIC, (SELECT U_PIC
-                                                          FROM USER_INFO
-                                                         WHERE U_ID = #{u_id})
-		  FROM FEED F
-		 WHERE F.U_ID = #{u_id}
-		 ORDER BY F_IDX DESC
+	<select id="getFollowingFeedList" resultType="feed" parameterType="map">
+	SELECT * FROM (
+		SELECT ROWNUM R_NUM, F_IDX, REGDATE, CONTENT, U_ID, F_PIC, U_PIC
+		FROM 	(
+				SELECT F.F_IDX, F.REGDATE, F.CONTENT, U.U_ID, F.F_PIC, U.U_PIC
+				  FROM FEED F, USER_INFO U, FOLLOWER FO
+				 WHERE F.U_ID = U.U_ID
+				   AND U.U_ID = FO.TO_ID
+				   AND FO.FROM_ID = #{u_id}
+				UNION
+				SELECT F.F_IDX, F.REGDATE, F.CONTENT, F.U_ID, F.F_PIC, (SELECT U_PIC
+		                                                          FROM USER_INFO
+		                                                         WHERE U_ID = #{u_id})
+				  FROM FEED F
+				 WHERE F.U_ID = #{u_id}
+				 ORDER BY F_IDX DESC))
+	 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	 	
 	</select>
 	<!-- 개인 상세 페이지 불러오기 -->
   	<select id="getMyFeedList" resultType="feed" parameterType="user">
@@ -32,7 +48,7 @@
   	</insert>
   	
 	<!-- 좋아요 상태 확인 -->
-	<select id="confirmLike" resultType="int" parameterType="user">
+	<select id="confirmLike" resultType="int" parameterType="String">
 		SELECT F_IDX
 		  FROM LIKE_LIST
 		 WHERE U_ID = #{u_id}

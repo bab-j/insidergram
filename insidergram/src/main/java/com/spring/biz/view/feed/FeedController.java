@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartRequest;
 
 import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
+import com.spring.biz.feed.Paging;
 import com.spring.biz.user.UserVO;
 
 
@@ -39,15 +40,25 @@ import com.spring.biz.user.UserVO;
 		@RequestMapping("/getFeedList.do")
 		public String getFeedList(Model mo, HttpSession session) {
 			UserVO uvo = (UserVO)session.getAttribute("userVO");
-			List<FeedVO> list = feedService.getFeedList(uvo);
+			Paging paging = new Paging();
+			int totalSize = feedService.getTotalCount(uvo.getU_id());
+			
+			paging.setTotalRecord(totalSize);
+			paging.setTotalPage();
+			paging.setEnd(paging.getNowPage() * paging.getNumPerPage());
+			paging.setBegin(paging.getEnd() - paging.getNumPerPage() + 1);
+			
+			if (paging.getEnd() > totalSize ) {
+				paging.setEnd(totalSize);
+			}
+			List<FeedVO> list = feedService.getFeedList(uvo.getU_id(), paging.getBegin(), paging.getEnd());
 			//------------------FeedVO에 좋아요 개수 Set-------------------
 			for(FeedVO fvo : list) {
 				fvo.setCountLike(feedService.countLike(fvo.getF_idx()));
 				System.out.println(fvo.toString());
 			}
 			//----------------------------------------------------------
-			List<Integer> likeList = feedService.confirmLike(uvo);
-			//feedService.countLike();
+			List<Integer> likeList = feedService.confirmLike(uvo.getU_id());
 			mo.addAttribute("feedList", list);
 			mo.addAttribute("likeList", likeList);
 			

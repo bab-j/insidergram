@@ -23,21 +23,28 @@ public class FeedDAO {
 	public FeedDAO() {
 		System.out.println(">> FeedDAO() 객체 생성");
 	}
-
+	// 전체 게시글 수
+	public int getTotalCount(String u_id) {
+		return mybatis.selectOne("feedDAO.getTotalCount", u_id);
+	}
 	
 	//글 목록 조회
-	public List<FeedVO> getFeedList(UserVO vo) {
+	public List<FeedVO> getFeedList(String u_id, int begin, int end) {
 		System.out.println("===> MyBatis 사용 getFeedList() 실행");
-		List<FeedVO> list = mybatis.selectList("feedDAO.getFollowingFeedList", vo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("u_id", u_id);
+		map.put("begin", begin);
+		map.put("end", end);
+		List<FeedVO> list = mybatis.selectList("feedDAO.getFollowingFeedList", map);
 		return list;
 	}
 	
 	//좋아요 상태 확인
-	public List<Integer> confirmLike(UserVO uvo) {
+	public List<Integer> confirmLike(String u_id) {
 		System.out.println("===> MyBatis 사용 confirmLike() 실행!!");
 		
-		System.out.println("uvo : " + uvo.getU_id());
-		List<Integer> likeF_idx = mybatis.selectList("feedDAO.confirmLike", uvo);
+		System.out.println("u_id : " + u_id);
+		List<Integer> likeF_idx = mybatis.selectList("feedDAO.confirmLike", u_id);
 		
 		return likeF_idx;
 	}

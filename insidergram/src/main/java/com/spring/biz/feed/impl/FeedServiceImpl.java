@@ -20,14 +20,14 @@ public class FeedServiceImpl implements FeedService {
 
 
 	@Override
-	public List<FeedVO> getFeedList(UserVO vo) {
-		return feedDAO.getFeedList(vo);
+	public List<FeedVO> getFeedList(String u_id, int begin, int end) {
+		return feedDAO.getFeedList(u_id, begin, end);
 	}
 
 
 	@Override
-	public List<Integer> confirmLike(UserVO uvo) {
-		return feedDAO.confirmLike(uvo);
+	public List<Integer> confirmLike(String u_id) {
+		return feedDAO.confirmLike(u_id);
 	}
 
 	
@@ -50,6 +50,12 @@ public class FeedServiceImpl implements FeedService {
 	@Override
 	public int countLike(int f_idx) {
 		return feedDAO.countLike(f_idx);
+	}
+
+
+	@Override
+	public int getTotalCount(String u_id) {
+		return feedDAO.getTotalCount(u_id);
 	}
 
 
