@@ -24,4 +24,10 @@ public class UserServiceImpl implements UserService {
 	public int confirmID(UserVO vo) { 
 		return userDAO.confirmID(vo); 
 	}
+
+	@Override
+	public void insertUser(UserVO vo) {
+		userDAO.insertUser(vo);
+		
+	}
 }

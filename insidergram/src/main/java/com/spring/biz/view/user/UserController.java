@@ -63,5 +63,12 @@ public class UserController {
 		System.out.println(">>> 로그아웃 처리");
 		session.invalidate();
 		return "login.jsp";
-	}	
+	}
+	
+	@RequestMapping("/insertUser.do") 
+	public String insertUser(UserVO vo) {
+		System.out.println("insertUser()실행 >> userVO : " + vo.toString());
+		userService.insertUser(vo);
+		return "user/login";
+	}
 }

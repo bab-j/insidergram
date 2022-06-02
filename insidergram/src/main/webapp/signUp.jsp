@@ -66,7 +66,7 @@ body {
 				</div>
 				<!-- 틀 만들기 -->
 				<div class="modal-body p-5 pt-0">
-					<form action="javascript:signUp()" method="post">
+					<form action="user/insertUser.do" method="post">
 						<div class="form-floating mb-3">
 							<div class="row">
 								<div
@@ -137,6 +137,7 @@ body {
 									<input class="form-control rounded-3" type="email" name="email"
 										id="email" placeholder="abc123@abc.com"
 										onfocus="this.placeholder=''"
+										onfocusout="confirmEmail()"
 										onblur="this.placeholder='abc123@abc.com'" required>
 								</div>
 								<div class=col-1></div>
@@ -154,6 +155,7 @@ body {
 									<input class="form-control rounded-3" type="text" name="name"
 										id="name" placeholder="홍길동" onfocus="this.placeholder=''"
 										onblur="this.placeholder='홍길동'"
+										onfocusout="confirmName()"
 										oninvalid="this.setCustomValidity('이름을 입력해 주십시오.')" required>
 								</div>
 								<div class=col-1></div>
@@ -171,6 +173,7 @@ body {
 									<input class="form-control rounded-3" type="text" name="phone"
 										id="phone" placeholder="010-0000-0000"
 										onfocus="this.placeholder=''"
+										onfocusout="confirmPhone()"
 										onblur="this.placeholder='010-0000-0000'"
 										oninvalid="this.setCustomValidity('전화번호를 입력해주십시오.')" required>
 								</div>
@@ -189,6 +192,7 @@ body {
 									<input class="form-control rounded-3" type="text" name="birth"
 										id="birth" placeholder="생년월일 6자리"
 										onfocus="this.placeholder=''"
+										onfocusout="confirmBirth()"
 										onblur="this.placeholder='생년월일 6자리'"
 										oninvalid="this.setCustomValidity('생년월일을 입력해 주십시오.')" required>
 								</div>
@@ -207,7 +211,7 @@ body {
 							<div class="col-6">
 								<input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
 									style="height: 42px; font-size: 17px" type="submit" id="subm"
-									value="가입"> <input type="hidden" name="uID"
+									value="가입" disabled> <input type="hidden" name="uID"
 									value="${uid }">
 							</div>
 						</div>
@@ -219,6 +223,69 @@ body {
 
 
 	<script>
+		var bId = false;
+		var bPwd = false;
+		var bPwdOk = false;
+		var bEmail = false;
+		var bName = false;
+		var bPhone = false;
+		var bBirth = false;
+
+		function idOk(bool) {
+			bId = bool;
+		}
+		function pwdOk(bool) {
+			bPwd = bool;
+		}
+		function pwdOkOk(bool) {
+			bPwdOk = bool;
+		}
+		function emailOk(bool) {
+			bEmail = bool;
+		}
+		function nameOk(bool) {
+			bName = bool;
+		}
+		function idOk(bool) {
+			bId = bool;
+		}
+		function phoneOk(bool) {
+			bPhone = bool;
+		}
+		function birthOk(bool) {
+			bBirth = bool;
+		}
+		function submitRq() {
+			if (bId == true) {
+				if (bPwd == true) {
+					if (bPwdOk == true) {
+						if (bEmail == true) {
+							if (bName == true) {
+								if (bPhone == true) {
+									if (bBirth == true) {
+										document.getElementById("subm").disabled = false;
+									} else {
+										document.getElementById("subm").disabled = true;
+									}
+								} else {
+									document.getElementById("subm").disabled = true;
+								}
+							} else {
+								document.getElementById("subm").disabled = true;
+							}
+						} else {
+							document.getElementById("subm").disabled = true;
+						}
+					} else {
+						document.getElementById("subm").disabled = true;
+					} 
+				} else {
+					document.getElementById("subm").disabled = true;
+				}
+			} else {
+				document.getElementById("subm").disabled = true;
+			}
+		}
 		function confirmID() {
 			let id = $("#uid").val();
 			$
@@ -237,6 +304,8 @@ body {
 												.getElementById("confirmIdResult").innerHTML = "존재하는 ID입니다.";
 										document
 												.getElementById("confirmIdResult").style.display = "inline";
+										idOk(false);
+										submitRq();
 									} else {
 										if (id == "") {
 											document
@@ -245,6 +314,8 @@ body {
 													.getElementById("confirmIdResult").innerHTML = "ID를 입력해 주세요.";
 											document
 													.getElementById("confirmIdResult").style.display = "inline";
+											idOk(false);
+											submitRq();
 										} else {
 											document
 													.getElementById("confirmIdResult").style.color = "blue";
@@ -252,6 +323,8 @@ body {
 													.getElementById("confirmIdResult").innerHTML = "사용가능한 ID입니다.";
 											document
 													.getElementById("confirmIdResult").style.display = "inline";
+											idOk(true);
+											submitRq();
 										}
 
 									}
@@ -269,8 +342,12 @@ body {
 				document.getElementById("confirmPasswordResult").style.color = "red";
 				document.getElementById("confirmPasswordResult").innerHTML = "비밀번호를 입력해주세요.";
 				document.getElementById("confirmPasswordResult").style.display = "inline";
+				pwdOk(false);
+				submitRq();
 			} else {
 				document.getElementById("confirmPasswordResult").style.display = "none";
+				pwdOk(true);
+				submitRq();
 			}
 
 		}
@@ -283,25 +360,91 @@ body {
 					document.getElementById("confirmPasswordOkResult").style.color = "red";
 					document.getElementById("confirmPasswordOkResult").innerHTML = "비밀번호를 입력해주세요.";
 					document.getElementById("confirmPasswordOkResult").style.display = "inline";
+					pwdOkOk(false);
+					submitRq();
+
 				} else {
 					document.getElementById("confirmPasswordOkResult").style.color = "blue";
 					document.getElementById("confirmPasswordOkResult").innerHTML = "비밀번호가 일치합니다.";
 					document.getElementById("confirmPasswordOkResult").style.display = "inline";
+					pwdOkOk(true);
+					submitRq();
 				}
 
+			} else {
+				document.getElementById("confirmPasswordOkResult").style.color = "red";
+				document.getElementById("confirmPasswordOkResult").innerHTML = "비밀번호가 다릅니다.";
+				document.getElementById("confirmPasswordOkResult").style.display = "inline";
+				pwdOkOk(false);
+				submitRq();
 			}
 		}
 
-		function signUp() {
-			alert("signUp() 실행~~~");
+		function confirmEmail() {
+			var email = $("#email").val();
+			if (email === "") {
+				emailOk(false);
+				submitRq();
 
-			var password = $("#password").val();
-			var passwordOk = $("#passwordOk").val();
-			if (password != passwordOk) {
-				alert("비밀번호를 확인해주세요.")
+			} else {
+				emailOk(true);
+				submitRq();
 			}
 
 		}
+		
+		function confirmName() {
+			var name = $("#name").val();
+			if (name === "") {
+				nameOk(false);
+				submitRq();
+
+			} else {
+				nameOk(true);
+				submitRq();
+			}
+
+		}
+		
+		function confirmPhone() {
+			var phone = $("#phone").val();
+			if (phone === "") {
+				phoneOk(false);
+				submitRq();
+
+			} else {
+				phoneOk(true);
+				submitRq();
+			}
+
+		}
+		
+		function confirmPhone() {
+			var phone = $("#phone").val();
+			if (phone === "") {
+				phoneOk(false);
+				submitRq();
+
+			} else {
+				phoneOk(true);
+				submitRq();
+			}
+
+		}
+		
+		function confirmBirth() {
+			var birth = $("#birth").val();
+			if (birth === "") {
+				birthOk(false);
+				submitRq();
+
+			} else {
+				birthOk(true);
+				submitRq();
+			}
+
+		}
+
 	</script>
 
 	<script

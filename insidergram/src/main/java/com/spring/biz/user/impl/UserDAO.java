@@ -26,5 +26,9 @@ public class UserDAO {
 		System.out.println("mybatis.selectOne(\"userDAO.confirmID\", ID) : " + mybatis.selectOne("userDAO.confirmID", vo)); 
 		 
 		return mybatis.selectOne("userDAO.confirmID", vo); 
-	} 
+	}
+	
+	public void insertUser(UserVO vo) {
+		mybatis.insert("userDAO.insertUser", vo);
+	}
 }
