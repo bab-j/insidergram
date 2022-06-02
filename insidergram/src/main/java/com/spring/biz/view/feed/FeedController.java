@@ -26,31 +26,6 @@ import com.spring.biz.feed.FeedVO;
 import com.spring.biz.user.UserVO;
 
 
-//@Controller
-////@SessionAttributes("feed") // feed 라는 이름의 Model 있으면 session 에 저장
-//@RequestMapping("/feed/**")
-//public class FeedController {
-//	@Autowired
-//	private FeedService feedService;
-//	
-//	public FeedController() {
-//		System.out.println("=========== BoardController() 객체 생성");
-//	}
-//	
-//	@RequestMapping("/getBoardList.do")
-//	public String getBoardList(FeedVO vo, Model model) {
-//		System.out.println(">>> 게시글 전체 목록 보여주기");
-//		System.out.println("vo : " + vo);
-//
-//		//List<BoardVO> boardList = boardDAO.getBoardList();
-//		List<FeedVO> boardList = feedService.getFeedList(vo);
-//		
-//		model.addAttribute("boardList", boardList);
-//		
-//		return "board/getBoardList";
-//	}
-//	
-//}
 	@Controller
 	@RequestMapping("/user/**")
 	public class FeedController {
