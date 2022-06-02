@@ -66,7 +66,7 @@ body {
 				</div>
 				<!-- 틀 만들기 -->
 				<div class="modal-body p-5 pt-0">
-					<form action="javascript:signUp()" method="post">
+					<form action="user/insertUser.do" method="post">
 						<div class="form-floating mb-3">
 							<div class="row">
 								<div
@@ -445,16 +445,6 @@ body {
 
 		}
 
-		function signUp() {
-			alert("signUp() 실행~~~");
-
-			var password = $("#password").val();
-			var passwordOk = $("#passwordOk").val();
-			if (password != passwordOk) {
-				alert("비밀번호를 확인해주세요.")
-			}
-
-		}
 	</script>
 
 	<script

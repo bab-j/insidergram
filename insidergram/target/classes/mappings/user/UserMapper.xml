@@ -6,15 +6,22 @@
 
 	<select id="getUser" parameterType="com.spring.biz.user.UserVO"
 		resultType="user">
-		SELECT * FROM USER_INFO WHERE U_ID = #{u_id} AND PASSWORD = #{password}
+		SELECT * FROM USER_INFO WHERE U_ID = #{u_id} AND PASSWORD =
+		#{password}
 	</select>
-  	
-  	<!--아이디 중복체크  -->
-	<select id="confirmID" resultType="int" parameterType="user"> 
-		SELECT COUNT(U_ID) 
-		FROM USER_INFO 
-		WHERE U_ID = #{u_id} 
-	</select> 
+
+	<!--아이디 중복체크 -->
+	<select id="confirmID" resultType="int" parameterType="user">
+		SELECT COUNT(U_ID)
+		FROM USER_INFO
+		WHERE U_ID = #{u_id}
+	</select>
+
+	<insert id="insertUser" parameterType="user">
+		INSERT INTO USER_INFO
+		(U_ID, PASSWORD, PHONE, EMAIL, BIRTH, NAME)
+		VALUES (#{u_id}, #{password}, #{phone}, #{email}, #{birth}, #{name})
+	</insert>
 </mapper>
 
 
