@@ -28,7 +28,7 @@ public class FeedDAO {
 		return mybatis.selectOne("feedDAO.getTotalCount", u_id);
 	}
 	
-	//글 목록 조회
+	// 전체 글 목록 조회
 	public List<FeedVO> getFeedList(String u_id, int begin, int end) {
 		System.out.println("===> MyBatis 사용 getFeedList() 실행");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -36,6 +36,13 @@ public class FeedDAO {
 		map.put("begin", begin);
 		map.put("end", end);
 		List<FeedVO> list = mybatis.selectList("feedDAO.getFollowingFeedList", map);
+		return list;
+	}
+	
+	// 내 게시글 조회
+	public List<FeedVO> getMyFeed(String u_id) {
+		System.out.println("===> MyBatis 사용 getMyFeed() 실행!!");
+		List<FeedVO> list = mybatis.selectList("feedDAO.getMyFeedList", u_id);
 		return list;
 	}
 	

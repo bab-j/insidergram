@@ -59,6 +59,12 @@ public class FeedServiceImpl implements FeedService {
 	}
 
 
+	@Override
+	public List<FeedVO> getMyFeed(String u_id) {
+		return feedDAO.getMyFeed(u_id);
+	}
+
+
 
 	
 }

@@ -1,3 +1,5 @@
+<%@page import="com.spring.biz.feed.FeedVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -190,7 +192,11 @@ input[id*="popup"]:checked+label+div {
 	style="background-color: #F5F5F5; display: flex; justify-content: space-around; align-content: space-around; flex-wrap: wrap;">
 
 
-${userVO }
+${userVO }<br>
+${myFeedList.size() }
+<%
+List<FeedVO> list = (List<FeedVO>)request.getAttribute("myFeedList");
+%>
 	<main class="container py-3"
 		style="background-color: #F5F5F5; width: 935px;">
 		<div class="container-fluid pb-3 my-3 p-3"
@@ -228,7 +234,7 @@ ${userVO }
 						<!-- 2 -->
 						<div class="col-12 my-3">
 							<a>게시물</a><span
-								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">3</span>
+								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${myFeedList.size() }</span>
 							<a>팔로워</a><span
 								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">94</span>
 							<a>팔로우</a><span

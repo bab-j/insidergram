@@ -42,7 +42,7 @@ import com.spring.biz.user.UserVO;
 			UserVO uvo = (UserVO)session.getAttribute("userVO");
 			Paging paging = new Paging();
 			int totalSize = feedService.getTotalCount(uvo.getU_id());
-			
+			//------------- 페이지마다 시작번호 끝번호 Set -----------------
 			paging.setTotalRecord(totalSize);
 			paging.setTotalPage();
 			paging.setEnd(paging.getNowPage() * paging.getNumPerPage());
@@ -66,11 +66,11 @@ import com.spring.biz.user.UserVO;
 		}
 		//내 피드 상세페이지 띄우기
 		@RequestMapping("getMyFeed.do")
-		public String getIndiFeed(HttpSession session) {
+		public String getMyFeed(HttpSession session, Model mo) {
 			UserVO uvo = (UserVO)session.getAttribute("userVO");
-			uvo.getU_id();
-			
-			return "board/indiFeed";
+			List<FeedVO> list = feedService.getMyFeed(uvo.getU_id());
+			mo.addAttribute("myFeedList", list);
+			return "board/personalFeed";
 		}
 		//게시물 등록
 		@RequestMapping("insertFeed.do")
