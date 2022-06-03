@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartRequest;
 import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
 import com.spring.biz.feed.Paging;
+import com.spring.biz.follower.FollowerVO;
 import com.spring.biz.user.UserVO;
 
 
@@ -68,21 +69,23 @@ import com.spring.biz.user.UserVO;
 		@RequestMapping("/getMyFeed.do")
 		public String getMyFeed(HttpSession session, Model mo) {
 			UserVO uvo = (UserVO)session.getAttribute("userVO");
-			List<FeedVO> list = feedService.getMyFeed(uvo.getU_id());
+			String u_id = uvo.getU_id();
+			List<FeedVO> list = feedService.getMyFeed(u_id);
 			List<FeedVO> picPost = new ArrayList<FeedVO>();
-			List<FeedVO> comPost = new ArrayList<FeedVO>();
+			List<FeedVO> docPost = new ArrayList<FeedVO>();
 			for(FeedVO fvo : list) {
-				System.out.println("fvo.getF_pic().equals(null) : " + fvo.getF_pic().equals(null));
-				if (fvo.getF_pic().equals(null)) {
-					comPost.add(fvo);
+				if (fvo.getF_pic() == null) {
+					docPost.add(fvo);
 				} else {
 					picPost.add(fvo);
 				}
 			}
-			System.out.println("comPost : " + comPost.toString());
-			System.out.println("picPost : " + picPost.toString());
+			List<FollowerVO> followingList = feedService.getFollowingList(u_id);
+			List<FollowerVO> followerList = feedService.getFollowerList(u_id);
 			mo.addAttribute("picPost", picPost);
-			mo.addAttribute("comPost", comPost);
+			mo.addAttribute("docPost", docPost);
+			mo.addAttribute("followerList", followerList);
+			mo.addAttribute("followingList", followingList);
 			return "board/personalFeed";
 		}
 		//게시물 등록

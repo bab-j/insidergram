@@ -81,4 +81,14 @@ public class FeedDAO {
 		int countLike = mybatis.selectOne("feedDAO.countLike", f_idx);
 		return countLike;
 	}
+	// 내가 팔로잉 하는 리스트 정보
+	public List<FollowerVO> getFollowingList(String u_id) {
+		List<FollowerVO> list = mybatis.selectList("feedDAO.getFollowingList", u_id);
+		return list;
+	}
+	// 나를 팔로잉 하는 리스트 정보
+	public List<FollowerVO> getFollowerList(String u_id) {
+		List<FollowerVO> list = mybatis.selectList("feedDAO.getFollowerList", u_id);
+		return list;
+	}
 }

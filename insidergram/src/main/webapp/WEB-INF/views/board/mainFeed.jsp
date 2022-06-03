@@ -466,8 +466,8 @@ document.addEventListener("scroll", debounce(e => {
 							</div>
 							<hr style="border: 1px solid silver;">
 							<div
-								style="padding: 0 0 3px 5px; font-weight: bold; font-size: 15px;"
-								id="countLike${feed.f_idx}">좋아요 ${feed.countLike } 개</div>
+								style="padding: 0 0 3px 5px; font-weight: bold; font-size: 15px;">
+								좋아요 <span id="countLike${feed.f_idx}">${feed.countLike }</span> 개</div>
 							<div class="contentBox">
 								<b>${feed.u_id }</b>&nbsp;&nbsp; ${feed.content }
 							</div>

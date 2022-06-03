@@ -65,6 +65,18 @@ public class FeedServiceImpl implements FeedService {
 	}
 
 
+	@Override
+	public List<FollowerVO> getFollowingList(String u_id) {
+		return feedDAO.getFollowingList(u_id);
+	}
+
+
+	@Override
+	public List<FollowerVO> getFollowerList(String u_id) {
+		return feedDAO.getFollowerList(u_id);
+	}
+
+
 
 	
 }

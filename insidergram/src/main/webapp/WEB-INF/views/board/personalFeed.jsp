@@ -248,7 +248,14 @@ input[id="tab03"]:checked ~ .con3 {
 
 
 	${userVO }
-	<br> ${myFeedList.size() }
+	<br> 
+	글 게시물 갯수 : ${docPost.size() }
+	<br>
+	사진 게시물 갯수 : ${picPost.size() }
+	<br>
+	팔로잉 : ${followingList }
+	<br>
+	팔로워 : ${followerList }
 	<%
 		List<FeedVO> list = (List<FeedVO>) request.getAttribute("myFeedList");
 	%>
@@ -289,11 +296,11 @@ input[id="tab03"]:checked ~ .con3 {
 						<!-- 2 -->
 						<div class="col-12 my-3">
 							<a>게시물</a><span
-								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${myFeedList.size() }</span>
+								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${picPost.size() + docPost.size() }</span>
 							<a>팔로워</a><span
-								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">94</span>
+								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followerList.size() }</span>
 							<a>팔로우</a><span
-								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">132</span>
+								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followingList.size() }</span>
 						</div>
 						<!-- 3 -->
 						<div class="col-12 my-3">
