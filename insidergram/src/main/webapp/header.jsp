@@ -21,21 +21,23 @@
 
 <title>상단 바</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
 </style>
 <style>
 
 /* 마지막에 CSS 파일로 만들기 */
-
 #Header {
-	/*  position: fixed;*/ 
-	background-color : white;
+	position: fixed;
+	background-color: white;
 	border-bottom: 1px solid #dbdbdb;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	height: 50px;
 	background-color: white;
+	width: 100%;
+	z-index: 1000;
 }
 
 .nav-icon {
@@ -50,16 +52,13 @@
 	width: 50%;
 	height: 26px;
 	font-size: 15px;
-	padding-bottom: 0px;
 	border-radius: 4px;
-	border-style: solid;
+	border: solid silver;
 }
 
 .search_btn {
-	font-size: 15px;
-	height: 30px;
-	padding-bottom: 0px;
-	border-radius: 4px;
+	font-size: 12px;
+	padding : 3px 12px 3px 12px;
 }
 
 .container1 {
@@ -145,67 +144,75 @@ a:hover {
 
 
 	<!-- 로그인 후 메인페이지 에서 보여주는 화면 -->
-<c:if test="${userVO!=null }">
-	<div id="Header">
-		<div class="container" style="margin-top: 10px;">
-			<div class="row">
-				<div class="col-3 insiderIcon" style="">
-					<a href="../user/getFeedList.do">insidergram</a>
-				</div>
-				<div class="col-6">
-					<div class="container1">
-						<form action="feedcontroller?type=search" method="post">
-							<span> <input class="total_search" type="text" id="search"
-								name="keyword" placeholder="통합검색">&nbsp; <input
-								class="search_btn" type="submit" value="검색">
-							</span>
-						</form>
+	<c:if test="${userVO!=null }">
+		<div id="Header">
+			<div class="container" style="margin-top: 10px;">
+				<div class="row">
+					<div class="col-3 insiderIcon" style="">
+						<a href="../user/getFeedList.do">insidergram</a>
 					</div>
-				</div>
-				<div class="col-3">
-					<div class="nav-icon" style="text-align: right;">
-						<ul>
-							<li class="material-symbols-outlined dm_icon"><a
-								href="../chat/getChatHeaderList.do">send</a></li>
-							<li class="material-icons "><a href="mainFeed.jsp">home</a></li>
-							<li class="material-icons-outlined "><a href="../insertFeed.jsp">add_circle_outline</a></li>
-							<li class="material-icons "><a href="#">logout</a></li>
-						</ul>
+					<div class="col-6">
+						<div class="container1">
+							<form action="feedcontroller?type=search" method="post">
+								<span> <input class="total_search" type="text"
+									id="search" name="keyword" placeholder=" 통합검색">&nbsp; 
+									<button type="submit" class="btn  btn-outline-secondary search_btn " >검색</button>
+
+								</span>
+								
+								
+							</form>
+						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</c:if>
-<c:if test="${userVO==null }">
-	<div id="Header">
-		<div class="container" style="margin-top: 10px;">
-			<div class="row">
-				<div class="col-3 insiderIcon" style="">
-					<a href="../user/getFeedList.do">insidergram</a>
-				</div>
-				<div class="col-6">
-					<div class="container1">
-						<form action="feedcontroller?type=search" method="post">
-							<span> <input class="total_search" type="text" id="search"
-								name="keyword" placeholder="통합검색">&nbsp; <input
-								class="search_btn" type="submit" value="검색">
-							</span>
-						</form>
-					</div>
-				</div>
-				<div class="col-3">
-					<div class="nav-icon" style="text-align: right;">
-						<ul>
-							<li class="material-symbols-outlined"><a
-								href="javascript:history.back()">arrow_back_ios</a></li>
-						</ul>
+					<div class="col-3">
+						<div class="nav-icon" style="text-align: right;">
+							<ul>
+								<li class="material-symbols-outlined dm_icon"><a
+									href="../chat/getChatHeaderList.do">send</a></li>
+								<li class="material-icons "><a href="mainFeed.jsp">home</a></li>
+								<li class="material-icons-outlined "><a
+									href="../insertFeed.jsp">add_circle_outline</a></li>
+								<li class="material-icons "><a href="#">logout</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</c:if>
+	</c:if>
+	<c:if test="${userVO==null }">
+		<div id="Header">
+			<div class="container" style="margin-top: 10px;">
+				<div class="row">
+					<div class="col-3 insiderIcon" style="">
+						<a href="../user/getFeedList.do">insidergram</a>
+					</div>
+					<div class="col-6">
+						<div class="container1">
+							<form action="feedcontroller?type=search" method="post">
+								<span> <input class="total_search" type="text"
+									id="search" name="keyword" placeholder=" 통합검색">&nbsp;
+									<button type="submit"
+										class="btn  btn-outline-secondary search_btn ">검색</button>
+
+								</span>
+
+
+							</form>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="nav-icon" style="text-align: right;">
+							<ul>
+								<li class="material-symbols-outlined"><a
+									href="javascript:history.back()">arrow_back_ios</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
 
 	<!-- 부트스트랩 -->
 	<script
