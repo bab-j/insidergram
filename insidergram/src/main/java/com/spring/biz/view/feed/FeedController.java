@@ -65,11 +65,24 @@ import com.spring.biz.user.UserVO;
 			return "board/mainFeed";
 		}
 		//내 피드 상세페이지 띄우기
-		@RequestMapping("getMyFeed.do")
+		@RequestMapping("/getMyFeed.do")
 		public String getMyFeed(HttpSession session, Model mo) {
 			UserVO uvo = (UserVO)session.getAttribute("userVO");
 			List<FeedVO> list = feedService.getMyFeed(uvo.getU_id());
-			mo.addAttribute("myFeedList", list);
+			List<FeedVO> picPost = new ArrayList<FeedVO>();
+			List<FeedVO> comPost = new ArrayList<FeedVO>();
+			for(FeedVO fvo : list) {
+				System.out.println("fvo.getF_pic().equals(null) : " + fvo.getF_pic().equals(null));
+				if (fvo.getF_pic().equals(null)) {
+					comPost.add(fvo);
+				} else {
+					picPost.add(fvo);
+				}
+			}
+			System.out.println("comPost : " + comPost.toString());
+			System.out.println("picPost : " + picPost.toString());
+			mo.addAttribute("picPost", picPost);
+			mo.addAttribute("comPost", comPost);
 			return "board/personalFeed";
 		}
 		//게시물 등록
