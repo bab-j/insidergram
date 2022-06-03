@@ -135,14 +135,14 @@
 <body>
 	
 
-<body style="background-color: #F5F5F5;">
+<body style="background-color: #F5F5F5;display: flex;justify-content: space-around;align-content: space-around;flex-wrap: wrap;">
   
 
 
-<main class="container py-3" style="background-color: #F5F5F5;">
+<main class="container py-3" style="background-color: #F5F5F5;width: 935px;">
 	<div class="container-fluid pb-3 my-3 p-3" style="background-color: #F5F5F5;">
 		<div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
-			<div class="rounded-3" style="height: 300px; width: 300px;">
+			<div class="rounded-3" style="height: 200px; width: 200px;margin-top: 25px; margin-left: 40px;">
 				<img class="bigProfile_img" src="./img_src/test/kim.jpg" />
 			</div>
 
