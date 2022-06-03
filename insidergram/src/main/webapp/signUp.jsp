@@ -136,8 +136,7 @@ body {
 								<div class=col-7>
 									<input class="form-control rounded-3" type="email" name="email"
 										id="email" placeholder="abc123@abc.com"
-										onfocus="this.placeholder=''"
-										onfocusout="confirmEmail()"
+										onfocus="this.placeholder=''" onfocusout="confirmEmail()"
 										onblur="this.placeholder='abc123@abc.com'" required>
 								</div>
 								<div class=col-1></div>
@@ -154,8 +153,7 @@ body {
 								<div class=col-7>
 									<input class="form-control rounded-3" type="text" name="name"
 										id="name" placeholder="홍길동" onfocus="this.placeholder=''"
-										onblur="this.placeholder='홍길동'"
-										onfocusout="confirmName()"
+										onblur="this.placeholder='홍길동'" onfocusout="confirmName()"
 										oninvalid="this.setCustomValidity('이름을 입력해 주십시오.')" required>
 								</div>
 								<div class=col-1></div>
@@ -172,8 +170,7 @@ body {
 								<div class=col-7>
 									<input class="form-control rounded-3" type="text" name="phone"
 										id="phone" placeholder="010-0000-0000"
-										onfocus="this.placeholder=''"
-										onfocusout="confirmPhone()"
+										onfocus="this.placeholder=''" onfocusout="confirmPhone()"
 										onblur="this.placeholder='010-0000-0000'"
 										oninvalid="this.setCustomValidity('전화번호를 입력해주십시오.')" required>
 								</div>
@@ -191,8 +188,7 @@ body {
 								<div class=col-7>
 									<input class="form-control rounded-3" type="text" name="birth"
 										id="birth" placeholder="생년월일 6자리"
-										onfocus="this.placeholder=''"
-										onfocusout="confirmBirth()"
+										onfocus="this.placeholder=''" onfocusout="confirmBirth()"
 										onblur="this.placeholder='생년월일 6자리'"
 										oninvalid="this.setCustomValidity('생년월일을 입력해 주십시오.')" required>
 								</div>
@@ -278,7 +274,7 @@ body {
 						}
 					} else {
 						document.getElementById("subm").disabled = true;
-					} 
+					}
 				} else {
 					document.getElementById("subm").disabled = true;
 				}
@@ -290,7 +286,7 @@ body {
 			let id = $("#uid").val();
 			$
 					.ajax(
-							"confirmID.do",
+							"user/confirmID.do",
 							{
 								type : "get",
 								data : "u_id=" + id,
@@ -392,7 +388,7 @@ body {
 			}
 
 		}
-		
+
 		function confirmName() {
 			var name = $("#name").val();
 			if (name === "") {
@@ -405,7 +401,7 @@ body {
 			}
 
 		}
-		
+
 		function confirmPhone() {
 			var phone = $("#phone").val();
 			if (phone === "") {
@@ -418,7 +414,7 @@ body {
 			}
 
 		}
-		
+
 		function confirmPhone() {
 			var phone = $("#phone").val();
 			if (phone === "") {
@@ -431,7 +427,7 @@ body {
 			}
 
 		}
-		
+
 		function confirmBirth() {
 			var birth = $("#birth").val();
 			if (birth === "") {
@@ -444,7 +440,6 @@ body {
 			}
 
 		}
-
 	</script>
 
 	<script

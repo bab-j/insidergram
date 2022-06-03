@@ -30,4 +30,9 @@ public class UserServiceImpl implements UserService {
 		userDAO.insertUser(vo);
 		
 	}
+
+	@Override
+	public int findId(UserVO vo) {
+		return userDAO.findId(vo);
+	}
 }

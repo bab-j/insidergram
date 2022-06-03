@@ -31,4 +31,9 @@ public class UserDAO {
 	public void insertUser(UserVO vo) {
 		mybatis.insert("userDAO.insertUser", vo);
 	}
+	
+	public int findId(UserVO vo) { 
+		 
+		return mybatis.selectOne("userDAO.findId", vo); 
+	}
 }

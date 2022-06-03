@@ -5,8 +5,11 @@
 <mapper namespace="chatHeaderDAO">
 	
 	<select id="getChatHeaderList" resultType="com.spring.biz.chat.ChatHeaderVO" parameterType="com.spring.biz.user.UserVO">
-		SELECT * FROM CHAT_HEADER WHERE FROM_ID = #{u_id} OR TO_ID = #{u_id}
-		ORDER BY TO_DATE(time, 'YYYY/MM/DD hh24:mi:ss') DESC
+		SELECT CH.H_IDX, CH.FROM_ID, CH.TO_ID, CH.SUBJECT, CH.FROM_STATUS, CH.TO_STATUS, CH.TIME, U.U_PIC
+		FROM CHAT_HEADER CH JOIN USER_INFO U
+		ON U.U_ID = DECODE(CH.FROM_ID, #{u_id}, CH.TO_ID, CH.FROM_ID)
+		WHERE CH.FROM_ID = #{u_id} OR CH.TO_ID = #{u_id}
+		ORDER BY time DESC
 	</select>
 	
 	<select id="getChatHeader" resultType="com.spring.biz.chat.ChatHeaderVO" parameterType="int">

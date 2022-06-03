@@ -8,6 +8,7 @@ public class ChatHeaderVO {
 	private boolean from_status;
 	private boolean to_status;
 	private String time;
+	private String u_pic;
 	
 	
 	public ChatHeaderVO() {
@@ -56,10 +57,18 @@ public class ChatHeaderVO {
 	public void setTime(String time) {
 		this.time = time;
 	}
+	public String getU_pic() {
+		return u_pic;
+	}
+	public void setU_pic(String u_pic) {
+		this.u_pic = u_pic;
+	}
+	
 	@Override
 	public String toString() {
 		return "ChatHeaderVO [h_idx=" + h_idx + ", from_id=" + from_id + ", to_id=" + to_id + ", subject=" + subject
-				+ ", from_status=" + from_status + ", to_status=" + to_status + ", time=" + time + "]";
+				+ ", from_status=" + from_status + ", to_status=" + to_status + ", time=" + time + ", u_pic=" + u_pic
+				+ "]";
 	}
 
 	

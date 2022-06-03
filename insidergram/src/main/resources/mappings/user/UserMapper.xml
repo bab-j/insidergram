@@ -22,6 +22,12 @@
 		(U_ID, PASSWORD, PHONE, EMAIL, BIRTH, NAME)
 		VALUES (#{u_id}, #{password}, #{phone}, #{email}, #{birth}, #{name})
 	</insert>
+	
+	<select id="findId" resultType="user" parameterType="user">
+		SELECT COUNT(U_ID)
+		FROM USER_INFO
+		WHERE U_ID = #{u_id}
+	</select>
 </mapper>
 
 

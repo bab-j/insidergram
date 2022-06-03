@@ -10,9 +10,9 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <style>
-html, 	body {
-width:100%;
-height:100%;
+html, body {
+	width: 100%;
+	height: 100%;
 }
 .chat_list {
 	border: 1px solid silver;
@@ -45,13 +45,37 @@ height:100%;
 	text-align: center;
 }
 
-.img_size {
+.box {
+	border-radius: 50%;
 	width: 56px;
 	height: 56px;
 	display: inline-block;
-	border-radius: 50%
+	text-align: center;
+	overflow: hidden;
+	border: 1px solid gray;
 }
 
+.img_box {
+	margin-top: 2px;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+	overflow: hidden;
+	border-radius: 50%;
+}
+
+.img_size {
+	max-width: 100%;
+	object-fit: cover;
+	display: block;
+	margin: auto;
+	display: block;
+	object-fit: cover;
+}
+.sm_id {
+	color:gray;
+}
 .display_flex {
 	display: inline-flex;
 }
@@ -70,9 +94,10 @@ a:hover {
 <meta charset="UTF-8">
 <title>insidergram : DM test</title>
 </head>
-<body >
+<body>
 	<jsp:include page="/header.jsp" />
-	<div class="h-100 w-100 position-fixed" style="background-color: #F5F5F5">
+	<div class="h-100 w-100 position-fixed"
+		style="background-color: #F5F5F5">
 
 		<div class="container h-100 pt-3 pb-3 " style="width: 1250px;""">
 			<div class="row h-100 pb-5">
@@ -84,16 +109,24 @@ a:hover {
 							<a id="hId${vo.h_idx }" class="row d-flex"
 								href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
 								<div class="col-2">
-									<img class="img_size "
-										src="../img_src/profile/28778_54512_4628.jpeg">
-									${vo.to_id }
+									<div class="box">
+										<div class="img_box">
+											<img class="img_size " src="../img_src/profile/${vo.u_pic }">
+										</div>
+									</div>
 								</div>
 								<div class="col-8" style="text-overflow: ellipsis;">
 									<c:if test="${ vo.from_status eq '0'}">
-										<p id="subject${vo.h_idx }" style="font-weight: bold;">${vo.subject }</p>
+										<div>
+											<p id="subject${vo.h_idx }" style="font-weight: bold; margin:0;">${vo.subject }</p>
+											<small class="sm_id">${vo.to_id }</small>
+										</div>
 									</c:if>
 									<c:if test="${vo.from_status ne '0' }">
-										<p id="subject${vo.h_idx }">${vo.subject }</p>
+										<div>
+											<p id="subject${vo.h_idx }" style="margin: 0;">${vo.subject }</p>
+											<small class="sm_id">${vo.to_id }</small>
+										</div>
 									</c:if>
 								</div> <small class="col-2">1분전</small>
 							</a>
@@ -102,16 +135,24 @@ a:hover {
 							<a id="hId${vo.h_idx }" class="row d-flex"
 								href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
 								<div class="col-2">
-									<img class="img_size "
-										src="../img_src/profile/28778_54512_4628.jpeg">
-									${vo.from_id }
+									<div class="box">
+										<div class="img_box">
+											<img class="img_size " src="../img_src/profile/${vo.u_pic }">
+										</div>
+									</div>
 								</div>
 								<div class="col-8" style="text-overflow: ellipsis;">
 									<c:if test="${ vo.to_status eq '0'}">
-										<p id="subject${vo.h_idx }" style="font-weight: bold;">${vo.subject }</p>
+										<div>
+											<p id="subject${vo.h_idx }" style="font-weight: bold; margin:0;">${vo.subject }</p>
+											<small class="sm_id">${vo.from_id }</small>
+										</div>
 									</c:if>
 									<c:if test="${vo.to_status ne '0' }">
-										<p id="subject${vo.h_idx }">${vo.subject }
+										<div>
+											<p id="subject${vo.h_idx }" style="margin:0;">${vo.subject }</p>
+											<small class="sm_id">${vo.from_id }</small>
+										</div>
 									</c:if>
 								</div> <small class="col-2">2분전</small>
 							</a>
@@ -120,8 +161,7 @@ a:hover {
 				</div>
 				<div
 					class="shadow-sm p-3 mb-5 bg-body rounded col-8 h-100 container border">
-					<div class="container h-100 position-relative"
-						id="chatMessageView">
+					<div class="container h-100 position-relative" id="chatMessageView">
 						<h1>채팅하세요.</h1>
 					</div>
 				</div>
@@ -159,13 +199,21 @@ a:hover {
 													function(index, obj) {
 														if (obj.u_id == my_id) {
 															dispHtml += "<div class=\"d-flex justify-content-end align-items-center\">";
-															dispHtml += obj.content
-																	+ "<img class=\"img_size \" src=\"../img_src/28778_54512_4628.jpeg\">"
+															dispHtml += obj.content;
+															dispHtml += "<div class=\"box\">";
+															dispHtml += "<div class=\"img_box\">";
+															dispHtml += "<img class=\"img_size\" src=\"../img_src/profile/"+ obj.u_pic +"\">"
+															dispHtml += "</div>";
+															dispHtml += "</div>";	
 															dispHtml += "</div>"
 														} else {
 															dispHtml += "<div class=\"d-flex justify-content-start align-items-center\">";
-															dispHtml += "<img class=\"img_size \" src=\"../img_src/28778_54512_4628.jpeg\">"
-																	+ obj.content;
+															dispHtml += "<div class=\"box\">";
+															dispHtml += "<div class=\"img_box\">";
+															dispHtml += "<img class=\"img_size \" src=\"../img_src/profile/" + obj.u_pic + "\">"
+															dispHtml += "</div>";
+															dispHtml += "</div>";
+															dispHtml += obj.content;
 															dispHtml += "</div>"
 														}
 													});

@@ -10,6 +10,7 @@ import com.spring.biz.user.UserService;
 import com.spring.biz.user.UserVO;
 
 @RestController
+@RequestMapping("/user/**")
 public class UserAjaxController {
 	//@Controller
 	 //클래스 내의 요청처리 결과가 모두 @ResponseBody 처리됨
@@ -37,6 +38,12 @@ public class UserAjaxController {
 				str = "success";
 			}
 			return str;
+		}
+		
+		@RequestMapping("/findId.do")
+		public UserVO findId(UserVO vo) {
+			
+			return null;
 		}
 		
 //		@RequestMapping("/getJsonBoard.do")
