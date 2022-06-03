@@ -14,6 +14,7 @@ html, body {
 	width: 100%;
 	height: 100%;
 }
+
 .chat_list {
 	border: 1px solid silver;
 	width: 500px;
@@ -23,23 +24,31 @@ html, body {
 	display: inline-flex;
 	float: left;
 }
+
 .my_chat_message {
 	height: 94%;
-    overflow-y: auto;
-    direction: ltr;
+	overflow-y: auto;
+	direction: ltr;
 }
+
 .chat_content_start {
+	margin: 3px 3px 3px 3px;
 	padding: 10px 10px 10px 10px;
+	align-self: center;
 	background-color: #f5f5f5;
 	border-radius: 30px;
-	margin-left: 10px
+	margin-left: 10px;
+	max-width: 250px;
 }
 
 .chat_content_end {
+	margin: 3px 3px 3px 3px;
 	padding: 10px 10px 10px 10px;
+	align-self: center;
 	background-color: #f5f5f5;
 	border-radius: 30px;
-	margin-right:10px;
+	margin-right: 10px;
+	max-width: 300px;
 }
 
 .chat_body {
@@ -80,9 +89,11 @@ html, body {
 	display: block;
 	object-fit: cover;
 }
+
 .sm_id {
-	color:gray;
+	color: gray;
 }
+
 .display_flex {
 	display: inline-flex;
 }
@@ -104,13 +115,16 @@ a:hover {
 <body>
 	<jsp:include page="/header.jsp" />
 	<div class="h-100 w-100 position-fixed"
-		style="background-color: #F5F5F5; margin-top:50px;">
+		style="background-color: #F5F5F5; margin-top: 50px;">
 
 		<div class="container h-100 pt-3 pb-3 " style="width: 1250px;""">
 			<div class="row h-100 pb-5">
 				<div
 					class="shadow-sm p-3 mb-5 bg-body rounded col-4 container border overflow-auto"
 					id="chatHeaderList">
+					<a href="#">
+					<div style="height:60px; margin-bottom:10px;" class="border-bottom">+메세지쓰기</div>
+					</a>
 					<c:forEach var="vo" items="${chatHeaderList }">
 						<c:if test="${vo.from_id eq userVO.u_id }">
 							<a id="hId${vo.h_idx }" class="row d-flex"
@@ -125,7 +139,8 @@ a:hover {
 								<div class="col-8" style="text-overflow: ellipsis;">
 									<c:if test="${ vo.from_status eq '0'}">
 										<div>
-											<p id="u_id${vo.h_idx }" style="font-weight: bolder; margin:0;">${vo.to_id }</p>
+											<p id="u_id${vo.h_idx }"
+												style="font-weight: bolder; margin: 0;">${vo.to_id }</p>
 											<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
 										</div>
 									</c:if>
@@ -151,13 +166,14 @@ a:hover {
 								<div class="col-8" style="text-overflow: ellipsis;">
 									<c:if test="${ vo.to_status eq '0'}">
 										<div>
-											<p id="u_id${vo.h_idx }" style="font-weight: bolder; margin:0;">${vo.from_id }</p>
+											<p id="u_id${vo.h_idx }"
+												style="font-weight: bolder; margin: 0;">${vo.from_id }</p>
 											<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
 										</div>
 									</c:if>
 									<c:if test="${vo.to_status ne '0' }">
 										<div>
-											<p id="u_id${vo.h_idx }" style="margin:0;">${vo.from_id }</p>
+											<p id="u_id${vo.h_idx }" style="margin: 0;">${vo.from_id }</p>
 											<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
 										</div>
 									</c:if>
@@ -205,7 +221,7 @@ a:hover {
 													data,
 													function(index, obj) {
 														if (obj.u_id == my_id) {
-															dispHtml += "<div class=\"d-flex justify-content-end align-items-center\">";
+															dispHtml += "<div class=\"d-flex justify-content-end\" style=\"margin-bottom:10px;\">";
 															dispHtml += "<div class=\"chat_content_end\">";
 															dispHtml += obj.content;
 															dispHtml += "</div>";
@@ -213,10 +229,10 @@ a:hover {
 															dispHtml += "<div class=\"img_box\">";
 															dispHtml += "<img class=\"img_size\" src=\"../img_src/profile/"+ obj.u_pic +"\">"
 															dispHtml += "</div>";
-															dispHtml += "</div>";	
+															dispHtml += "</div>";
 															dispHtml += "</div>"
 														} else {
-															dispHtml += "<div class=\"d-flex justify-content-start align-items-center\">";
+															dispHtml += "<div class=\"d-flex justify-content-start\" style=\"margin-bottom:10px;\">";
 															dispHtml += "<div class=\"box\">";
 															dispHtml += "<div class=\"img_box\">";
 															dispHtml += "<img class=\"img_size \" src=\"../img_src/profile/" + obj.u_pic + "\">"
@@ -236,7 +252,9 @@ a:hover {
 									dispHtml += "<button class=\"btn btn-primary col-1 \" type=\"submit\" onclick=\"insertChatMessage(\'${userVO.u_id}\', \'${userVO.name }\', \'${userVO.u_pic }\')\">전송</button>";
 									dispHtml += "</div>";
 									$("#chatMessageView").html(dispHtml);
-									$('#chatMessageContainer').scrollTop($('#chatMessageContainer')[0].scrollHeight);
+									$('#chatMessageContainer')
+											.scrollTop(
+													$('#chatMessageContainer')[0].scrollHeight);
 								},
 								error : function() {
 									alert("실패~~~");
@@ -281,7 +299,7 @@ a:hover {
 													data,
 													function(index, obj) {
 														if (obj.u_id == u_id) {
-															dispHtml += "<div class=\"d-flex justify-content-end align-items-center\">";
+															dispHtml += "<div class=\"d-flex justify-content-end\" style=\"margin-bottom:10px;\">";
 															dispHtml += "<div class=\"chat_content_end\">";
 															dispHtml += obj.content;
 															dispHtml += "</div>";
@@ -289,10 +307,10 @@ a:hover {
 															dispHtml += "<div class=\"img_box\">";
 															dispHtml += "<img class=\"img_size\" src=\"../img_src/profile/"+ obj.u_pic +"\">"
 															dispHtml += "</div>";
-															dispHtml += "</div>";	
+															dispHtml += "</div>";
 															dispHtml += "</div>"
 														} else {
-															dispHtml += "<div class=\"d-flex justify-content-start align-items-center\">";
+															dispHtml += "<div class=\"d-flex justify-content-start\" style=\"margin-bottom:10px;\">";
 															dispHtml += "<div class=\"box\">";
 															dispHtml += "<div class=\"img_box\">";
 															dispHtml += "<img class=\"img_size \" src=\"../img_src/profile/" + obj.u_pic + "\">"
@@ -305,7 +323,9 @@ a:hover {
 														}
 													});
 									$("#chatMessageContainer").append(dispHtml);
-									$('#chatMessageContainer').scrollTop($('#chatMessageContainer')[0].scrollHeight);
+									$('#chatMessageContainer')
+											.scrollTop(
+													$('#chatMessageContainer')[0].scrollHeight);
 									$("#content").val("");
 								},
 								error : function() {
