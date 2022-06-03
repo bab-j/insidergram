@@ -65,9 +65,11 @@ import com.spring.biz.user.UserVO;
 			return "board/mainFeed";
 		}
 		//내 피드 상세페이지 띄우기
-		@RequestMapping("getIndiFeed.do")
-		public String getIndiFeed(HttpServletRequest req) {
-			System.out.println("req.getParameter(\"u_id\") : " + req.getParameter("u_id")); 
+		@RequestMapping("getMyFeed.do")
+		public String getIndiFeed(HttpSession session) {
+			UserVO uvo = (UserVO)session.getAttribute("userVO");
+			uvo.getU_id();
+			
 			return "board/indiFeed";
 		}
 		//게시물 등록
