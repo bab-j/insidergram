@@ -1,7 +1,6 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.spring.biz.feed.FeedVO"%>
-<%@page import="com.spring.biz.feed.Paging"%>
 <%@page import="com.spring.biz.feed.impl.FeedDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="org.springframework.ui.Model"%>
@@ -443,7 +442,7 @@ document.addEventListener("scroll", debounce(e => {
 	<!-- mo : 좋아요한 계시물 번호 리스트 -->
 	<%-- <c:set var="likeList" value="${likeList }" scope="request" /> --%>
 	<%
-	List<String> list = (List<String>) request.getAttribute("likeList");
+		List<String> list = (List<String>) request.getAttribute("likeList");
 	%>
 	<!-- 피드 게시물 -->
 	<div id="feedBox" class="feedBox" style="border: 1px solid black">
@@ -470,9 +469,9 @@ document.addEventListener("scroll", debounce(e => {
 							<!---------------------- 게시물 좋아요 상태 설정 -------------------------- -->
 							<c:set var="feedIdx" value="${feed.f_idx }" scope="page" />
 							<%
-boolean like = list.contains(pageContext.getAttribute("feedIdx"));
-pageContext.setAttribute("like", like);
-%>
+								boolean like = list.contains(pageContext.getAttribute("feedIdx"));
+							pageContext.setAttribute("like", like);
+							%>
 							<!-- ------------------------------------------------------------- -->
 							<a href="javascript:likeFeed(${feed.f_idx})"> <c:choose>
 									<c:when test="${like }">

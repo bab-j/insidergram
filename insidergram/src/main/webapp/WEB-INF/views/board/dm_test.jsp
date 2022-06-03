@@ -23,7 +23,11 @@ html, body {
 	display: inline-flex;
 	float: left;
 }
-
+.my_chat_message {
+	height: 94%;
+    overflow-y: auto;
+    direction: ltr;
+}
 .chat_content_start {
 	padding: 10px 10px 10px 10px;
 	background-color: #f5f5f5;
@@ -195,7 +199,7 @@ a:hover {
 
 									var my_id = u_id;
 									let dispHtml = "";
-									dispHtml += "<div class=\"row myChatMessage\" id=\"chatMessageContainer\">";
+									dispHtml += "<div class=\"row my_chat_message\" id=\"chatMessageContainer\">";
 									$
 											.each(
 													data,
@@ -232,6 +236,7 @@ a:hover {
 									dispHtml += "<button class=\"btn btn-primary col-1 \" type=\"submit\" onclick=\"insertChatMessage(\'${userVO.u_id}\', \'${userVO.name }\', \'${userVO.u_pic }\')\">전송</button>";
 									dispHtml += "</div>";
 									$("#chatMessageView").html(dispHtml);
+									$('#chatMessageContainer').scrollTop($('#chatMessageContainer')[0].scrollHeight);
 								},
 								error : function() {
 									alert("실패~~~");
@@ -300,7 +305,7 @@ a:hover {
 														}
 													});
 									$("#chatMessageContainer").html(dispHtml);
-
+									$('#chatMessageContainer').scrollTop($('#chatMessageContainer')[0].scrollHeight);
 								},
 								error : function() {
 									alert("실패~~~");
