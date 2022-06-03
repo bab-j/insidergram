@@ -24,15 +24,18 @@ html, body {
 	float: left;
 }
 
-.chat_content {
-	border: 1px solid silver;
-	width: 700px;
-	height: 600px;
-	margin-top: 30px;
-	margin-right: 25px;
-	display: inline-flex;
-	float: right;
-	overflow-y: scroll;
+.chat_content_start {
+	padding: 10px 10px 10px 10px;
+	background-color: #f5f5f5;
+	border-radius: 30px;
+	margin-left: 10px
+}
+
+.chat_content_end {
+	padding: 10px 10px 10px 10px;
+	background-color: #f5f5f5;
+	border-radius: 30px;
+	margin-right:10px;
 }
 
 .chat_body {
@@ -118,14 +121,14 @@ a:hover {
 								<div class="col-8" style="text-overflow: ellipsis;">
 									<c:if test="${ vo.from_status eq '0'}">
 										<div>
-											<p id="subject${vo.h_idx }" style="font-weight: bold; margin:0;">${vo.subject }</p>
-											<small class="sm_id">${vo.to_id }</small>
+											<p id="u_id${vo.h_idx }" style="font-weight: bolder; margin:0;">${vo.to_id }</p>
+											<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
 										</div>
 									</c:if>
 									<c:if test="${vo.from_status ne '0' }">
 										<div>
-											<p id="subject${vo.h_idx }" style="margin: 0;">${vo.subject }</p>
-											<small class="sm_id">${vo.to_id }</small>
+											<p id="u_id${vo.h_idx }" style="margin: 0;">${vo.to_id }</p>
+											<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
 										</div>
 									</c:if>
 								</div> <small class="col-2">1분전</small>
@@ -144,14 +147,14 @@ a:hover {
 								<div class="col-8" style="text-overflow: ellipsis;">
 									<c:if test="${ vo.to_status eq '0'}">
 										<div>
-											<p id="subject${vo.h_idx }" style="font-weight: bold; margin:0;">${vo.subject }</p>
-											<small class="sm_id">${vo.from_id }</small>
+											<p id="u_id${vo.h_idx }" style="font-weight: bolder; margin:0;">${vo.from_id }</p>
+											<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
 										</div>
 									</c:if>
 									<c:if test="${vo.to_status ne '0' }">
 										<div>
-											<p id="subject${vo.h_idx }" style="margin:0;">${vo.subject }</p>
-											<small class="sm_id">${vo.from_id }</small>
+											<p id="u_id${vo.h_idx }" style="margin:0;">${vo.from_id }</p>
+											<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
 										</div>
 									</c:if>
 								</div> <small class="col-2">2분전</small>
@@ -176,8 +179,8 @@ a:hover {
 			nowChatHeaderIdx = h_idx;
 			alert("getChatMessageList() 실행~~~ h_idx:" + h_idx + ", u_id:"
 					+ u_id);
-			var sid = "subject" + h_idx;
-			document.getElementById(sid).style.fontWeight = "normal";
+			var id = "u_id" + h_idx;
+			document.getElementById(id).style.fontWeight = "normal";
 
 			$
 					.ajax(
@@ -199,7 +202,9 @@ a:hover {
 													function(index, obj) {
 														if (obj.u_id == my_id) {
 															dispHtml += "<div class=\"d-flex justify-content-end align-items-center\">";
+															dispHtml += "<div class=\"chat_content_end\">";
 															dispHtml += obj.content;
+															dispHtml += "</div>";
 															dispHtml += "<div class=\"box\">";
 															dispHtml += "<div class=\"img_box\">";
 															dispHtml += "<img class=\"img_size\" src=\"../img_src/profile/"+ obj.u_pic +"\">"
@@ -213,7 +218,9 @@ a:hover {
 															dispHtml += "<img class=\"img_size \" src=\"../img_src/profile/" + obj.u_pic + "\">"
 															dispHtml += "</div>";
 															dispHtml += "</div>";
+															dispHtml += "<div class=\"chat_content_start\">";
 															dispHtml += obj.content;
+															dispHtml += "</div>";
 															dispHtml += "</div>"
 														}
 													});
@@ -270,13 +277,25 @@ a:hover {
 													function(index, obj) {
 														if (obj.u_id == u_id) {
 															dispHtml += "<div class=\"d-flex justify-content-end align-items-center\">";
-															dispHtml += obj.content
-																	+ "<img class=\"img_size \" src=\"../img_src/28778_54512_4628.jpeg\">"
+															dispHtml += "<div class=\"chat_content_end\">";
+															dispHtml += obj.content;
+															dispHtml += "</div>";
+															dispHtml += "<div class=\"box\">";
+															dispHtml += "<div class=\"img_box\">";
+															dispHtml += "<img class=\"img_size\" src=\"../img_src/profile/"+ obj.u_pic +"\">"
+															dispHtml += "</div>";
+															dispHtml += "</div>";	
 															dispHtml += "</div>"
 														} else {
 															dispHtml += "<div class=\"d-flex justify-content-start align-items-center\">";
-															dispHtml += "<img class=\"img_size \" src=\"../img_src/28778_54512_4628.jpeg\">"
-																	+ obj.content;
+															dispHtml += "<div class=\"box\">";
+															dispHtml += "<div class=\"img_box\">";
+															dispHtml += "<img class=\"img_size \" src=\"../img_src/profile/" + obj.u_pic + "\">"
+															dispHtml += "</div>";
+															dispHtml += "</div>";
+															dispHtml += "<div class=\"chat_content_start\">";
+															dispHtml += obj.content;
+															dispHtml += "</div>";
 															dispHtml += "</div>"
 														}
 													});
