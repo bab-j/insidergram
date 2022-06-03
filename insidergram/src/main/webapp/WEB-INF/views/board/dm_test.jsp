@@ -104,7 +104,7 @@ a:hover {
 <body>
 	<jsp:include page="/header.jsp" />
 	<div class="h-100 w-100 position-fixed"
-		style="background-color: #F5F5F5">
+		style="background-color: #F5F5F5; margin-top:50px;">
 
 		<div class="container h-100 pt-3 pb-3 " style="width: 1250px;""">
 			<div class="row h-100 pb-5">
@@ -304,8 +304,9 @@ a:hover {
 															dispHtml += "</div>"
 														}
 													});
-									$("#chatMessageContainer").html(dispHtml);
+									$("#chatMessageContainer").append(dispHtml);
 									$('#chatMessageContainer').scrollTop($('#chatMessageContainer')[0].scrollHeight);
+									$("#content").val("");
 								},
 								error : function() {
 									alert("실패~~~");
