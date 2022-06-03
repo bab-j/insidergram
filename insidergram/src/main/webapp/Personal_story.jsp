@@ -173,7 +173,7 @@ input[id*="popup"]+label+div>label {
 input[id*="popup"]+label+div {
 	opacity: 0;
 	visibility: hidden;
-	transition: all 1s;
+	transition: all 0.5s;
 }
 
 input[id*="popup"]:checked+label+div {
@@ -190,7 +190,7 @@ input[id*="popup"]:checked+label+div {
 	style="background-color: #F5F5F5; display: flex; justify-content: space-around; align-content: space-around; flex-wrap: wrap;">
 
 
-
+${userVO }
 	<main class="container py-3"
 		style="background-color: #F5F5F5; width: 935px;">
 		<div class="container-fluid pb-3 my-3 p-3"
@@ -198,14 +198,14 @@ input[id*="popup"]:checked+label+div {
 			<div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
 				<div class="rounded-3"
 					style="height: 200px; width: 200px; margin-top: 25px; margin-left: 40px;">
-					<img class="bigProfile_img" src="./img_src/test/kim.jpg" />
+					<img class="bigProfile_img" src="./img_src/test/${userVO.u_pic }" />
 				</div>
 
 				<div class="rounded-3" style="margin-left: 20px;">
 					<div class="row">
 						<!-- 1 -->
 						<div class="col-12 my-4">
-							<a style="font-size: xx-large;">tldhsrkwhr11</a> <a
+							<a style="font-size: xx-large;">${userVO.u_id }</a> <a
 								href="./user_update.jsp"><button
 									class="center_ailgn py-2 mb-2 btn btn-outline-dark rounded-3"
 									style="border-color: silver; text-align: center; margin-left: 20px;"
