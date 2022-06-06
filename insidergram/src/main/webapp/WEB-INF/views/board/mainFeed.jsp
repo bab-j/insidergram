@@ -261,7 +261,7 @@ document.addEventListener("scroll", debounce(e => {
 
 					<div class="row col-6" id="k1" style="-bs-gutter-x: 0;">
 						<!-- 틀 -->
-
+ 
 						<div class="col-12">
 							<a href="getIndiFeed.do?u_id=${feed.u_id }"
 								class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"

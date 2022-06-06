@@ -253,6 +253,9 @@ input[id="tab03"]:checked ~ .con3 {
 	<br>
 	사진 게시물 갯수 : ${picPost.size() }
 	<br>
+	<%-- 사진 게시물 정보 : ${picPost } --%>
+	
+	<br>
 	팔로잉 : ${followingList }
 	<br>
 	팔로워 : ${followerList }
@@ -266,7 +269,7 @@ input[id="tab03"]:checked ~ .con3 {
 			<div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
 				<div class="rounded-3"
 					style="height: 200px; width: 200px; margin-top: 25px; margin-left: 40px;">
-					<img class="bigProfile_img" src="./img_src/test/${userVO.u_pic }" />
+					<img class="bigProfile_img" src="../img_src/profile/${userVO.u_pic }" />
 				</div>
 
 				<div class="rounded-3" style="margin-left: 20px;">
@@ -304,11 +307,11 @@ input[id="tab03"]:checked ~ .con3 {
 						</div>
 						<!-- 3 -->
 						<div class="col-12 my-3">
-							<a style="font-weight: bold;">김동욱(25)</a>
+							<a style="font-weight: bold;">${userVO.name }</a>
 						</div>
 						<!-- 4 -->
 						<div class="col-12 my-3">
-							<a>날이 좋아서 날이 좋지 않아서...</a>
+							<a>${userVO.bio }</a>
 						</div>
 
 					</div>
@@ -348,17 +351,17 @@ input[id="tab03"]:checked ~ .con3 {
 								d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
                 </svg>&nbsp; SAVED
 					</label>
-
 					<div class="conbox con1">
 <!--========================================== 사진 피드 ===================================================-->
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+					<c:forEach var="picList" items="${picPost }">
 
 							<div class="col square">
 								<div class="card shadow-sm inner">
 									<!-- 시작 -->
 									<input type="checkbox" id="popup1">
 									<!-- 버튼 클릭시 팝업창 오픈 -->
-									<label for="popup1"> <img src="./img_src/test/1.jpg"
+									<label for="popup1"> <img src="../img_src/feed/${picList.f_pic }"
 										class="card-img-top">
 									</label>
 									<div>
@@ -374,7 +377,7 @@ input[id="tab03"]:checked ~ .con3 {
 													<div class="col-6"
 														style="margin: 0px; padding: 0px; height: 550px;">
 
-														<img src="./img_src/test/1.jpg" class="card-img-top"
+														<img src="../img_src/feed/${picList.f_pic }" class="card-img-top"
 															style="height: 550px; border-radius: 0px;">
 
 													</div>
@@ -387,12 +390,13 @@ input[id="tab03"]:checked ~ .con3 {
 														<a href="#"
 															class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
 															style="height: 80px; background-color: white;"> <img
-															src="./img_src/test/kim.jpg" alt="twbs" width="40" height="40"
+															src="../img_src/profile/${userVO.u_pic }" alt="twbs" width="40" height="40"
 															class="rounded-circle flex-shrink-0"
 															style="margin-left: 20px;">
 															<div class="d-flex gap-2 w-100 justify-content-between">
 																<div>
-																	<h6 class="mb-0" style="margin-left: 15px;">tldhsrkwhr11(본인)</h6>
+																	<h6 class="mb-0" style="margin-left: 15px;">${userVO.u_id }</h6>
+																	${picList.content }
 
 																</div>
 																<div href="#">
@@ -406,7 +410,7 @@ input[id="tab03"]:checked ~ .con3 {
 															</div>
 														</a>
 
-														<!-- 채팅창 -->
+														<!-- 채팅창(댓글 구현하면 수정) -->
 														<div
 															style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
 
@@ -469,255 +473,24 @@ input[id="tab03"]:checked ~ .con3 {
 									</div>
 								</div>
 							</div>
+					</c:forEach>
 							<!-------------------------------------------------------------------------------------------------------------------------->
-							<div class="col square">
-								<div class="card shadow-sm inner">
-									<!-- 시작 -->
-									<input type="checkbox" id="popup2">
-									<!-- 버튼 클릭시 팝업창 오픈 -->
-									<label for="popup2"> <img src="./img_src/test/2.jpg"
-										class="card-img-top">
-									</label>
-									<div>
-										<div>
-											<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
-											<label for="popup2"></label>
-											<!-- 내용 추가 -->
-											<div class="container"
-												style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-												<div class="row square"
-													style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-													<!-- 오른쪽 -->
-													<div class="col-6"
-														style="margin: 0px; padding: 0px; height: 550px;">
-
-														<img src="./img_src/test/2.jpg" class="card-img-top"
-															style="height: 550px; border-radius: 0px;">
-
-													</div>
-
-													<!-- 원쪽 -->
-													<div class="col-6"
-														style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
-
-														<!-- 상단 닉네임 -->
-														<a href="#"
-															class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
-															style="height: 80px; background-color: white;"> <img
-															src="./img_src/test/kim.jpg" alt="twbs" width="40" height="40"
-															class="rounded-circle flex-shrink-0"
-															style="margin-left: 20px;">
-															<div class="d-flex gap-2 w-100 justify-content-between">
-																<div>
-																	<h6 class="mb-0" style="margin-left: 15px;">tldhsrkwhr11(본인)</h6>
-
-																</div>
-																<div href="#">
-																	<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																		height="16" fill="currentColor"
-																		class="bi bi-three-dots" viewBox="0 0 16 16">
-												<path
-																			d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-											</svg>
-																</div>
-															</div>
-														</a>
-
-														<!-- 채팅창 -->
-														<div
-															style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
-
-															<a href="#"
-																class="list-group-item list-group-item-action d-flex gap-3 py-3"
-																aria-current="true"
-																style="border: none; height: 100px; margin-top: 0px;">
-																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"
-																height="40" class="rounded-circle flex-shrink-0">
-																<div class="d-flex gap-2 w-100 justify-content-between">
-																	<div>
-																		<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
-																		<p class="mb-0 opacity-75"
-																			style="padding-top: 10px; width: 300px;">그건 바로</p>
-																	</div>
-																	<small class="opacity-50 text-nowrap">3분전</small>
-																</div>
-															</a> <a href="#"
-																class="list-group-item list-group-item-action d-flex gap-3 py-3"
-																aria-current="true"
-																style="border: none; height: 100px; margin-top: 0px;">
-																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"
-																height="40" class="rounded-circle flex-shrink-0">
-																<div class="d-flex gap-2 w-100 justify-content-between">
-																	<div>
-																		<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
-																		<p class="mb-0 opacity-75"
-																			style="padding-top: 10px; width: 300px;">몽키D 루피</p>
-																	</div>
-																	<small class="opacity-50 text-nowrap">3분전</small>
-																</div>
-															</a>
-
-														</div>
-
-														<!-- 메시지 보내기 -->
-														<div class="input-group mb-3">
-															<input style="height: 45px; border-radius: initial;"
-																type="text" class="form-control" placeholder="메시지 입력..."
-																aria-label="Recipient's username"
-																aria-describedby="button-addon2">
-															<button class="btn btn-outline-primary" type="button"
-																id="button-addon2"
-																style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
-																<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																	height="16" fill="currentColor" class="bi bi-arrow-up"
-																	viewBox="0 0 16 16">
-										<path fill-rule="evenodd"
-																		d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
-									  </svg>
-															</button>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
-										<label for="popup2"></label>
-									</div>
-								</div>
-							</div>
+							
 							<!-------------------------------------------------------------------------------------------------------------------------->
-							<div class="col square">
-								<div class="card shadow-sm inner">
-									<!-- 시작 -->
-									<input type="checkbox" id="popup3">
-									<!-- 버튼 클릭시 팝업창 오픈 -->
-									<label for="popup3"> <img src="./img_src/test/3.jpg"
-										class="card-img-top">
-									</label>
-									<div>
-										<div>
-											<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
-											<label for="popup3"></label>
-											<!-- 내용 추가 -->
-											<div class="container"
-												style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-												<div class="row square"
-													style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-													<!-- 오른쪽 -->
-													<div class="col-6"
-														style="margin: 0px; padding: 0px; height: 550px;">
-
-														<img src="./img_src/test/3.jpg" class="card-img-top"
-															style="height: 550px; border-radius: 0px;">
-
-													</div>
-
-													<!-- 원쪽 -->
-													<div class="col-6"
-														style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
-
-														<!-- 상단 닉네임 -->
-														<a href="#"
-															class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
-															style="height: 80px; background-color: white;"> <img
-															src="./img_src/test/kim.jpg" alt="twbs" width="40" height="40"
-															class="rounded-circle flex-shrink-0"
-															style="margin-left: 20px;">
-															<div class="d-flex gap-2 w-100 justify-content-between">
-																<div>
-																	<h6 class="mb-0" style="margin-left: 15px;">tldhsrkwhr11(본인)</h6>
-
-																</div>
-																<div href="#">
-																	<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																		height="16" fill="currentColor"
-																		class="bi bi-three-dots" viewBox="0 0 16 16">
-												<path
-																			d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-											</svg>
-																</div>
-															</div>
-														</a>
-
-														<!-- 채팅창 -->
-														<div
-															style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
-
-															<a href="#"
-																class="list-group-item list-group-item-action d-flex gap-3 py-3"
-																aria-current="true"
-																style="border: none; height: 100px; margin-top: 0px;">
-																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"
-																height="40" class="rounded-circle flex-shrink-0">
-																<div class="d-flex gap-2 w-100 justify-content-between">
-																	<div>
-																		<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
-																		<p class="mb-0 opacity-75"
-																			style="padding-top: 10px; width: 300px;">해적왕이 될..
-																		</p>
-																	</div>
-																	<small class="opacity-50 text-nowrap">3분전</small>
-																</div>
-															</a> <a href="#"
-																class="list-group-item list-group-item-action d-flex gap-3 py-3"
-																aria-current="true"
-																style="border: none; height: 100px; margin-top: 0px;">
-																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"
-																height="40" class="rounded-circle flex-shrink-0">
-																<div class="d-flex gap-2 w-100 justify-content-between">
-																	<div>
-																		<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
-																		<p class="mb-0 opacity-75"
-																			style="padding-top: 10px; width: 300px;">남자다!</p>
-																	</div>
-																	<small class="opacity-50 text-nowrap">3분전</small>
-																</div>
-															</a>
-
-														</div>
-
-														<!-- 메시지 보내기 -->
-														<div class="input-group mb-3">
-															<input style="height: 45px; border-radius: initial;"
-																type="text" class="form-control" placeholder="메시지 입력..."
-																aria-label="Recipient's username"
-																aria-describedby="button-addon2">
-															<button class="btn btn-outline-primary" type="button"
-																id="button-addon2"
-																style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
-																<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																	height="16" fill="currentColor" class="bi bi-arrow-up"
-																	viewBox="0 0 16 16">
-										<path fill-rule="evenodd"
-																		d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
-									  </svg>
-															</button>
-														</div>
-													</div>
-												</div>
-											</div>
-
-										</div>
-										<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
-										<label for="popup3"></label>
-									</div>
-								</div>
-							</div>
+							
 							<!-------------------------------------------------------------------------------------------------------------------------->
-						</div>
-					</div>
 					
 					<div class="conbox con2">
 <!--========================================== 글 피드 ===================================================-->
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
+							
+						<c:forEach var="docPost" items="${docPost }">
 							<div class="col square">
 								<div class="card shadow-sm inner" style="text-align: center;">
 									<!-- 시작 -->
 									<input type="checkbox" id="popup4">
 									<!-- 버튼 클릭시 팝업창 오픈 -->
-									<label for="popup4"> <a style="color: black;">안녕하세요
-											반가워요 잘있어요 다시 만나요 </a>
+									<label for="popup4"> <a style="color: black;">${docPost.content } </a>
 									</label>
 									<div>
 										<div>
@@ -826,6 +599,7 @@ input[id="tab03"]:checked ~ .con3 {
 									</div>
 								</div>
 							</div>
+						</c:forEach>
 						</div>
 					</div>
 
