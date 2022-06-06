@@ -110,7 +110,7 @@ input[id*="popup"]+label+div>label {
 input[id*="popup"]+label+div {
 	opacity: 0;
 	visibility: hidden;
-	transition: all 1s;
+	transition: all 0.3s;
 }
 
 input[id*="popup"]:checked+label+div {
@@ -355,7 +355,7 @@ document.addEventListener("scroll", debounce(e => {
 											style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 											<div class="row square"
 												style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-												<!-- 오른쪽 -->
+												<!-- 왼 -->
 												<div class="col-6"
 													style="margin: 0px; padding: 0px; height: 550px;">
 													<!-- 이미지 -->
@@ -364,15 +364,15 @@ document.addEventListener("scroll", debounce(e => {
 
 												</div>
 
-												<!-- 원쪽 -->
-												<div class="col-6"
-													style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+												<!-- 오른쪽 -->
+												<div class="col-5"
+													style="margin: 0px auto 0px 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
 
 													<!-- 상단 닉네임 -->
 													<a href="#"
 														class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
-														style="height: 80px; background-color: white;"> <img
-														src="../img_src/test/kim.jpg" width="40" height="40"
+														style="height: 66px; background-color: white; border-top-right-radius: 5px;">
+														<img src="../img_src/test/kim.jpg" width="40" height="40"
 														class="rounded-circle flex-shrink-0"
 														style="margin-left: 20px;">
 														<div class="d-flex gap-2 w-100 justify-content-between">
@@ -393,7 +393,7 @@ document.addEventListener("scroll", debounce(e => {
 
 													<!-- 채팅창 -->
 													<div
-														style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
+														style="height: 424px; overflow-y: auto; background-color: white;">
 
 														<a href="#"
 															class="list-group-item list-group-item-action d-flex gap-3 py-3"
@@ -429,14 +429,16 @@ document.addEventListener("scroll", debounce(e => {
 													</div>
 
 													<!-- 메시지 보내기 -->
-													<div class="input-group mb-3">
-														<input style="height: 45px; border-radius: initial;"
+													<div class="input-group mb-3"
+														style="background-color: white;     border-bottom-right-radius: 5px;">
+														<input
+															style="height: 40px; border-radius: 20px; margin: 10px 5px 10px 10px; padding: 3px 12px;"
 															type="text" class="form-control" placeholder="메시지 입력..."
 															aria-label="Recipient's username"
 															aria-describedby="button-addon2">
 														<button class="btn btn-outline-primary" type="button"
 															id="button-addon2"
-															style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
+															style="background-color: #0d6efd; color: white; border-radius: 70%; width: 35px; height: 35px; padding: 0px; margin: 10px;">
 															<svg xmlns="http://www.w3.org/2000/svg" width="16"
 																height="16" fill="currentColor" class="bi bi-arrow-up"
 																viewBox="0 0 16 16">
@@ -454,8 +456,8 @@ document.addEventListener("scroll", debounce(e => {
 								</div>
 
 								<!-- 저장하기 버튼 -->
-								<a style="display: inline-flex; padding: 3px 0 0 43px;"> <svg
-										xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+								<a href="#" style="display: inline-flex; padding: 3px 0 0 43px;">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
 										fill="currentColor" class="bi bi-bookmark-star"
 										viewBox="0 0 16 16">
 						
@@ -467,7 +469,9 @@ document.addEventListener("scroll", debounce(e => {
 							<hr style="border: 1px solid silver;">
 							<div
 								style="padding: 0 0 3px 5px; font-weight: bold; font-size: 15px;">
-								좋아요 <span id="countLike${feed.f_idx}">${feed.countLike }</span> 개</div>
+								좋아요 <span id="countLike${feed.f_idx}">${feed.countLike }</span>
+								개
+							</div>
 							<div class="contentBox">
 								<b>${feed.u_id }</b>&nbsp;&nbsp; ${feed.content }
 							</div>
