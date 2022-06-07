@@ -209,7 +209,20 @@ input[id*="popup"]:checked+label+div {
 								<!-- 내용 추가 -->
 								<input class="form-control rounded-3" type="text" name=u_id
 									id="searchBox" placeholder="검색" onkeyup="searchID()" required>
-								<div id="headerBox"></div>
+								<div id="headerBox" class="d-flex p-3 row" style="height:87%; overflow: auto;">
+									<div class="box">
+										<div class="img_box">
+											<img class="img_size " src="../img_src/profile/${userVO.u_pic }">
+										</div>
+									</div>
+									<div class="flex-grow-1">
+										<p style="margin: 0;">${userVO.u_id }</p>
+										<small class="sm_id">${userVO.name }</small>
+									</div>
+									<div>
+									<a href="#">만들기</a>
+									</div>
+								</div>
 							</div>
 							<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
 							<label for="popup"></label>
@@ -432,14 +445,27 @@ input[id*="popup"]:checked+label+div {
 				data : "u_id=" + searchId,
 				dataType : "json",
 				success : function(data) {
-					alert("성공~~~");
 					console.log(data);
 					var dispHtml = "";
 					$.each(data, function(index, obj) {
+						dispHtml += '<div class="col-12 d-flex mb-2">';
+						dispHtml += '<div class="box">';
+						dispHtml += '<div class="img_box">';
+						dispHtml += '<img class="img_size " src="../img_src/profile/' + obj.u_pic +'">';
+						dispHtml += '</div>';
+						dispHtml += '</div>';
+						dispHtml += '<div class="flex-grow-1">';
+						dispHtml += '<p style="margin: 0;">' + obj.u_id +'</p>';
+						dispHtml += '<small class="sm_id">' + obj.name +'</small>';
+						dispHtml += '</div>';
+						dispHtml += '<div>';
+						dispHtml += '<a href="#">만들기</a>';
+						dispHtml += '</div>';
+						dispHtml += '</div>';
 					});
+					$("#headerBox").html(dispHtml);
 				},
 				error : function() {
-					alert("실패~~~");
 				}
 			});
 		}
