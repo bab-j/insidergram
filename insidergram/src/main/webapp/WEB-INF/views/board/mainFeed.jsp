@@ -461,13 +461,13 @@ pageContext.setAttribute("save", save);
 								<!-- 저장하기 버튼 -->
 								<c:choose>
 								<c:when test="${save }">
-									<a href="javascript:saveFeed(${feed.f_idx })" style="display: inline-flex;">
+									<a href="javascript:saveFeed(${feed.f_idx })" style="display: inline-flex; padding: 3px 0 0 38px;">
 										<span id="fillSave${feed.f_idx }" class="material-icons-outlined" style="margin-top:0px; display: inline;">
 											bookmark
 										</span>
 
 									</a>
-									<a href="javascript:saveFeed(${feed.f_idx })" style="display: none;">
+									<a href="javascript:saveFeed(${feed.f_idx })" style="padding: 3px 0 0 38px">
 										<span id="emptySave${feed.f_idx }" class="material-icons-outlined" style="margin-top:0px; display: none;">
 											bookmark_border
 										</span>
@@ -479,7 +479,7 @@ pageContext.setAttribute("save", save);
 											bookmark
 										</span>
 									</a>
-									<a href="javascript:saveFeed(${feed.f_idx })" style="display: inline-flex;">
+									<a href="javascript:saveFeed(${feed.f_idx })" style="display: inline-flex; ">
 										<span id="emptySave${feed.f_idx }" class="material-icons-outlined" style="margin-top:0px; display: inline;">
 											bookmark_border
 										</span>
