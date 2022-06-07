@@ -103,7 +103,7 @@ UNION
 		 WHERE F.F_IDX = S.F_IDX
 		   AND F.U_ID = U.U_ID
 		   AND S.U_ID = #{u_id}
-		ORDER BY SAVED_IDX DESC;
+		ORDER BY SAVED_IDX DESC
   	</select>
 </mapper>
 
