@@ -65,6 +65,7 @@
 	padding-top: 0.8rem;
 	width: 600px;
 	margin-right: 0;
+	text-align: center;
 }
 
 /* fallback */
@@ -119,6 +120,7 @@
 }
 
 .dm_icon {
+color : black;
 	font-weight: 800;
 }
 
@@ -148,8 +150,9 @@ a:hover {
 		<div id="Header">
 			<div class="container" style="margin-top: 10px;">
 				<div class="row">
-					<div class="col-3 insiderIcon" style="">
-						<a href="../user/getFeedList.do">insidergram</a>
+					<div class="col-3 insiderIcon" style="display: inline-block;
+    margin: 5px 0 0 0;">
+						<a href="../user/getFeedList.do" >insidergram</a>
 					</div>
 					<div class="col-6">
 						<div class="container1">
@@ -168,7 +171,7 @@ a:hover {
 						<div class="nav-icon" style="text-align: right;">
 							<ul>
 								<li class="material-symbols-outlined dm_icon"><a
-									href="../chat/getChatHeaderList.do">send</a></li>
+									href="../chat/getChatHeaderList.do" >send</a></li>
 								<li class="material-icons "><a href="../user/getMyFeed.do">home</a></li>
 								<li class="material-icons-outlined "><a
 									href="../insertFeed.jsp">add_circle_outline</a></li>
@@ -187,13 +190,13 @@ a:hover {
 					<div class="col-3 insiderIcon" style="">
 						<a href="../user/getFeedList.do">insidergram</a>
 					</div>
-					<div class="col-6">
-						<div class="container1">
+					<div class="col-6" >
+						<div class="container1" >
 							<form action="feedcontroller?type=search" method="post">
 								<span> <input class="total_search" type="text"
 									id="search" name="keyword" placeholder=" 통합검색">&nbsp;
 									<button type="submit"
-										class="btn  btn-outline-secondary search_btn ">검색</button>
+										class="btn  btn-outline-secondary search_btn " style=" margin: 0 0 3px 0;" >검색</button>
 
 								</span>
 
