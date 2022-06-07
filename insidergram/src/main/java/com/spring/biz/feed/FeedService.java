@@ -10,6 +10,7 @@ public interface FeedService {
 	int getTotalCount(String u_id);
 	List<FeedVO> getFeedList(String u_id, int begin, int end);
 	List<FeedVO> getMyFeed(String u_id);
+	List<FeedVO> saveFeedList(String u_id);
 	List<Integer> confirmLike(String u_id);
 	List<FollowerVO> getFollowingList(String u_id);
 	List<FollowerVO> getFollowerList(String u_id);

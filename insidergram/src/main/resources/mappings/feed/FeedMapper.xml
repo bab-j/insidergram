@@ -40,6 +40,7 @@ UNION
   		SELECT F_IDX, REGDATE, CONTENT, U_ID, F_PIC
   		  FROM FEED
   		 WHERE U_ID = #{u_id}
+  		 ORDER BY F_IDX DESC
   	</select>
   	
   	<!-- 게시물 등록 -->
@@ -87,6 +88,22 @@ UNION
   		SELECT ER_IDX, TO_ID, FROM_ID
   		  FROM FOLLOWER
   		 WHERE TO_ID = #{u_id}
+  	</select>
+  	
+  	<!-- 즐겨찾기 등록 -->
+  	<insert id="saveFeed" parameterType="map">
+  		INSERT INTO SAVED
+   		 VALUES(#{f_idx}, #{u_id}, (SELECT NVL(MAX(SAVED_IDX), 0) + 1 FROM SAVED));
+  	</insert>
+  	
+  	<!-- 즐겨찾기 한 게시물 선택 -->
+  	<select id="saveFeedList" resultType="feed" parameterType="String">
+  		SELECT F.F_IDX, F.REGDATE, F.CONTENT, F.U_ID, F.F_PIC, U.U_PIC
+		  FROM FEED F, SAVED S, USER_INFO U
+		 WHERE F.F_IDX = S.F_IDX
+		   AND F.U_ID = U.U_ID
+		   AND S.U_ID = #{u_id}
+		ORDER BY SAVED_IDX DESC;
   	</select>
 </mapper>
 

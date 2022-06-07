@@ -73,6 +73,8 @@ import com.spring.biz.user.UserVO;
 			List<FeedVO> list = feedService.getMyFeed(u_id);
 			List<FeedVO> picPost = new ArrayList<FeedVO>();
 			List<FeedVO> docPost = new ArrayList<FeedVO>();
+			List<FeedVO> saveFeed = feedService.saveFeedList(u_id);
+			
 			for(FeedVO fvo : list) {
 				if (fvo.getF_pic() == null) {
 					docPost.add(fvo);
@@ -82,6 +84,8 @@ import com.spring.biz.user.UserVO;
 			}
 			List<FollowerVO> followingList = feedService.getFollowingList(u_id);
 			List<FollowerVO> followerList = feedService.getFollowerList(u_id);
+			System.out.println("saveFeed : " + saveFeed.toString());
+			mo.addAttribute("saveFeed", saveFeed);
 			mo.addAttribute("picPost", picPost);
 			mo.addAttribute("docPost", docPost);
 			mo.addAttribute("followerList", followerList);
@@ -94,30 +98,31 @@ import com.spring.biz.user.UserVO;
 			UserVO uvo = (UserVO)session.getAttribute("userVO");			
 			MultipartFile uploadFile = vo.getUploadFile();
 			System.out.println("uploadFile : " + uploadFile);
+			vo.setU_id(uvo.getU_id());
+			vo.setContent(vo.getContent());
 			
-			try {
 				if(!uploadFile.isEmpty()) {
-					vo.setU_id(uvo.getU_id());
 					vo.setF_pic(uploadFile.getOriginalFilename());
-					vo.setContent(vo.getContent());
 					String fileName = uploadFile.getOriginalFilename();
 					System.out.println(">>> 원본파일명 : " + fileName);
 					System.out.println(">>> 저장파일명 : " + UUID.randomUUID().toString());
 					if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-						uploadFile.transferTo(new File("/Users/Shared/tempo/feed/" + fileName));						
+						try {
+							uploadFile.transferTo(new File("/Users/Shared/tempo/feed/" + fileName));
+						} catch (IllegalStateException | IOException e) {
+							e.printStackTrace();
+						}						
 					} else {
-						
+						try {
+							uploadFile.transferTo(new File(""));
+						} catch (IllegalStateException | IOException e) {
+							e.printStackTrace();
+						}
 					}
-					int result = feedService.insertFeed(vo);
-					System.out.println(">>>>>>>최종 insert : " + result);
 				}
-			} catch (IllegalStateException e) {
-				System.out.println(">>파일등록 실패!");
-				e.printStackTrace();
-			} catch (IOException e) {
-				System.out.println(">>파일등록 실패!!!");
-				e.printStackTrace();
-			}
+				int result = feedService.insertFeed(vo);
+				System.out.println(">>>>>>>최종 insert : " + result);
+			
 			return "redirect:getFeedList.do";
 		}
 		

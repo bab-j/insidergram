@@ -100,7 +100,7 @@ li {
 </style>
 
 <style>
-input[id*="popup"]+label {
+input[id^="popup"]+label {
 	position: absolute;
 }
 
@@ -111,18 +111,18 @@ input[id*="popup"]+label {
 }
 
 /* none처리로 화면에 책크박스 안보이게 함 */
-input[id*="popup"] {
+input[id^="popup"] {
 	display: none;
 }
 
 /* 추후 버튼 형테로 만들수 있음 [padding:20px;background:#ffcd41;] */
-input[id*="popup"]+label {
+input[id^="popup"]+label {
 	display: inline-block;
 	color: #fff;
 }
 
 /* 팝업창 뛰우는 위치 지정 */
-input[id*="popup"]+label+div {
+input[id^="popup"]+label+div {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -132,7 +132,7 @@ input[id*="popup"]+label+div {
 }
 
 /* 파업창 틀 */
-input[id*="popup"]+label+div>div {
+input[id^="popup"]+label+div>div {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -144,7 +144,7 @@ input[id*="popup"]+label+div>div {
 }
 
 /* 상단 닫기버튼 */
-input[id*="popup"]+label+div>div>label {
+input[id^="popup"]+label+div>div>label {
 	position: absolute;
 	top: 0%;
 	right: 0%;
@@ -156,7 +156,7 @@ input[id*="popup"]+label+div>div>label {
 }
 
 /* 여백 클릭시 닫기 처리 */
-input[id*="popup"]+label+div>label {
+input[id^="popup"]+label+div>label {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -172,16 +172,36 @@ input[id*="popup"]+label+div>label {
 		*/
 
 /* 팝업창 나타날 때 자연스럽게 뜨도록 처리함(애니메이션 효과) */
-input[id*="popup"]+label+div {
+input[id^="popup"]+label+div {
 	opacity: 0;
 	visibility: hidden;
 	transition: all 0.5s;
 }
 
-input[id*="popup"]:checked+label+div {
+input[id^="popup"]:checked+label+div {
 	opacity: 1;
 	visibility: visible;
 }
+/* input[id^="docPopup"]+label+div {
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.5s;
+}
+
+input[id^="docPopup"]:checked+label+div {
+	opacity: 1;
+	visibility: visible;
+}
+input[id*="savePopup"]+label+div {
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.5s;
+}
+
+input[id*="savePopup"]:checked+label+div {
+	opacity: 1;
+	visibility: visible;
+} */
 </style>
 <style>
 * {
@@ -259,8 +279,7 @@ function updateUser() {
 	<br>
 	사진 게시물 갯수 : ${picPost.size() }
 	<br>
-	<%-- 사진 게시물 정보 : ${picPost } --%>
-	
+	즐겨찾기 게시물 : ${saveFeed }	
 	<br>
 	팔로잉 : ${followingList }
 	<br>
@@ -428,20 +447,20 @@ function updateUser() {
 <!--========================================== 글 피드 ===================================================-->							
 				<div class="conbox con2">
 					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-							
+
 					<c:forEach var="docPost" items="${docPost }">
 						<div class="col square">
 							<div class="card shadow-sm inner" style="text-align: center;">
 								<!-- 시작 -->
-								<input type="checkbox" id="popup4">
+								<input type="checkbox" id="docpopup4">
 								<!-- 버튼 클릭시 팝업창 오픈 -->
-								<label for="popup4">
+								<label for="docpopup4">
 									<a style="color: black;">${docPost.content } </a>
 								</label>
 								<div>
 									<div>
 										<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
-										<label for="popup4"></label>
+										<label for="docpopup4"></label>
 										<!-- 내용 추가 -->
 										<div class="container"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 											<div class="row square"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
@@ -505,7 +524,7 @@ function updateUser() {
 										</div>
 									</div>
 									<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
-									<label for="popup4"></label>
+									<label for="docpopup4"></label>
 								</div>
 							</div>
 						</div>
@@ -515,36 +534,39 @@ function updateUser() {
 <!--========================================== 저장 피드 ===================================================-->
 				<div class="conbox con3">
 					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+<%int k = 0; %>
+						<c:forEach var="saveFeed" items="${saveFeed }">
 
+						<c:if test="${saveFeed.f_pic != null}">
 						<div class="col square">
 							<div class="card shadow-sm inner" style="text-align: center;">
 								<!-- 시작 -->
-								<input type="checkbox" id="popup5">
+								<input type="checkbox" id="savepopup<%=k%>">
 								<!-- 버튼 클릭시 팝업창 오픈 -->
-								<label for="popup5"> 
+								<label for="savepopup<%=k%>"> 
 									<a style="color: black;">
-										안녕하세요 반가워요 잘있어요 다시 만나요 
+										<img src="../img_src/feed/${saveFeed.f_pic }">
 									</a>
 								</label>
 								<div>
 									<div>
 										<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
-										<label for="popup5"></label>
+										<label for="savepopup<%=k%>"></label>
 										<!-- 내용 추가 -->
 										<div class="container"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 											<div class="row square"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 												<!-- 오른쪽 -->
 												<div class="col-6"style="margin: 0px; padding: 0px; height: 549px; text-align: center; background-color: white; border: solid 1px silver;">
-													<a style="color: black;">안녕하세요 반가워요 잘있어요 다시 만나요</a>
+													<a style="color: black;"><img src="../img_src/feed/${saveFeed.f_pic }"></a>
 												</div>
 												<!-- 원쪽 -->
 												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
 													<!-- 상단 닉네임 -->
 													<a href="#"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
-														<img src="./img_src/test/kim.jpg" alt="twbs" width="40" height="40"class="rounded-circle flex-shrink-0"style="margin-left: 20px;">
+														<img src="../img_src/profile/${userVO.u_pic }" alt="twbs" width="40" height="40"class="rounded-circle flex-shrink-0"style="margin-left: 20px;">
 														<div class="d-flex gap-2 w-100 justify-content-between">
 															<div>
-																<h6 class="mb-0" style="margin-left: 15px;">tldhsrkwhr11(본인)</h6>
+																<h6 class="mb-0" style="margin-left: 15px;">${userVO.u_id }</h6>
 															</div>
 															<div href="#">
 																<svg xmlns="http://www.w3.org/2000/svg" width="16"height="16" fill="currentColor"class="bi bi-three-dots" viewBox="0 0 16 16">
@@ -590,10 +612,94 @@ function updateUser() {
 										</div>
 									</div>
 									<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
-									<label for="popup5"></label>
+									<label for="savepopup<%=k%>"></label>
+									<%k++; %>
 								</div>
 							</div>
 						</div>							
+						</c:if>
+						<c:if test="${saveFeed.f_pic == null}">
+							<div class="col square">
+								<div class="card shadow-sm inner" style="text-align: center;">
+									<!-- 시작 -->
+									<input type="checkbox" id="savepopup<%=k%>">
+									<!-- 버튼 클릭시 팝업창 오픈 -->
+									<label for="savepopup<%=k%>"> 
+										<a style="color: black;">
+											${saveFeed.content }
+										</a>
+									</label>
+									<div>
+										<div>
+											<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
+											<label for="savepopup<%=k%>"></label>
+											<!-- 내용 추가 -->
+											<div class="container"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
+												<div class="row square"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
+													<!-- 오른쪽 -->
+													<div class="col-6"style="margin: 0px; padding: 0px; height: 549px; text-align: center; background-color: white; border: solid 1px silver;">
+														<a style="color: black;">${saveFeed.content }</a>
+													</div>
+													<!-- 원쪽 -->
+													<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+														<!-- 상단 닉네임 -->
+														<a href="#"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
+															<img src="../img_src/profile/${userVO.u_pic }" alt="twbs" width="40" height="40"class="rounded-circle flex-shrink-0"style="margin-left: 20px;">
+															<div class="d-flex gap-2 w-100 justify-content-between">
+																<div>
+																	<h6 class="mb-0" style="margin-left: 15px;">${userVO.u_id }</h6>
+																</div>
+																<div href="#">
+																	<svg xmlns="http://www.w3.org/2000/svg" width="16"height="16" fill="currentColor"class="bi bi-three-dots" viewBox="0 0 16 16">
+																	<path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+																	</svg>
+																</div>
+															</div>
+														</a>
+														<!-- 채팅창 -->
+														<div style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
+															<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
+																<div class="d-flex gap-2 w-100 justify-content-between">
+																	<div>
+																		<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																		<p class="mb-0 opacity-75"style="padding-top: 10px; width: 300px;">해적왕</p>
+																	</div>
+																	<small class="opacity-50 text-nowrap">3분전</small>
+																</div>
+															</a> 
+															<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
+																<div class="d-flex gap-2 w-100 justify-content-between">
+																	<div>
+																		<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																		<p class="mb-0 opacity-75"style="padding-top: 10px; width: 300px;">그는누구인가..</p>
+																	</div>
+																	<small class="opacity-50 text-nowrap">3분전</small>
+																</div>
+															</a>
+														</div>
+														<!-- 메시지 보내기 -->
+														<div class="input-group mb-3">
+															<input style="height: 45px; border-radius: initial;"type="text" class="form-control" placeholder="메시지 입력..."aria-label="Recipient's username"aria-describedby="button-addon2">
+															<button class="btn btn-outline-primary" type="button"id="button-addon2"style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
+																<svg xmlns="http://www.w3.org/2000/svg" width="16"height="16" fill="currentColor" class="bi bi-arrow-up"viewBox="0 0 16 16">
+																<path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+																</svg>
+															</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
+										<label for="savepopup<%=k%>"></label>
+										<%k++; %>
+									</div>
+								</div>
+							</div>							
+						</c:if>
+						</c:forEach>
 					</div>
 				</div>
 			</div>

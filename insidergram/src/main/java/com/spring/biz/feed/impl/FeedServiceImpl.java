@@ -77,6 +77,12 @@ public class FeedServiceImpl implements FeedService {
 	}
 
 
+	@Override
+	public List<FeedVO> saveFeedList(String u_id) {
+		return feedDAO.saveFeedList(u_id);
+	}
+
+
 
 	
 }

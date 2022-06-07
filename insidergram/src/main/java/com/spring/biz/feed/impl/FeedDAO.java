@@ -91,4 +91,9 @@ public class FeedDAO {
 		List<FollowerVO> list = mybatis.selectList("feedDAO.getFollowerList", u_id);
 		return list;
 	}
+	// 즐겨찾기 게시물 리스트
+	public List<FeedVO> saveFeedList(String u_id) {
+		List<FeedVO> list = mybatis.selectList("feedDAO.saveFeedList", u_id);
+		return list;
+	}
 }
