@@ -145,7 +145,7 @@ function logOut() {
 	
 	 if (confirm("ㄹㅇ 로그아웃 하시겠습니까??") == true){    //확인
 
-			location.href="../../../biz/user/login.do"
+			location.href="../../../biz/user/logout.do"
 
 	 }else{   //취소
 

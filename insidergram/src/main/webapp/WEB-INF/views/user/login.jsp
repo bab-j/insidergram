@@ -18,29 +18,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>로그인</title>
 
+<script src="js/jquery-3.3.1.min.js"></script>
 <script>
+
 	function SignUp() {
 		location.href = "usercontroller?type=GoSignUp";
 	}
+	
+	function loginCheck() {
+		
+		var inputFrm = document.inputFrm;
+		var name = inputFrm.name.value;
+		var password = inputFrm.password.value;
+		
+		
+		if(!name || !password){
+			                alert("아이디와 비밀번호를 모두 입력해주세요.")
+			            }else{
+			inputFrm.submit();
+			            }
+			        }
+		
+		
 </script>
 
 <style>
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 		Helvetica, Arial, sans-serif;
-	text-align: center;
-	--bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;
-	
+	text-align: center; -
+	-bs-bg-opacity: 1;
+	background-color: rgba(var(- -bs-light-rgb), var(- -bs-bg-opacity))
+		!important;
 }
-	
-.center_ailgn{
-text-align: center;
-}	
 
-</style>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
+.center_ailgn {
+	text-align: center;
+}
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
 </style>
 
 
@@ -52,7 +69,7 @@ text-align: center;
 		<div class="modal-dialog" role="document">
 			<div class="modal-content rounded-4 shadow align-items-md-center">
 				<div class="modal-header p-5 pb-4 border-bottom-0 cen">
-					<h2 class="fw-bold mb-0" 
+					<h2 class="fw-bold mb-0"
 						style="font-family: 'Carattere', cursive; font-size: 70px; padding-bottom: 20px;">insidergram</h2>
 				</div>
 
@@ -71,30 +88,34 @@ text-align: center;
 								onblur="this.placeholder='Password'"> <label
 								for="floatingPassword">Password</label>
 						</div>
-						<button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
-							type="submit" value="로그인">로그인</button>
+						<input type="button"
+							class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" value="로그인"
+							onclick="loginCheck()">로그인
+						</button>
 						<small class="text-muted">By clicking Sign up, you agree
 							to the terms of use.</small>
 						<hr class="my-4">
 
 					</form>
 					<a class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
-						style="border-color: silver;" href="../signUp.jsp">
-						<svg class="bi me-1" width="0px" height="16"></svg>
-						회원가입
+						style="border-color: silver;" href="../signUp.jsp"> <svg
+							class="bi me-1" width="0px" height="16"></svg> 회원가입
 					</a>
 					<div class="row">
 						<div class="col-6">
-							<a class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
-								style="border-color: silver;" type="submit" href="../find_ID.jsp">
-								<svg class="bi me-1 " width="0px" height="16"></svg>아이디 찾기
+							<a
+								class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
+								style="border-color: silver;" type="submit"
+								href="../find_ID.jsp"> <svg class="bi me-1 " width="0px"
+									height="16"></svg>아이디 찾기
 							</a>
 						</div>
 						<div class="col-6">
-							<a class=" center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
-								style="border-color: silver;" type="submit" href="../find_PWD.jsp">
-								<svg class="bi me-1 " width="0px" height="16"></svg>
-								비밀번호 찾기
+							<a
+								class=" center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
+								style="border-color: silver;" type="submit"
+								href="../find_PWD.jsp"> <svg class="bi me-1 " width="0px"
+									height="16"></svg> 비밀번호 찾기
 							</a>
 						</div>
 					</div>
@@ -113,4 +134,3 @@ text-align: center;
 	</script>
 
 </body>
-</html>
