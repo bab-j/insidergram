@@ -240,7 +240,7 @@ input[id="tab03"]:checked ~ .con3 {
 <script>
 
 function updateUser() {
-	location.href="../../user_update.jsp"	
+	location.href="../user_update.jsp"	
 } 
 
 </script>
