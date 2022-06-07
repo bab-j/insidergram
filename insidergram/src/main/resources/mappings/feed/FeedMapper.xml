@@ -31,7 +31,7 @@ UNION
 		                                                         WHERE U_ID = #{u_id})
 				  FROM FEED F
 				 WHERE F.U_ID = #{u_id}
-				 ORDER BY F_IDX DESC))
+				 ))
 	 WHERE R_NUM BETWEEN #{begin} AND #{end}
 	</select>
 	
@@ -93,10 +93,16 @@ UNION
   	<!-- 즐겨찾기 등록 -->
   	<insert id="saveFeed" parameterType="map">
   		INSERT INTO SAVED
-   		 VALUES(#{f_idx}, #{u_id}, (SELECT NVL(MAX(SAVED_IDX), 0) + 1 FROM SAVED));
+   		 VALUES(#{f_idx}, #{u_id}, (SELECT NVL(MAX(SAVED_IDX), 0) + 1 FROM SAVED))
   	</insert>
+  	<!-- 즐겨찾기 해제 -->
+  	<delete id="unSaveFeed" parameterType="map">
+  		DELETE FROM SAVED
+   		 WHERE F_IDX = #{f_idx}
+   		   AND U_ID = #{u_id}
+  	</delete>
   	
-  	<!-- 즐겨찾기 한 게시물 선택 -->
+  	<!-- 즐겨찾기 한 게시물 리스트 -->
   	<select id="saveFeedList" resultType="feed" parameterType="String">
   		SELECT F.F_IDX, F.REGDATE, F.CONTENT, F.U_ID, F.F_PIC, U.U_PIC
 		  FROM FEED F, SAVED S, USER_INFO U

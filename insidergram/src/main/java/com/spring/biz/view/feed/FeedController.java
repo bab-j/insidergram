@@ -59,7 +59,14 @@ import com.spring.biz.user.UserVO;
 				System.out.println(fvo.toString());
 			}
 			//----------------------------------------------------------
+			List<Integer> saveList = new ArrayList<Integer>();
+			// ----------------즐겨찾기 f_idx 리스트 담기----------------
+			for (FeedVO fvo : feedService.saveFeedList(uvo.getU_id())) {
+				saveList.add(fvo.getF_idx());
+			}
+			// -----------------------------------------------------
 			List<Integer> likeList = feedService.confirmLike(uvo.getU_id());
+			mo.addAttribute("saveList", saveList);
 			mo.addAttribute("feedList", list);
 			mo.addAttribute("likeList", likeList);
 			

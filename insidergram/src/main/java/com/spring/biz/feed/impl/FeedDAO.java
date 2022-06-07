@@ -96,4 +96,20 @@ public class FeedDAO {
 		List<FeedVO> list = mybatis.selectList("feedDAO.saveFeedList", u_id);
 		return list;
 	}
+	// 즐겨찾기 등록
+	public int saveFeed(int f_idx, String u_id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("f_idx", f_idx);
+		map.put("u_id", u_id);
+		int result = mybatis.insert("feedDAO.saveFeed", map);
+		return result;
+	}
+	// 즐겨찾기 해제
+	public int unSaveFeed(int f_idx, String u_id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("f_idx", f_idx);
+		map.put("u_id", u_id);
+		int result = mybatis.insert("feedDAO.unSaveFeed", map);
+		return result;
+	}
 }
