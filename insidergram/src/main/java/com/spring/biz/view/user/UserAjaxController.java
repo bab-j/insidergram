@@ -2,6 +2,9 @@ package com.spring.biz.view.user;
 
 
 
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +47,12 @@ public class UserAjaxController {
 		public UserVO findId(UserVO vo) {
 			
 			return null;
+		}
+		
+		@RequestMapping("/seachUser.do")
+		public List<UserVO> searchUser(String u_id) {
+			List<UserVO> users = userService.searchUser(u_id);
+			return users;
 		}
 		
 //		@RequestMapping("/getJsonBoard.do")

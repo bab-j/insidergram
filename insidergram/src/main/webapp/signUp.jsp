@@ -77,7 +77,7 @@ body {
 								<div class=col-7>
 									<input class="form-control rounded-3" type="text" name=u_id
 										id="uid" placeholder="ID" onfocus="this.placeholder=''"
-										onblur="this.placeholder='Username'" onfocusout="confirmID()"
+										onblur="confirmID()"
 										oninvalid="this.setCustomValidity('ID를 입력해 주십시오.')" required>
 									<div id="confirmIdResult" class="float-start"
 										style="display: none;">ID 중복확인</div>
@@ -95,8 +95,7 @@ body {
 								<div class=col-7>
 									<input class="form-control rounded-3" type="password"
 										name=password id="password" placeholder="Password"
-										onfocus="this.placeholder=''" onfocusout="confirmPassword()"
-										onblur="this.placeholder='Password'"
+										onfocus="this.placeholder=''" onblur="confirmPassword()"
 										oninvalid="this.setCustomValidity('비밀번호를 입력해 주십시오.')" required>
 									<div id="confirmPasswordResult" class="float-start"
 										style="display: none;">비밀번호 확인</div>
@@ -116,8 +115,7 @@ body {
 									<input class="form-control rounded-3" type="password"
 										name="passwordOk" id="passwordOk"
 										placeholder="Confirm Password" onfocus="this.placeholder=''"
-										onblur="this.placeholder='Confirm Password'"
-										onfocusout="confirmPasswordOk()"
+										onblur="confirmPasswordOk()"
 										oninvalid="this.setCustomValidity('비밀번호를 확인해 주십시오.')" required>
 									<div id="confirmPasswordOkResult" class="float-start"
 										style="display: none;">비밀번호확인 확인</div>
@@ -136,8 +134,7 @@ body {
 								<div class=col-7>
 									<input class="form-control rounded-3" type="email" name="email"
 										id="email" placeholder="abc123@abc.com"
-										onfocus="this.placeholder=''" onfocusout="confirmEmail()"
-										onblur="this.placeholder='abc123@abc.com'" required>
+										onfocus="this.placeholder=''" onblur="confirmEmail()" required>
 								</div>
 								<div class=col-1></div>
 							</div>
@@ -153,7 +150,7 @@ body {
 								<div class=col-7>
 									<input class="form-control rounded-3" type="text" name="name"
 										id="name" placeholder="홍길동" onfocus="this.placeholder=''"
-										onblur="this.placeholder='홍길동'" onfocusout="confirmName()"
+										onblur="confirmName()"
 										oninvalid="this.setCustomValidity('이름을 입력해 주십시오.')" required>
 								</div>
 								<div class=col-1></div>
@@ -170,8 +167,7 @@ body {
 								<div class=col-7>
 									<input class="form-control rounded-3" type="text" name="phone"
 										id="phone" placeholder="010-0000-0000"
-										onfocus="this.placeholder=''" onfocusout="confirmPhone()"
-										onblur="this.placeholder='010-0000-0000'"
+										onfocus="this.placeholder=''" onblur="confirmPhone()"
 										oninvalid="this.setCustomValidity('전화번호를 입력해주십시오.')" required>
 								</div>
 								<div class=col-1></div>
@@ -188,8 +184,7 @@ body {
 								<div class=col-7>
 									<input class="form-control rounded-3" type="text" name="birth"
 										id="birth" placeholder="생년월일 6자리"
-										onfocus="this.placeholder=''" onfocusout="confirmBirth()"
-										onblur="this.placeholder='생년월일 6자리'"
+										onfocus="this.placeholder=''" onblur="confirmBirth()"
 										oninvalid="this.setCustomValidity('생년월일을 입력해 주십시오.')" required>
 								</div>
 								<div class=col-1></div>

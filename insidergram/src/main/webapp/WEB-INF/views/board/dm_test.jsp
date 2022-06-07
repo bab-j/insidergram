@@ -109,22 +109,77 @@ a:hover {
 }
 </style>
 <style>
-input[id*="popup"] + label {position:absolute;} /* 예제파일 확인시 가운데 정렬 스타일 - 삭제 후 사용하세요 */
-* {padding:0;margin:0;line-height:1;} /* 기본 브라우저 리셋 스타일 */
+input[id*="popup"]+label {
+	position: absolute;
+} /* 예제파일 확인시 가운데 정렬 스타일 - 삭제 후 사용하세요 */
+* {
+	padding: 0;
+	margin: 0;
+	line-height: 1;
+} /* 기본 브라우저 리셋 스타일 */
+input[id*="popup"] {
+	display: none;
+}
 
-input[id*="popup"] {display:none;}
-input[id*="popup"] + label {display:inline-block;color:black}
-input[id*="popup"] + label + div {position:fixed;top:0;left:0;width:100%;height:100%;z-index:100;}
-input[id*="popup"] + label + div > div {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:300px;background:#fff;z-index:2;}
-input[id*="popup"] + label + div > div > label {position:absolute;top:0%;right:0%;transform:translate(40%,-40%);padding:20px;background:none;border-radius:100%;z-index:1;}
-input[id*="popup"] + label + div > label {position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);z-index:1;}
+input[id*="popup"]+label {
+	display: inline-block;
+	color: black
+}
+
+input[id*="popup"]+label+div {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+}
+
+input[id*="popup"]+label+div>div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	height: 300px;
+	background: #fff;
+	z-index: 2;
+}
+
+input[id*="popup"]+label+div>div>label {
+	position: absolute;
+	top: 0%;
+	right: 0%;
+	transform: translate(40%, -40%);
+	padding: 20px;
+	background: none;
+	border-radius: 100%;
+	z-index: 1;
+}
+
+input[id*="popup"]+label+div>label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .9);
+	z-index: 1;
+}
 /*
 input[id*="popup"] + label + div {display:none;}
 input[id*="popup"]:checked + label + div {display:block;}
 */
+input[id*="popup"]+label+div {
+	opacity: 0;
+	visibility: hidden;
+	transition: all 1s;
+}
 
-input[id*="popup"] + label + div {opacity:0;visibility:hidden;transition:all 1s;}
-input[id*="popup"]:checked + label + div {opacity:1;visibility:visible;}
+input[id*="popup"]:checked+label+div {
+	opacity: 1;
+	visibility: visible;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta charset="UTF-8">
@@ -140,25 +195,27 @@ input[id*="popup"]:checked + label + div {opacity:1;visibility:visible;}
 				<div
 					class="shadow-sm p-3 mb-5 bg-body rounded col-4 container border overflow-auto"
 					id="chatHeaderList">
-					<a href="#">
-					<div> <!-- 팝업창 여기부터 -->
+					<div style="height: 60px; margin-bottom: 10px;">
+						<!-- 팝업창 여기부터 -->
 						<input type="checkbox" id="popup">
 						<!-- 버튼 클릭시 팝업창 오픈 -->
 						<label for="popup">
-							<div style="" class="border-bottom">+메세지쓰기</div>
+							<div class="border-bottom">+메세지쓰기</div>
 						</label>
 						<div>
 							<div>
 								<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
 								<label for="popup"></label>
 								<!-- 내용 추가 -->
-								asdasdasdasdasdasad
+								<input class="form-control rounded-3" type="text" name=u_id
+									id="searchBox" placeholder="검색" onkeyup="searchID()" required>
+								<div id="headerBox"></div>
 							</div>
 							<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
 							<label for="popup"></label>
 						</div>
-					</div> <!-- 여기까지  -->	
-					</a>
+					</div>
+					<!-- 여기까지  -->
 					<c:forEach var="vo" items="${chatHeaderList }">
 						<c:if test="${vo.from_id eq userVO.u_id }">
 							<a id="hId${vo.h_idx }" class="row d-flex"
@@ -366,6 +423,25 @@ input[id*="popup"]:checked + label + div {opacity:1;visibility:visible;}
 									alert("실패~~~");
 								}
 							});
+		}
+		function searchID() {
+			var searchId = $("#searchBox").val();
+			console.log(searchId);
+			$.ajax("../user/seachUser.do", {
+				type : "get",
+				data : "u_id=" + searchId,
+				dataType : "json",
+				success : function(data) {
+					alert("성공~~~");
+					console.log(data);
+					var dispHtml = "";
+					$.each(data, function(index, obj) {
+					});
+				},
+				error : function() {
+					alert("실패~~~");
+				}
+			});
 		}
 	</script>
 	<script

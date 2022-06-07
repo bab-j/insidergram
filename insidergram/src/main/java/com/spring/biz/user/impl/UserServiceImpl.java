@@ -1,5 +1,7 @@
 package com.spring.biz.user.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +36,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int findId(UserVO vo) {
 		return userDAO.findId(vo);
+	}
+
+	@Override
+	public List<UserVO> searchUser(String u_id) {
+		// TODO Auto-generated method stub
+		return userDAO.searchUser(u_id);
 	}
 }

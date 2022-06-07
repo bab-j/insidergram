@@ -1,5 +1,7 @@
 package com.spring.biz.user.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,5 +37,9 @@ public class UserDAO {
 	public int findId(UserVO vo) { 
 		 
 		return mybatis.selectOne("userDAO.findId", vo); 
+	}
+	
+	public List<UserVO> searchUser(String u_id) {
+		return mybatis.selectList("userDAO.searchUser", u_id);
 	}
 }
