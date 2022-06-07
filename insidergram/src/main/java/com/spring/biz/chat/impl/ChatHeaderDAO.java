@@ -54,4 +54,21 @@ public class ChatHeaderDAO {
 		mybatis.update("chatHeaderDAO.updateStatusOpenChatHeader_TO", h_idx);
 	}
 	
+	public int findChatHeader(String my_id, String target_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("my_id", my_id);
+		map.put("target_id", target_id);
+		
+		return mybatis.selectOne("chatHeaderDAO.findChatHeader", map);
+	}
+	
+	public void createChat(String my_id, String target_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("my_id", my_id);
+		map.put("target_id", target_id);
+		mybatis.insert("chatHeaderDAO.createChat", map);
+	}
+	
+	
+	
 }

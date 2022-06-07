@@ -210,22 +210,11 @@ input[id*="popup"]:checked+label+div {
 								<input class="form-control rounded-3" type="text" name=u_id
 									id="searchBox" placeholder="검색" onkeyup="searchID()" required>
 								<div id="headerBox" class="d-flex p-3 row" style="height:87%; overflow: auto;">
-									<div class="box">
-										<div class="img_box">
-											<img class="img_size " src="../img_src/profile/${userVO.u_pic }">
-										</div>
-									</div>
-									<div class="flex-grow-1">
-										<p style="margin: 0;">${userVO.u_id }</p>
-										<small class="sm_id">${userVO.name }</small>
-									</div>
-									<div>
-									<a href="#">만들기</a>
-									</div>
+								검색결과
 								</div>
 							</div>
 							<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
-							<label for="popup"></label>
+							<label for="popup" id="close"></label>
 						</div>
 					</div>
 					<!-- 여기까지  -->
@@ -459,7 +448,7 @@ input[id*="popup"]:checked+label+div {
 						dispHtml += '<small class="sm_id">' + obj.name +'</small>';
 						dispHtml += '</div>';
 						dispHtml += '<div>';
-						dispHtml += '<a href="#">만들기</a>';
+						dispHtml += '<a href="javascript:createChat(\'${userVO.u_id}\',\'' + obj.u_id +'\')">만들기</a>';
 						dispHtml += '</div>';
 						dispHtml += '</div>';
 					});
@@ -468,6 +457,67 @@ input[id*="popup"]:checked+label+div {
 				error : function() {
 				}
 			});
+		}
+		
+		function createChat(my_id, target_id) {
+			alert("openChatHeader()");
+			$.ajax("createChat.do", {
+				type: "get",
+				data: {
+					"my_id" : my_id,
+					"target_id" : target_id
+				},
+				dataType: "json",
+				success : function(data) {
+					alert("성공~~~");
+					console.log(data);
+
+					let dispHtml = "";
+					dispHtml += "<div class=\"row my_chat_message\" id=\"chatMessageContainer\">";
+					$.each(
+									data,
+									function(index, obj) {
+										if (obj.u_id == my_id) {
+											dispHtml += "<div class=\"d-flex justify-content-end\" style=\"margin-bottom:10px;\">";
+											dispHtml += "<div class=\"chat_content_end\">";
+											dispHtml += obj.content;
+											dispHtml += "</div>";
+											dispHtml += "<div class=\"box\">";
+											dispHtml += "<div class=\"img_box\">";
+											dispHtml += "<img class=\"img_size\" src=\"../img_src/profile/"+ obj.u_pic +"\">"
+											dispHtml += "</div>";
+											dispHtml += "</div>";
+											dispHtml += "</div>"
+										} else {
+											dispHtml += "<div class=\"d-flex justify-content-start\" style=\"margin-bottom:10px;\">";
+											dispHtml += "<div class=\"box\">";
+											dispHtml += "<div class=\"img_box\">";
+											dispHtml += "<img class=\"img_size \" src=\"../img_src/profile/" + obj.u_pic + "\">"
+											dispHtml += "</div>";
+											dispHtml += "</div>";
+											dispHtml += "<div class=\"chat_content_start\">";
+											dispHtml += obj.content;
+											dispHtml += "</div>";
+											dispHtml += "</div>"
+										}
+									});
+					dispHtml += "</div>";
+					dispHtml += "<div class=\"row position-absolute bottom-0 start-0\" style=\"width: 100%;\">";
+					dispHtml += "<div class=\"col-11\">";
+					dispHtml += "<input class=\"form-control\" type=\"text\" name=\"content\" id=\"content\">";
+					dispHtml += "</div>";
+					dispHtml += "<button class=\"btn btn-primary col-1 \" type=\"submit\" onclick=\"insertChatMessage(\'${userVO.u_id}\', \'${userVO.name }\', \'${userVO.u_pic }\')\">전송</button>";
+					dispHtml += "</div>";
+					$("#chatMessageView").html(dispHtml);
+					$('#chatMessageContainer')
+							.scrollTop(
+									$('#chatMessageContainer')[0].scrollHeight);
+				},
+				error : function() {
+					alert("실패~~~");
+				}
+			});
+			$("#close").click();
 		}
 	</script>
 	<script

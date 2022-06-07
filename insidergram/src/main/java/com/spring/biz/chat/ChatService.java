@@ -14,4 +14,7 @@ public interface ChatService {
 	void updateUserRead(ChatHeaderVO chvo, ChatMessageVO cmvo);
 	void updateStatusOpenChatHeader_FROM(int h_idx);
 	void updateStatusOpenChatHeader_TO(int h_idx);
+	int findChatHeader(String my_id, String target_id);
+	List<ChatMessageVO> openChat(String my_id, String target_id);
+	void createChat (String my_id, String target_id);
 }

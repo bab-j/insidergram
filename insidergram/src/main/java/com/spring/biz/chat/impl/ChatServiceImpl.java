@@ -67,5 +67,20 @@ public class ChatServiceImpl implements ChatService{
 		chatHeaderDAO.updateStatusOpenChatHeader_TO(h_idx);
 	}
 
+	@Override
+	public int findChatHeader(String my_id, String target_id) {
+		return chatHeaderDAO.findChatHeader(my_id, target_id);
+	}
+
+	@Override
+	public List<ChatMessageVO> openChat(String my_id, String target_id) {
+		return chatMessageDAO.openChat(my_id, target_id);
+	}
+
+	@Override
+	public void createChat(String my_id, String target_id) {
+		chatHeaderDAO.createChat(my_id, target_id);
+	}
+
 	
 }

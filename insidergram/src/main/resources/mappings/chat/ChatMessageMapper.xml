@@ -15,4 +15,9 @@
 		INSERT INTO CHAT_MESSAGE
     	VALUES ((SELECT NVL(MAX(M_IDX), 0) + 1 FROM CHAT_MESSAGE), #{h_idx}, #{content}, TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS'), '0', #{u_id})
 	</insert>
+	
+	<select id="openChat" resultType="com.spring.biz.chat.ChatMessageVO" parameterType="map">
+		SELECT * FROM CHAT_HEADER
+		WHERE (FROM_ID = #{my_id} AND TO_ID = #{target_id}) OR (FROM_ID = #{target_id} AND TO_ID = #{my_id})
+	</select>
 </mapper>

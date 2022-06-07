@@ -40,4 +40,17 @@
 	<update id="updateStatusOpenChatHeader_TO" parameterType="int">
 		UPDATE CHAT_HEADER SET TO_STATUS = '1' WHERE H_IDX = #{h_idx}	
 	</update>
+	
+	<select id="findChatHeader" parameterType="map" resultType="int">
+		SELECT COUNT(H_IDX) 
+		FROM CHAT_HEADER
+		WHERE (FROM_ID = #{my_id} AND TO_ID = #{target_id}) 
+		OR (FROM_ID = #{target_id} AND TO_ID = #{my_id})
+	</select>
+	
+	<insert id="createChat" parameterType="map">
+		INSERT INTO CHAT_HEADER(H_IDX, FROM_ID, TO_ID) 
+		VALUES((SELECT NVL(MAX(H_IDX), 0) + 1 FROM CHAT_HEADER), #{my_id}, #{target_id})
+	</insert>
+	
 </mapper>

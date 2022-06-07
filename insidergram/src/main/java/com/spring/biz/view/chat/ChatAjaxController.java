@@ -2,6 +2,7 @@ package com.spring.biz.view.chat;
 
 import java.util.List;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,19 @@ public class ChatAjaxController {
 		List<ChatMessageVO> messages = chatService.getChatMessageList(chvo);
 		System.out.println("vo:" + vo.getH_idx());
 		return messages;
+	}
+	
+	@RequestMapping("/chat/createChat.do")
+	public List<ChatMessageVO> createChat(String my_id, String target_id) {
+		int result;
+		result = chatService.findChatHeader(my_id, target_id);
+		System.out.println("result : " + result);
+		if (result == 1) {
+			return chatService.openChat(my_id, target_id);
+		} else {
+			chatService.createChat(my_id, target_id);
+			return chatService.openChat(my_id, target_id);
+		}
+		
 	}
 }
