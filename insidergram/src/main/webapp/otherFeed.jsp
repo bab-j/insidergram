@@ -701,8 +701,7 @@ input[id="tab03"]:checked ~ .con3 {
 									<!-- 시작 -->
 									<input type="checkbox" id="popup4">
 									<!-- 버튼 클릭시 팝업창 오픈 -->
-									<label for="popup4"> <a style="color: black;">안녕하세요
-											반가워요 잘있어요 다시 만나요 </a>
+									<label for="popup4"> <a style="color: black;">안녕하세요 반가워요 잘있어요 다시 만나요 </a>
 									</label>
 									<div>
 										<div>

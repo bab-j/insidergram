@@ -262,596 +262,340 @@ input[id="tab03"]:checked ~ .con3 {
 	<%
 		List<FeedVO> list = (List<FeedVO>) request.getAttribute("myFeedList");
 	%>
-	<main class="container py-3"
-		style="background-color: #F5F5F5; width: 935px;">
-		<div class="container-fluid pb-3 my-3 p-3"
-			style="background-color: #F5F5F5;">
-			<div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
-				<div class="rounded-3"
-					style="height: 200px; width: 200px; margin-top: 25px; margin-left: 40px;">
-					<img class="bigProfile_img" src="../img_src/profile/${userVO.u_pic }" />
-				</div>
+<main class="container py-3" style="background-color: #F5F5F5; width: 935px;">
+	<div class="container-fluid pb-3 my-3 p-3"style="background-color: #F5F5F5;">
+		<div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
+			<div class="rounded-3"style="height: 200px; width: 200px; margin-top: 25px; margin-left: 40px;">
+				<img class="bigProfile_img" src="../img_src/profile/${userVO.u_pic }" />
+			</div>
 
-				<div class="rounded-3" style="margin-left: 20px;">
-					<div class="row">
-						<!-- 1 -->
-						<div class="col-12 my-4">
-							<a style="font-size: xx-large;">${userVO.u_id }</a> <a
-								href="./user_update.jsp"><button
-									class="center_ailgn py-2 mb-2 btn btn-outline-dark rounded-3"
-									style="border-color: silver; text-align: center; margin-left: 20px;"
-									type="submit">
-									<svg class="bi me-1 " style="width: 0px; height: 12px;"></svg>
-									프로필 편집
-								</button></a> <a
-								style="margin-left: 20px; text-decoration: none; color: inherit;"
-								href="./user_delete.jsp"> <svg
-									xmlns="http://www.w3.org/2000/svg" width="28" height="28"
-									fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"
-									style="margin-bottom: -5px;">
-							<path
-										d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-							<path fill-rule="evenodd"
-										d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-						  </svg>
-							</a>
-						</div>
-						<!-- 2 -->
-						<div class="col-12 my-3">
-							<a>게시물</a><span
-								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${picPost.size() + docPost.size() }</span>
-							<a>팔로워</a><span
-								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followerList.size() }</span>
-							<a>팔로우</a><span
-								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followingList.size() }</span>
-						</div>
-						<!-- 3 -->
-						<div class="col-12 my-3">
-							<a style="font-weight: bold;">${userVO.name }</a>
-						</div>
-						<!-- 4 -->
-						<div class="col-12 my-3">
-							<a>${userVO.bio }</a>
-						</div>
-
+			<div class="rounded-3" style="margin-left: 20px;">
+				<div class="row">
+					<!-- 1 -->
+					<div class="col-12 my-4">
+						<a style="font-size: xx-large;">${userVO.u_id }</a> 
+						<a href="./user_update.jsp">
+							<button class="center_ailgn py-2 mb-2 btn btn-outline-dark rounded-3"style="border-color: silver; text-align: center; margin-left: 20px;"type="submit">
+								<svg class="bi me-1 " style="width: 0px; height: 12px;"></svg>
+								프로필 편집
+							</button>
+						</a> 
+						<a style="margin-left: 20px; text-decoration: none; color: inherit;"href="./user_delete.jsp"> 
+							<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"style="margin-bottom: -5px;">
+								<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+								<path fill-rule="evenodd"d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+							</svg>
+						</a>
 					</div>
+					<!-- 2 -->
+					<div class="col-12 my-3">
+						<a>게시물</a><span style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${picPost.size() + docPost.size() }</span>
+						<a>팔로워</a><span style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followerList.size() }</span>
+						<a>팔로우</a><span style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followingList.size() }</span>
+					</div>
+					<!-- 3 -->
+					<div class="col-12 my-3">
+						<a style="font-weight: bold;">${userVO.name }</a>
+					</div>
+					<!-- 4 -->
+					<div class="col-12 my-3">
+						<a>${userVO.bio }</a>
+					</div>
+
 				</div>
 			</div>
 		</div>
+	</div>
 <!-- 시작 -->
-		<div class="album" style="background-color: #F5F5F5;">
-			<div class="container">
-
-
-				<div class="tab_content"
-					style="margin-top: 0px; border-top: solid 1px gray;">
-					<!--text-->
-					<input type="radio" name="tabmenu" id="tab01" checked> <label
-						for="tab01" style="margin-right: 80px;"> <svg
-							xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-							fill="currentColor" class="bi bi-grid-3x3" viewBox="0 0 16 16">
-                <path
-								d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13zM1.5 1a.5.5 0 0 0-.5.5V5h4V1H1.5zM5 6H1v4h4V6zm1 4h4V6H6v4zm-1 1H1v3.5a.5.5 0 0 0 .5.5H5v-4zm1 0v4h4v-4H6zm5 0v4h3.5a.5.5 0 0 0 .5-.5V11h-4zm0-1h4V6h-4v4zm0-5h4V1.5a.5.5 0 0 0-.5-.5H11v4zm-1 0V1H6v4h4z" />
-                </svg>&nbsp; PIC
-
-					</label> <input type="radio" name="tabmenu" id="tab02"> <label
-						for="tab02" style="margin-right: 80px;"> <svg
-							xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-							fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
-                <path
-								d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
-                </svg>&nbsp; DOC
-					</label> <input type="radio" name="tabmenu" id="tab03"> <label
-						for="tab03"> <svg xmlns="http://www.w3.org/2000/svg"
-							width="16" height="16" fill="currentColor"
-							class="bi bi-bookmark-star" viewBox="0 0 16 16">
-                <path
-								d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z" />
-                <path
-								d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
-                </svg>&nbsp; SAVED
-					</label>
-					<div class="conbox con1">
-<!--========================================== 사진 피드 ===================================================-->
-						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+	<div class="album" style="background-color: #F5F5F5;">
+		<div class="container">
+			<div class="tab_content"style="margin-top: 0px; border-top: solid 1px gray;">
+				<!--text-->
+				<input type="radio" name="tabmenu" id="tab01" checked> 
+				<label for="tab01" style="margin-right: 80px;"> 
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"fill="currentColor" class="bi bi-grid-3x3" viewBox="0 0 16 16">
+	                	<path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13zM1.5 1a.5.5 0 0 0-.5.5V5h4V1H1.5zM5 6H1v4h4V6zm1 4h4V6H6v4zm-1 1H1v3.5a.5.5 0 0 0 .5.5H5v-4zm1 0v4h4v-4H6zm5 0v4h3.5a.5.5 0 0 0 .5-.5V11h-4zm0-1h4V6h-4v4zm0-5h4V1.5a.5.5 0 0 0-.5-.5H11v4zm-1 0V1H6v4h4z" />
+	                </svg>&nbsp; PIC
+				</label> 
+				<input type="radio" name="tabmenu" id="tab02"> 
+				<label for="tab02" style="margin-right: 80px;"> 
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+	                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+	                </svg>&nbsp; DOC
+				</label>
+				<input type="radio" name="tabmenu" id="tab03"> 
+				<label for="tab03"> 
+					<svg xmlns="http://www.w3.org/2000/svg"width="16" height="16" fill="currentColor"class="bi bi-bookmark-star" viewBox="0 0 16 16">
+	                <path d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z" />
+	                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+	                </svg>&nbsp; SAVED
+				</label>
+<!--========================================== 사진 피드 ===================================================-->				
+				<div class="conbox con1">
+					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 <%int i = 0; %>						
 					<c:forEach var="picList" items="${picPost }">
 					
-							<div class="col square">
-								<div class="card shadow-sm inner">
-									<!-- 시작 -->
-									<input type="checkbox" id="popup<%=i%>">
-									<!-- 버튼 클릭시 팝업창 오픈 -->
-									<label for="popup<%=i%>"> <img src="../img_src/feed/${picList.f_pic }"
-										class="card-img-top">
-									</label>
+						<div class="col square">
+							<div class="card shadow-sm inner">
+								<!-- 시작 -->
+								<input type="checkbox" id="popup<%=i%>">
+								<!-- 버튼 클릭시 팝업창 오픈 -->
+								<label for="popup<%=i%>"> 
+									<img src="../img_src/feed/${picList.f_pic }"class="card-img-top">
+								</label>
+								<div>
 									<div>
-										<div>
-											<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
-											<label for="popup<%=i%>"></label>
-											<!-- 내용 추가 -->
-											<div class="container"
-												style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-												<div class="row square"
-													style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-													<!-- 왼쪽 -->
-													<div class="col-6"
-														style="margin: 0px; padding: 0px; height: 550px;">
+									<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
+									<label for="popup<%=i%>"></label>
+										<!-- 내용 추가 -->
+										<div class="container"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
+											<div class="row square"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
+												<!-- 왼쪽 -->
+												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px;">
+													<img src="../img_src/feed/${picList.f_pic }" class="card-img-top"style="height: 550px; border-radius: 0px;">
+												</div>
 
-														<img src="../img_src/feed/${picList.f_pic }" class="card-img-top"
-															style="height: 550px; border-radius: 0px;">
+												<!-- 오른쪽 -->
+												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
 
-													</div>
-
-													<!-- 오른쪽 -->
-													<div class="col-6"
-														style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
-
-														<!-- 상단 닉네임 -->
-														<a href="#"
-															class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
-															style="height: 80px; background-color: white;"> <img
-															src="../img_src/profile/${userVO.u_pic }" alt="twbs" width="40" height="40"
-															class="rounded-circle flex-shrink-0"
-															style="margin-left: 20px;">
-															<div class="d-flex gap-2 w-100 justify-content-between">
-																<div>
-																	<h6 class="mb-0" style="margin-left: 15px;">${userVO.u_id }</h6>
+													<!-- 상단 닉네임 -->
+													<a href="#"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
+														<img src="../img_src/profile/${userVO.u_pic }" alt="twbs" width="40" height="40"class="rounded-circle flex-shrink-0"style="margin-left: 20px;">
+														<div class="d-flex gap-2 w-100 justify-content-between">
+															<div>
+																<h6 class="mb-0" style="margin-left: 15px;">${userVO.u_id }</h6>
 																	${picList.content }
-
+															</div>
+															<div href="#">
+																<svg xmlns="http://www.w3.org/2000/svg" width="16"height="16" fill="currentColor"class="bi bi-three-dots" viewBox="0 0 16 16">
+																<path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+																</svg>
+															</div>
+														</div>
+													</a>
+													<!-- 채팅창(댓글 구현하면 수정) -->
+													<div style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
+														<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+															<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
+															<div class="d-flex gap-2 w-100 justify-content-between">
+																<div>
+																	<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																	<p class="mb-0 opacity-75"style="padding-top: 10px; width: 300px;">해적왕</p>
 																</div>
-																<div href="#">
-																	<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																		height="16" fill="currentColor"
-																		class="bi bi-three-dots" viewBox="0 0 16 16">
-												<path
-																			d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-											</svg>
+																<small class="opacity-50 text-nowrap">3분전</small>
+															</div>
+														</a> 
+														<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+															<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
+															<div class="d-flex gap-2 w-100 justify-content-between">
+																<div>
+																	<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																	<p class="mb-0 opacity-75"style="padding-top: 10px; width: 300px;">
+																		그는누구인가..
+																	</p>
 																</div>
+																<small class="opacity-50 text-nowrap">3분전</small>
 															</div>
 														</a>
-
-														<!-- 채팅창(댓글 구현하면 수정) -->
-														<div
-															style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
-
-															<a href="#"
-																class="list-group-item list-group-item-action d-flex gap-3 py-3"
-																aria-current="true"
-																style="border: none; height: 100px; margin-top: 0px;">
-																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"
-																height="40" class="rounded-circle flex-shrink-0">
-																<div class="d-flex gap-2 w-100 justify-content-between">
-																	<div>
-																		<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
-																		<p class="mb-0 opacity-75"
-																			style="padding-top: 10px; width: 300px;">해적왕</p>
-																	</div>
-																	<small class="opacity-50 text-nowrap">3분전</small>
-																</div>
-															</a> <a href="#"
-																class="list-group-item list-group-item-action d-flex gap-3 py-3"
-																aria-current="true"
-																style="border: none; height: 100px; margin-top: 0px;">
-																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"
-																height="40" class="rounded-circle flex-shrink-0">
-																<div class="d-flex gap-2 w-100 justify-content-between">
-																	<div>
-																		<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
-																		<p class="mb-0 opacity-75"
-																			style="padding-top: 10px; width: 300px;">그는
-																			누구인가..</p>
-																	</div>
-																	<small class="opacity-50 text-nowrap">3분전</small>
-																</div>
-															</a>
-
-														</div>
-
-														<!-- 메시지 보내기 -->
-														<div class="input-group mb-3">
-															<input style="height: 45px; border-radius: initial;"
-																type="text" class="form-control" placeholder="메시지 입력..."
-																aria-label="Recipient's username"
-																aria-describedby="button-addon2">
-															<button class="btn btn-outline-primary" type="button"
-																id="button-addon2"
-																style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
-																<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																	height="16" fill="currentColor" class="bi bi-arrow-up"
-																	viewBox="0 0 16 16">
-										<path fill-rule="evenodd"
-																		d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
-									  </svg>
-															</button>
-														</div>
+													</div>
+													<!-- 메시지 보내기 -->
+													<div class="input-group mb-3">
+														<input style="height: 45px; border-radius: initial;"type="text" class="form-control" placeholder="메시지 입력..."aria-label="Recipient's username"aria-describedby="button-addon2">
+														<button class="btn btn-outline-primary" type="button"id="button-addon2"style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
+															<svg xmlns="http://www.w3.org/2000/svg" width="16"height="16" fill="currentColor" class="bi bi-arrow-up"viewBox="0 0 16 16">
+															<path fill-rule="evenodd"d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+										  					</svg>
+														</button>
 													</div>
 												</div>
 											</div>
 										</div>
-										<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
-										<label for="popup<%=i%>"></label>
-										<%i++; %>
 									</div>
+									<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
+									<label for="popup<%=i%>"></label>
+									<%i++; %>
 								</div>
 							</div>
+						</div>
 					</c:forEach>
-							<!-------------------------------------------------------------------------------------------------------------------------->
+					</div>		
+				</div>				
+<!--========================================== 글 피드 ===================================================-->							
+				<div class="conbox con2">
+					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 							
-							<!-------------------------------------------------------------------------------------------------------------------------->
-							
-							<!-------------------------------------------------------------------------------------------------------------------------->
-					
-					<div class="conbox con2">
-<!--========================================== 글 피드 ===================================================-->
-						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-							
-						<c:forEach var="docPost" items="${docPost }">
-							<div class="col square">
-								<div class="card shadow-sm inner" style="text-align: center;">
-									<!-- 시작 -->
-									<input type="checkbox" id="popup4">
-									<!-- 버튼 클릭시 팝업창 오픈 -->
-									<label for="popup4"> <a style="color: black;">${docPost.content } </a>
-									</label>
+					<c:forEach var="docPost" items="${docPost }">
+						<div class="col square">
+							<div class="card shadow-sm inner" style="text-align: center;">
+								<!-- 시작 -->
+								<input type="checkbox" id="popup4">
+								<!-- 버튼 클릭시 팝업창 오픈 -->
+								<label for="popup4">
+									<a style="color: black;">${docPost.content } </a>
+								</label>
+								<div>
 									<div>
-										<div>
-											<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
-											<label for="popup4"></label>
-											<!-- 내용 추가 -->
-											<div class="container"
-												style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-												<div class="row square"
-													style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-													<!-- 오른쪽 -->
-													<div class="col-6"
-														style="margin: 0px; padding: 0px; height: 549px; text-align: center; background-color: white; border: solid 1px silver;">
-
-														<a style="color: black;">${docPost.content }</a>
-
-													</div>
-
-													<!-- 원쪽 -->
-													<div class="col-6"
-														style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
-
-														<!-- 상단 닉네임 -->
-														<a href="#"
-															class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
-															style="height: 80px; background-color: white;"> <img
-															src="../img_src/profile/${userVO.u_pic }" alt="twbs" width="40" height="40"
-															class="rounded-circle flex-shrink-0"
-															style="margin-left: 20px;">
-															<div class="d-flex gap-2 w-100 justify-content-between">
-																<div>
-																	<h6 class="mb-0" style="margin-left: 15px;">${userVO.u_id }</h6>
-
-																</div>
-																<div href="#">
-																	<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																		height="16" fill="currentColor"
-																		class="bi bi-three-dots" viewBox="0 0 16 16">
-													<path
-																			d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-												</svg>
-																</div>
-															</div>
-														</a>
-
-														<!-- 채팅창 -->
-														<div
-															style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
-
-															<a href="#"
-																class="list-group-item list-group-item-action d-flex gap-3 py-3"
-																aria-current="true"
-																style="border: none; height: 100px; margin-top: 0px;">
-																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"
-																height="40" class="rounded-circle flex-shrink-0">
-																<div class="d-flex gap-2 w-100 justify-content-between">
-																	<div>
-																		<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
-																		<p class="mb-0 opacity-75"
-																			style="padding-top: 10px; width: 300px;">해적왕</p>
-																	</div>
-																	<small class="opacity-50 text-nowrap">3분전</small>
-																</div>
-															</a> <a href="#"
-																class="list-group-item list-group-item-action d-flex gap-3 py-3"
-																aria-current="true"
-																style="border: none; height: 100px; margin-top: 0px;">
-																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"
-																height="40" class="rounded-circle flex-shrink-0">
-																<div class="d-flex gap-2 w-100 justify-content-between">
-																	<div>
-																		<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
-																		<p class="mb-0 opacity-75"
-																			style="padding-top: 10px; width: 300px;">그는
-																			누구인가..</p>
-																	</div>
-																	<small class="opacity-50 text-nowrap">3분전</small>
-																</div>
-															</a>
-
-														</div>
-
-														<!-- 메시지 보내기 -->
-														<div class="input-group mb-3">
-															<input style="height: 45px; border-radius: initial;"
-																type="text" class="form-control" placeholder="메시지 입력..."
-																aria-label="Recipient's username"
-																aria-describedby="button-addon2">
-															<button class="btn btn-outline-primary" type="button"
-																id="button-addon2"
-																style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
-																<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																	height="16" fill="currentColor" class="bi bi-arrow-up"
-																	viewBox="0 0 16 16">
-											<path fill-rule="evenodd"
-																		d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
-											</svg>
-															</button>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
+										<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
 										<label for="popup4"></label>
+										<!-- 내용 추가 -->
+										<div class="container"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
+											<div class="row square"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
+												<!-- 오른쪽 -->
+												<div class="col-6"style="margin: 0px; padding: 0px; height: 549px; text-align: center; background-color: white; border: solid 1px silver;">
+													<a style="color: black;">${docPost.content }</a>
+												</div>
+												<!-- 원쪽 -->
+												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+													<!-- 상단 닉네임 -->
+													<a href="#"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
+														<img src="../img_src/profile/${userVO.u_pic }" alt="twbs" width="40" height="40"class="rounded-circle flex-shrink-0"style="margin-left: 20px;">
+														<div class="d-flex gap-2 w-100 justify-content-between">
+															<div>
+																<h6 class="mb-0" style="margin-left: 15px;">${userVO.u_id }</h6>
+															</div>
+															<div href="#">
+																<svg xmlns="http://www.w3.org/2000/svg" width="16"height="16" fill="currentColor"class="bi bi-three-dots" viewBox="0 0 16 16">
+																<path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+																</svg>
+															</div>
+														</div>
+													</a>
+	
+													<!-- 채팅창 -->
+													<div style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
+														<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+															<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
+															<div class="d-flex gap-2 w-100 justify-content-between">
+																<div>
+																	<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																	<p class="mb-0 opacity-75"style="padding-top: 10px; width: 300px;">해적왕</p>
+																</div>
+																<small class="opacity-50 text-nowrap">3분전</small>
+															</div>
+														</a> 
+														<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+															<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
+															<div class="d-flex gap-2 w-100 justify-content-between">
+																<div>
+																	<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																	<p class="mb-0 opacity-75"style="padding-top: 10px; width: 300px;">
+																		그는누구인가..
+																	</p>
+																</div>
+																<small class="opacity-50 text-nowrap">3분전</small>
+															</div>
+														</a>
+													</div>
+													<!-- 메시지 보내기 -->
+													<div class="input-group mb-3">
+														<input style="height: 45px; border-radius: initial;"type="text" class="form-control" placeholder="메시지 입력..."aria-label="Recipient's username"aria-describedby="button-addon2">
+														<button class="btn btn-outline-primary" type="button"id="button-addon2"style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
+															<svg xmlns="http://www.w3.org/2000/svg" width="16"height="16" fill="currentColor" class="bi bi-arrow-up"viewBox="0 0 16 16">
+															<path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+															</svg>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
+									<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
+									<label for="popup4"></label>
 								</div>
 							</div>
+						</div>
 						</c:forEach>
-						</div>
 					</div>
-
-					<div class="conbox con3">
+				</div>
 <!--========================================== 저장 피드 ===================================================-->
-						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+				<div class="conbox con3">
+					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-							<div class="col square">
-								<div class="card shadow-sm inner" style="text-align: center;">
-									<!-- 시작 -->
-									<input type="checkbox" id="popup5">
-									<!-- 버튼 클릭시 팝업창 오픈 -->
-									<label for="popup5"> <a style="color: black;">안녕하세요
-											반가워요 잘있어요 다시 만나요 </a>
-									</label>
+						<div class="col square">
+							<div class="card shadow-sm inner" style="text-align: center;">
+								<!-- 시작 -->
+								<input type="checkbox" id="popup5">
+								<!-- 버튼 클릭시 팝업창 오픈 -->
+								<label for="popup5"> 
+									<a style="color: black;">
+										안녕하세요 반가워요 잘있어요 다시 만나요 
+									</a>
+								</label>
+								<div>
 									<div>
-										<div>
-											<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
-											<label for="popup5"></label>
-											<!-- 내용 추가 -->
-											<div class="container"
-												style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-												<div class="row square"
-													style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-													<!-- 오른쪽 -->
-													<div class="col-6"
-														style="margin: 0px; padding: 0px; height: 549px; text-align: center; background-color: white; border: solid 1px silver;">
-
-														<a style="color: black;">안녕하세요 반가워요 잘있어요 다시 만나요</a>
-
-													</div>
-
-													<!-- 원쪽 -->
-													<div class="col-6"
-														style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
-
-														<!-- 상단 닉네임 -->
-														<a href="#"
-															class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
-															style="height: 80px; background-color: white;"> <img
-															src="./img_src/test/kim.jpg" alt="twbs" width="40" height="40"
-															class="rounded-circle flex-shrink-0"
-															style="margin-left: 20px;">
-															<div class="d-flex gap-2 w-100 justify-content-between">
-																<div>
-																	<h6 class="mb-0" style="margin-left: 15px;">tldhsrkwhr11(본인)</h6>
-
-																</div>
-																<div href="#">
-																	<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																		height="16" fill="currentColor"
-																		class="bi bi-three-dots" viewBox="0 0 16 16">
-													<path
-																			d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-												</svg>
-																</div>
-															</div>
-														</a>
-
-														<!-- 채팅창 -->
-														<div
-															style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
-
-															<a href="#"
-																class="list-group-item list-group-item-action d-flex gap-3 py-3"
-																aria-current="true"
-																style="border: none; height: 100px; margin-top: 0px;">
-																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"
-																height="40" class="rounded-circle flex-shrink-0">
-																<div class="d-flex gap-2 w-100 justify-content-between">
-																	<div>
-																		<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
-																		<p class="mb-0 opacity-75"
-																			style="padding-top: 10px; width: 300px;">해적왕</p>
-																	</div>
-																	<small class="opacity-50 text-nowrap">3분전</small>
-																</div>
-															</a> <a href="#"
-																class="list-group-item list-group-item-action d-flex gap-3 py-3"
-																aria-current="true"
-																style="border: none; height: 100px; margin-top: 0px;">
-																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"
-																height="40" class="rounded-circle flex-shrink-0">
-																<div class="d-flex gap-2 w-100 justify-content-between">
-																	<div>
-																		<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
-																		<p class="mb-0 opacity-75"
-																			style="padding-top: 10px; width: 300px;">그는
-																			누구인가..</p>
-																	</div>
-																	<small class="opacity-50 text-nowrap">3분전</small>
-																</div>
-															</a>
-
-														</div>
-
-														<!-- 메시지 보내기 -->
-														<div class="input-group mb-3">
-															<input style="height: 45px; border-radius: initial;"
-																type="text" class="form-control" placeholder="메시지 입력..."
-																aria-label="Recipient's username"
-																aria-describedby="button-addon2">
-															<button class="btn btn-outline-primary" type="button"
-																id="button-addon2"
-																style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
-																<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																	height="16" fill="currentColor" class="bi bi-arrow-up"
-																	viewBox="0 0 16 16">
-											<path fill-rule="evenodd"
-																		d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
-											</svg>
-															</button>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
+										<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
 										<label for="popup5"></label>
-									</div>
-								</div>
-							</div>
-							<!-------------------->
-							<div class="col square">
-								<div class="card shadow-sm inner">
-									<!-- 시작 -->
-									<input type="checkbox" id="popup6">
-									<!-- 버튼 클릭시 팝업창 오픈 -->
-									<label for="popup6"> <img src="./img_src/test/만복이.jpg"
-										class="card-img-top">
-									</label>
-									<div>
-										<div>
-											<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
-											<label for="popup6"></label>
-											<!-- 내용 추가 -->
-											<div class="container"
-												style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-												<div class="row square"
-													style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-													<!-- 오른쪽 -->
-													<div class="col-6"
-														style="margin: 0px; padding: 0px; height: 550px;">
-
-														<img src="./img_src/test/만복이.jpg" class="card-img-top"
-															style="height: 550px; border-radius: 0px;">
-
-													</div>
-
-													<!-- 원쪽 -->
-													<div class="col-6"
-														style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
-
-														<!-- 상단 닉네임 -->
-														<a href="#"
-															class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
-															style="height: 80px; background-color: white;"> <img
-															src="./img_src/test/kim.jpg" alt="twbs" width="40" height="40"
-															class="rounded-circle flex-shrink-0"
-															style="margin-left: 20px;">
+										<!-- 내용 추가 -->
+										<div class="container"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
+											<div class="row square"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
+												<!-- 오른쪽 -->
+												<div class="col-6"style="margin: 0px; padding: 0px; height: 549px; text-align: center; background-color: white; border: solid 1px silver;">
+													<a style="color: black;">안녕하세요 반가워요 잘있어요 다시 만나요</a>
+												</div>
+												<!-- 원쪽 -->
+												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+													<!-- 상단 닉네임 -->
+													<a href="#"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
+														<img src="./img_src/test/kim.jpg" alt="twbs" width="40" height="40"class="rounded-circle flex-shrink-0"style="margin-left: 20px;">
+														<div class="d-flex gap-2 w-100 justify-content-between">
+															<div>
+																<h6 class="mb-0" style="margin-left: 15px;">tldhsrkwhr11(본인)</h6>
+															</div>
+															<div href="#">
+																<svg xmlns="http://www.w3.org/2000/svg" width="16"height="16" fill="currentColor"class="bi bi-three-dots" viewBox="0 0 16 16">
+																<path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+																</svg>
+															</div>
+														</div>
+													</a>
+													<!-- 채팅창 -->
+													<div style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
+														<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+															<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
 															<div class="d-flex gap-2 w-100 justify-content-between">
 																<div>
-																	<h6 class="mb-0" style="margin-left: 15px;">tldhsrkwhr11(본인)</h6>
-
+																	<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																	<p class="mb-0 opacity-75"style="padding-top: 10px; width: 300px;">해적왕</p>
 																</div>
-																<div href="#">
-																	<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																		height="16" fill="currentColor"
-																		class="bi bi-three-dots" viewBox="0 0 16 16">
-													<path
-																			d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-												</svg>
+																<small class="opacity-50 text-nowrap">3분전</small>
+															</div>
+														</a> 
+														<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+															<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
+															<div class="d-flex gap-2 w-100 justify-content-between">
+																<div>
+																	<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																	<p class="mb-0 opacity-75"style="padding-top: 10px; width: 300px;">그는누구인가..</p>
 																</div>
+																<small class="opacity-50 text-nowrap">3분전</small>
 															</div>
 														</a>
-
-														<!-- 채팅창 -->
-														<div
-															style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
-
-															<a href="#"
-																class="list-group-item list-group-item-action d-flex gap-3 py-3"
-																aria-current="true"
-																style="border: none; height: 100px; margin-top: 0px;">
-																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"
-																height="40" class="rounded-circle flex-shrink-0">
-																<div class="d-flex gap-2 w-100 justify-content-between">
-																	<div>
-																		<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
-																		<p class="mb-0 opacity-75"
-																			style="padding-top: 10px; width: 300px;">해적왕이 될..
-																		</p>
-																	</div>
-																	<small class="opacity-50 text-nowrap">3분전</small>
-																</div>
-															</a> <a href="#"
-																class="list-group-item list-group-item-action d-flex gap-3 py-3"
-																aria-current="true"
-																style="border: none; height: 100px; margin-top: 0px;">
-																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"
-																height="40" class="rounded-circle flex-shrink-0">
-																<div class="d-flex gap-2 w-100 justify-content-between">
-																	<div>
-																		<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
-																		<p class="mb-0 opacity-75"
-																			style="padding-top: 10px; width: 300px;">남자다!</p>
-																	</div>
-																	<small class="opacity-50 text-nowrap">3분전</small>
-																</div>
-															</a>
-
-														</div>
-
-														<!-- 메시지 보내기 -->
-														<div class="input-group mb-3">
-															<input style="height: 45px; border-radius: initial;"
-																type="text" class="form-control" placeholder="메시지 입력..."
-																aria-label="Recipient's username"
-																aria-describedby="button-addon2">
-															<button class="btn btn-outline-primary" type="button"
-																id="button-addon2"
-																style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
-																<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																	height="16" fill="currentColor" class="bi bi-arrow-up"
-																	viewBox="0 0 16 16">
-											<path fill-rule="evenodd"
-																		d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
-										  </svg>
-															</button>
-														</div>
+													</div>
+													<!-- 메시지 보내기 -->
+													<div class="input-group mb-3">
+														<input style="height: 45px; border-radius: initial;"type="text" class="form-control" placeholder="메시지 입력..."aria-label="Recipient's username"aria-describedby="button-addon2">
+														<button class="btn btn-outline-primary" type="button"id="button-addon2"style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
+															<svg xmlns="http://www.w3.org/2000/svg" width="16"height="16" fill="currentColor" class="bi bi-arrow-up"viewBox="0 0 16 16">
+															<path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+															</svg>
+														</button>
 													</div>
 												</div>
 											</div>
-
 										</div>
-										<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
-										<label for="popup6"></label>
 									</div>
+									<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
+									<label for="popup5"></label>
 								</div>
 							</div>
-							<!-------------------->
-						</div>
-
+						</div>							
 					</div>
 				</div>
 			</div>
-
 		</div>
-
-	</main>
+	</div>
+</main>
 
 
 
