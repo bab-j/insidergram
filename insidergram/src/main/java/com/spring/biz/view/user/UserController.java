@@ -62,7 +62,8 @@ public class UserController {
 	public String logout(HttpSession session) {
 		System.out.println(">>> 로그아웃 처리");
 		session.invalidate();
-		return "login.jsp";
+		
+		return "redirect:../../biz/user/login.do";
 	}
 	
 	@RequestMapping("/insertUser.do") 

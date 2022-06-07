@@ -139,6 +139,24 @@ a:hover {
 	font-weight: bold;
 }
 </style>
+<script >
+function logOut() {
+	
+	
+	 if (confirm("ㄹㅇ 로그아웃 하시겠습니까??") == true){    //확인
+
+			location.href="../../../biz/user/login.do"
+
+	 }else{   //취소
+
+	     return false;
+
+	 }
+
+} 
+</script>
+
+
 
 </head>
 <body>
@@ -152,7 +170,7 @@ a:hover {
 				<div class="row">
 					<div class="col-3 insiderIcon" style="display: inline-block;
     margin: 5px 0 0 0;">
-						<a href="../biz/user/getFeedList.do" >insidergram</a>
+						<a href="../../biz/user/getFeedList.do" >insidergram</a>
 					</div>
 					<div class="col-6">
 						<div class="container1">
@@ -175,7 +193,7 @@ a:hover {
 								<li class="material-icons "><a href="../../biz/user/getMyFeed.do">home</a></li>
 								<li class="material-icons-outlined "><a
 									href="../../biz/insertFeed.jsp">add_circle_outline</a></li>
-								<li class="material-icons "><a href="#">logout</a></li>
+								<li class="material-icons "><a href='javascript:void(0);' onclick="logOut();">logout</a></li>
 							</ul>
 						</div>
 					</div>

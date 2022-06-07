@@ -18,7 +18,7 @@
 	crossorigin="anonymous">
 
 <link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,GRAD@48,400,1,0" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <title>insidergram : 메인</title>
@@ -118,7 +118,7 @@ input[id*="popup"]:checked+label+div {
 	visibility: visible;
 }
 
-.material-symbols-outlined {
+.likeFill {
 	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 	color: red;
 }
@@ -317,7 +317,7 @@ document.addEventListener("scroll", debounce(e => {
 									<a href="javascript:likeFeed(${feed.f_idx})"> <c:choose>
 											<c:when test="${like }">
 												<span id="fillHeart${feed.f_idx }"
-													class="material-symbols-outlined"
+													class="material-symbols-outlined likeFill"
 													style="margin: 2px 0px 0px 2%;">favorite</span>
 												<span id="emptyHeart${feed.f_idx }"
 													class="material-icons-outlined"
@@ -325,7 +325,7 @@ document.addEventListener("scroll", debounce(e => {
 											</c:when>
 											<c:otherwise>
 												<span id="fillHeart${feed.f_idx }"
-													class="material-symbols-outlined"
+													class="material-symbols-outlined likeFill"
 													style="display: none; margin: 2px 0px 0px 2%;">favorite</span>
 												<span id="emptyHeart${feed.f_idx }"
 													class="material-icons-outlined"
