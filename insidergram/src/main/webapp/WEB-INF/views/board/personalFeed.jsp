@@ -237,7 +237,13 @@ input[id="tab03"]:checked ~ .con3 {
 	display: block;
 }
 </style>
+<script>
 
+function updateUser() {
+	location.href="../../user_update.jsp"	
+} 
+
+</script>
 
 <meta charset="UTF-8">
 <title>자기 페이지</title>
@@ -274,12 +280,9 @@ input[id="tab03"]:checked ~ .con3 {
 					<!-- 1 -->
 					<div class="col-12 my-4">
 						<a style="font-size: xx-large;">${userVO.u_id }</a> 
-						<a href="./user_update.jsp">
-							<button class="center_ailgn py-2 mb-2 btn btn-outline-dark rounded-3"style="border-color: silver; text-align: center; margin-left: 20px;"type="submit">
+							<button class="center_ailgn py-2 mb-2 btn btn-outline-dark rounded-3"style="border-color: silver; text-align: center; margin-left: 20px;"type="submit" onclick="updateUser()" >
 								<svg class="bi me-1 " style="width: 0px; height: 12px;"></svg>
-								프로필 편집
-							</button>
-						</a> 
+								프로필 편집</button>
 						<a style="margin-left: 20px; text-decoration: none; color: inherit;"href="./user_delete.jsp"> 
 							<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"style="margin-bottom: -5px;">
 								<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
