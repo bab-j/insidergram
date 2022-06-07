@@ -354,26 +354,27 @@ input[id="tab03"]:checked ~ .con3 {
 					<div class="conbox con1">
 <!--========================================== 사진 피드 ===================================================-->
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+<%int i = 0; %>						
 					<c:forEach var="picList" items="${picPost }">
-
+					
 							<div class="col square">
 								<div class="card shadow-sm inner">
 									<!-- 시작 -->
-									<input type="checkbox" id="popup1">
+									<input type="checkbox" id="popup<%=i%>">
 									<!-- 버튼 클릭시 팝업창 오픈 -->
-									<label for="popup1"> <img src="../img_src/feed/${picList.f_pic }"
+									<label for="popup<%=i%>"> <img src="../img_src/feed/${picList.f_pic }"
 										class="card-img-top">
 									</label>
 									<div>
 										<div>
 											<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
-											<label for="popup1"></label>
+											<label for="popup<%=i%>"></label>
 											<!-- 내용 추가 -->
 											<div class="container"
 												style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 												<div class="row square"
 													style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-													<!-- 오른쪽 -->
+													<!-- 왼쪽 -->
 													<div class="col-6"
 														style="margin: 0px; padding: 0px; height: 550px;">
 
@@ -382,7 +383,7 @@ input[id="tab03"]:checked ~ .con3 {
 
 													</div>
 
-													<!-- 원쪽 -->
+													<!-- 오른쪽 -->
 													<div class="col-6"
 														style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
 
@@ -469,7 +470,8 @@ input[id="tab03"]:checked ~ .con3 {
 											</div>
 										</div>
 										<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
-										<label for="popup1"></label>
+										<label for="popup<%=i%>"></label>
+										<%i++; %>
 									</div>
 								</div>
 							</div>
@@ -505,7 +507,7 @@ input[id="tab03"]:checked ~ .con3 {
 													<div class="col-6"
 														style="margin: 0px; padding: 0px; height: 549px; text-align: center; background-color: white; border: solid 1px silver;">
 
-														<a style="color: black;">안녕하세요 반가워요 잘있어요 다시 만나요</a>
+														<a style="color: black;">${docPost.content }</a>
 
 													</div>
 
@@ -517,12 +519,12 @@ input[id="tab03"]:checked ~ .con3 {
 														<a href="#"
 															class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
 															style="height: 80px; background-color: white;"> <img
-															src="./img_src/test/kim.jpg" alt="twbs" width="40" height="40"
+															src="../img_src/profile/${userVO.u_pic }" alt="twbs" width="40" height="40"
 															class="rounded-circle flex-shrink-0"
 															style="margin-left: 20px;">
 															<div class="d-flex gap-2 w-100 justify-content-between">
 																<div>
-																	<h6 class="mb-0" style="margin-left: 15px;">tldhsrkwhr11(본인)</h6>
+																	<h6 class="mb-0" style="margin-left: 15px;">${userVO.u_id }</h6>
 
 																</div>
 																<div href="#">
