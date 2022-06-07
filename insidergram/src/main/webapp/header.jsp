@@ -152,7 +152,7 @@ a:hover {
 				<div class="row">
 					<div class="col-3 insiderIcon" style="display: inline-block;
     margin: 5px 0 0 0;">
-						<a href="../user/getFeedList.do" >insidergram</a>
+						<a href="../biz/user/getFeedList.do" >insidergram</a>
 					</div>
 					<div class="col-6">
 						<div class="container1">
