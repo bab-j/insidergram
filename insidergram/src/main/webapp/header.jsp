@@ -171,10 +171,10 @@ a:hover {
 						<div class="nav-icon" style="text-align: right;">
 							<ul>
 								<li class="material-symbols-outlined dm_icon"><a
-									href="../chat/getChatHeaderList.do" >send</a></li>
-								<li class="material-icons "><a href="../user/getMyFeed.do">home</a></li>
+									href="../../biz/chat/getChatHeaderList.do" >send</a></li>
+								<li class="material-icons "><a href="../../biz/user/getMyFeed.do">home</a></li>
 								<li class="material-icons-outlined "><a
-									href="../insertFeed.jsp">add_circle_outline</a></li>
+									href="../../biz/insertFeed.jsp">add_circle_outline</a></li>
 								<li class="material-icons "><a href="#">logout</a></li>
 							</ul>
 						</div>
