@@ -266,7 +266,7 @@ document.addEventListener("scroll", debounce(e => {
 							<a href="getIndiFeed.do?u_id=${feed.u_id }"
 								class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
 								style="background-color: white;"> <img
-								src="../img_src/profile/${userVO.u_pic } " width="45"
+								src="../img_src/profile/${feed.u_pic } " width="45"
 								height="45" class="rounded-circle flex-shrink-0"
 								style="border-radius: 70%">
 
