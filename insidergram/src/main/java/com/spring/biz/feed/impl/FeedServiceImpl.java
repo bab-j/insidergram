@@ -83,6 +83,18 @@ public class FeedServiceImpl implements FeedService {
 	}
 
 
+	@Override
+	public int saveFeed(int f_idx, String u_id) {
+		return feedDAO.saveFeed(f_idx, u_id);
+	}
+
+
+	@Override
+	public int unSaveFeed(int f_idx, String u_id) {
+		return feedDAO.unSaveFeed(f_idx, u_id);
+	}
+
+
 
 	
 }

@@ -18,4 +18,6 @@ public interface FeedService {
 	int insertLike(LikeVO lvo);
 	int deleteLike(LikeVO lvo);
 	int countLike(int f_idx);
+	int saveFeed(int f_idx, String u_id);
+	int unSaveFeed(int f_idx, String u_id);
 }

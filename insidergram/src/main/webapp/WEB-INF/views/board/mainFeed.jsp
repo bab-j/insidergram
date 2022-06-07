@@ -246,9 +246,10 @@ document.addEventListener("scroll", debounce(e => {
 
 	<div class="container"
 		style="display: flex; flex-direction: column-reverse; align-content: space-around; flex-wrap: wrap;">
-		<%
-		List<String> list = (List<String>) request.getAttribute("likeList");
-		%>
+<%
+List<String> list = (List<String>) request.getAttribute("likeList");
+List<Integer> saveList = (List<Integer>)request.getAttribute("saveList");
+%>
 		<!-- 중간 정렬 -->
 		<c:choose>
 			<c:when test="${empty feedList }">
@@ -290,30 +291,26 @@ document.addEventListener("scroll", debounce(e => {
 						<div class="col-12 square"
 							style="display: flex; align-items: center;">
 							<div class="inner">
+							<c:if test="${feed.f_pic == null }">
+								${feed.content }
+							</c:if>
 								<!-- 중간 이미지 -->
+							<c:if test="${feed.f_pic != null }">
 								<img src="../img_src/feed/${feed.f_pic }" class="inner1">
+							</c:if>
 
 							</div>
 						</div>
 						<div class="col-12" style="margin-top: 10px; margin-bottom: 10px;">
 							<div>
 								<div class="likeCommentBox">
-									<!---------------------- 게시물 좋아요 상태 설정 -------------------------- -->
-									<c:set var="feedIdx" value="${feed.f_idx }" scope="page" />
-									<%
-									boolean like = list.contains(pageContext.getAttribute("feedIdx"));
-									pageContext.setAttribute("like", like);
-									%>
-									<!-- ------------------------------------------------------------- -->
-									<!-- 하트 버튼 -->
-									<!-- 							<a>  
-							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-									fill="currentColor" class="bi bi-suit-heart"
-									viewBox="0 0 16 16" ">
-								<path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z" />
-								</svg>
-							</a>
- -->
+<!---------------------- 게시물 좋아요 상태 설정 -------------------------- -->
+<c:set var="feedIdx" value="${feed.f_idx }" scope="page" />
+<%
+boolean like = list.contains(pageContext.getAttribute("feedIdx"));
+pageContext.setAttribute("like", like);
+%>
+<!-- ------------------------------------------------------------- -->
 									<a href="javascript:likeFeed(${feed.f_idx})"> <c:choose>
 											<c:when test="${like }">
 												<span id="fillHeart${feed.f_idx }"
@@ -454,17 +451,41 @@ document.addEventListener("scroll", debounce(e => {
 									<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
 									<label for="popup1"></label>
 								</div>
-
+<!---------------------- 게시물 즐겨찾기 상태 설정 -------------------------- -->
+<c:set var="idx" value="${feed.f_idx }" scope="page" />
+<%
+boolean save = saveList.contains(pageContext.getAttribute("idx"));
+pageContext.setAttribute("save", save);
+%>
+<!-- ------------------------------------------------------------- -->
 								<!-- 저장하기 버튼 -->
-								<a href="#" style="display: inline-flex; padding: 3px 0 0 43px;">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-										fill="currentColor" class="bi bi-bookmark-star"
-										viewBox="0 0 16 16">
-						
-						<path
-											d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
-					</svg>
-								</a>
+								<c:choose>
+								<c:when test="${save }">
+									<a href="javascript:saveFeed(${feed.f_idx })" style="display: inline-flex;">
+										<span id="fillSave${feed.f_idx }" class="material-icons-outlined" style="margin-top:0px; display: inline;">
+											bookmark
+										</span>
+
+									</a>
+									<a href="javascript:saveFeed(${feed.f_idx })" style="display: none;">
+										<span id="emptySave${feed.f_idx }" class="material-icons-outlined" style="margin-top:0px; display: none;">
+											bookmark_border
+										</span>
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a href="javascript:saveFeed(${feed.f_idx })" style="padding: 3px 0 0 38px;">
+										<span id="fillSave${feed.f_idx }" class="material-icons-outlined" style="margin-top:0px; display: none;">
+											bookmark
+										</span>
+									</a>
+									<a href="javascript:saveFeed(${feed.f_idx })" style="display: inline-flex;">
+										<span id="emptySave${feed.f_idx }" class="material-icons-outlined" style="margin-top:0px; display: inline;">
+											bookmark_border
+										</span>
+									</a>
+								</c:otherwise>
+								</c:choose>
 							</div>
 							<hr style="border: 1px solid silver;">
 							<div
@@ -472,9 +493,11 @@ document.addEventListener("scroll", debounce(e => {
 								좋아요 <span id="countLike${feed.f_idx}">${feed.countLike }</span>
 								개
 							</div>
+							<c:if test="${feed.f_pic != null }">
 							<div class="contentBox">
 								<b>${feed.u_id }</b>&nbsp;&nbsp; ${feed.content }
 							</div>
+							</c:if>
 						</div>
 					</div>
 				</c:forEach>
@@ -500,7 +523,7 @@ document.addEventListener("scroll", debounce(e => {
 	<%-- <c:set var="likeList" value="${likeList }" scope="request" /> --%>
 
 	<!-- 피드 게시물 -->
-	<div id="feedBox" class="feedBox" style="border: 1px solid black">
+<%-- 	<div id="feedBox" class="feedBox" style="border: 1px solid black">
 		<c:choose>
 			<c:when test="${empty feedList }">
 				<h3>게시물이 존재하지 않습니다.</h3>
@@ -521,7 +544,7 @@ document.addEventListener("scroll", debounce(e => {
 						<div class="contentBox" style="border: 1px solid red">
 							${feed.content }</div>
 						<div class="likeCommentBox" style="border: 1px solid red">
-							<%-- 	<!---------------------- 게시물 좋아요 상태 설정 -------------------------- -->
+								<!---------------------- 게시물 좋아요 상태 설정 -------------------------- -->
 							<c:set var="feedIdx" value="${feed.f_idx }" scope="page" />
 							<%
 								boolean like = list.contains(pageContext.getAttribute("feedIdx"));
@@ -545,17 +568,14 @@ document.addEventListener("scroll", debounce(e => {
 								</c:choose>
 							</a> 좋아요
 							<p id="countLike${feed.f_idx}">${feed.countLike }</p>
-							개 --%>
+							개
 						</div>
 					</div>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-	</div>
+	</div> --%>
 
-	<div class="moreBtn">
-		<a href="javascript:moreFeed()">더보기</a>
-	</div>
 
 </body>
 <script>
@@ -588,6 +608,30 @@ document.addEventListener("scroll", debounce(e => {
 					$('#countLike'+f_idx).html(countLike);
 				}
 				
+			},
+			error : function() {
+				alert("실패~~~");
+			}
+		});
+	}
+	
+	function saveFeed(f_idx) {
+		$.ajax("saveFeed.do", {
+			type : "get",
+			data : { "f_idx":f_idx, "u_id":'${userVO.u_id}'},
+			dataType : "text",
+			success : function(data) {
+				console.log("성공~~~");
+				console.log(data);
+				if (data == 1) {
+					console.log('즐겨찾기 처리');
+					document.getElementById("fillSave"+f_idx).style.display="inline";
+					document.getElementById("emptySave"+f_idx).style.display="none";
+				} else {
+					console.log('즐겨찾기 해제 처리');
+					document.getElementById("emptySave"+f_idx).style.display="inline";
+					document.getElementById("fillSave"+f_idx).style.display="none";
+				}
 			},
 			error : function() {
 				alert("실패~~~");

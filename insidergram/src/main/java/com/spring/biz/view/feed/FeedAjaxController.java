@@ -1,6 +1,7 @@
 package com.spring.biz.view.feed;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -31,6 +32,25 @@ public class FeedAjaxController {
 		} else {
 			result = feedService.insertLike(lvo);
 			
+		}
+		return result;
+	}
+	// 즐겨찾기 등록, 해제
+	@RequestMapping("/user/saveFeed.do")
+	public int saveFeed(int f_idx, String u_id) {
+		System.out.println("f_idx: " + f_idx + ", u_id : " + u_id);
+		List<Integer> list = new ArrayList<Integer>();
+		// 즐겨찾기 f_idx 리스트 담기
+		for (FeedVO fvo : feedService.saveFeedList(u_id)) {
+			list.add(fvo.getF_idx());
+		}
+		// 파라미터로 받아온 f_idx가 list에 담겨있냐에 따라 분기처리
+		int result = 0;
+		System.out.println("즐겨찾기 list : " + list);
+		if (list.contains(f_idx)) {
+			result = feedService.unSaveFeed(f_idx, u_id) + 5;
+		} else {
+			result = feedService.saveFeed(f_idx, u_id);
 		}
 		return result;
 	}
@@ -65,4 +85,5 @@ public class FeedAjaxController {
 		
 		return list;
 	}
+	
 }
