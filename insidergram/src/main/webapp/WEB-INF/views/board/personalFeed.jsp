@@ -464,11 +464,11 @@ function updateUser() {
 										<!-- 내용 추가 -->
 										<div class="container"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 											<div class="row square"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-												<!-- 오른쪽 -->
+												<!-- 왼쪽 -->
 												<div class="col-6"style="margin: 0px; padding: 0px; height: 549px; text-align: center; background-color: white; border: solid 1px silver;">
 													<a style="color: black;">${docPost.content }</a>
 												</div>
-												<!-- 원쪽 -->
+												<!-- 오른쪽 -->
 												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
 													<!-- 상단 닉네임 -->
 													<a href="#"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
@@ -544,29 +544,30 @@ function updateUser() {
 								<input type="checkbox" id="savepopup<%=k%>">
 								<!-- 버튼 클릭시 팝업창 오픈 -->
 								<label for="savepopup<%=k%>"> 
-									<a style="color: black;">
-										<img src="../img_src/feed/${saveFeed.f_pic }">
-									</a>
+									<img src="../img_src/feed/${saveFeed.f_pic }"class="card-img-top">
 								</label>
 								<div>
 									<div>
-										<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
-										<label for="savepopup<%=k%>"></label>
+									<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
+									<label for="savepopup<%=k%>"></label>
 										<!-- 내용 추가 -->
 										<div class="container"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 											<div class="row square"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-												<!-- 오른쪽 -->
-												<div class="col-6"style="margin: 0px; padding: 0px; height: 549px; text-align: center; background-color: white; border: solid 1px silver;">
-													<a style="color: black;"><img src="../img_src/feed/${saveFeed.f_pic }"></a>
+												<!-- 왼쪽 -->
+												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px;">
+													<img src="../img_src/feed/${saveFeed.f_pic }" class="card-img-top"style="height: 550px; border-radius: 0px;">
 												</div>
-												<!-- 원쪽 -->
+
+												<!-- 오른쪽 -->
 												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+
 													<!-- 상단 닉네임 -->
 													<a href="#"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
 														<img src="../img_src/profile/${userVO.u_pic }" alt="twbs" width="40" height="40"class="rounded-circle flex-shrink-0"style="margin-left: 20px;">
 														<div class="d-flex gap-2 w-100 justify-content-between">
 															<div>
 																<h6 class="mb-0" style="margin-left: 15px;">${userVO.u_id }</h6>
+																	${saveFeed.content }
 															</div>
 															<div href="#">
 																<svg xmlns="http://www.w3.org/2000/svg" width="16"height="16" fill="currentColor"class="bi bi-three-dots" viewBox="0 0 16 16">
@@ -575,6 +576,7 @@ function updateUser() {
 															</div>
 														</div>
 													</a>
+
 													<!-- 채팅창 -->
 													<div style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
 														<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
@@ -636,11 +638,11 @@ function updateUser() {
 											<!-- 내용 추가 -->
 											<div class="container"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 												<div class="row square"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
-													<!-- 오른쪽 -->
+													<!-- 왼쪽 -->
 													<div class="col-6"style="margin: 0px; padding: 0px; height: 549px; text-align: center; background-color: white; border: solid 1px silver;">
 														<a style="color: black;">${saveFeed.content }</a>
 													</div>
-													<!-- 원쪽 -->
+													<!-- 오른쪽 -->
 													<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
 														<!-- 상단 닉네임 -->
 														<a href="#"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
