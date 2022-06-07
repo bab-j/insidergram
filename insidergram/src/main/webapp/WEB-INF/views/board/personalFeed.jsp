@@ -100,7 +100,7 @@ li {
 </style>
 
 <style>
-input[id^="popup"]+label {
+input[id*="popup"]+label {
 	position: absolute;
 }
 
@@ -111,18 +111,18 @@ input[id^="popup"]+label {
 }
 
 /* none처리로 화면에 책크박스 안보이게 함 */
-input[id^="popup"] {
+input[id*="popup"] {
 	display: none;
 }
 
 /* 추후 버튼 형테로 만들수 있음 [padding:20px;background:#ffcd41;] */
-input[id^="popup"]+label {
+input[id*="popup"]+label {
 	display: inline-block;
 	color: #fff;
 }
 
 /* 팝업창 뛰우는 위치 지정 */
-input[id^="popup"]+label+div {
+input[id*="popup"]+label+div {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -132,7 +132,7 @@ input[id^="popup"]+label+div {
 }
 
 /* 파업창 틀 */
-input[id^="popup"]+label+div>div {
+input[id*="popup"]+label+div>div {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -144,7 +144,7 @@ input[id^="popup"]+label+div>div {
 }
 
 /* 상단 닫기버튼 */
-input[id^="popup"]+label+div>div>label {
+input[id*="popup"]+label+div>div>label {
 	position: absolute;
 	top: 0%;
 	right: 0%;
@@ -156,7 +156,7 @@ input[id^="popup"]+label+div>div>label {
 }
 
 /* 여백 클릭시 닫기 처리 */
-input[id^="popup"]+label+div>label {
+input[id*="popup"]+label+div>label {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -172,13 +172,13 @@ input[id^="popup"]+label+div>label {
 		*/
 
 /* 팝업창 나타날 때 자연스럽게 뜨도록 처리함(애니메이션 효과) */
-input[id^="popup"]+label+div {
+input[id*="popup"]+label+div {
 	opacity: 0;
 	visibility: hidden;
 	transition: all 0.5s;
 }
 
-input[id^="popup"]:checked+label+div {
+input[id*="popup"]:checked+label+div {
 	opacity: 1;
 	visibility: visible;
 }
