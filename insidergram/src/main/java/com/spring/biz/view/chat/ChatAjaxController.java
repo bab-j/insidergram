@@ -3,9 +3,12 @@ package com.spring.biz.view.chat;
 import java.util.List;
 
 import javax.naming.spi.DirStateFactory.Result;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -64,4 +67,5 @@ public class ChatAjaxController {
 			return chatService.getChatHeaderList(my_id);
 		}
 	}
+	
 }

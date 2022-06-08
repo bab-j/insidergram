@@ -35,4 +35,21 @@ public class ChatController {
 		return "board/dm_test";
 	}
 	
+	@RequestMapping("/chat/feedToDm.do")
+	public String feedToDm(String my_id, String target_id, Model mo) {
+		System.out.println("u_id:>>" + my_id + ", tid:>>" + target_id);
+		Integer h_idx;
+		h_idx = chatService.findChatHeader(my_id, target_id);
+		if (h_idx != null) {
+			mo.addAttribute("chatHeaderList", chatService.getChatHeaderList(my_id)); 
+			
+		} else {
+			chatService.createChat(my_id, target_id);
+			h_idx = chatService.findChatHeader(my_id, target_id);
+			mo.addAttribute("chatHeaderList", chatService.getChatHeaderList(my_id));
+			
+		}
+		mo.addAttribute("h_idx", h_idx);
+		return "board/dm_test";
+	}
 }

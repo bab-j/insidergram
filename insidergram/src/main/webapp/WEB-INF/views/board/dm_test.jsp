@@ -14,9 +14,11 @@ html, body {
 	width: 100%;
 	height: 100%;
 }
-.chat_header{
+
+.chat_header {
 	margin-bottom: 10px;
 }
+
 .chat_list {
 	border: 1px solid silver;
 	width: 500px;
@@ -28,7 +30,7 @@ html, body {
 }
 
 .my_chat_message {
-	height: 94%;
+	height: 85%;
 	overflow-y: auto;
 	direction: ltr;
 }
@@ -195,14 +197,12 @@ input[id*="popup"]:checked+label+div {
 		<div class="container h-100 pt-3 pb-3 " style="width: 1250px;">
 			<div class="row h-100 pb-5">
 				<div
-					class="shadow-sm p-3 mb-5 bg-body rounded col-4 border overflow-auto">
-					<div style="height: 60px; margin-bottom: 10px;">
+					class="shadow-sm mb-5 bg-body rounded col-4 border" style="padding:0; overflow-y:auto; overflow-x:hidden;">
+					<div style="height: 59px;">
 						<!-- 팝업창 여기부터 -->
 						<input type="checkbox" id="popup">
 						<!-- 버튼 클릭시 팝업창 오픈 -->
-						<label for="popup">
-							+메세지쓰기
-						</label>
+						<label for="popup"> +메세지쓰기 </label>
 						<div>
 							<div>
 								<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
@@ -218,7 +218,7 @@ input[id*="popup"]:checked+label+div {
 						</div>
 					</div>
 					<!-- 여기까지  -->
-					<div id="chatHeaderList">
+					<div id="chatHeaderList" class="border-top" style="overflow-x:hidden; overflow-y:auto; padding:10px 10px 0 10px;">
 						<c:forEach var="vo" items="${chatHeaderList }">
 							<c:if test="${vo.from_id eq userVO.u_id }">
 								<a id="hId${vo.h_idx }" class="row d-flex chat_header"
@@ -226,7 +226,7 @@ input[id*="popup"]:checked+label+div {
 									<div class="col-2">
 										<div class="box">
 											<div class="img_box">
-												<img class="img_size " src="../img_src/profile/${vo.u_pic }">
+												<img id="img${vo.h_idx }" class="img_size" src="../img_src/profile/${vo.u_pic }">
 											</div>
 										</div>
 									</div>
@@ -253,7 +253,7 @@ input[id*="popup"]:checked+label+div {
 									<div class="col-2">
 										<div class="box">
 											<div class="img_box">
-												<img class="img_size " src="../img_src/profile/${vo.u_pic }">
+												<img id="img${vo.h_idx }" class="img_size " src="../img_src/profile/${vo.u_pic }">
 											</div>
 										</div>
 									</div>
@@ -278,8 +278,8 @@ input[id*="popup"]:checked+label+div {
 					</div>
 				</div>
 				<div
-					class="shadow-sm p-3 mb-5 bg-body rounded col-8 h-100 container border">
-					<div class="container h-100 position-relative" id="chatMessageView">
+					class="shadow-sm p-0 mb-5 bg-body rounded col-8 h-100 border">
+					<div class="h-100 position-relative" id="chatMessageView">
 						<h1>채팅하세요.</h1>
 					</div>
 				</div>
@@ -288,15 +288,24 @@ input[id*="popup"]:checked+label+div {
 	</div>
 
 	<script>
+		$(window).on('load', function() {
+			var from_hid = '${h_idx}';
+			console.log('window.onload>>' + from_hid);
+			if (from_hid == '') {
+
+			} else {
+				getChatMessageList(from_hid, '${userVO.u_id}');
+			}
+		});
 		var nowChatHeaderIdx = 0;
 
 		function getChatMessageList(h_idx, u_id) {
 			nowChatHeaderIdx = h_idx;
-			alert("getChatMessageList() 실행~~~ h_idx:" + h_idx + ", u_id:"
-					+ u_id);
 			var id = "u_id" + h_idx;
 			document.getElementById(id).style.fontWeight = "normal";
-
+			
+			var imgSrc = document.getElementById("img" + h_idx).src;
+			var target = document.getElementById("u_id" + h_idx).innerText;
 			$
 					.ajax(
 							"getChatMessageList.do",
@@ -305,12 +314,21 @@ input[id*="popup"]:checked+label+div {
 								data : "h_idx=" + h_idx,
 								dataType : "json",
 								success : function(data) {
-									alert("성공~~~");
 									console.log(data);
 
 									var my_id = u_id;
 									let dispHtml = "";
-									dispHtml += "<div class=\"my_chat_message\" id=\"chatMessageContainer\">";
+									dispHtml += "<a href=\"../user/otherFeed.do?u_id=" + target + "\">"
+									dispHtml += "<div style=\"height:60px;\" class=\"d-flex align-items-center border-bottom\">"
+									dispHtml += "<div style=\"height:40px; width:40px; overflow:hidden; border-radius:50%; margin-left:10px;\" class=\"border\">"
+									dispHtml += "<img src=\"" + imgSrc + "\" class=\"img_size\">"
+									dispHtml += "</div>"
+									dispHtml += "<div style=\"font-weight:bolder; margin-left:10px;\">"
+									dispHtml += target;
+									dispHtml += "</div>"
+									dispHtml += "</div>"
+									dispHtml += "</a>"
+									dispHtml += "<div class=\"my_chat_message\" id=\"chatMessageContainer\" style=\"padding:10px 10px 0 10px\">";
 									$
 											.each(
 													data,
@@ -320,19 +338,23 @@ input[id*="popup"]:checked+label+div {
 															dispHtml += "<div class=\"chat_content_end\">";
 															dispHtml += obj.content;
 															dispHtml += "</div>";
+															dispHtml += "<a href=\"../user/otherFeed.do?u_id=" + obj.u_id +"\">";
 															dispHtml += "<div class=\"box\">";
 															dispHtml += "<div class=\"img_box\">";
 															dispHtml += "<img class=\"img_size\" src=\"../img_src/profile/"+ obj.u_pic +"\">"
 															dispHtml += "</div>";
 															dispHtml += "</div>";
+															dispHtml += "</a>";
 															dispHtml += "</div>"
 														} else {
 															dispHtml += "<div class=\"d-flex justify-content-start\" style=\"margin-bottom:10px;\">";
+															dispHtml += "<a href=\"../user/otherFeed.do?u_id=" + obj.u_id +"\">";
 															dispHtml += "<div class=\"box\">";
 															dispHtml += "<div class=\"img_box\">";
 															dispHtml += "<img class=\"img_size \" src=\"../img_src/profile/" + obj.u_pic + "\">"
 															dispHtml += "</div>";
 															dispHtml += "</div>";
+															dispHtml += "</a>";
 															dispHtml += "<div class=\"chat_content_start\">";
 															dispHtml += obj.content;
 															dispHtml += "</div>";
@@ -340,7 +362,7 @@ input[id*="popup"]:checked+label+div {
 														}
 													});
 									dispHtml += "</div>";
-									dispHtml += "<div class=\"row position-absolute bottom-0 start-0\" style=\"width: 100%;\">";
+									dispHtml += "<div class=\"row position-absolute bottom-0 start-0\" style=\"width: 100%; padding:0 10px 10px 10px\">";
 									dispHtml += "<div class=\"col-11\">";
 									dispHtml += "<input class=\"form-control\" type=\"text\" name=\"content\" id=\"content\">";
 									dispHtml += "</div>";
@@ -352,24 +374,21 @@ input[id*="popup"]:checked+label+div {
 													$('#chatMessageContainer')[0].scrollHeight);
 								},
 								error : function() {
-									alert("실패~~~");
 								}
 							});
 		}
 
 		function insertChatMessage(u_id, u_name, u_pic) {
 			let content = $("#content").val();
-			alert("insertChatMessage() 실행~~~nowChatHeaderIdx: "
-					+ nowChatHeaderIdx + ", content: " + content);
-
 			var sid = "subject" + nowChatHeaderIdx;
 			var hId;
 			hId = "hId" + nowChatHeaderIdx;
 
 			document.getElementById(sid).innerHTML = content;
 			var header = document.getElementById("chatHeaderList");
-			header.insertBefore(document.getElementById(hId),
-					header.firstChild);
+			header
+					.insertBefore(document.getElementById(hId),
+							header.firstChild);
 
 			$
 					.ajax(
@@ -385,7 +404,6 @@ input[id*="popup"]:checked+label+div {
 								},
 								dataType : "json",
 								success : function(data) {
-									alert("성공~~~");
 									console.log(data);
 									var dispHtml = "";
 									$
@@ -397,19 +415,23 @@ input[id*="popup"]:checked+label+div {
 															dispHtml += "<div class=\"chat_content_end\">";
 															dispHtml += obj.content;
 															dispHtml += "</div>";
+															dispHtml += "<a href=\"../user/otherFeed.do?u_id=" + obj.u_id +"\">";
 															dispHtml += "<div class=\"box\">";
 															dispHtml += "<div class=\"img_box\">";
 															dispHtml += "<img class=\"img_size\" src=\"../img_src/profile/"+ obj.u_pic +"\">"
 															dispHtml += "</div>";
 															dispHtml += "</div>";
+															dispHtml += "</a>";
 															dispHtml += "</div>"
 														} else {
 															dispHtml += "<div class=\"d-flex justify-content-start\" style=\"margin-bottom:10px;\">";
+															dispHtml += "<a href=\"../user/otherFeed.do?u_id=" + obj.u_id +"\">";
 															dispHtml += "<div class=\"box\">";
 															dispHtml += "<div class=\"img_box\">";
 															dispHtml += "<img class=\"img_size \" src=\"../img_src/profile/" + obj.u_pic + "\">"
 															dispHtml += "</div>";
 															dispHtml += "</div>";
+															dispHtml += "</a>";
 															dispHtml += "<div class=\"chat_content_start\">";
 															dispHtml += obj.content;
 															dispHtml += "</div>";
@@ -423,7 +445,6 @@ input[id*="popup"]:checked+label+div {
 									$("#content").val("");
 								},
 								error : function() {
-									alert("실패~~~");
 								}
 							});
 		}
@@ -473,7 +494,6 @@ input[id*="popup"]:checked+label+div {
 		}
 
 		function createChat(my_id, target_id) {
-			alert("openChatHeader()");
 			$
 					.ajax(
 							"createChat.do",
@@ -485,7 +505,6 @@ input[id*="popup"]:checked+label+div {
 								},
 								dataType : "json",
 								success : function(data) {
-									alert("성공~~~");
 									console.log(data);
 
 									let dispHtml = '';
@@ -493,69 +512,96 @@ input[id*="popup"]:checked+label+div {
 											.each(
 													data,
 													function(index, obj) {
-														if(obj.from_id == target_id) {
+														if (obj.from_id == target_id) {
 															nowChatHeader = obj.h_idx;
-															console.log("nowChatHeader:" + nowChatHeader);
-														} else if(obj.to_id == target_id) {
+															console
+																	.log("nowChatHeader:"
+																			+ nowChatHeader);
+														} else if (obj.to_id == target_id) {
 															nowChatHeader = obj.h_idx;
-															console.log("nowChatHeader:" + nowChatHeader);
+															console
+																	.log("nowChatHeader:"
+																			+ nowChatHeader);
 														}
-														if(obj.from_id == '${userVO.u_id}') {
-															
-															dispHtml += '<a id="hId'+ obj.h_idx + '" class="row d-flex chat_header" href="javascript:getChatMessageList('+ obj.h_idx +', \'${userVO.u_id }\')">';
+														if (obj.from_id == '${userVO.u_id}') {
+
+															dispHtml += '<a id="hId'
+																	+ obj.h_idx
+																	+ '" class="row d-flex chat_header" href="javascript:getChatMessageList('
+																	+ obj.h_idx
+																	+ ', \'${userVO.u_id }\')">';
 															dispHtml += '<div class="col-2">';
 															dispHtml += '<div class="box">';
 															dispHtml += '<div class="img_box">';
-															dispHtml += '<img class="img_size " src="../img_src/profile/' + obj.u_pic +'">';
+															dispHtml += '<img id="img'+ obj.h_idx + '" class="img_size " src="../img_src/profile/' + obj.u_pic +'">';
 															dispHtml += '</div>';
 															dispHtml += '</div>';
 															dispHtml += '</div>';
 															dispHtml += '<div class="col-8" style="text-overflow: ellipsis;">';
-															if(obj.from_status == '0') {
+															if (obj.from_status == '0') {
 																dispHtml += '<div>';
-																dispHtml += '<p id="u_id' + obj.h_idx + '" style="font-weight: bolder; margin: 0;">'+ obj.to_id + '</p>';
-																dispHtml += '<small id="subject'+ obj.h_idx +'" class="sm_id">' + obj.subject + '</small>';
+																dispHtml += '<p id="u_id' + obj.h_idx + '" style="font-weight: bolder; margin: 0;">'
+																		+ obj.to_id
+																		+ '</p>';
+																dispHtml += '<small id="subject'+ obj.h_idx +'" class="sm_id">'
+																		+ obj.subject
+																		+ '</small>';
 																dispHtml += '</div>';
 															} else {
 																dispHtml += '<div>';
-																dispHtml += '<p id="u_id' + obj.h_idx + '" style="margin: 0;">' + obj.to_id + '</p>';
-																dispHtml += '<small id="subject' + obj.h_idx +'" class="sm_id">' + obj.subject + '</small>';
+																dispHtml += '<p id="u_id' + obj.h_idx + '" style="margin: 0;">'
+																		+ obj.to_id
+																		+ '</p>';
+																dispHtml += '<small id="subject' + obj.h_idx +'" class="sm_id">'
+																		+ obj.subject
+																		+ '</small>';
 																dispHtml += '</div>';
 															}
 															dispHtml += '</div> <small class="col-2">1분전</small>';
 															dispHtml += '</a>';
 														} else {
-															dispHtml += '<a id="hId'+ obj.h_idx + '" class="row d-flex chat_header"';
-															dispHtml += 'href="javascript:getChatMessageList(' + obj.h_idx + ', \'${userVO.u_id }\')">';
+															dispHtml += '<a id="hId'
+																	+ obj.h_idx
+																	+ '" class="row d-flex chat_header"';
+															dispHtml += 'href="javascript:getChatMessageList('
+																	+ obj.h_idx
+																	+ ', \'${userVO.u_id }\')">';
 															dispHtml += '<div class="col-2">';
 															dispHtml += '<div class="box">';
 															dispHtml += '<div class="img_box">';
-															dispHtml += '<img class="img_size " src="../img_src/profile/' + obj.u_pic + '">';
+															dispHtml += '<img id="img'+ obj.h_idx + '" class="img_size " src="../img_src/profile/' + obj.u_pic + '">';
 															dispHtml += '</div>';
 															dispHtml += '</div>';
 															dispHtml += '</div>';
 															dispHtml += '<div class="col-8" style="text-overflow: ellipsis;">';
 															if (obj.to_status == '0') {
 																dispHtml += '<div>';
-																dispHtml += '<p id="u_id' + obj.h_idx + '" style="font-weight: bolder; margin: 0;">' + obj.from_id +'</p>';
-																dispHtml += '<small id="subject' + obj.h_idx +'" class="sm_id">' + obj.subject + '</small>';
+																dispHtml += '<p id="u_id' + obj.h_idx + '" style="font-weight: bolder; margin: 0;">'
+																		+ obj.from_id
+																		+ '</p>';
+																dispHtml += '<small id="subject' + obj.h_idx +'" class="sm_id">'
+																		+ obj.subject
+																		+ '</small>';
 																dispHtml += '</div>';
 															} else {
 																dispHtml += '<div>';
-																dispHtml += '<p id="u_id' + obj.h_idx + '" style="margin: 0;">' + obj.from_id +'</p>';
-																dispHtml += '<small id="subject' + obj.h_idx +'" class="sm_id">' + obj.subject + '</small>';
+																dispHtml += '<p id="u_id' + obj.h_idx + '" style="margin: 0;">'
+																		+ obj.from_id
+																		+ '</p>';
+																dispHtml += '<small id="subject' + obj.h_idx +'" class="sm_id">'
+																		+ obj.subject
+																		+ '</small>';
 																dispHtml += '</div>';
 															}
 															dispHtml += '</div> <small class="col-2">2분전</small>';
 															dispHtml += '</a>';
 														}
 													});
-									
+
 									$("#chatHeaderList").html(dispHtml);
 									getChatMessageList(nowChatHeader, my_id);
 								},
 								error : function() {
-									alert("실패~~~");
 								}
 							});
 			$("#close").click();
