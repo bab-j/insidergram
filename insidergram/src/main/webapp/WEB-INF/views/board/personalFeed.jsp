@@ -364,18 +364,18 @@ function updateUser() {
 								<!-- 시작 -->
 								<input type="checkbox" id="popup<%=i%>">
 								<!-- 버튼 클릭시 팝업창 오픈 -->
-								<label for="popup<%=i%>"> 
+								<label for="popup<%=i%>" style="width:100%; height:100%"> 
 									<img src="../img_src/feed/${picList.f_pic }"class="card-img-top">
 								</label>
 								<div>
 									<div>
 									<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
-									<label for="popup<%=i%>"></label>
+									<label  for="popup<%=i%>"></label>
 										<!-- 내용 추가 -->
 										<div class="container"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 											<div class="row square"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 												<!-- 왼쪽 -->
-												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px;">
+												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; background-color:white;">
 													<img src="../img_src/feed/${picList.f_pic }" class="card-img-top"style="height: 550px; border-radius: 0px;">
 												</div>
 
@@ -383,7 +383,7 @@ function updateUser() {
 												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
 
 													<!-- 상단 닉네임 -->
-													<a href="#"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
+													<a href="/otherFeed.do" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
 														<img src="../img_src/profile/${userVO.u_pic }" alt="twbs" width="40" height="40"class="rounded-circle flex-shrink-0"style="margin-left: 20px;">
 														<div class="d-flex gap-2 w-100 justify-content-between">
 															<div>
@@ -399,7 +399,7 @@ function updateUser() {
 													</a>
 													<!-- 채팅창(댓글 구현하면 수정) -->
 													<div style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
-														<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+														<a href="/otherFeed.do"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
 															<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
 															<div class="d-flex gap-2 w-100 justify-content-between">
 																<div>
@@ -409,7 +409,7 @@ function updateUser() {
 																<small class="opacity-50 text-nowrap">3분전</small>
 															</div>
 														</a> 
-														<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+														<a href="/otherFeed.do"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
 															<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
 															<div class="d-flex gap-2 w-100 justify-content-between">
 																<div>
@@ -471,7 +471,7 @@ function updateUser() {
 												<!-- 오른쪽 -->
 												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
 													<!-- 상단 닉네임 -->
-													<a href="#"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
+													<a href="/otherFeed.do"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
 														<img src="../img_src/profile/${userVO.u_pic }" alt="twbs" width="40" height="40"class="rounded-circle flex-shrink-0"style="margin-left: 20px;">
 														<div class="d-flex gap-2 w-100 justify-content-between">
 															<div>
@@ -487,7 +487,7 @@ function updateUser() {
 	
 													<!-- 채팅창 -->
 													<div style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
-														<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+														<a href="/otherFeed.do"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
 															<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
 															<div class="d-flex gap-2 w-100 justify-content-between">
 																<div>
@@ -497,7 +497,7 @@ function updateUser() {
 																<small class="opacity-50 text-nowrap">3분전</small>
 															</div>
 														</a> 
-														<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+														<a href="/otherFeed.do"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
 															<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
 															<div class="d-flex gap-2 w-100 justify-content-between">
 																<div>
@@ -562,7 +562,7 @@ function updateUser() {
 												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
 
 													<!-- 상단 닉네임 -->
-													<a href="#"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
+													<a href="/otherFeed.do"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
 														<img src="../img_src/profile/${saveFeed.u_pic }" alt="twbs" width="40" height="40"class="rounded-circle flex-shrink-0"style="margin-left: 20px;">
 														<div class="d-flex gap-2 w-100 justify-content-between">
 															<div>
@@ -579,7 +579,7 @@ function updateUser() {
 
 													<!-- 채팅창 -->
 													<div style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
-														<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+														<a href="/otherFeed.do"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
 															<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
 															<div class="d-flex gap-2 w-100 justify-content-between">
 																<div>
@@ -589,7 +589,7 @@ function updateUser() {
 																<small class="opacity-50 text-nowrap">3분전</small>
 															</div>
 														</a> 
-														<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+														<a href="/otherFeed.do"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
 															<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
 															<div class="d-flex gap-2 w-100 justify-content-between">
 																<div>
@@ -645,7 +645,7 @@ function updateUser() {
 													<!-- 오른쪽 -->
 													<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
 														<!-- 상단 닉네임 -->
-														<a href="#"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
+														<a href="/otherFeed.do"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
 															<img src="../img_src/profile/${saveFeed.u_pic }" alt="twbs" width="40" height="40"class="rounded-circle flex-shrink-0"style="margin-left: 20px;">
 															<div class="d-flex gap-2 w-100 justify-content-between">
 																<div>
@@ -660,7 +660,7 @@ function updateUser() {
 														</a>
 														<!-- 채팅창 -->
 														<div style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
-															<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+															<a href="/otherFeed.do"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
 																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
 																<div class="d-flex gap-2 w-100 justify-content-between">
 																	<div>
@@ -670,7 +670,7 @@ function updateUser() {
 																	<small class="opacity-50 text-nowrap">3분전</small>
 																</div>
 															</a> 
-															<a href="#"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
+															<a href="/otherFeed.do"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
 																<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
 																<div class="d-flex gap-2 w-100 justify-content-between">
 																	<div>
