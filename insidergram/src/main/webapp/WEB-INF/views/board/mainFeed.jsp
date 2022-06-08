@@ -264,7 +264,7 @@ List<Integer> saveList = (List<Integer>)request.getAttribute("saveList");
 						<!-- 틀 -->
  
 						<div class="col-12">
-							<a href="getIndiFeed.do?u_id=${feed.u_id }"
+							<a href="otherFeed.do?u_id=${feed.u_id }"
 								class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
 								style="background-color: white;"> <img
 								src="../img_src/profile/${feed.u_pic } " width="45"
@@ -458,7 +458,7 @@ boolean save = saveList.contains(pageContext.getAttribute("idx"));
 pageContext.setAttribute("save", save);
 %>
 <!-- ------------------------------------------------------------- -->
-								<!-- 저장하기 버튼 -->
+								<!------------------------------------ 저장하기 버튼 ------------------------------------>
 								<c:choose>
 								<c:when test="${save }">
 									<a href="javascript:saveFeed(${feed.f_idx })" style="display: inline-flex; padding: 3px 0 0 38px;">
@@ -486,6 +486,7 @@ pageContext.setAttribute("save", save);
 									</a>
 								</c:otherwise>
 								</c:choose>
+								<!-- ---------------------------------------------------------------------------- -->
 							</div>
 							<hr style="border: 1px solid silver;">
 							<div
@@ -506,87 +507,14 @@ pageContext.setAttribute("save", save);
 	</div>
 
 
-
-
-
-
-
-
-
-
-	<%-- ${userVO }
-	<!-- session : 로그인한 유저 정보 -->
-	${feedList } --%>
-	<!-- mo : 팔로워한 게시물 리스트 -->
-	<%-- ${likeList } --%>
-	<!-- mo : 좋아요한 계시물 번호 리스트 -->
-	<%-- <c:set var="likeList" value="${likeList }" scope="request" /> --%>
-
-	<!-- 피드 게시물 -->
-<%-- 	<div id="feedBox" class="feedBox" style="border: 1px solid black">
-		<c:choose>
-			<c:when test="${empty feedList }">
-				<h3>게시물이 존재하지 않습니다.</h3>
-			</c:when>
-			<c:otherwise>
-
-				<c:forEach var="feed" items="${feedList }">
-					<!-- ================== 피드 게시물 1개(프사 ~ 댓글) ===================== -->
-					<div class="oneFeed" style="border: 1px solid black">
-						<!-- 프사, id(클릭 시 해당 계정 페이지로 이동) -->
-						<span class=profileIMG style="border: 1px solid orange"> <a
-							href="getIndiFeed.do?u_id=${feed.u_id }"><img
-								src="${feed.u_pic }"> ${feed.u_id }</a>
-						</span>
-						<div class="feedIMG" style="border: 1px solid blue">
-							<img src="../img_src/feed/${feed.f_pic }">
-						</div>
-						<div class="contentBox" style="border: 1px solid red">
-							${feed.content }</div>
-						<div class="likeCommentBox" style="border: 1px solid red">
-								<!---------------------- 게시물 좋아요 상태 설정 -------------------------- -->
-							<c:set var="feedIdx" value="${feed.f_idx }" scope="page" />
-							<%
-								boolean like = list.contains(pageContext.getAttribute("feedIdx"));
-							pageContext.setAttribute("like", like);
-							%>
-							<!-- ------------------------------------------------------------- -->
-							<a href="javascript:likeFeed(${feed.f_idx})"> <c:choose>
-									<c:when test="${like }">
-										<span id="fillHeart${feed.f_idx }"
-											class="material-symbols-outlined">favorite</span>
-										<span id="emptyHeart${feed.f_idx }"
-											class="material-icons-outlined"
-											style="display: none; margin-top: 0px;">favorite_border</span>
-									</c:when>
-									<c:otherwise>
-										<span id="fillHeart${feed.f_idx }"
-											class="material-symbols-outlined" style="display: none;">favorite</span>
-										<span id="emptyHeart${feed.f_idx }"
-											class="material-icons-outlined" style="margin-top: 0px;">favorite_border</span>
-									</c:otherwise>
-								</c:choose>
-							</a> 좋아요
-							<p id="countLike${feed.f_idx}">${feed.countLike }</p>
-							개
-						</div>
-					</div>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-	</div> --%>
-
-
 </body>
 <script>
 	
 	function likeFeed(f_idx) {
 		let fIdx = f_idx
 		let uId = "${ userVO.u_id }"
-		console.log("likeFeed() 온클릭 9 실행~~~");
-		console.log("fIdx : " + fIdx + ", uID : " + uId);
-		
 		var countLike = Number($('#countLike'+f_idx).html()) +0;
+		
 		$.ajax("likeFeed.do", {
 			type : "get",
 			data : { "f_idx":fIdx, "u_id":uId },

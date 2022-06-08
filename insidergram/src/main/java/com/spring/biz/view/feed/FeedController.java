@@ -3,28 +3,23 @@ package com.spring.biz.view.feed;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartRequest;
 
 import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
 import com.spring.biz.feed.Paging;
 import com.spring.biz.follower.FollowerVO;
+import com.spring.biz.user.UserService;
 import com.spring.biz.user.UserVO;
 
 
@@ -33,6 +28,8 @@ import com.spring.biz.user.UserVO;
 	public class FeedController {
 		@Autowired
 		private FeedService feedService;
+		@Autowired
+		private UserService userService;
 		
 		public FeedController() {
 			System.out.println("============= FeedController() 객체 생성 ==================");
@@ -72,7 +69,7 @@ import com.spring.biz.user.UserVO;
 			
 			return "board/mainFeed";
 		}
-		//내 피드 상세페이지 띄우기
+		//내 피드 띄우기
 		@RequestMapping("/getMyFeed.do")
 		public String getMyFeed(HttpSession session, Model mo) {
 			UserVO uvo = (UserVO)session.getAttribute("userVO");
@@ -98,6 +95,38 @@ import com.spring.biz.user.UserVO;
 			mo.addAttribute("followerList", followerList);
 			mo.addAttribute("followingList", followingList);
 			return "board/personalFeed";
+		}
+		//다른 사람 피드 띄우기
+		@RequestMapping("/otherFeed.do")
+		public String getOtherFeed(HttpServletRequest req, HttpSession session, Model mo) {
+			UserVO uvo = (UserVO)session.getAttribute("userVO");
+			String u_id = (String) req.getParameter("u_id");
+			System.out.println("uvo.getU_id() : " + uvo.getU_id() + ", u_id : " + u_id);
+			
+			if (u_id.equals(uvo.getU_id())) {
+				return "redirect:getMyFeed.do";
+			}
+			List<FeedVO> feedList = feedService.getMyFeed(u_id); // 전체 게시물 리스트
+			List<FeedVO> picPost = new ArrayList<FeedVO>(); // 사진 게시물 리스트
+			List<FeedVO> docPost = new ArrayList<FeedVO>(); // 글 게시물 리스트
+			List<FeedVO> saveFeed = feedService.saveFeedList(u_id); // 즐겨찾기 게시물 리스트
+			for(FeedVO fvo : feedList) {
+				if (fvo.getF_pic() == null) {
+					docPost.add(fvo);
+				} else {
+					picPost.add(fvo);
+				}
+			}
+			List<UserVO> userInfo = userService.searchUser(u_id); // 해당 유저 정보
+			List<FollowerVO> followingList = feedService.getFollowingList(u_id); // 팔로잉 정보
+			List<FollowerVO> followerList = feedService.getFollowerList(u_id); // 팔로워 정보
+			mo.addAttribute("saveFeed", saveFeed);
+			mo.addAttribute("picPost", picPost);
+			mo.addAttribute("docPost", docPost);
+			mo.addAttribute("userInfo", userInfo);
+			mo.addAttribute("followerList", followerList);
+			mo.addAttribute("followingList", followingList);
+			return "board/otherFeed";
 		}
 		//게시물 등록
 		@RequestMapping("insertFeed.do")
@@ -129,7 +158,6 @@ import com.spring.biz.user.UserVO;
 				}
 				int result = feedService.insertFeed(vo);
 				System.out.println(">>>>>>>최종 insert : " + result);
-			
 			return "redirect:getFeedList.do";
 		}
 		
