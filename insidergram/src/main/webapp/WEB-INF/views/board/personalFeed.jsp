@@ -273,7 +273,7 @@ function updateUser() {
 	style="background-color: #F5F5F5; display: flex; justify-content: space-around; align-content: space-around; flex-wrap: wrap;">
 
 
-	${userVO }
+	<%-- ${userVO }
 	<br> 
 	글 게시물 갯수 : ${docPost.size() }
 	<br>
@@ -283,7 +283,7 @@ function updateUser() {
 	<br>
 	팔로잉 : ${followingList }
 	<br>
-	팔로워 : ${followerList }
+	팔로워 : ${followerList } --%>
 	<%
 		List<FeedVO> list = (List<FeedVO>) request.getAttribute("myFeedList");
 	%>
