@@ -29,7 +29,7 @@ public class ChatController {
 	public String getChatHeaderList(Model mo, HttpSession session) {
 		UserVO vo = (UserVO)session.getAttribute("userVO");
 		System.out.println("userVOOOOOOOOOOOOOO"+vo.toString());
-		List<ChatHeaderVO> list = chatService.getChatHeaderList(vo);
+		List<ChatHeaderVO> list = chatService.getChatHeaderList(vo.getU_id());
 		System.out.println("listtttttttttttttttttt"+list);
 		mo.addAttribute("chatHeaderList", list);
 		return "board/dm_test";

@@ -14,7 +14,9 @@ html, body {
 	width: 100%;
 	height: 100%;
 }
-
+.chat_header{
+	margin-bottom: 10px;
+}
 .chat_list {
 	border: 1px solid silver;
 	width: 500px;
@@ -190,17 +192,16 @@ input[id*="popup"]:checked+label+div {
 	<div class="h-100 w-100 position-fixed"
 		style="background-color: #F5F5F5; margin-top: 50px;">
 
-		<div class="container h-100 pt-3 pb-3 " style="width: 1250px;""">
+		<div class="container h-100 pt-3 pb-3 " style="width: 1250px;">
 			<div class="row h-100 pb-5">
 				<div
-					class="shadow-sm p-3 mb-5 bg-body rounded col-4 container border overflow-auto"
-					id="chatHeaderList">
+					class="shadow-sm p-3 mb-5 bg-body rounded col-4 border overflow-auto">
 					<div style="height: 60px; margin-bottom: 10px;">
 						<!-- 팝업창 여기부터 -->
 						<input type="checkbox" id="popup">
 						<!-- 버튼 클릭시 팝업창 오픈 -->
 						<label for="popup">
-							<div class="border-bottom">+메세지쓰기</div>
+							+메세지쓰기
 						</label>
 						<div>
 							<div>
@@ -209,71 +210,72 @@ input[id*="popup"]:checked+label+div {
 								<!-- 내용 추가 -->
 								<input class="form-control rounded-3" type="text" name=u_id
 									id="searchBox" placeholder="검색" onkeyup="searchID()" required>
-								<div id="headerBox" class="d-flex p-3 row" style="height:87%; overflow: auto;">
-								검색결과
-								</div>
+								<div id="headerBox" class="d-flex p-3 row"
+									style="height: 87%; overflow: auto;">검색결과</div>
 							</div>
 							<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
 							<label for="popup" id="close"></label>
 						</div>
 					</div>
 					<!-- 여기까지  -->
-					<c:forEach var="vo" items="${chatHeaderList }">
-						<c:if test="${vo.from_id eq userVO.u_id }">
-							<a id="hId${vo.h_idx }" class="row d-flex"
-								href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
-								<div class="col-2">
-									<div class="box">
-										<div class="img_box">
-											<img class="img_size " src="../img_src/profile/${vo.u_pic }">
+					<div id="chatHeaderList">
+						<c:forEach var="vo" items="${chatHeaderList }">
+							<c:if test="${vo.from_id eq userVO.u_id }">
+								<a id="hId${vo.h_idx }" class="row d-flex chat_header"
+									href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
+									<div class="col-2">
+										<div class="box">
+											<div class="img_box">
+												<img class="img_size " src="../img_src/profile/${vo.u_pic }">
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="col-8" style="text-overflow: ellipsis;">
-									<c:if test="${ vo.from_status eq '0'}">
-										<div>
-											<p id="u_id${vo.h_idx }"
-												style="font-weight: bolder; margin: 0;">${vo.to_id }</p>
-											<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
-										</div>
-									</c:if>
-									<c:if test="${vo.from_status ne '0' }">
-										<div>
-											<p id="u_id${vo.h_idx }" style="margin: 0;">${vo.to_id }</p>
-											<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
-										</div>
-									</c:if>
-								</div> <small class="col-2">1분전</small>
-							</a>
-						</c:if>
-						<c:if test="${vo.from_id ne userVO.u_id }">
-							<a id="hId${vo.h_idx }" class="row d-flex"
-								href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
-								<div class="col-2">
-									<div class="box">
-										<div class="img_box">
-											<img class="img_size " src="../img_src/profile/${vo.u_pic }">
+									<div class="col-8" style="text-overflow: ellipsis;">
+										<c:if test="${ vo.from_status eq '0'}">
+											<div>
+												<p id="u_id${vo.h_idx }"
+													style="font-weight: bolder; margin: 0;">${vo.to_id }</p>
+												<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
+											</div>
+										</c:if>
+										<c:if test="${vo.from_status ne '0' }">
+											<div>
+												<p id="u_id${vo.h_idx }" style="margin: 0;">${vo.to_id }</p>
+												<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
+											</div>
+										</c:if>
+									</div> <small class="col-2">1분전</small>
+								</a>
+							</c:if>
+							<c:if test="${vo.from_id ne userVO.u_id }">
+								<a id="hId${vo.h_idx }" class="row d-flex chat_header"
+									href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
+									<div class="col-2">
+										<div class="box">
+											<div class="img_box">
+												<img class="img_size " src="../img_src/profile/${vo.u_pic }">
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="col-8" style="text-overflow: ellipsis;">
-									<c:if test="${ vo.to_status eq '0'}">
-										<div>
-											<p id="u_id${vo.h_idx }"
-												style="font-weight: bolder; margin: 0;">${vo.from_id }</p>
-											<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
-										</div>
-									</c:if>
-									<c:if test="${vo.to_status ne '0' }">
-										<div>
-											<p id="u_id${vo.h_idx }" style="margin: 0;">${vo.from_id }</p>
-											<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
-										</div>
-									</c:if>
-								</div> <small class="col-2">2분전</small>
-							</a>
-						</c:if>
-					</c:forEach>
+									<div class="col-8" style="text-overflow: ellipsis;">
+										<c:if test="${ vo.to_status eq '0'}">
+											<div>
+												<p id="u_id${vo.h_idx }"
+													style="font-weight: bolder; margin: 0;">${vo.from_id }</p>
+												<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
+											</div>
+										</c:if>
+										<c:if test="${vo.to_status ne '0' }">
+											<div>
+												<p id="u_id${vo.h_idx }" style="margin: 0;">${vo.from_id }</p>
+												<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
+											</div>
+										</c:if>
+									</div> <small class="col-2">2분전</small>
+								</a>
+							</c:if>
+						</c:forEach>
+					</div>
 				</div>
 				<div
 					class="shadow-sm p-3 mb-5 bg-body rounded col-8 h-100 container border">
@@ -308,7 +310,7 @@ input[id*="popup"]:checked+label+div {
 
 									var my_id = u_id;
 									let dispHtml = "";
-									dispHtml += "<div class=\"row my_chat_message\" id=\"chatMessageContainer\">";
+									dispHtml += "<div class=\"my_chat_message\" id=\"chatMessageContainer\">";
 									$
 											.each(
 													data,
@@ -366,9 +368,8 @@ input[id*="popup"]:checked+label+div {
 
 			document.getElementById(sid).innerHTML = content;
 			var header = document.getElementById("chatHeaderList");
-			header
-					.insertBefore(document.getElementById(hId),
-							header.firstChild);
+			header.insertBefore(document.getElementById(hId),
+					header.firstChild);
 
 			$
 					.ajax(
@@ -415,7 +416,7 @@ input[id*="popup"]:checked+label+div {
 															dispHtml += "</div>"
 														}
 													});
-									$("#chatMessageContainer").append(dispHtml);
+									$("#chatMessageContainer").html(dispHtml);
 									$('#chatMessageContainer')
 											.scrollTop(
 													$('#chatMessageContainer')[0].scrollHeight);
@@ -429,94 +430,134 @@ input[id*="popup"]:checked+label+div {
 		function searchID() {
 			var searchId = $("#searchBox").val();
 			console.log(searchId);
-			$.ajax("../user/seachUser.do", {
-				type : "get",
-				data : "u_id=" + searchId,
-				dataType : "json",
-				success : function(data) {
-					console.log(data);
-					var dispHtml = "";
-					$.each(data, function(index, obj) {
-						dispHtml += '<div class="col-12 d-flex mb-2">';
-						dispHtml += '<div class="box">';
-						dispHtml += '<div class="img_box">';
-						dispHtml += '<img class="img_size " src="../img_src/profile/' + obj.u_pic +'">';
-						dispHtml += '</div>';
-						dispHtml += '</div>';
-						dispHtml += '<div class="flex-grow-1">';
-						dispHtml += '<p style="margin: 0;">' + obj.u_id +'</p>';
-						dispHtml += '<small class="sm_id">' + obj.name +'</small>';
-						dispHtml += '</div>';
-						dispHtml += '<div>';
-						dispHtml += '<a href="javascript:createChat(\'${userVO.u_id}\',\'' + obj.u_id +'\')">만들기</a>';
-						dispHtml += '</div>';
-						dispHtml += '</div>';
-					});
-					$("#headerBox").html(dispHtml);
-				},
-				error : function() {
-				}
-			});
+			$
+					.ajax(
+							"../user/seachUser.do",
+							{
+								type : "get",
+								data : "u_id=" + searchId,
+								dataType : "json",
+								success : function(data) {
+									console.log(data);
+									var dispHtml = "";
+									$
+											.each(
+													data,
+													function(index, obj) {
+														dispHtml += '<div class="col-12 d-flex mb-2">';
+														dispHtml += '<div class="box">';
+														dispHtml += '<div class="img_box">';
+														dispHtml += '<img class="img_size " src="../img_src/profile/' + obj.u_pic +'">';
+														dispHtml += '</div>';
+														dispHtml += '</div>';
+														dispHtml += '<div class="flex-grow-1">';
+														dispHtml += '<p style="margin: 0;">'
+																+ obj.u_id
+																+ '</p>';
+														dispHtml += '<small class="sm_id">'
+																+ obj.name
+																+ '</small>';
+														dispHtml += '</div>';
+														dispHtml += '<div>';
+														dispHtml += '<a href="javascript:createChat(\'${userVO.u_id}\',\''
+																+ obj.u_id
+																+ '\')">만들기</a>';
+														dispHtml += '</div>';
+														dispHtml += '</div>';
+													});
+									$("#headerBox").html(dispHtml);
+								},
+								error : function() {
+								}
+							});
 		}
-		
+
 		function createChat(my_id, target_id) {
 			alert("openChatHeader()");
-			$.ajax("createChat.do", {
-				type: "get",
-				data: {
-					"my_id" : my_id,
-					"target_id" : target_id
-				},
-				dataType: "json",
-				success : function(data) {
-					alert("성공~~~");
-					console.log(data);
+			$
+					.ajax(
+							"createChat.do",
+							{
+								type : "get",
+								data : {
+									"my_id" : my_id,
+									"target_id" : target_id
+								},
+								dataType : "json",
+								success : function(data) {
+									alert("성공~~~");
+									console.log(data);
 
-					let dispHtml = "";
-					dispHtml += "<div class=\"row my_chat_message\" id=\"chatMessageContainer\">";
-					$.each(
-									data,
-									function(index, obj) {
-										if (obj.u_id == my_id) {
-											dispHtml += "<div class=\"d-flex justify-content-end\" style=\"margin-bottom:10px;\">";
-											dispHtml += "<div class=\"chat_content_end\">";
-											dispHtml += obj.content;
-											dispHtml += "</div>";
-											dispHtml += "<div class=\"box\">";
-											dispHtml += "<div class=\"img_box\">";
-											dispHtml += "<img class=\"img_size\" src=\"../img_src/profile/"+ obj.u_pic +"\">"
-											dispHtml += "</div>";
-											dispHtml += "</div>";
-											dispHtml += "</div>"
-										} else {
-											dispHtml += "<div class=\"d-flex justify-content-start\" style=\"margin-bottom:10px;\">";
-											dispHtml += "<div class=\"box\">";
-											dispHtml += "<div class=\"img_box\">";
-											dispHtml += "<img class=\"img_size \" src=\"../img_src/profile/" + obj.u_pic + "\">"
-											dispHtml += "</div>";
-											dispHtml += "</div>";
-											dispHtml += "<div class=\"chat_content_start\">";
-											dispHtml += obj.content;
-											dispHtml += "</div>";
-											dispHtml += "</div>"
-										}
-									});
-					dispHtml += "</div>";
-					dispHtml += "<div class=\"row position-absolute bottom-0 start-0\" style=\"width: 100%;\">";
-					dispHtml += "<div class=\"col-11\">";
-					dispHtml += "<input class=\"form-control\" type=\"text\" name=\"content\" id=\"content\">";
-					dispHtml += "</div>";
-					dispHtml += "<button class=\"btn btn-primary col-1 \" type=\"submit\" onclick=\"insertChatMessage(\'${userVO.u_id}\', \'${userVO.name }\', \'${userVO.u_pic }\')\">전송</button>";
-					dispHtml += "</div>";
-					$("#chatMessageView").html(dispHtml);
-					$('#chatMessageContainer')
-							.scrollTop(
-									$('#chatMessageContainer')[0].scrollHeight);
-				},
-				error : function() {
-					alert("실패~~~");
-				}
-			});
+									let dispHtml = '';
+									$
+											.each(
+													data,
+													function(index, obj) {
+														if(obj.from_id == target_id) {
+															nowChatHeader = obj.h_idx;
+															console.log("nowChatHeader:" + nowChatHeader);
+														} else if(obj.to_id == target_id) {
+															nowChatHeader = obj.h_idx;
+															console.log("nowChatHeader:" + nowChatHeader);
+														}
+														if(obj.from_id == '${userVO.u_id}') {
+															
+															dispHtml += '<a id="hId'+ obj.h_idx + '" class="row d-flex chat_header" href="javascript:getChatMessageList('+ obj.h_idx +', \'${userVO.u_id }\')">';
+															dispHtml += '<div class="col-2">';
+															dispHtml += '<div class="box">';
+															dispHtml += '<div class="img_box">';
+															dispHtml += '<img class="img_size " src="../img_src/profile/' + obj.u_pic +'">';
+															dispHtml += '</div>';
+															dispHtml += '</div>';
+															dispHtml += '</div>';
+															dispHtml += '<div class="col-8" style="text-overflow: ellipsis;">';
+															if(obj.from_status == '0') {
+																dispHtml += '<div>';
+																dispHtml += '<p id="u_id' + obj.h_idx + '" style="font-weight: bolder; margin: 0;">'+ obj.to_id + '</p>';
+																dispHtml += '<small id="subject'+ obj.h_idx +'" class="sm_id">' + obj.subject + '</small>';
+																dispHtml += '</div>';
+															} else {
+																dispHtml += '<div>';
+																dispHtml += '<p id="u_id' + obj.h_idx + '" style="margin: 0;">' + obj.to_id + '</p>';
+																dispHtml += '<small id="subject' + obj.h_idx +'" class="sm_id">' + obj.subject + '</small>';
+																dispHtml += '</div>';
+															}
+															dispHtml += '</div> <small class="col-2">1분전</small>';
+															dispHtml += '</a>';
+														} else {
+															dispHtml += '<a id="hId'+ obj.h_idx + '" class="row d-flex chat_header"';
+															dispHtml += 'href="javascript:getChatMessageList(' + obj.h_idx + ', \'${userVO.u_id }\')">';
+															dispHtml += '<div class="col-2">';
+															dispHtml += '<div class="box">';
+															dispHtml += '<div class="img_box">';
+															dispHtml += '<img class="img_size " src="../img_src/profile/' + obj.u_pic + '">';
+															dispHtml += '</div>';
+															dispHtml += '</div>';
+															dispHtml += '</div>';
+															dispHtml += '<div class="col-8" style="text-overflow: ellipsis;">';
+															if (obj.to_status == '0') {
+																dispHtml += '<div>';
+																dispHtml += '<p id="u_id' + obj.h_idx + '" style="font-weight: bolder; margin: 0;">' + obj.from_id +'</p>';
+																dispHtml += '<small id="subject' + obj.h_idx +'" class="sm_id">' + obj.subject + '</small>';
+																dispHtml += '</div>';
+															} else {
+																dispHtml += '<div>';
+																dispHtml += '<p id="u_id' + obj.h_idx + '" style="margin: 0;">' + obj.from_id +'</p>';
+																dispHtml += '<small id="subject' + obj.h_idx +'" class="sm_id">' + obj.subject + '</small>';
+																dispHtml += '</div>';
+															}
+															dispHtml += '</div> <small class="col-2">2분전</small>';
+															dispHtml += '</a>';
+														}
+													});
+									
+									$("#chatHeaderList").html(dispHtml);
+									getChatMessageList(nowChatHeader, my_id);
+								},
+								error : function() {
+									alert("실패~~~");
+								}
+							});
 			$("#close").click();
 		}
 	</script>

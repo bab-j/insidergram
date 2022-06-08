@@ -29,7 +29,7 @@ public class ChatAjaxController {
 		} else {
 			chatService.updateStatusOpenChatHeader_TO(vo.getH_idx());
 		}
-		List<ChatMessageVO> messages = chatService.getChatMessageList(vo);
+		List<ChatMessageVO> messages = chatService.getChatMessageList(vo.getH_idx());
 			System.out.println("vo:" + vo.getH_idx());
 		return messages;
 	}
@@ -46,22 +46,22 @@ public class ChatAjaxController {
 		chatService.updateSubject(chvo);
 		chatService.updateStatus(chvo.getH_idx());
 		chatService.updateUserRead(chvo, vo);
-		List<ChatMessageVO> messages = chatService.getChatMessageList(chvo);
+		List<ChatMessageVO> messages = chatService.getChatMessageList(chvo.getH_idx());
 		System.out.println("vo:" + vo.getH_idx());
 		return messages;
 	}
 	
 	@RequestMapping("/chat/createChat.do")
-	public List<ChatMessageVO> createChat(String my_id, String target_id) {
-		int result;
-		result = chatService.findChatHeader(my_id, target_id);
-		System.out.println("result : " + result);
-		if (result == 1) {
-			return chatService.openChat(my_id, target_id);
+	public List<ChatHeaderVO> createChat(String my_id, String target_id) {
+		Integer h_idx;
+		h_idx = chatService.findChatHeader(my_id, target_id);
+		System.out.println("h_idx : " + h_idx);
+		if (h_idx != null) {
+			return chatService.getChatHeaderList(my_id);
 		} else {
 			chatService.createChat(my_id, target_id);
-			return chatService.openChat(my_id, target_id);
+			h_idx = chatService.findChatHeader(my_id, target_id);
+			return chatService.getChatHeaderList(my_id);
 		}
-		
 	}
 }

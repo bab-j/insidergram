@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="chatMessageDAO">
 	
-	<select id="getChatMessageList" resultType="com.spring.biz.chat.ChatMessageVO" parameterType="com.spring.biz.chat.ChatMessageVO">
+	<select id="getChatMessageList" resultType="com.spring.biz.chat.ChatMessageVO" parameterType="int">
 		SELECT CM.M_IDX, CM.H_IDX, CM.CONTENT, CM.TIME, CM.READ, CM.U_ID, U.NAME u_name, U.U_PIC
 		FROM CHAT_MESSAGE CM JOIN USER_INFO U
 		ON CM.U_ID = U.U_ID
@@ -17,7 +17,7 @@
 	</insert>
 	
 	<select id="openChat" resultType="com.spring.biz.chat.ChatMessageVO" parameterType="map">
-		SELECT * FROM CHAT_HEADER
+		SELECT * FROM CHAT_MESSAGE
 		WHERE (FROM_ID = #{my_id} AND TO_ID = #{target_id}) OR (FROM_ID = #{target_id} AND TO_ID = #{my_id})
 	</select>
 </mapper>

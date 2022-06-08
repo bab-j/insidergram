@@ -21,9 +21,9 @@ public class ChatHeaderDAO {
 		System.out.println(">> ChatHeader() 객체 생성");
 	}
 
-	public List<ChatHeaderVO> getChatHeaderList(UserVO vo) {
-		System.out.println("===> MyBatis 사용 getchatList() 실행" + vo.toString());
-		return mybatis.selectList("chatHeaderDAO.getChatHeaderList", vo);
+	public List<ChatHeaderVO> getChatHeaderList(String u_id) {
+		System.out.println("===> MyBatis 사용 getchatList() 실행" + u_id);
+		return mybatis.selectList("chatHeaderDAO.getChatHeaderList", u_id);
 	}
 	
 	public ChatHeaderVO getChatHeader(int h_idx) {
@@ -54,7 +54,7 @@ public class ChatHeaderDAO {
 		mybatis.update("chatHeaderDAO.updateStatusOpenChatHeader_TO", h_idx);
 	}
 	
-	public int findChatHeader(String my_id, String target_id) {
+	public Integer findChatHeader(String my_id, String target_id) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("my_id", my_id);
 		map.put("target_id", target_id);

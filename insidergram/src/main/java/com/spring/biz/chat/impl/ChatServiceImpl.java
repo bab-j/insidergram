@@ -20,8 +20,8 @@ public class ChatServiceImpl implements ChatService{
 	
 	
 	@Override
-	public List<ChatHeaderVO> getChatHeaderList(UserVO vo) {
-		return chatHeaderDAO.getChatHeaderList(vo);
+	public List<ChatHeaderVO> getChatHeaderList(String u_id) {
+		return chatHeaderDAO.getChatHeaderList(u_id);
 	}
 	
 	@Override
@@ -30,8 +30,8 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public List<ChatMessageVO> getChatMessageList(ChatHeaderVO vo) {
-		return chatMessageDAO.getChatMessageList(vo);
+	public List<ChatMessageVO> getChatMessageList(int h_idx) {
+		return chatMessageDAO.getChatMessageList(h_idx);
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public int findChatHeader(String my_id, String target_id) {
+	public Integer findChatHeader(String my_id, String target_id) {
 		return chatHeaderDAO.findChatHeader(my_id, target_id);
 	}
 

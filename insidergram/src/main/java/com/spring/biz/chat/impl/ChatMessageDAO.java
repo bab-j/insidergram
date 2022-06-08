@@ -17,9 +17,9 @@ public class ChatMessageDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public List<ChatMessageVO> getChatMessageList(ChatHeaderVO vo) {
-		System.out.println("===> MyBatis 사용 getchatMessageList() 실행" + vo.toString());
-		return mybatis.selectList("chatMessageDAO.getChatMessageList", vo);
+	public List<ChatMessageVO> getChatMessageList(int h_idx) {
+		System.out.println("===> MyBatis 사용 getchatMessageList() 실행" + h_idx);
+		return mybatis.selectList("chatMessageDAO.getChatMessageList", h_idx);
 	}
 	
 	public void insertChatMessage(ChatMessageVO vo) {
