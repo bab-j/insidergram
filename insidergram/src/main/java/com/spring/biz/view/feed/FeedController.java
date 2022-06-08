@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.biz.comment.CommentService;
+import com.spring.biz.comment.CommentVO;
 import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
 import com.spring.biz.feed.Paging;
@@ -31,6 +33,8 @@ import com.spring.biz.user.UserVO;
 		private FeedService feedService;
 		@Autowired
 		private UserService userService;
+		@Autowired
+		private CommentService commService;
 		
 		public FeedController() {
 			System.out.println("============= FeedController() 객체 생성 ==================");
@@ -51,11 +55,16 @@ import com.spring.biz.user.UserVO;
 				paging.setEnd(totalSize);
 			}
 			List<FeedVO> list = feedService.getFeedList(uvo.getU_id(), paging.getBegin(), paging.getEnd());
+			// -------------- 댓글 리스트 ------------------
+			List<List<CommentVO>> commList = new ArrayList<List<CommentVO>>();
 			//------------------FeedVO에 좋아요 개수 Set-------------------
+			//------------------각 게시물 댓글 리스트에 Set-------------------
 			for(FeedVO fvo : list) {
 				fvo.setCountLike(feedService.countLike(fvo.getF_idx()));
-				System.out.println(fvo.toString());
+				fvo.setComm(commService.getCommList(fvo.getF_idx())); 		
+				System.out.println("fvo.toString() : " + fvo.toString());
 			}
+			//----------------------------------------------------------
 			//----------------------------------------------------------
 			List<Integer> saveList = new ArrayList<Integer>();
 			// ----------------즐겨찾기 f_idx 리스트 담기----------------
@@ -64,6 +73,7 @@ import com.spring.biz.user.UserVO;
 			}
 			// -----------------------------------------------------
 			List<Integer> likeList = feedService.confirmLike(uvo.getU_id());
+			mo.addAttribute("commList", commList);
 			mo.addAttribute("saveList", saveList);
 			mo.addAttribute("feedList", list);
 			mo.addAttribute("likeList", likeList);

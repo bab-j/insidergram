@@ -1,4 +1,5 @@
 
+<%@page import="com.spring.biz.comment.CommentVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.spring.biz.feed.FeedVO"%>
 <%@page import="com.spring.biz.feed.impl.FeedDAO"%>
@@ -243,7 +244,14 @@ document.addEventListener("scroll", debounce(e => {
 
 	<br>
 	<br>
-
+<%
+	List<List<CommentVO>> commList = (List<List<CommentVO>>)request.getAttribute("commList");
+	/* FeedVO fvo = new FeedVO();
+	for(List<CommentVO> li : commList) {
+		fvo.setComm(li);
+	} */
+	
+%>	
 	<div class="container"
 		style="display: flex; flex-direction: column-reverse; align-content: space-around; flex-wrap: wrap;">
 		<%
@@ -256,7 +264,7 @@ document.addEventListener("scroll", debounce(e => {
 				<h3>게시물이 존재하지 않습니다.</h3>
 			</c:when>
 			<c:otherwise>
-
+<%int popupCNT = 0; %>
 				<c:forEach var="feed" items="${feedList }">
 
 
@@ -331,9 +339,10 @@ pageContext.setAttribute("like", like);
 									</a>
 								</div>
 								<!-- 메시지 버튼 -->
-								<input type="checkbox" id="popup1">
+								
+								<input type="checkbox" id="popup<%=popupCNT%>">
 								<!-- 버튼 클릭시 팝업창 오픈 -->
-								<label for="popup1" style="padding: 3px 10px 3px 0px;">
+								<label for="popup<%=popupCNT%>" style="padding: 3px 10px 3px 0px;">
 									<a style="margin-left: 10px;"> <svg
 											xmlns="http://www.w3.org/2000/svg" width="20" height="20"
 											fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
@@ -345,7 +354,7 @@ pageContext.setAttribute("like", like);
 								<div>
 									<div>
 										<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
-										<label for="popup1"></label>
+										<label for="popup<%=popupCNT%>"></label>
 										<!-- 내용 추가 -->
 										<div class="container"
 											style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
@@ -355,7 +364,7 @@ pageContext.setAttribute("like", like);
 												<div class="col-6"
 													style="margin: 0px 0px 0px auto; padding: 0px; height: 550px;">
 													<!-- 이미지 -->
-													<img src="../../img_src/feed/${feed.f_pic }" class="card-img-top"
+													<img src="../img_src/feed/${feed.f_pic }" class="card-img-top"
 														style="height: 550px; border-radius: 0px; margin-left: auto;">
 
 												</div>
@@ -368,7 +377,7 @@ pageContext.setAttribute("like", like);
 													<a href="#"
 														class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
 														style="height: 66px; background-color: white; border-top-right-radius: 5px;">
-														<img src="../img_src/test/kim.jpg" width="40" height="40"
+														<img src="../img_src/profile/${feed.u_pic }" width="40" height="40"
 														class="rounded-circle flex-shrink-0"
 														style="margin-left: 20px;">
 														<div class="d-flex gap-2 w-100 justify-content-between">
@@ -395,33 +404,35 @@ pageContext.setAttribute("like", like);
 															class="list-group-item list-group-item-action d-flex gap-3 py-3"
 															aria-current="true"
 															style="border: none; height: 100px; margin-top: 0px;">
-															<img src="../img_src/test/kim.jpg" width="40" height="40"
+															<img src="../img_src/profile/${feed.u_pic }" width="40" height="40"
 															class="rounded-circle flex-shrink-0">
 															<div class="d-flex gap-2 w-100 justify-content-between">
 																<div>
-																	<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																	<h6 class="mb-0">${feed.u_id }</h6>
 																	<p class="mb-0 opacity-75"
-																		style="padding-top: 10px; width: 300px;">해적왕</p>
+																		style="padding-top: 10px; width: 300px;">${feed.content }</p>
 																</div>
 																<small class="opacity-50 text-nowrap">3분전</small>
 															</div>
-														</a> <a href="#"
+														</a> 
+														<c:forEach var="commList2" items="${feed.comm }">
+														<a href="#"
 															class="list-group-item list-group-item-action d-flex gap-3 py-3"
 															aria-current="true"
 															style="border: none; height: 100px; margin-top: 0px;">
-															<img src="../img_src/test/kim.jpg" width="40" height="40"
+															<img src="../img_src/profile/${commList2.getU_pic() }" width="40" height="40"
 															class="rounded-circle flex-shrink-0">
 															<div class="d-flex gap-2 w-100 justify-content-between">
 																<div>
-																	<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																	<h6 class="mb-0">${commList2.getU_id() }</h6>
 																	<p class="mb-0 opacity-75"
-																		style="padding-top: 10px; width: 300px;">그는 누구인가..
+																		style="padding-top: 10px; width: 300px;">${commList2.getComm() }
 																	</p>
 																</div>
 																<small class="opacity-50 text-nowrap">3분전</small>
 															</div>
 														</a>
-
+														</c:forEach>
 													</div>
 
 													<!-- 메시지 보내기 -->
@@ -448,7 +459,8 @@ pageContext.setAttribute("like", like);
 										</div>
 									</div>
 									<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
-									<label for="popup1"></label>
+									<label for="popup<%=popupCNT%>"></label>
+<%popupCNT++; %>									
 								</div>
 								<!---------------------- 게시물 즐겨찾기 상태 설정 -------------------------- -->
 								<c:set var="idx" value="${feed.f_idx }" scope="page" />
@@ -500,6 +512,22 @@ pageContext.setAttribute("save", save);
 							<c:if test="${feed.f_pic != null }">
 								<div class="contentBox">
 									<b>${feed.u_id }</b>&nbsp;&nbsp; ${feed.content }
+							<hr>
+							<div>
+								<c:if test="${feed.comm.size() > 2 }">
+									<a href="#" style="display:inline-flex; margin-bottom: 20px;">댓글 ${feed.comm.size() }개 모두 보기</a> <br>
+								</c:if>
+<%int twoComm = 0; %>
+							<c:forEach var="comm" items="${feed.comm }">
+							<%twoComm++; 
+							if(twoComm == 3) {
+								break;
+							}
+							%>
+								${comm.getU_id() } : ${comm.getComm() }<br>
+							</c:forEach>
+							
+							</div>
 								</div>
 							</c:if>
 						</div>

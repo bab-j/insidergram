@@ -1,6 +1,10 @@
 package com.spring.biz.feed;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
+
+import com.spring.biz.comment.CommentVO;
 
 public class FeedVO {	
 	private int f_idx;
@@ -11,7 +15,17 @@ public class FeedVO {
 	private String u_pic;
 	private MultipartFile uploadFile = null;
 	private int countLike;
+	private List<CommentVO> comm;
 	
+
+	public List<CommentVO> getComm() {
+		return comm;
+	}
+
+	public void setComm(List<CommentVO> comm) {
+		this.comm = comm;
+	}
+
 	public int getCountLike() {
 		return countLike;
 	}
@@ -81,7 +95,7 @@ public class FeedVO {
 	public String toString() {
 		return "FeedVO [f_idx=" + f_idx + ", regdate=" + regdate + ", content=" + content + ", u_id=" + u_id
 				+ ", f_pic=" + f_pic + ", u_pic=" + u_pic + ", uploadFile=" + uploadFile + ", countLike=" + countLike
-				+ "]";
+				+ ", comm=" + comm + "]";
 	}
 
 	
