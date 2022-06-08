@@ -31,8 +31,9 @@ UNION
 		                                                         WHERE U_ID = #{u_id})
 				  FROM FEED F
 				 WHERE F.U_ID = #{u_id}
-				 ))
+				 ORDER BY F_IDX DESC))
 	 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	 ORDER BY R_NUM DESC
 	</select>
 	
 	<!-- 개인 상세 페이지 불러오기 -->

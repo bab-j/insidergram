@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
 import com.spring.biz.feed.Paging;
+import com.spring.biz.feed.Path;
 import com.spring.biz.follower.FollowerVO;
 import com.spring.biz.user.UserService;
 import com.spring.biz.user.UserVO;
@@ -130,32 +131,25 @@ import com.spring.biz.user.UserVO;
 		}
 		//게시물 등록
 		@RequestMapping("insertFeed.do")
-		public String insertFeed(FeedVO vo, HttpSession session) {
+		public String insertFeed(FeedVO vo, HttpSession session, HttpServletRequest request) {
 			UserVO uvo = (UserVO)session.getAttribute("userVO");			
 			MultipartFile uploadFile = vo.getUploadFile();
-			System.out.println("uploadFile : " + uploadFile);
 			vo.setU_id(uvo.getU_id());
 			vo.setContent(vo.getContent());
-			
+			Path path = new Path();
+			System.out.println("path : " + path.getPath());
 				if(!uploadFile.isEmpty()) {
 					vo.setF_pic(uploadFile.getOriginalFilename());
 					String fileName = uploadFile.getOriginalFilename();
 					System.out.println(">>> 원본파일명 : " + fileName);
 					System.out.println(">>> 저장파일명 : " + UUID.randomUUID().toString());
-					if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 						try {
-							uploadFile.transferTo(new File("/Users/Shared/tempo/feed/" + fileName));
+							uploadFile.transferTo(new File(path.getPath() + fileName));
 						} catch (IllegalStateException | IOException e) {
 							e.printStackTrace();
 						}						
-					} else {
-						try {
-							uploadFile.transferTo(new File(""));
-						} catch (IllegalStateException | IOException e) {
-							e.printStackTrace();
-						}
-					}
 				}
+				
 				int result = feedService.insertFeed(vo);
 				System.out.println(">>>>>>>최종 insert : " + result);
 			return "redirect:getFeedList.do";
