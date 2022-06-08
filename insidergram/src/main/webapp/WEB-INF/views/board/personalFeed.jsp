@@ -365,7 +365,7 @@ function updateUser() {
 								<input type="checkbox" id="popup<%=i%>">
 								<!-- 버튼 클릭시 팝업창 오픈 -->
 								<label for="popup<%=i%>" style="width:100%; height:100%"> 
-									<img src="../img_src/feed/${picList.f_pic }"class="card-img-top">
+									<img src="../img_src/feed/${picList.f_pic }"class="card-img-top" style="width:100%; height:100%">
 								</label>
 								<div>
 									<div>
