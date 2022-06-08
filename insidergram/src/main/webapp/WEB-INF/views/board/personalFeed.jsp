@@ -375,15 +375,15 @@ function updateUser() {
 										<div class="container"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 											<div class="row square"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 												<!-- 왼쪽 -->
-												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; background-color:white;">
+												<div class="col-6"style="margin-left: auto; padding: 0px; height: 550px; background-color:white;">
 													<img src="../img_src/feed/${picList.f_pic }" class="card-img-top"style="height: 550px; border-radius: 0px;">
 												</div>
 
 												<!-- 오른쪽 -->
-												<div class="col-6"style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+												<div class="col-5"style="margin: 0px; margin-right:auto; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
 
 													<!-- 상단 닉네임 -->
-													<a href="/otherFeed.do" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 80px; background-color: white;"> 
+													<a href="/otherFeed.do" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="height: 66px; background-color: white; border-top-right-radius: 5px;"> 
 														<img src="../img_src/profile/${userVO.u_pic }" alt="twbs" width="40" height="40"class="rounded-circle flex-shrink-0"style="margin-left: 20px;">
 														<div class="d-flex gap-2 w-100 justify-content-between">
 															<div>
@@ -398,7 +398,7 @@ function updateUser() {
 														</div>
 													</a>
 													<!-- 채팅창(댓글 구현하면 수정) -->
-													<div style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
+													<div style=" height: 424px; overflow-y: auto; background-color: white;">
 														<a href="/otherFeed.do"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
 															<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
 															<div class="d-flex gap-2 w-100 justify-content-between">
@@ -423,9 +423,15 @@ function updateUser() {
 														</a>
 													</div>
 													<!-- 메시지 보내기 -->
-													<div class="input-group mb-3">
-														<input style="height: 45px; border-radius: initial;"type="text" class="form-control" placeholder="메시지 입력..."aria-label="Recipient's username"aria-describedby="button-addon2">
-														<button class="btn btn-outline-primary" type="button"id="button-addon2"style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
+													<div class="input-group mb-3" style="background-color: white;     border-bottom-right-radius: 5px;">
+														<input style="height: 40px; border-radius: 20px; margin:10px 5px 10px 10px; padding:3px 12px; " type="text" class="form-control" placeholder="메시지 입력..."aria-label="Recipient's username"aria-describedby="button-addon2">
+														<button class="btn btn-outline-primary" type="button"id="button-addon2"style="    background-color: #0d6efd;
+    color: white;
+    border-radius: 70%;
+    width: 35px;
+    height: 35px;
+    padding: 0px;
+    margin: 10px;">
 															<svg xmlns="http://www.w3.org/2000/svg" width="16"height="16" fill="currentColor" class="bi bi-arrow-up"viewBox="0 0 16 16">
 															<path fill-rule="evenodd"d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
 										  					</svg>
