@@ -246,10 +246,10 @@ document.addEventListener("scroll", debounce(e => {
 
 	<div class="container"
 		style="display: flex; flex-direction: column-reverse; align-content: space-around; flex-wrap: wrap;">
-<%
-List<String> list = (List<String>) request.getAttribute("likeList");
-List<Integer> saveList = (List<Integer>)request.getAttribute("saveList");
-%>
+		<%
+		List<String> list = (List<String>) request.getAttribute("likeList");
+		List<Integer> saveList = (List<Integer>) request.getAttribute("saveList");
+		%>
 		<!-- 중간 정렬 -->
 		<c:choose>
 			<c:when test="${empty feedList }">
@@ -262,14 +262,13 @@ List<Integer> saveList = (List<Integer>)request.getAttribute("saveList");
 
 					<div class="row col-6" id="k1" style="-bs-gutter-x: 0;">
 						<!-- 틀 -->
- 
+
 						<div class="col-12">
 							<a href="otherFeed.do?u_id=${feed.u_id }"
 								class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
 								style="background-color: white;"> <img
-								src="../img_src/profile/${feed.u_pic } " width="45"
-								height="45" class="rounded-circle flex-shrink-0"
-								style="border-radius: 70%">
+								src="../img_src/profile/${feed.u_pic } " width="45" height="45"
+								class="rounded-circle flex-shrink-0" style="border-radius: 70%">
 
 								<div class="d-flex gap-2 w-100 justify-content-between">
 
@@ -291,26 +290,26 @@ List<Integer> saveList = (List<Integer>)request.getAttribute("saveList");
 						<div class="col-12 square"
 							style="display: flex; align-items: center;">
 							<div class="inner">
-							<c:if test="${feed.f_pic == null }">
+								<c:if test="${feed.f_pic == null }">
 								${feed.content }
 							</c:if>
 								<!-- 중간 이미지 -->
-							<c:if test="${feed.f_pic != null }">
-								<img src="../img_src/feed/${feed.f_pic }" class="inner1">
-							</c:if>
+								<c:if test="${feed.f_pic != null }">
+									<img src="../img_src/feed/${feed.f_pic }" class="inner1">
+								</c:if>
 
 							</div>
 						</div>
 						<div class="col-12" style="margin-top: 10px; margin-bottom: 10px;">
 							<div>
 								<div class="likeCommentBox">
-<!---------------------- 게시물 좋아요 상태 설정 -------------------------- -->
-<c:set var="feedIdx" value="${feed.f_idx }" scope="page" />
-<%
+									<!---------------------- 게시물 좋아요 상태 설정 -------------------------- -->
+									<c:set var="feedIdx" value="${feed.f_idx }" scope="page" />
+									<%
 boolean like = list.contains(pageContext.getAttribute("feedIdx"));
 pageContext.setAttribute("like", like);
 %>
-<!-- ------------------------------------------------------------- -->
+									<!-- ------------------------------------------------------------- -->
 									<a href="javascript:likeFeed(${feed.f_idx})"> <c:choose>
 											<c:when test="${like }">
 												<span id="fillHeart${feed.f_idx }"
@@ -354,10 +353,10 @@ pageContext.setAttribute("like", like);
 												style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 												<!-- 왼 -->
 												<div class="col-6"
-													style="margin: 0px; padding: 0px; height: 550px;">
+													style="margin: 0px 0px 0px auto; padding: 0px; height: 550px;">
 													<!-- 이미지 -->
-													<img src="../img_src/test/1.jpg" class="card-img-top"
-														style="height: 550px; border-radius: 0px;">
+													<img src="../../img_src/feed/${feed.f_pic }" class="card-img-top"
+														style="height: 550px; border-radius: 0px; margin-left: auto;">
 
 												</div>
 
@@ -427,7 +426,7 @@ pageContext.setAttribute("like", like);
 
 													<!-- 메시지 보내기 -->
 													<div class="input-group mb-3"
-														style="background-color: white;     border-bottom-right-radius: 5px;">
+														style="background-color: white; border-bottom-right-radius: 5px;">
 														<input
 															style="height: 40px; border-radius: 20px; margin: 10px 5px 10px 10px; padding: 3px 12px;"
 															type="text" class="form-control" placeholder="메시지 입력..."
@@ -451,40 +450,44 @@ pageContext.setAttribute("like", like);
 									<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
 									<label for="popup1"></label>
 								</div>
-<!---------------------- 게시물 즐겨찾기 상태 설정 -------------------------- -->
-<c:set var="idx" value="${feed.f_idx }" scope="page" />
-<%
+								<!---------------------- 게시물 즐겨찾기 상태 설정 -------------------------- -->
+								<c:set var="idx" value="${feed.f_idx }" scope="page" />
+								<%
 boolean save = saveList.contains(pageContext.getAttribute("idx"));
 pageContext.setAttribute("save", save);
 %>
-<!-- ------------------------------------------------------------- -->
+								<!-- ------------------------------------------------------------- -->
 								<!------------------------------------ 저장하기 버튼 ------------------------------------>
 								<c:choose>
-								<c:when test="${save }">
-									<a href="javascript:saveFeed(${feed.f_idx })" style="display: inline-flex; padding: 3px 0 0 38px;">
-										<span id="fillSave${feed.f_idx }" class="material-icons-outlined" style="margin-top:0px; display: inline;">
-											bookmark
-										</span>
+									<c:when test="${save }">
+										<a href="javascript:saveFeed(${feed.f_idx })"
+											style="display: inline-flex; float: right; margin: 0px 10px 0px 0px;">
+											<span id="fillSave${feed.f_idx }"
+											class="material-icons-outlined"
+											style="display: inline; margin: 0px 10px 0px 0px;"> bookmark </span>
 
-									</a>
-									<a href="javascript:saveFeed(${feed.f_idx })" style="padding: 3px 0 0 38px">
-										<span id="emptySave${feed.f_idx }" class="material-icons-outlined" style="margin-top:0px; display: none;">
-											bookmark_border
-										</span>
-									</a>
-								</c:when>
-								<c:otherwise>
-									<a href="javascript:saveFeed(${feed.f_idx })" style="padding: 3px 0 0 38px;">
-										<span id="fillSave${feed.f_idx }" class="material-icons-outlined" style="margin-top:0px; display: none;">
-											bookmark
-										</span>
-									</a>
-									<a href="javascript:saveFeed(${feed.f_idx })" style="display: inline-flex; ">
-										<span id="emptySave${feed.f_idx }" class="material-icons-outlined" style="margin-top:0px; display: inline;">
-											bookmark_border
-										</span>
-									</a>
-								</c:otherwise>
+										</a>
+										<a href="javascript:saveFeed(${feed.f_idx })"
+											style="padding: 3px 0 0 38px"> <span
+											id="emptySave${feed.f_idx }" class="material-icons-outlined"
+											style="display: none; float: right; margin: 0px 10px 0px 0px;">
+												bookmark_border </span>
+										</a>
+									</c:when>
+									<c:otherwise>
+										<a href="javascript:saveFeed(${feed.f_idx })"
+											style="padding: 3px 0 0 38px;"> <span
+											id="fillSave${feed.f_idx }" class="material-icons-outlined"
+											style="display: none; float: right; margin: 0px 10px 0px 0px;"> bookmark </span>
+										</a>
+										<a href="javascript:saveFeed(${feed.f_idx })"
+											style="display: inline-flex; float: right; margin: 0px 10px 0px 0px;"> 
+											<span
+											id="emptySave${feed.f_idx }" class="material-icons-outlined"
+											style="display: inline; margin: 0px 10px 0px 0px;">
+												bookmark_border </span>
+										</a>
+									</c:otherwise>
 								</c:choose>
 								<!-- ---------------------------------------------------------------------------- -->
 							</div>
@@ -495,9 +498,9 @@ pageContext.setAttribute("save", save);
 								개
 							</div>
 							<c:if test="${feed.f_pic != null }">
-							<div class="contentBox">
-								<b>${feed.u_id }</b>&nbsp;&nbsp; ${feed.content }
-							</div>
+								<div class="contentBox">
+									<b>${feed.u_id }</b>&nbsp;&nbsp; ${feed.content }
+								</div>
 							</c:if>
 						</div>
 					</div>

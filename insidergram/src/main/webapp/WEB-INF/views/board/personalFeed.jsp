@@ -388,7 +388,6 @@ function updateUser() {
 														<div class="d-flex gap-2 w-100 justify-content-between">
 															<div>
 																<h6 class="mb-0" style="margin-left: 15px;">${userVO.u_id }</h6>
-																	${picList.content }
 															</div>
 															<div href="#">
 																<svg xmlns="http://www.w3.org/2000/svg" width="16"height="16" fill="currentColor"class="bi bi-three-dots" viewBox="0 0 16 16">
@@ -400,11 +399,11 @@ function updateUser() {
 													<!-- 채팅창(댓글 구현하면 수정) -->
 													<div style=" height: 424px; overflow-y: auto; background-color: white;">
 														<a href="/otherFeed.do"class="list-group-item list-group-item-action d-flex gap-3 py-3"aria-current="true"style="border: none; height: 100px; margin-top: 0px;">
-															<img src="./img_src/test/kim.jpg" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
+															<img src="../img_src/profile/${userVO.u_pic }" alt="twbs" width="40"height="40" class="rounded-circle flex-shrink-0">
 															<div class="d-flex gap-2 w-100 justify-content-between">
 																<div>
-																	<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
-																	<p class="mb-0 opacity-75"style="padding-top: 10px; width: 300px;">해적왕</p>
+																	<h6 class="mb-0"> ${userVO.u_id }</h6>
+																	<p class="mb-0 opacity-75"style="padding-top: 10px; font-size : 15px;">${picList.content }</p>
 																</div>
 																<small class="opacity-50 text-nowrap">3분전</small>
 															</div>
