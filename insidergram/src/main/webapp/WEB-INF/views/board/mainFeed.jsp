@@ -514,19 +514,20 @@ pageContext.setAttribute("save", save);
 									<b>${feed.u_id }</b>&nbsp;&nbsp; ${feed.content }
 							<hr>
 							<div>
-								<c:if test="${feed.comm.size() > 2 }">
-									<a href="#" style="display:inline-flex; margin-bottom: 20px;">댓글 ${feed.comm.size() }개 모두 보기</a> <br>
-								</c:if>
-<%int twoComm = 0; %>
-							<c:forEach var="comm" items="${feed.comm }">
-							<%twoComm++; 
-							if(twoComm == 3) {
-								break;
-							}
-							%>
-								${comm.getU_id() } : ${comm.getComm() }<br>
-							</c:forEach>
-							
+								<label for="popup<%=popupCNT%>">
+										<c:if test="${feed.comm.size() > 2 }">
+											<a style="display:inline-flex; margin-bottom: 20px;">댓글 ${feed.comm.size() }개 모두 보기</a> <br>
+										</c:if>
+		<%int twoComm = 0; %>
+									<c:forEach var="comm" items="${feed.comm }">
+									<%twoComm++; 
+									if(twoComm == 3) {
+										break;
+									}
+									%>
+										${comm.getU_id() } : ${comm.getComm() }<br>
+									</c:forEach>
+								</label>
 							</div>
 								</div>
 							</c:if>
