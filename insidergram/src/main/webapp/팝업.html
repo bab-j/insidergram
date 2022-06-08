@@ -1,0 +1,99 @@
+<meta charset="UTF-8">
+<style>
+input[id*="popup"]+label {
+	position: absolute;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	line-height: 1;
+}
+
+/* none처리로 화면에 책크박스 안보이게 함 */
+input[id*="popup"] {
+	display: none;
+}
+
+/* 추후 버튼 형테로 만들수 있음 [padding:20px;background:#ffcd41;] */
+input[id*="popup"]+label {
+	display: inline-block;
+	color: black;
+}
+
+/* 팝업창 뛰우는 위치 지정 */
+input[id*="popup"]+label+div {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+}
+
+/* 파업창 틀 */
+input[id*="popup"]+label+div>div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 1200px;
+	height: 550px;
+	background: rgba(0, 0, 0, 0.045);
+	z-index: 2;
+}
+
+/* 상단 닫기버튼 */
+input[id*="popup"]+label+div>div>label {
+	position: absolute;
+	top: 0%;
+	right: 0%;
+	transform: translate(40%, -40%);
+	padding: 20px;
+	background: none;
+	border-radius: 100%;
+	z-index: 1;
+}
+
+/* 여백 클릭시 닫기 처리 */
+input[id*="popup"]+label+div>label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .65);
+	z-index: 1;
+}
+
+/*
+		input[id*="popup"] + label + div {display:none;}
+		input[id*="popup"]:checked + label + div {display:block;}
+		*/
+
+/* 팝업창 나타날 때 자연스럽게 뜨도록 처리함(애니메이션 효과) */
+input[id*="popup"]+label+div {
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.5s;
+}
+
+input[id*="popup"]:checked+label+div {
+	opacity: 1;
+	visibility: visible;
+}
+</style>
+
+<input type="checkbox" id="popup1">
+<!-- 버튼 클릭시 팝업창 오픈 -->
+<label for="popup1">버튼</label>
+<div>
+	<div>
+		<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
+		<label for="popup1"></label>
+		<!-- 내용 추가 -->
+		
+	</div>
+	<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
+	<label for="popup1"></label>
+</div>
