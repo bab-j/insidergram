@@ -178,7 +178,7 @@ document.addEventListener("scroll", debounce(e => {
     // scrollTop : 현재 스크롤된 부분의 맨 위의 높이
     // scrollHeight : 문서의 총 높이 (= 스크롤의 총 높이)
     // 스크롤의 마지막에 도달 : clientHeight + scrollTop >= scrollHeight
-    const { clientHeight, scrollTop, scrollHeight } = e.target.scrollingElement
+    const { clientHeight, scrollTop, scrollHeight } = e.target.scrollingElement;
     if(clientHeight + scrollTop >= scrollHeight) {
     	let likeList = ${likeList};
     	let saveList = ${saveList};
