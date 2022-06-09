@@ -96,7 +96,7 @@
 								<a
 									class="center_ailgn w-100 py-2 btn btn-outline-dark rounded-3"
 									style="border-color: silver;" type="reset"
-									href="getBoardList.do"> <svg class="bi me-1 " width="0px"
+									href="javascript:history.back()"> <svg class="bi me-1 " width="0px"
 										height="16"></svg>취소
 								</a>
 							</div>
