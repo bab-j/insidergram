@@ -175,7 +175,7 @@ input[id*="popup"]+label+div>label {
 input[id*="popup"]+label+div {
 	opacity: 0;
 	visibility: hidden;
-	transition: all 0.5s;
+	transition: all 0.3s;
 }
 
 input[id*="popup"]:checked+label+div {
@@ -268,7 +268,7 @@ input[id="tab03"]:checked ~ .con3 {
 </head>
 <body>
 <body
-	style="background-color: #F5F5F5; display: flex; justify-content: space-around; align-content: space-around; flex-wrap: wrap;">
+	style="background-color: #F5F5F5; display: flex; justify-content: space-around; align-content: space-around; flex-wrap: wrap; padding-bottom : 50px;"  >
 
 
 	<%-- ${userVO }
@@ -309,9 +309,8 @@ input[id="tab03"]:checked ~ .con3 {
 								<svg class="bi me-1 " style="width: 0px; height: 12px;"></svg>
 								프로필 편집
 							</button>
-							<a
-								style="margin-left: 5px; text-decoration: none;  color: gray;"
-								href="./user_delete.jsp"> <svg
+							<a style="margin-left: 5px; text-decoration: none; color: gray;"
+								href="../user_delete.jsp"> <svg
 									xmlns="http://www.w3.org/2000/svg" width="28" height="28"
 									fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"
 									style="margin-bottom: -5px;">
@@ -376,7 +375,8 @@ input[id="tab03"]:checked ~ .con3 {
 					</label>
 					<!--========================================== 사진 피드 ===================================================-->
 					<div class="conbox con1">
-						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
+						style="padding-bottom : 100px;">
 							<%
 							int i = 0;
 							%>
@@ -397,7 +397,7 @@ input[id="tab03"]:checked ~ .con3 {
 												<label for="popup<%=i%>"></label>
 												<!-- 내용 추가 -->
 												<div class="container"
-													style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
+													style="margin: 0px; padding: 0px; width: 1000px; height: 550px;">
 													<div class="row square"
 														style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 														<!-- 왼쪽 -->
@@ -440,9 +440,9 @@ input[id="tab03"]:checked ~ .con3 {
 																<a href="/otherFeed.do"
 																	class="list-group-item list-group-item-action d-flex gap-3 py-3"
 																	aria-current="true"
-																	style="border: none; height: 100px; margin-top: 0px;">
-																	<img src="../img_src/profile/${userVO.u_pic }"
-																	alt="twbs" width="40" height="40"
+																	style="border: none; margin-top: 0px;"> <img
+																	src="../img_src/profile/${userVO.u_pic }" alt="twbs"
+																	width="40" height="40"
 																	class="rounded-circle flex-shrink-0">
 																	<div class="d-flex gap-2 w-100 justify-content-between">
 																		<div>
@@ -506,17 +506,21 @@ input[id="tab03"]:checked ~ .con3 {
 					</div>
 					<!--========================================== 글 피드 ===================================================-->
 					<div class="conbox con2">
-						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
+						style="padding-bottom : 100px;">
 
 							<c:forEach var="docPost" items="${docPost }">
 								<div class="col square">
-									<div class="card shadow-sm inner" style="text-align: center;">
+									<div class="card shadow-sm inner"
+										style="text-align: center; justify-content: space-around; align-items: center; font-size: 100%; overflow: hidden;">
 										<!-- 시작 -->
 										<input type="checkbox" id="docpopup4">
 										<!-- 버튼 클릭시 팝업창 오픈 -->
-										<label for="docpopup4"> <a style="color: black;">${docPost.content }
-										</a>
+										<label for="docpopup4"
+											style="width: 100%; height: 100%; align-items: center; align-content: stretch; display: flex; justify-content: space-around; color: black; font-weight: bold; line-height: 20px; font-size: 1.5vh;">
+											<c:out value="${docPost.content }" />
 										</label>
+
 										<div>
 											<div>
 												<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
@@ -528,18 +532,21 @@ input[id="tab03"]:checked ~ .con3 {
 														style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 														<!-- 왼쪽 -->
 														<div class="col-6"
-															style="margin: 0px; padding: 0px; height: 549px; text-align: center; background-color: white; border: solid 1px silver;">
-															<a style="color: black;">${docPost.content }</a>
+															style="margin: 0px 0px 0px auto; padding: 0px; height: 550px; text-align: center; background-color: white; border: solid 1px silver;">
+															<div
+																style="color: black; width: 100%; display: flex; align-items: center; justify-content: space-around; font-size: 20px; height: 100%;">
+																<c:out value="${docPost.content }" />
+															</div>
 														</div>
 														<!-- 오른쪽 -->
-														<div class="col-6"
-															style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+														<div class="col-5"
+															style="margin: 0px auto 0px 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
 															<!-- 상단 닉네임 -->
 															<a href="/otherFeed.do"
 																class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
-																style="height: 80px; background-color: white;"> <img
-																src="../img_src/profile/${userVO.u_pic }" alt="twbs"
-																width="40" height="40"
+																style="height: 66px; background-color: white; border-top-right-radius: 5px;">
+																<img src="../img_src/profile/${userVO.u_pic }"
+																alt="twbs" width="40" height="40"
 																class="rounded-circle flex-shrink-0"
 																style="margin-left: 20px;">
 																<div class="d-flex gap-2 w-100 justify-content-between">
@@ -559,48 +566,53 @@ input[id="tab03"]:checked ~ .con3 {
 
 															<!-- 채팅창 -->
 															<div
-																style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
-																<a href="/otherFeed.do"
+																style="height: 424px; overflow-y: auto; background-color: white; text-align: left;">
+																<a href="otherFeed.do?u_id=${docPost.u_id}"
 																	class="list-group-item list-group-item-action d-flex gap-3 py-3"
 																	aria-current="true"
-																	style="border: none; height: 100px; margin-top: 0px;">
-																	<img src="./img_src/test/kim.jpg" alt="twbs" width="40"
-																	height="40" class="rounded-circle flex-shrink-0">
-																	<div class="d-flex gap-2 w-100 justify-content-between">
+																	style="border: none; margin-top: 0px;"> <img
+																	src="../img_src/profile/${userVO.u_pic }" alt="twbs"
+																	width="40" height="40"
+																	class="rounded-circle flex-shrink-0">
+																	<div class="d-flex gap-2 w-100 justify-content-between"
+																		style="text-align: left;">
 																		<div>
-																			<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																			<h6 class="mb-0">${userVO.u_id }</h6>
 																			<p class="mb-0 opacity-75"
-																				style="padding-top: 10px; width: 300px;">해적왕</p>
+																				style="padding-top: 10px; width: 300px; font-size: 15px;">
+																				${docPost.content }</p>
 																		</div>
-																		<small class="opacity-50 text-nowrap">3분전</small>
+																		<small class="opacity-50 text-nowrap">
+																			${docPost.regdate } </small>
 																	</div>
 																</a> <a href="/otherFeed.do"
 																	class="list-group-item list-group-item-action d-flex gap-3 py-3"
 																	aria-current="true"
 																	style="border: none; height: 100px; margin-top: 0px;">
-																	<img src="./img_src/test/kim.jpg" alt="twbs" width="40"
+																	<img src="../img_src/profile/" alt="twbs" width="40"
 																	height="40" class="rounded-circle flex-shrink-0">
 																	<div class="d-flex gap-2 w-100 justify-content-between">
 																		<div>
-																			<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																			<h6 class="mb-0">${commentVO.u_id }</h6>
 																			<p class="mb-0 opacity-75"
-																				style="padding-top: 10px; width: 300px;">
-																				그는누구인가..</p>
+																				style="padding-top: 10px; width: 300px;"></p>
 																		</div>
 																		<small class="opacity-50 text-nowrap">3분전</small>
 																	</div>
 																</a>
 															</div>
 															<!-- 메시지 보내기 -->
-															<div class="input-group mb-3">
-																<input style="height: 45px; border-radius: initial;"
+															<div class="input-group mb-3"
+																style="background-color: white; border-bottom-right-radius: 5px;">
+																<input
+																	style="height: 40px; border-radius: 20px; margin: 10px 5px 10px 10px; padding: 3px 12px;"
 																	type="text" class="form-control"
 																	placeholder="메시지 입력..."
 																	aria-label="Recipient's username"
 																	aria-describedby="button-addon2">
 																<button class="btn btn-outline-primary" type="button"
 																	id="button-addon2"
-																	style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
+																	style="background-color: #0d6efd; color: white; border-radius: 70%; width: 35px; height: 35px; padding: 0px; margin: 10px;">
 																	<svg xmlns="http://www.w3.org/2000/svg" width="16"
 																		height="16" fill="currentColor" class="bi bi-arrow-up"
 																		viewBox="0 0 16 16">
@@ -623,7 +635,8 @@ input[id="tab03"]:checked ~ .con3 {
 					</div>
 					<!--========================================== 저장 피드 ===================================================-->
 					<div class="conbox con3">
-						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
+						style="padding-bottom : 100px;">
 							<%
 							int k = 0;
 							%>
@@ -650,28 +663,28 @@ input[id="tab03"]:checked ~ .con3 {
 															style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 															<!-- 왼쪽 -->
 															<div class="col-6"
-																style="margin: 0px; padding: 0px; height: 550px;">
+																style="margin: 0px 0px 0px auto; padding: 0px; height: 550px;">
 																<img src="../img_src/feed/${saveFeed.f_pic }"
 																	class="card-img-top"
 																	style="height: 550px; border-radius: 0px;">
 															</div>
 
 															<!-- 오른쪽 -->
-															<div class="col-6"
-																style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+															<div class="col-5"
+																style="margin: 0px auto 0px 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
 
 																<!-- 상단 닉네임 -->
 																<a href="/otherFeed.do"
 																	class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
-																	style="height: 80px; background-color: white;"> <img
-																	src="../img_src/profile/${saveFeed.u_pic }" alt="twbs"
+																	style="height: 66px; background-color: white; border-top-right-radius: 5px;">
+																	<img src="../img_src/profile/${saveFeed.u_pic }"
 																	width="40" height="40"
 																	class="rounded-circle flex-shrink-0"
 																	style="margin-left: 20px;">
 																	<div class="d-flex gap-2 w-100 justify-content-between">
 																		<div>
-																			<h6 class="mb-0" style="margin-left: 15px;">${saveFeed.u_id }</h6>
-																			${saveFeed.content }
+																			<h6 class="mb-0"
+																				style="margin-left: 15px; text-align: left;">${saveFeed.u_id }</h6>
 																		</div>
 																		<div href="#">
 																			<svg xmlns="http://www.w3.org/2000/svg" width="16"
@@ -686,22 +699,24 @@ input[id="tab03"]:checked ~ .con3 {
 
 																<!-- 채팅창 -->
 																<div
-																	style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
-																	<a href="/otherFeed.do"
+																	style="height: 424px; overflow-y: auto; background-color: white;">
+																	<a href="otherFeed.do?u_id=${saveFeed.u_id}"
 																		class="list-group-item list-group-item-action d-flex gap-3 py-3"
 																		aria-current="true"
-																		style="border: none; height: 100px; margin-top: 0px;">
-																		<img src="./img_src/test/kim.jpg" alt="twbs"
-																		width="40" height="40"
-																		class="rounded-circle flex-shrink-0">
+																		style="border: none; margin-top: 0px;"> <img
+																		src="../img_src/profile/${saveFeed.u_pic }" width="40"
+																		height="40" class="rounded-circle flex-shrink-0">
 																		<div
-																			class="d-flex gap-2 w-100 justify-content-between">
+																			class="d-flex gap-2 w-100 justify-content-between"
+																			style="text-align: left;">
 																			<div>
-																				<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																				<h6 class="mb-0">${saveFeed.u_id }</h6>
 																				<p class="mb-0 opacity-75"
-																					style="padding-top: 10px; width: 300px;">해적왕</p>
+																					style="padding-top: 10px; width: 300px; font-size: 15px;">
+																					${saveFeed.content }</p>
 																			</div>
-																			<small class="opacity-50 text-nowrap">3분전</small>
+																			<small class="opacity-50 text-nowrap">
+																				${saveFeed.regdate } </small>
 																		</div>
 																	</a> <a href="/otherFeed.do"
 																		class="list-group-item list-group-item-action d-flex gap-3 py-3"
@@ -711,7 +726,8 @@ input[id="tab03"]:checked ~ .con3 {
 																		width="40" height="40"
 																		class="rounded-circle flex-shrink-0">
 																		<div
-																			class="d-flex gap-2 w-100 justify-content-between">
+																			class="d-flex gap-2 w-100 justify-content-between"
+																			style="text-align: left;">
 																			<div>
 																				<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
 																				<p class="mb-0 opacity-75"
@@ -722,15 +738,17 @@ input[id="tab03"]:checked ~ .con3 {
 																	</a>
 																</div>
 																<!-- 메시지 보내기 -->
-																<div class="input-group mb-3">
-																	<input style="height: 45px; border-radius: initial;"
+																<div class="input-group mb-3"
+																	style="background-color: white; border-bottom-right-radius: 5px;">
+																	<input
+																		style="height: 40px; border-radius: 20px; margin: 10px 5px 10px 10px; padding: 3px 12px;"
 																		type="text" class="form-control"
 																		placeholder="메시지 입력..."
 																		aria-label="Recipient's username"
 																		aria-describedby="button-addon2">
 																	<button class="btn btn-outline-primary" type="button"
 																		id="button-addon2"
-																		style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
+																		style="background-color: #0d6efd; color: white; border-radius: 70%; width: 35px; height: 35px; padding: 0px; margin: 10px;">
 																		<svg xmlns="http://www.w3.org/2000/svg" width="16"
 																			height="16" fill="currentColor"
 																			class="bi bi-arrow-up" viewBox="0 0 16 16">
@@ -758,8 +776,9 @@ input[id="tab03"]:checked ~ .con3 {
 											<!-- 시작 -->
 											<input type="checkbox" id="savepopup<%=k%>">
 											<!-- 버튼 클릭시 팝업창 오픈 -->
-											<label for="savepopup<%=k%>"> <a
-												style="color: black;"> ${saveFeed.content } </a>
+											<label for="savepopup<%=k%>"
+												style="width: 100%; height: 100%; align-items: center; align-content: stretch; display: flex; justify-content: space-around; color: black; font-weight: bold; line-height: 20px; font-size: 1.5vh;">
+												<c:out value="${saveFeed.content }" />
 											</label>
 											<div>
 												<div>
@@ -772,17 +791,20 @@ input[id="tab03"]:checked ~ .con3 {
 															style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 															<!-- 왼쪽 -->
 															<div class="col-6"
-																style="margin: 0px; padding: 0px; height: 549px; text-align: center; background-color: white; border: solid 1px silver;">
-																<a style="color: black;">${saveFeed.content }</a>
+																style="margin: 0px 0px 0px auto; padding: 0px; height: 550px; text-align: center; background-color: white; border: solid 1px silver;">
+																<div
+																	style="color: black; width: 100%; display: flex; align-items: center; justify-content: space-around; font-size: 20px; height: 100%;">
+																	<c:out value="${saveFeed.content }" />
+																</div>
 															</div>
 															<!-- 오른쪽 -->
-															<div class="col-6"
-																style="margin: 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+															<div class="col-5"
+																style="margin: 0px auto 0 0; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
 																<!-- 상단 닉네임 -->
-																<a href="/otherFeed.do"
+																<a href="/otherFeed.do?u_id=${saveFeed.u_id  }"
 																	class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
-																	style="height: 80px; background-color: white;"> <img
-																	src="../img_src/profile/${saveFeed.u_pic }" alt="twbs"
+																	style="height: 66px; background-color: white; border-top-right-radius: 5px;">
+																	<img src="../img_src/profile/${saveFeed.u_pic }"
 																	width="40" height="40"
 																	class="rounded-circle flex-shrink-0"
 																	style="margin-left: 20px;">
@@ -802,57 +824,64 @@ input[id="tab03"]:checked ~ .con3 {
 																</a>
 																<!-- 채팅창 -->
 																<div
-																	style="width: 600px; height: 424px; overflow-y: auto; background-color: white;">
-																	<a href="/otherFeed.do"
+																	style="height: 424px; overflow-y: auto; background-color: white;">
+																	<a href="otherFeed.do?=u_id${saveFeed.u_id }"
 																		class="list-group-item list-group-item-action d-flex gap-3 py-3"
 																		aria-current="true"
 																		style="border: none; height: 100px; margin-top: 0px;">
-																		<img src="./img_src/test/kim.jpg" alt="twbs"
-																		width="40" height="40"
+																		<img src="../img_src/profile/${saveFeed.u_pic }"
+																		alt="twbs" width="40" height="40"
 																		class="rounded-circle flex-shrink-0">
 																		<div
 																			class="d-flex gap-2 w-100 justify-content-between">
-																			<div>
-																				<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																			<div style="text-align: left;">
+																				<h6 class="mb-0">${saveFeed.u_id }</h6>
 																				<p class="mb-0 opacity-75"
-																					style="padding-top: 10px; width: 300px;">해적왕</p>
+																					style="padding-top: 10px; width: 300px; font-size: 15px;">
+																					<c:out value="${saveFeed.content }" />
+																				</p>
 																			</div>
-																			<small class="opacity-50 text-nowrap">3분전</small>
-																		</div>
-																	</a> <a href="/otherFeed.do"
-																		class="list-group-item list-group-item-action d-flex gap-3 py-3"
-																		aria-current="true"
-																		style="border: none; height: 100px; margin-top: 0px;">
-																		<img src="./img_src/test/kim.jpg" alt="twbs"
-																		width="40" height="40"
-																		class="rounded-circle flex-shrink-0">
-																		<div
-																			class="d-flex gap-2 w-100 justify-content-between">
-																			<div>
-																				<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
-																				<p class="mb-0 opacity-75"
-																					style="padding-top: 10px; width: 300px;">그는누구인가..</p>
-																			</div>
-																			<small class="opacity-50 text-nowrap">3분전</small>
-																		</div>
+																			<small class="opacity-50 text-nowrap">${saveFeed.regdate }</small>
+																		</div> <!-- 댓글 list 반복문처리 -->
 																	</a>
+																	<c:forEach var="comment" items="${commentVO }">
+																		<a href="otherFeed.do?u_id=${commentVO.u_id }"
+																			class="list-group-item list-group-item-action d-flex gap-3 py-3"
+																			aria-current="true"
+																			style="border: none; height: 100px; margin-top: 0px;">
+																			<img src="./img_src/test/kim.jpg" alt="twbs"
+																			width="40" height="40"
+																			class="rounded-circle flex-shrink-0">
+																			<div
+																				class="d-flex gap-2 w-100 justify-content-between">
+																				<div>
+																					<h6 class="mb-0">tldhsrkwhr11(본인)</h6>
+																					<p class="mb-0 opacity-75"
+																						style="padding-top: 10px; width: 300px;">그는누구인가..</p>
+																				</div>
+																				<small class="opacity-50 text-nowrap">3분전</small>
+																			</div>
+																		</a>
+																	</c:forEach>
 																</div>
 																<!-- 메시지 보내기 -->
-																<div class="input-group mb-3">
-																	<input style="height: 45px; border-radius: initial;"
+																<div class="input-group mb-3"
+																	style="background-color: white; border-bottom-right-radius: 5px;">
+																	<input
+																		style="height: 40px; border-radius: 20px; margin: 10px 5px 10px 10px; padding: 3px 12px;"
 																		type="text" class="form-control"
 																		placeholder="메시지 입력..."
 																		aria-label="Recipient's username"
 																		aria-describedby="button-addon2">
 																	<button class="btn btn-outline-primary" type="button"
 																		id="button-addon2"
-																		style="background-color: #0d6efd; color: white; border-top-right-radius: inherit;">
+																		style="background-color: #0d6efd; color: white; border-radius: 70%; width: 35px; height: 35px; padding: 0px; margin: 10px;">
 																		<svg xmlns="http://www.w3.org/2000/svg" width="16"
 																			height="16" fill="currentColor"
 																			class="bi bi-arrow-up" viewBox="0 0 16 16">
-																<path fill-rule="evenodd"
+															<path fill-rule="evenodd"
 																				d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
-																</svg>
+															</svg>
 																	</button>
 																</div>
 															</div>
@@ -875,7 +904,9 @@ input[id="tab03"]:checked ~ .con3 {
 			</div>
 		</div>
 	</main>
-
+	<br>
+	<br>
+	<br>
 
 
 	<script
