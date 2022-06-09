@@ -33,7 +33,7 @@ UNION
 				 WHERE F.U_ID = #{u_id}
 				 ORDER BY F_IDX DESC))
 	 WHERE R_NUM BETWEEN #{begin} AND #{end}
-	 ORDER BY R_NUM DESC
+	 ORDER BY R_NUM
 	</select>
 	
 	<select id="oneFeed" resultType="feed" parameterType="int">

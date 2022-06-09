@@ -260,7 +260,7 @@ document.addEventListener("scroll", debounce(e => {
 										dispHtml += '<hr>';
 										dispHtml += '<div>';
 											if (obj.comm.length > 2) {
-												dispHtml += '<a style="display:inline-flex; margin-bottom: 20px;">댓글 ' + obj.comm.length() + '개 모두 보기</a> <br>';
+												dispHtml += '<a style="display:inline-flex; margin-bottom: 20px;">댓글 ' + obj.comm.length + '개 모두 보기</a> <br>';
 											}
 										let twoComm = 0;
 										$.each(obj.comm, function(idx, obj2) {
@@ -324,7 +324,7 @@ document.addEventListener("scroll", debounce(e => {
 		style="display: flex; flex-direction: column-reverse; align-content: space-around; flex-wrap: wrap;">
 		<div id="feedBox">
 			<%
-				List<String> list = (List<String>) request.getAttribute("likeList");
+			List<String> list = (List<String>) request.getAttribute("likeList");
 			List<Integer> saveList = (List<Integer>) request.getAttribute("saveList");
 			%>
 			<!-- 중간 정렬 -->
