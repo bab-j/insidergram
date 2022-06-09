@@ -95,6 +95,12 @@ public class FeedServiceImpl implements FeedService {
 	}
 
 
+	@Override
+	public FeedVO oneFeed(int f_idx) {
+		return feedDAO.oneFeed(f_idx);
+	}
+
+
 
 	
 }

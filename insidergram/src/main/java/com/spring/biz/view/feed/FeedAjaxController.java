@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.biz.comment.CommentService;
 import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
 import com.spring.biz.feed.Paging;
@@ -21,6 +22,8 @@ import com.spring.biz.user.UserVO;
 public class FeedAjaxController {
 	@Autowired
 	private FeedService feedService;
+	@Autowired
+	private CommentService commService;
 	
 	//좋아요
 	@RequestMapping("/user/likeFeed.do")
@@ -75,15 +78,49 @@ public class FeedAjaxController {
 		System.out.println(paging.toString());
 		List<FeedVO> list = feedService.getFeedList(u_id, paging.getBegin(), paging.getEnd());
 		//------------------FeedVO에 좋아요 개수 Set-------------------
+		//------------------각 게시물 댓글 리스트에 Set-------------------
 		for(FeedVO fvo : list) {
 			fvo.setCountLike(feedService.countLike(fvo.getF_idx()));
+			fvo.setComm(commService.getCommList(fvo.getF_idx()));
+			System.out.println("fvo.toString() : " + fvo.toString());
 		}
+		// ----------------즐겨찾기 f_idx 리스트 담기----------------
+		List<Integer> saveList = new ArrayList<Integer>();
+		for (FeedVO fvo : feedService.saveFeedList(u_id)) {
+			saveList.add(fvo.getF_idx());
+		}
+					// -----------------------------------------------------
 		System.out.println(list);
-		List<Integer> likeList = feedService.confirmLike(u_id);
-		mo.addAttribute("likeList", likeList);
+//		List<Integer> likeList = feedService.confirmLike(u_id);
+//		mo.addAttribute("likeList", likeList);
+		mo.addAttribute("saveList", saveList);
+
 		//----------------------------------------------------------
-		
 		return list;
 	}
+	@RequestMapping("/user/modal.do")
+	public FeedVO getFeed(int f_idx) {
+		FeedVO fvo = feedService.oneFeed(f_idx);
+		fvo.setComm(commService.getCommList(f_idx));
+		fvo.setCountLike(feedService.countLike(f_idx));
+		System.out.println("@@@@@@@@ fvo @@@@@@@ : " + fvo);
+		
+		return fvo;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

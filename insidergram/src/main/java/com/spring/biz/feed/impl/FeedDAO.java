@@ -39,6 +39,13 @@ public class FeedDAO {
 		return list;
 	}
 	
+	// 글 하나 조회
+	public FeedVO oneFeed(int f_idx) {
+		System.out.println("===>> MyBatis 사용 oneFeed() 실행~~");
+		FeedVO fvo = mybatis.selectOne("feedDAO.oneFeed", f_idx);
+		return fvo;
+	}
+	
 	// 내 게시글 조회
 	public List<FeedVO> getMyFeed(String u_id) {
 		System.out.println("===> MyBatis 사용 getMyFeed() 실행!!");
