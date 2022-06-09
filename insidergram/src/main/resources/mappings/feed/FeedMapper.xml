@@ -119,6 +119,16 @@ UNION
 		   AND S.U_ID = #{u_id}
 		ORDER BY SAVED_IDX DESC
   	</select>
+  	
+  	<delete id="unFollow" parameterType="map">
+  		DELETE FROM FOLLOWER
+  		WHERE FROM_ID=#{my_id} AND TO_ID=#{target_id}
+  	</delete>
+  	
+  	<insert id="follow" parameterType="map">
+  		INSERT INTO FOLLOWER (ER_IDX, TO_ID, FROM_ID)
+  		VALUES((SELECT NVL(MAX(ER_IDX), 0) + 1 FROM FOLLOWER), #{target_id}, #{my_id})
+  	</insert>
 </mapper>
 
 

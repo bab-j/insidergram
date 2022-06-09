@@ -135,15 +135,17 @@ public class FeedAjaxController {
 		return map;
 	}
 	
+	@RequestMapping("user/follow.do")
+	public String follow(String my_id, String target_id) {
+		feedService.follow(my_id, target_id);
+		return "success";
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping("user/unFollow.do")
+	public String unFollow(String my_id, String target_id) {
+		feedService.unFollow(my_id, target_id);
+		return "success";
+	}
 	
 	
 	

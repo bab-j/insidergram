@@ -21,4 +21,6 @@ public interface FeedService {
 	int countLike(int f_idx);
 	int saveFeed(int f_idx, String u_id);
 	int unSaveFeed(int f_idx, String u_id);
+	void follow(String my_id, String target_id);
+	void unFollow(String my_id, String target_id);
 }

@@ -101,6 +101,18 @@ public class FeedServiceImpl implements FeedService {
 	}
 
 
+	@Override
+	public void follow(String my_id, String target_id) {
+		feedDAO.follow(my_id, target_id);
+	}
+
+
+	@Override
+	public void unFollow(String my_id, String target_id) {
+		feedDAO.unFollow(my_id, target_id);
+	}
+
+
 
 	
 }

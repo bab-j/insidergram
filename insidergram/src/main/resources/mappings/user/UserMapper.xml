@@ -32,6 +32,11 @@
 	<select id="searchUser" resultType="user" parameterType="String">
 		SELECT U_ID, U_PIC, NAME, BIO FROM USER_INFO WHERE U_ID like '%' ||  #{u_id} || '%'
 	</select>
+	
+	<select id="getUserInfo" parameterType="String"
+		resultType="user">
+		SELECT * FROM USER_INFO WHERE U_ID = #{u_id}
+	</select>
 </mapper>
 
 

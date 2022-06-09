@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -128,7 +129,7 @@ import com.spring.biz.user.UserVO;
 					picPost.add(fvo);
 				}
 			}
-			List<UserVO> userInfo = userService.searchUser(u_id); // 해당 유저 정보
+			UserVO userInfo = userService.getUserInfo(u_id); // 해당 유저 정보
 			List<FollowerVO> followingList = feedService.getFollowingList(u_id); // 팔로잉 정보
 			List<FollowerVO> followerList = feedService.getFollowerList(u_id); // 팔로워 정보
 			mo.addAttribute("saveFeed", saveFeed);
@@ -164,5 +165,4 @@ import com.spring.biz.user.UserVO;
 				System.out.println(">>>>>>>최종 insert : " + result);
 			return "redirect:getFeedList.do";
 		}
-		
 	}

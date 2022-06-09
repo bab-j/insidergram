@@ -8,4 +8,5 @@ public interface UserService {
 	void insertUser(UserVO vo);
 	int findId(UserVO vo);
 	List<UserVO> searchUser(String u_id);
+	UserVO getUserInfo(String u_id);
 }

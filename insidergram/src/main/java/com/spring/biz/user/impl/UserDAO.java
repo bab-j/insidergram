@@ -42,4 +42,10 @@ public class UserDAO {
 	public List<UserVO> searchUser(String u_id) {
 		return mybatis.selectList("userDAO.searchUser", u_id);
 	}
+	
+	public UserVO getUserInfo(String u_id) {
+		System.out.println("===> MyBatis 사용 getUser() 실행");
+		
+		return mybatis.selectOne("userDAO.getUserInfo", u_id);
+	}
 }
