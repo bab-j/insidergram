@@ -8,9 +8,10 @@
   FROM COMM C JOIN USER_INFO U
     ON C.U_ID = U.U_ID
  WHERE F_IDX = #{f_idx}
+ ORDER BY CO_IDX
 	</select>
 	
-	<insert id="insertComm" parameterType="map">
+	<insert id="writeComm" parameterType="map">
 		INSERT INTO COMM
 		    VALUES((SELECT NVL(MAX(CO_IDX), 0) + 1 FROM COMM), TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS'),
         		        #{comm}, #{f_idx}, #{u_id})

@@ -17,5 +17,10 @@ public class CommentServiceImpl implements CommentService{
 	public List<CommentVO> getCommList(int f_idx) {
 		return commentDAO.getCommList(f_idx);
 	}
+
+	@Override
+	public int writeComm(String comm, String u_id, int f_idx) {
+		return commentDAO.writeComm(comm, u_id, f_idx);
+	}
 	
 }

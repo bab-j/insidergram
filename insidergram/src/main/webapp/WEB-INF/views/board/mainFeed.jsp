@@ -259,20 +259,25 @@ document.addEventListener("scroll", debounce(e => {
 										dispHtml += '<b>' + obj.u_id + '</b>&nbsp;&nbsp; ' + obj.content;
 										dispHtml += '<hr>';
 										dispHtml += '<div>';
-											if (obj.comm.length > 2) {
-												dispHtml += '<a style="display:inline-flex; margin-bottom: 20px;">댓글 ' + obj.comm.length + '개 모두 보기</a> <br>';
-											}
+									}
+									if (obj.comm.length > 2) {
+										dispHtml += '<a style="display:inline-flex; margin-bottom: 20px;" href="javascript:modalAjax(' + obj.f_idx + ')">';
+										dispHtml += '댓글 <p id="commCNT' + obj.f_idx + '">' + obj.comm.length + '</p>개 모두 보기 <br>';
+										dispHtml += '</a><br>';
+									} 
+									/* dispHtml += '<div>'; */
 										let twoComm = 0;
 										$.each(obj.comm, function(idx, obj2) {
 											twoComm++;
+											
 											if(twoComm == 3) {
 												return false;
 											}
 											dispHtml += obj2.u_id + ':' + obj2.comm + '<br>';
 										});
-										dispHtml += '</div>';
-										dispHtml += '</div>';
-									}
+									/* dispHtml += '</div>'; */
+									dispHtml += '</div>';
+									dispHtml += '</div>';
 									dispHtml += '</div>';
 									dispHtml += '</div>';
 									dispHtml += '</div>';
@@ -466,12 +471,14 @@ document.addEventListener("scroll", debounce(e => {
 								<c:if test="${feed.f_pic != null }">
 									<div class="contentBox">
 										<b>${feed.u_id }</b>&nbsp;&nbsp; ${feed.content }
+									</div>
+								</c:if>
 										<hr>
 										<div>
-											<label for="popup"> <c:if
+												<c:if
 													test="${feed.comm.size() > 2 }">
-													<a style="display: inline-flex; margin-bottom: 20px;">댓글
-														${feed.comm.size() }개 모두 보기</a>
+													<a style="display: inline-flex; margin-bottom: 20px;" href="javascript:modalAjax(${feed.f_idx })">댓글
+														<p id="commCNT${feed.f_idx }">${feed.comm.size() }</p>개 모두 보기</a>
 													<br>
 												</c:if> <%
  	int twoComm = 0;
@@ -486,8 +493,6 @@ document.addEventListener("scroll", debounce(e => {
 												</c:forEach>
 											</label>
 										</div>
-									</div>
-								</c:if>
 							</div>
 						</div>
 					</c:forEach>
@@ -587,7 +592,7 @@ document.addEventListener("scroll", debounce(e => {
 				dispHtml += '<path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />';
 				dispHtml += '</svg></div></div></a>';
 				/* <!-- 댓글창 --> */
-				dispHtml += '<div style="height: 424px; overflow-y: auto; background-color: white;">';
+				dispHtml += '<div style="height: 424px; overflow-y: auto; background-color: white;" id="commBox">';
 				
 			}
 		$.each(data.comm, function(index, obj){
@@ -605,8 +610,8 @@ document.addEventListener("scroll", debounce(e => {
 		dispHtml += '</div>';
 			/* <!-- 메시지 보내기 --> */
 		dispHtml += '<div class="input-group mb-3" style="background-color: white; border-bottom-right-radius: 5px;">';
-		dispHtml += '<input style="height: 40px; border-radius: 20px; margin: 10px 5px 10px 10px; padding: 3px 12px;" type="text" class="form-control" placeholder="메시지 입력..." aria-label="Recipient\'s username" aria-describedby="button-addon2">';
-		dispHtml += '<button class="btn btn-outline-primary" type="button" id="button-addon2" style="background-color: #0d6efd; color: white; border-radius: 70%; width: 35px; height: 35px; padding: 0px; margin: 10px;">';
+		dispHtml += '<input style="height: 40px; border-radius: 20px; margin: 10px 5px 10px 10px; padding: 3px 12px;" type="text" class="form-control" id="commBlock" placeholder="메시지 입력..." aria-label="Recipient\'s username" aria-describedby="button-addon2">';
+		dispHtml += '<button class="btn btn-outline-primary" type="button" id="button-addon2" style="background-color: #0d6efd; color: white; border-radius: 70%; width: 35px; height: 35px; padding: 0px; margin: 10px;" onclick="writeComm('+ data.f_idx + ')">';
 		dispHtml += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" /></svg>';	
 		dispHtml += '</button></div></div></div>';
 		
@@ -636,6 +641,39 @@ document.addEventListener("scroll", debounce(e => {
 					document.getElementById("emptySave"+f_idx).style.display="inline";
 					document.getElementById("fillSave"+f_idx).style.display="none";
 				}
+			},
+			error : function() {
+				alert("실패~~~");
+			}
+		});
+	}
+	
+	function writeComm(f_idx) {
+		$.ajax("writeComm.do", {
+			type : "get",
+			data : { "f_idx":f_idx, "u_id":'${userVO.u_id}', "comm":$("#commBlock").val() },
+			dataType : "json",
+			success : function(data) {
+				console.log("성공~~~");
+				console.log(data);
+				$("#commBlock").val("");
+				var commCNT = $("#commCNT" + data.f_idx).html();
+				commCNT++;
+				alert(commCNT);
+				var dispHtml = "";
+				dispHtml += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style="border: none; height: 100px; margin-top: 0px;">';
+				dispHtml += '<img src="../img_src/profile/' + data.u_pic + '" width="40" height="40"';
+				dispHtml += 'class="rounded-circle flex-shrink-0">';
+				dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
+				dispHtml += '<div>';
+				dispHtml += '<h6 class="mb-0">' + data.u_id + '</h6>';
+				dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px;">' + data.comm + '</p>';
+				dispHtml += '</div>';
+				dispHtml += '<small class="opacity-50 text-nowrap">3분전</small>'	;
+				dispHtml += '</div></a>';
+				$("#commBox").append(dispHtml);
+				$("#commCNT" + data.f_idx).html(commCNT);
+				$('#commBox').scrollTop($('#commBox')[0].scrollHeight);
 			},
 			error : function() {
 				alert("실패~~~");

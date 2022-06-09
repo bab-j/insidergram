@@ -2,7 +2,9 @@ package com.spring.biz.view.feed;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +18,7 @@ import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
 import com.spring.biz.feed.Paging;
 import com.spring.biz.follower.LikeVO;
+import com.spring.biz.user.UserService;
 import com.spring.biz.user.UserVO;
 //@Controller
 @RestController
@@ -24,6 +27,8 @@ public class FeedAjaxController {
 	private FeedService feedService;
 	@Autowired
 	private CommentService commService;
+	@Autowired
+	private UserService userService;
 	
 	//좋아요
 	@RequestMapping("/user/likeFeed.do")
@@ -98,6 +103,8 @@ public class FeedAjaxController {
 		//----------------------------------------------------------
 		return list;
 	}
+	
+	// 모달창에 띄울 피드정보 보내기
 	@RequestMapping("/user/modal.do")
 	public FeedVO getFeed(int f_idx) {
 		FeedVO fvo = feedService.oneFeed(f_idx);
@@ -108,6 +115,24 @@ public class FeedAjaxController {
 		return fvo;
 	}
 	
+	// 댓글 삽입
+	@RequestMapping("user/writeComm.do")
+	public Map<String, Object> writeComm(String comm, String u_id, int f_idx) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		int result = commService.writeComm(comm, u_id, f_idx);
+		List<UserVO> list = userService.searchUser(u_id);
+		System.out.println("유저 사진 : " + list.get(1).getU_pic());
+		if (result == 1) {
+			map.put("comm", comm);
+			map.put("u_id", u_id);
+			map.put("f_idx", f_idx);
+			map.put("u_pic", list.get(1).getU_pic());
+			map.put("check", 1);
+		} else {
+			map.put("check", 0);
+		}
+		return map;
+	}
 	
 	
 	
