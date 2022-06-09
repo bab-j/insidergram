@@ -19,8 +19,8 @@
 
 	<insert id="insertUser" parameterType="user">
 		INSERT INTO USER_INFO
-		(U_ID, PASSWORD, PHONE, EMAIL, BIRTH, NAME)
-		VALUES (#{u_id}, #{password}, #{phone}, #{email}, #{birth}, #{name})
+		(U_ID, PASSWORD, PHONE, EMAIL, BIRTH, NAME, U_PIC)
+		VALUES (#{u_id}, #{password}, #{phone}, #{email}, #{birth}, #{name}, 'default.png')
 	</insert>
 	
 	<select id="findId" resultType="user" parameterType="user">
