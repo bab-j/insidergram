@@ -3,9 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="chatHeaderDAO">
-	
 	<select id="getChatHeaderList" resultType="com.spring.biz.chat.ChatHeaderVO" parameterType="String">
-		SELECT CH.H_IDX, CH.FROM_ID, CH.TO_ID, CH.SUBJECT, CH.FROM_STATUS, CH.TO_STATUS, CH.TIME, U.U_PIC
+		SELECT CH.H_IDX, CH.FROM_ID, CH.TO_ID, CH.SUBJECT, CH.FROM_STATUS, CH.TO_STATUS, TO_CHAR(TO_DATE(CH.TIME, 'YYYY/MM/DD HH24:MI:SS')+(9/24),'YYYY/MM/DD HH24:MI:SS') AS TIME, U.U_PIC
 		FROM CHAT_HEADER CH JOIN USER_INFO U
 		ON U.U_ID = DECODE(CH.FROM_ID, #{u_id}, CH.TO_ID, CH.FROM_ID)
 		WHERE CH.FROM_ID = #{u_id} OR CH.TO_ID = #{u_id}

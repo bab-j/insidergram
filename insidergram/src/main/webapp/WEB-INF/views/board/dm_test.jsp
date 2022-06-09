@@ -94,6 +94,12 @@ html, body {
 	object-fit: cover;
 }
 
+.time {
+	font-size: 12px;
+	color: gray;
+	float: right;
+}
+
 .sm_id {
 	color: gray;
 }
@@ -196,8 +202,8 @@ input[id*="popup"]:checked+label+div {
 
 		<div class="container h-100 pt-3 pb-3 " style="width: 1250px;">
 			<div class="row h-100 pb-5">
-				<div
-					class="shadow-sm mb-5 bg-body rounded col-4 border" style="padding:0; overflow-y:auto; overflow-x:hidden;">
+				<div class="shadow-sm mb-5 bg-body rounded col-4 border"
+					style="padding: 0; overflow-y: auto; overflow-x: hidden;">
 					<div style="height: 59px;">
 						<!-- 팝업창 여기부터 -->
 						<input type="checkbox" id="popup">
@@ -218,7 +224,8 @@ input[id*="popup"]:checked+label+div {
 						</div>
 					</div>
 					<!-- 여기까지  -->
-					<div id="chatHeaderList" class="border-top" style="overflow-x:hidden; overflow-y:auto; padding:10px 10px 0 10px;">
+					<div id="chatHeaderList" class="border-top"
+						style="overflow-x: hidden; overflow-y: auto; padding: 10px 10px 0 10px;">
 						<c:forEach var="vo" items="${chatHeaderList }">
 							<c:if test="${vo.from_id eq userVO.u_id }">
 								<a id="hId${vo.h_idx }" class="row d-flex chat_header"
@@ -226,11 +233,12 @@ input[id*="popup"]:checked+label+div {
 									<div class="col-2">
 										<div class="box">
 											<div class="img_box">
-												<img id="img${vo.h_idx }" class="img_size" src="../img_src/profile/${vo.u_pic }">
+												<img id="img${vo.h_idx }" class="img_size"
+													src="../img_src/profile/${vo.u_pic }">
 											</div>
 										</div>
 									</div>
-									<div class="col-8" style="text-overflow: ellipsis;">
+									<div class="col-7" style="text-overflow: ellipsis;">
 										<c:if test="${ vo.from_status eq '0'}">
 											<div>
 												<p id="u_id${vo.h_idx }"
@@ -244,7 +252,11 @@ input[id*="popup"]:checked+label+div {
 												<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
 											</div>
 										</c:if>
-									</div> <small class="col-2">1분전</small>
+									</div>
+									<div class="col-3">
+										<small class="time"
+											style="font-size: 12px; color: gray; float: right;">${vo.time }</small>
+									</div>
 								</a>
 							</c:if>
 							<c:if test="${vo.from_id ne userVO.u_id }">
@@ -253,11 +265,12 @@ input[id*="popup"]:checked+label+div {
 									<div class="col-2">
 										<div class="box">
 											<div class="img_box">
-												<img id="img${vo.h_idx }" class="img_size " src="../img_src/profile/${vo.u_pic }">
+												<img id="img${vo.h_idx }" class="img_size "
+													src="../img_src/profile/${vo.u_pic }">
 											</div>
 										</div>
 									</div>
-									<div class="col-8" style="text-overflow: ellipsis;">
+									<div class="col-7" style="text-overflow: ellipsis;">
 										<c:if test="${ vo.to_status eq '0'}">
 											<div>
 												<p id="u_id${vo.h_idx }"
@@ -271,14 +284,16 @@ input[id*="popup"]:checked+label+div {
 												<small id="subject${vo.h_idx }" class="sm_id">${vo.subject }</small>
 											</div>
 										</c:if>
-									</div> <small class="col-2">2분전</small>
+									</div>
+									<div class="col-3">
+										<small class="time">${vo.time }</small>
+									</div>
 								</a>
 							</c:if>
 						</c:forEach>
 					</div>
 				</div>
-				<div
-					class="shadow-sm p-0 mb-5 bg-body rounded col-8 h-100 border">
+				<div class="shadow-sm p-0 mb-5 bg-body rounded col-8 h-100 border">
 					<div class="h-100 position-relative" id="chatMessageView">
 						<h1>채팅하세요.</h1>
 					</div>
@@ -303,7 +318,7 @@ input[id*="popup"]:checked+label+div {
 			nowChatHeaderIdx = h_idx;
 			var id = "u_id" + h_idx;
 			document.getElementById(id).style.fontWeight = "normal";
-			
+
 			var imgSrc = document.getElementById("img" + h_idx).src;
 			var target = document.getElementById("u_id" + h_idx).innerText;
 			$
@@ -318,7 +333,8 @@ input[id*="popup"]:checked+label+div {
 
 									var my_id = u_id;
 									let dispHtml = "";
-									dispHtml += "<a href=\"../user/otherFeed.do?u_id=" + target + "\">"
+									dispHtml += "<a href=\"../user/otherFeed.do?u_id="
+											+ target + "\">"
 									dispHtml += "<div style=\"height:60px;\" class=\"d-flex align-items-center border-bottom\">"
 									dispHtml += "<div style=\"height:40px; width:40px; overflow:hidden; border-radius:50%; margin-left:10px;\" class=\"border\">"
 									dispHtml += "<img src=\"" + imgSrc + "\" class=\"img_size\">"
@@ -338,7 +354,9 @@ input[id*="popup"]:checked+label+div {
 															dispHtml += "<div class=\"chat_content_end\">";
 															dispHtml += obj.content;
 															dispHtml += "</div>";
-															dispHtml += "<a href=\"../user/otherFeed.do?u_id=" + obj.u_id +"\">";
+															dispHtml += "<a href=\"../user/otherFeed.do?u_id="
+																	+ obj.u_id
+																	+ "\">";
 															dispHtml += "<div class=\"box\">";
 															dispHtml += "<div class=\"img_box\">";
 															dispHtml += "<img class=\"img_size\" src=\"../img_src/profile/"+ obj.u_pic +"\">"
@@ -348,7 +366,9 @@ input[id*="popup"]:checked+label+div {
 															dispHtml += "</div>"
 														} else {
 															dispHtml += "<div class=\"d-flex justify-content-start\" style=\"margin-bottom:10px;\">";
-															dispHtml += "<a href=\"../user/otherFeed.do?u_id=" + obj.u_id +"\">";
+															dispHtml += "<a href=\"../user/otherFeed.do?u_id="
+																	+ obj.u_id
+																	+ "\">";
 															dispHtml += "<div class=\"box\">";
 															dispHtml += "<div class=\"img_box\">";
 															dispHtml += "<img class=\"img_size \" src=\"../img_src/profile/" + obj.u_pic + "\">"
@@ -415,7 +435,9 @@ input[id*="popup"]:checked+label+div {
 															dispHtml += "<div class=\"chat_content_end\">";
 															dispHtml += obj.content;
 															dispHtml += "</div>";
-															dispHtml += "<a href=\"../user/otherFeed.do?u_id=" + obj.u_id +"\">";
+															dispHtml += "<a href=\"../user/otherFeed.do?u_id="
+																	+ obj.u_id
+																	+ "\">";
 															dispHtml += "<div class=\"box\">";
 															dispHtml += "<div class=\"img_box\">";
 															dispHtml += "<img class=\"img_size\" src=\"../img_src/profile/"+ obj.u_pic +"\">"
@@ -425,7 +447,9 @@ input[id*="popup"]:checked+label+div {
 															dispHtml += "</div>"
 														} else {
 															dispHtml += "<div class=\"d-flex justify-content-start\" style=\"margin-bottom:10px;\">";
-															dispHtml += "<a href=\"../user/otherFeed.do?u_id=" + obj.u_id +"\">";
+															dispHtml += "<a href=\"../user/otherFeed.do?u_id="
+																	+ obj.u_id
+																	+ "\">";
 															dispHtml += "<div class=\"box\">";
 															dispHtml += "<div class=\"img_box\">";
 															dispHtml += "<img class=\"img_size \" src=\"../img_src/profile/" + obj.u_pic + "\">"
@@ -537,7 +561,7 @@ input[id*="popup"]:checked+label+div {
 															dispHtml += '</div>';
 															dispHtml += '</div>';
 															dispHtml += '</div>';
-															dispHtml += '<div class="col-8" style="text-overflow: ellipsis;">';
+															dispHtml += '<div class="col-7" style="text-overflow: ellipsis;">';
 															if (obj.from_status == '0') {
 																dispHtml += '<div>';
 																dispHtml += '<p id="u_id' + obj.h_idx + '" style="font-weight: bolder; margin: 0;">'
@@ -557,7 +581,12 @@ input[id*="popup"]:checked+label+div {
 																		+ '</small>';
 																dispHtml += '</div>';
 															}
-															dispHtml += '</div> <small class="col-2">1분전</small>';
+															dispHtml += '</div>';
+															dispHtml += '<div class="col-3">'
+															dispHtml += '<small class="time">'
+																	+ obj.time
+																	+ '</small>';
+															dispHtml += '</div>'
 															dispHtml += '</a>';
 														} else {
 															dispHtml += '<a id="hId'
@@ -573,7 +602,7 @@ input[id*="popup"]:checked+label+div {
 															dispHtml += '</div>';
 															dispHtml += '</div>';
 															dispHtml += '</div>';
-															dispHtml += '<div class="col-8" style="text-overflow: ellipsis;">';
+															dispHtml += '<div class="col-7" style="text-overflow: ellipsis;">';
 															if (obj.to_status == '0') {
 																dispHtml += '<div>';
 																dispHtml += '<p id="u_id' + obj.h_idx + '" style="font-weight: bolder; margin: 0;">'
@@ -593,7 +622,12 @@ input[id*="popup"]:checked+label+div {
 																		+ '</small>';
 																dispHtml += '</div>';
 															}
-															dispHtml += '</div> <small class="col-2">2분전</small>';
+															dispHtml += '</div>';
+															dispHtml += '<div class="col-3">'
+															dispHtml += '<small class="time">'
+																	+ obj.time
+																	+ '</small>';
+															dispHtml += '</div>'
 															dispHtml += '</a>';
 														}
 													});
