@@ -69,7 +69,7 @@ text-align: center;
 						<div class="row">
 							<div class="col-6">
 								<a class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
-									style="border-color: silver;" type="submit" href="./Personal_story.jsp">
+									style="border-color: silver;" type="submit" href="../WEB-INF/views/board/personalFeed.jsp">
 									<svg class="bi me-1 " width="0px" height="16"></svg>취소
 								</a>
 							</div>

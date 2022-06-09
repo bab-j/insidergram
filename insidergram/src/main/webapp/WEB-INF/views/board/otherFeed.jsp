@@ -258,7 +258,7 @@ for(UserVO uvo : userInfo) {
 	bio = uvo.getBio();
 }
 %>
-
+<jsp:include page="../../../header.jsp"></jsp:include>
 <main class="container py-3" style="background-color: #F5F5F5; width: 935px;">
 	<div class="container-fluid pb-3 my-3 p-3"style="background-color: #F5F5F5;">
 		<div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
