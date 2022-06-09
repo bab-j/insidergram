@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -208,16 +210,22 @@ input[id*="popup"]:checked+label+div {
 						<!-- 팝업창 여기부터 -->
 						<input type="checkbox" id="popup">
 						<!-- 버튼 클릭시 팝업창 오픈 -->
-						<label for="popup"> +메세지쓰기 </label>
+
+						<label for="popup"
+							style="font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 20; margin: 20px;"><span
+							class="material-symbols-outlined"> chat_bubble </span> </label>
+
 						<div>
-							<div>
+							<div style="border-radius: 5px; height: 400px;">
 								<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
 								<label for="popup"></label>
 								<!-- 내용 추가 -->
-								<input class="form-control rounded-3" type="text" name=u_id
-									id="searchBox" placeholder="검색" onkeyup="searchID()" required>
+								<b style="margin: 20px; display: flex;">새로운 메시지..</b> <input
+									class="form-control rounded-3" type="text" name=u_id
+									id="searchBox" placeholder=" 검색" onkeyup="searchID()" required
+									style="border-radius: 7px;">
 								<div id="headerBox" class="d-flex p-3 row"
-									style="height: 87%; overflow: auto;">검색결과</div>
+									style="width: 100%; overflow: auto; height: 300px;">&nbsp;&nbsp;검색결과</div>
 							</div>
 							<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
 							<label for="popup" id="close"></label>
@@ -294,7 +302,7 @@ input[id*="popup"]:checked+label+div {
 				</div>
 				<div class="shadow-sm p-0 mb-5 bg-body rounded col-8 h-100 border">
 					<div class="h-100 position-relative" id="chatMessageView">
-						<h1>채팅하세요.</h1>
+						<h1 style="text-align: center;">채팅할 상대를 찾아주세요!</h1>
 					</div>
 				</div>
 			</div>
