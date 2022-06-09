@@ -254,8 +254,7 @@ input[id*="popup"]:checked+label+div {
 										</c:if>
 									</div>
 									<div class="col-3">
-										<small class="time"
-											style="font-size: 12px; color: gray; float: right;">${vo.time }</small>
+										<small class="time" id="time${vo.h_idx }">${vo.time }</small>
 									</div>
 								</a>
 							</c:if>
@@ -286,7 +285,7 @@ input[id*="popup"]:checked+label+div {
 										</c:if>
 									</div>
 									<div class="col-3">
-										<small class="time">${vo.time }</small>
+										<small class="time" id="time${vo.h_idx }">${vo.time }</small>
 									</div>
 								</a>
 							</c:if>
@@ -401,10 +400,11 @@ input[id*="popup"]:checked+label+div {
 		function insertChatMessage(u_id, u_name, u_pic) {
 			let content = $("#content").val();
 			var sid = "subject" + nowChatHeaderIdx;
-			var hId;
-			hId = "hId" + nowChatHeaderIdx;
+			var hId = "hId" + nowChatHeaderIdx;
+			var timeId = "time" + nowChatHeaderIdx;
 
 			document.getElementById(sid).innerHTML = content;
+			document.getElementById(timeId).innerHTML = "방금전";
 			var header = document.getElementById("chatHeaderList");
 			header
 					.insertBefore(document.getElementById(hId),
