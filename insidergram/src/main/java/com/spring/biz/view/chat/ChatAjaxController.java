@@ -1,5 +1,8 @@
 package com.spring.biz.view.chat;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.naming.spi.DirStateFactory.Result;
@@ -16,6 +19,7 @@ import com.spring.biz.chat.ChatHeaderVO;
 import com.spring.biz.chat.ChatMessageVO;
 import com.spring.biz.chat.ChatService;
 import com.spring.biz.user.UserVO;
+import com.spring.common.TIME_MAXIMUM;
 
 @RestController
 public class ChatAjaxController {
@@ -55,16 +59,34 @@ public class ChatAjaxController {
 	}
 	
 	@RequestMapping("/chat/createChat.do")
-	public List<ChatHeaderVO> createChat(String my_id, String target_id) {
+	public List<ChatHeaderVO> createChat(String my_id, String target_id) throws ParseException {
 		Integer h_idx;
 		h_idx = chatService.findChatHeader(my_id, target_id);
 		System.out.println("h_idx : " + h_idx);
+		List<ChatHeaderVO> list;
 		if (h_idx != null) {
-			return chatService.getChatHeaderList(my_id);
+			list = chatService.getChatHeaderList(my_id);
+			for (ChatHeaderVO vo2 : list) {
+				String timeString = vo2.getTime();
+				SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				Date timeDate = format.parse(timeString);
+				String time = TIME_MAXIMUM.formatTimeString(timeDate);
+				System.out.println("몇분전 : " + time);
+				vo2.setTime(time);
+			}
+			return list;
 		} else {
 			chatService.createChat(my_id, target_id);
-			h_idx = chatService.findChatHeader(my_id, target_id);
-			return chatService.getChatHeaderList(my_id);
+			list = chatService.getChatHeaderList(my_id);
+			for (ChatHeaderVO vo2 : list) {
+				String timeString = vo2.getTime();
+				SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				Date timeDate = format.parse(timeString);
+				String time = TIME_MAXIMUM.formatTimeString(timeDate);
+				System.out.println("몇분전 : " + time);
+				vo2.setTime(time);
+			}
+			return list;
 		}
 	}
 	
