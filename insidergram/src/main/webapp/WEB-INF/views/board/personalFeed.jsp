@@ -256,10 +256,42 @@ input[id="tab02"]:checked ~ .con2 {
 input[id="tab03"]:checked ~ .con3 {
 	display: block;
 }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+
+.show {display: block;}
 </style>
 <script>
 	function updateUser() {
 		location.href = "../user_update.jsp"
+	}
+	window.onclick = function(event) {
+		  if (!event.target.matches('.dropbtn')) {
+		    var dropdowns = document.getElementsByClassName("dropdown-content");
+		    var i;
+		    for (i = 0; i < dropdowns.length; i++) {
+		      var openDropdown = dropdowns[i];
+		      if (openDropdown.classList.contains('show')) {
+		        openDropdown.classList.remove('show');
+		      }
+		    }
+		  }
 	}
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -384,9 +416,6 @@ input[id="tab03"]:checked ~ .con3 {
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
 							style="padding-bottom: 100px;">
 							<c:forEach var="picList" items="${picPost }">
-	<!--=------------------ 드롭다운 -----------------------=-->
-	
-   <!-- -------------------------------------------------- -->
 
 								<div class="col square" onclick="modalAjax(${picList.f_idx})">
 									<div class="card shadow-sm inner">
@@ -469,6 +498,11 @@ function feedUpdate(f_idx) {
 				}
 			});
 }
+
+function myFunction() {
+	  document.getElementById("myDropdown").classList.toggle("show");
+	}
+
 function modalAjax(f_idx) {
 	alert("연결 될까요옹?!" + f_idx);
 	
@@ -492,21 +526,22 @@ function modalAjax(f_idx) {
 			/* <!-- 오른쪽 --> */
 			dispHtml += '<div class="col-5" style="margin: 0px auto 0px 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">';
 			/* <!-- 상단 닉네임 --> */
+			dispHtml += '<div id="myDropdown" class="dropdown-content">'
+			dispHtml += '<a href="#home">Home</a>'	;
+		    dispHtml += '<a href="#about">About</a>';
+		    dispHtml += '<a href="#contact">Contact</a>';
+		    dispHtml += '</div>';
 			dispHtml += '<a href="#" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center" style="height: 66px; background-color: white; border-top-right-radius: 5px;">';
 			dispHtml += '<img src="../img_src/profile/' + data.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;">';
 			dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
 			dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.u_id + '</h6></div>';
-			dispHtml += '<div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16" style="margin: 10px 5px;" type="button" id="dropdownMenuButton' + data.f_idx + '" data-bs-toggle="dropdown" aria-expanded="false">';
+			dispHtml += '<div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16" onclick="myFunction()">';
 			dispHtml += '<path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />';
 			dispHtml += '</svg></div></div>';
-			dispHtml += '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton' + data.f_idx + '">';
-			dispHtml += '<li><a class="dropdown-item" href="#">Action</a></li>';
-			dispHtml += '<li><a class="dropdown-item" href="#">Another action</a></li>';
-			dispHtml += '<li><a class="dropdown-item" href="#">Something else here</a></li>';
-			dispHtml += '</ul></a>';
+			dispHtml += '</a>';
 			
 			/* <!-- 댓글창 --> */
-			dispHtml += '<div style="height: 424px; overflow-y: auto; background-color: white;">';
+			dispHtml += '<div style="height: 424px; overflow-y: auto; background-color: white;" id="commBox">';
 			dispHtml += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style="border: none; height: 100px; margin-top: 0px;">';
 			dispHtml += '<img src="../img_src/profile/' + data.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0">';
 			dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
@@ -553,7 +588,7 @@ function modalAjax(f_idx) {
 	dispHtml += '<input style="height: 40px; border-radius: 20px; margin: 10px 5px 10px 10px; padding: 3px 12px;" type="text" class="form-control" id="commBlock" placeholder="메시지 입력..." aria-label="Recipient\'s username" aria-describedby="button-addon2">';
 	dispHtml += '<button class="btn btn-outline-primary" type="button" id="button-addon2" style="background-color: #0d6efd; color: white; border-radius: 70%; width: 35px; height: 35px; padding: 0px; margin: 10px;" onclick="writeComm('+ data.f_idx + ')">';
 	dispHtml += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" /></svg>';	
-	dispHtml += '</button></div></div></div></div>';
+	dispHtml += '</button><div></div></div></div></div>';
 	
 	$("#modalContainer").html(dispHtml);
 		},
@@ -563,12 +598,51 @@ function modalAjax(f_idx) {
 	});
 	$("#popupLabel").click();
 }
+	
+function writeComm(f_idx) {
+	$
+			.ajax(
+					"writeComm.do",
+					{
+						type : "get",
+						data : {
+							"f_idx" : f_idx,
+							"u_id" : '${userVO.u_id}',
+							"comm" : $("#commBlock").val()
+						},
+						dataType : "json",
+						success : function(data) {
+							console.log("성공~~~");
+							console.log(data);
+							$("#commBlock").val("");
+							var dispHtml = "";
+							dispHtml += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style="border: none; height: 100px; margin-top: 0px;">';
+							dispHtml += '<img src="../img_src/profile/' + data.u_pic + '" width="40" height="40"';
+	dispHtml += 'class="rounded-circle flex-shrink-0">';
+							dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
+							dispHtml += '<div>';
+							dispHtml += '<h6 class="mb-0">' + data.u_id
+									+ '</h6>';
+							dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px;">'
+									+ data.comm + '</p>';
+							dispHtml += '</div>';
+							dispHtml += '<small class="opacity-50 text-nowrap">3분전</small>';
+							dispHtml += '</div></a>';
+							$("#commBox").append(dispHtml);
+							$('#commBox').scrollTop(
+									$('#commBox')[0].scrollHeight);
+						},
+						error : function() {
+							alert("실패~~~");
+						}
+					});
+}
+
 </script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous">
-		
 	</script>
 </body>
 </html>
