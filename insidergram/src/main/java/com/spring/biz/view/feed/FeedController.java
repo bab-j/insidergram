@@ -57,12 +57,11 @@ import com.spring.biz.user.UserVO;
 			}
 			List<FeedVO> list = feedService.getFeedList(uvo.getU_id(), paging.getBegin(), paging.getEnd());
 			// -------------- 댓글 리스트 ------------------
-//			List<List<CommentVO>> commList = new ArrayList<List<CommentVO>>();
 			//------------------FeedVO에 좋아요 개수 Set-------------------
 			//------------------각 게시물 댓글 리스트에 Set-------------------
 			for(FeedVO fvo : list) {
 				fvo.setCountLike(feedService.countLike(fvo.getF_idx()));
-				fvo.setComm(commService.getCommList(fvo.getF_idx())); 		
+				fvo.setComm(commService.getCommList(fvo.getF_idx()));
 				System.out.println("fvo.toString() : " + fvo.toString());
 			}
 			//----------------------------------------------------------
@@ -74,7 +73,6 @@ import com.spring.biz.user.UserVO;
 			}
 			// -----------------------------------------------------
 			List<Integer> likeList = feedService.confirmLike(uvo.getU_id());
-//			mo.addAttribute("commList", commList);
 			mo.addAttribute("saveList", saveList);
 			mo.addAttribute("feedList", list);
 			mo.addAttribute("likeList", likeList);
@@ -90,6 +88,14 @@ import com.spring.biz.user.UserVO;
 			List<FeedVO> picPost = new ArrayList<FeedVO>();
 			List<FeedVO> docPost = new ArrayList<FeedVO>();
 			List<FeedVO> saveFeed = feedService.saveFeedList(u_id);
+			
+//			for(FeedVO fvo : list) {
+//				fvo.setComm(commService.getCommList(fvo.getF_idx())); 		
+//				System.out.println("fvo.toString() : " + fvo.toString());
+//			}
+			for(FeedVO sFvo : saveFeed) {
+				sFvo.setComm(commService.getCommList(sFvo.getF_idx()));
+			}
 			
 			for(FeedVO fvo : list) {
 				if (fvo.getF_pic() == null) {
