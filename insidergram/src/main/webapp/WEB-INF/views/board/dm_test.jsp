@@ -590,8 +590,8 @@ input[id*="popup"]:checked+label+div {
 																dispHtml += '</div>';
 															}
 															dispHtml += '</div>';
-															dispHtml += '<div class="col-3">'
-															dispHtml += '<small class="time">'
+															dispHtml += '<div class="col-3">';
+															dispHtml += '<small class="time" id="time' + obj.h_idx + '">'
 																	+ obj.time
 																	+ '</small>';
 															dispHtml += '</div>'
@@ -631,8 +631,8 @@ input[id*="popup"]:checked+label+div {
 																dispHtml += '</div>';
 															}
 															dispHtml += '</div>';
-															dispHtml += '<div class="col-3">'
-															dispHtml += '<small class="time">'
+															dispHtml += '<div class="col-3">';
+															dispHtml += '<small class="time" id="time' + obj.h_idx + '">'
 																	+ obj.time
 																	+ '</small>';
 															dispHtml += '</div>'

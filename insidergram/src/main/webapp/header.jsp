@@ -255,7 +255,7 @@ a:hover {
 	</div>
 	<a href="javascript:hideSearchTable()" id="resetSearch"
 		class="material-symbols-outlined"
-		style="display: none; position: fixed; z-index: 10000; color: lightgray; left: 60%; transform: translate(70%, 0); margin-top: 15px;">cancel</a>
+		style="display: none; position: fixed; z-index: 10000; color: lightgray; left: 58%; transform: translate(70%, 0); margin-top: 15px;">cancel</a>
 	<!-- 부트스트랩 -->
 	<script>
 		function showSearchTable() {
