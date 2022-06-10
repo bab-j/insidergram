@@ -73,10 +73,11 @@ input[id*="popup"]+label+div>div {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 1200px;
+	
 	height: 550px;
-	background: rgba(0, 0, 0, 0.045);
+	background: rgba(0, 0, 0, 0.0);
 	z-index: 2;
+	
 }
 
 /* 상단 닫기버튼 */
@@ -254,7 +255,7 @@ $(document).ready(function() {
 							</div>
 							<div class="col-12 square"
 								style="display: flex; align-items: center;">
-								<div class="inner">
+								<div class="inner" style="display: flex;justify-content: center;align-items: center;font-weight: bold;">
 									<c:if test="${feed.f_pic == null }">
 								${feed.content }
 							</c:if>
@@ -604,8 +605,8 @@ function modalAjax(f_idx) {
 			dispHtml += '</div>';
 			dispHtml += '</div></a>';
 		} else {
-			/* <!-- 이미지 --> */
-			dispHtml += '<div class="col-6" style="margin: 0px 0px 0px auto; padding: 0px; height: 550px;">';	
+			/* <!-- 글 --> */
+			dispHtml += '<div class="col-6" style="margin: 0px 0px 0px auto; padding: 0px; height: 550px;display: flex;justify-content: center;align-items: center;background-color: white;font-weight: bold;">';	
 			dispHtml += data.content;
 			dispHtml += '</div>';
 			
