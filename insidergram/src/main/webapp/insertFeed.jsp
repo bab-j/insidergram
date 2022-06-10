@@ -54,11 +54,11 @@
 		tabindex="-1" role="dialog" id="modalSignin"
 		style="padding-bottom: 50px;"></div>
 	<div class="modal-dialog" role="document "
-		style="max-width: 1000px; width: 1000px; height: 800px;">
+		style="max-width: 1000px; width: 1000px; height: 800px;margin-top: 70px;">
 		<div class="modal-content rounded-4 shadow align-items-md-center">
 
 			<div class="modal-body p-5 pt-0 col-12 "
-				style="display: inline-flex; float: left;">
+				style="display: inline-flex; float: left;padding: 40px 48px 40px 48px! important;">
 				<form action="user/insertFeed.do" method="post"
 					enctype="multipart/form-data" class="col-12">
 					<div class="form-floating mb-3 col-6"
@@ -89,7 +89,7 @@
 						<hr class="my-4">
 						<br>
 						<textarea class="form-control" placeholder="내용 입력" name="content"
-							rows="16" style="width: 100%;"></textarea>
+							rows="14" style="width: 100%;line-height: 1.57;"></textarea>
 						<br>
 						<hr class="my-4">
 						<div class="row">
