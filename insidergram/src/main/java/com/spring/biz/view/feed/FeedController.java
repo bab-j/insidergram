@@ -124,8 +124,10 @@ import com.spring.biz.user.UserVO;
 			List<FeedVO> saveFeed = feedService.saveFeedList(u_id); // 즐겨찾기 게시물 리스트
 			for(FeedVO fvo : feedList) {
 				if (fvo.getF_pic() == null) {
+					fvo.setComm(commService.getCommList(fvo.getF_idx()));
 					docPost.add(fvo);
 				} else {
+					fvo.setComm(commService.getCommList(fvo.getF_idx()));
 					picPost.add(fvo);
 				}
 			}

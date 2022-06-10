@@ -421,6 +421,7 @@ input[id="tab03"]:checked ~ .con3 {
 							</c:forEach>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -507,7 +508,7 @@ input[id="tab03"]:checked ~ .con3 {
 					dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
 					dispHtml += '<div>';
 					dispHtml += '<h6 class="mb-0">' + data.u_id + '</h6>';
-					dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px;">' + data.content + '</p>';
+					dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px; font-size: 13px;">' + data.content + '</p>';
 					dispHtml += '</div>';
 					dispHtml += '</div></a>';
 				} else {
@@ -537,7 +538,7 @@ input[id="tab03"]:checked ~ .con3 {
 				dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
 				dispHtml += '<div>';
 				dispHtml += '<h6 class="mb-0">' + obj.u_id + '</h6>';
-				dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px;">' + obj.comm + '</p>';
+				dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px; font-size: 13px;">' + obj.comm + '</p>';
 				dispHtml += '</div>';
 				dispHtml += '<small class="opacity-50 text-nowrap">3분전</small>'	;
 				dispHtml += '</div></a>';
