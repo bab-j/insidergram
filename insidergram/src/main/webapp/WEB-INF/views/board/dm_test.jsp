@@ -394,9 +394,11 @@ input[id*="popup"]:checked+label+div {
 									dispHtml += "</div>";
 									dispHtml += "<div class=\"row position-absolute bottom-0 start-0\" style=\"width: 100%; padding:0 10px 10px 10px\">";
 									dispHtml += "<div class=\"col-11\">";
-									dispHtml += "<input class=\"form-control\" type=\"text\" name=\"content\" id=\"content\">";
+									dispHtml += "<input class=\"form-control\" type=\"text\" name=\"content\" id=\"content\" style=\"border-radius: 30px; width: 100%; margin-left: 10px;\">";
 									dispHtml += "</div>";
-									dispHtml += "<button class=\"btn btn-primary col-1 \" type=\"submit\" onclick=\"insertChatMessage(\'${userVO.u_id}\', \'${userVO.name }\', \'${userVO.u_pic }\')\">전송</button>";
+									dispHtml += "<button class=\"btn btn-primary col-1 \" type=\"submit\" onclick=\"insertChatMessage(\'${userVO.u_id}\', \'${userVO.name }\', \'${userVO.u_pic }\')\" style=\"border-radius: 50%; width: 38px; height: 38px !important; margin: 0 0 0 10px; heig ht: 40px;\">";
+									dispHtml += "<span class=\"material-symbols-outlined\" style=\"margin-left:-50%;\">north</span>";
+									dispHtml += "</button>";
 									dispHtml += "</div>";
 									$("#chatMessageView").html(dispHtml);
 									$('#chatMessageContainer')
@@ -500,13 +502,13 @@ input[id*="popup"]:checked+label+div {
 											.each(
 													data,
 													function(index, obj) {
-														dispHtml += '<div class="col-12 d-flex mb-2">';
+														dispHtml += '<div class="col-12 d-flex mb-2 align-items-center">';
 														dispHtml += '<div class="box">';
 														dispHtml += '<div class="img_box">';
 														dispHtml += '<img class="img_size " src="../img_src/profile/' + obj.u_pic +'">';
 														dispHtml += '</div>';
 														dispHtml += '</div>';
-														dispHtml += '<div class="flex-grow-1">';
+														dispHtml += '<div class="flex-grow-1" style="margin-left:10px;">';
 														dispHtml += '<p style="margin: 0;">'
 																+ obj.u_id
 																+ '</p>';
@@ -517,7 +519,7 @@ input[id*="popup"]:checked+label+div {
 														dispHtml += '<div>';
 														dispHtml += '<a href="javascript:createChat(\'${userVO.u_id}\',\''
 																+ obj.u_id
-																+ '\')">만들기</a>';
+																+ '\')" style="color:#121212; font-variation-settings: \'FILL\' 0, \'wght\' 500, \'GRAD\' 0, \'opsz\' 20;vertical-align: middle;" class="material-symbols-outlined">mark_chat_read</a>';
 														dispHtml += '</div>';
 														dispHtml += '</div>';
 													});
@@ -565,14 +567,14 @@ input[id*="popup"]:checked+label+div {
 																	+ '" class="row d-flex chat_header" href="javascript:getChatMessageList('
 																	+ obj.h_idx
 																	+ ', \'${userVO.u_id }\')">';
-															dispHtml += '<div class="col-2">';
+															dispHtml += '<div class="col-3" style="width:20%">';
 															dispHtml += '<div class="box">';
 															dispHtml += '<div class="img_box">';
 															dispHtml += '<img id="img'+ obj.h_idx + '" class="img_size " src="../img_src/profile/' + obj.u_pic +'">';
 															dispHtml += '</div>';
 															dispHtml += '</div>';
 															dispHtml += '</div>';
-															dispHtml += '<div class="col-7" style="text-overflow: ellipsis;">';
+															dispHtml += '<div class="col-6" style="text-overflow: ellipsis; margin: 5px 0 5px 0;">';
 															if (obj.from_status == '0') {
 																dispHtml += '<div>';
 																dispHtml += '<p id="u_id' + obj.h_idx + '" style="font-weight: bolder; margin: 0;">'
@@ -606,14 +608,14 @@ input[id*="popup"]:checked+label+div {
 															dispHtml += 'href="javascript:getChatMessageList('
 																	+ obj.h_idx
 																	+ ', \'${userVO.u_id }\')">';
-															dispHtml += '<div class="col-2">';
+															dispHtml += '<div class="col-3" style="width:20%">';
 															dispHtml += '<div class="box">';
 															dispHtml += '<div class="img_box">';
 															dispHtml += '<img id="img'+ obj.h_idx + '" class="img_size " src="../img_src/profile/' + obj.u_pic + '">';
 															dispHtml += '</div>';
 															dispHtml += '</div>';
 															dispHtml += '</div>';
-															dispHtml += '<div class="col-7" style="text-overflow: ellipsis;">';
+															dispHtml += '<div class="col-6" style="text-overflow: ellipsis; margin: 5px 0 5px 0;">';
 															if (obj.to_status == '0') {
 																dispHtml += '<div>';
 																dispHtml += '<p id="u_id' + obj.h_idx + '" style="font-weight: bolder; margin: 0;">'
