@@ -84,20 +84,21 @@
 							</div>
 						</div>
 					</div>
-				 	<hr class="my-4">
-				 <br>
-					<div class="col-6" style="display: inline-block; float: right; ">
-						<textarea class="form-control" placeholder="내용 입력" name="content"
-							rows="16" style="width : 100%;"></textarea>
+
+					<div class="col-6" style="display: inline-block; float: right;">
+						<hr class="my-4">
 						<br>
-							<hr class="my-4">
+						<textarea class="form-control" placeholder="내용 입력" name="content"
+							rows="16" style="width: 100%;"></textarea>
+						<br>
+						<hr class="my-4">
 						<div class="row">
 							<div class="col-6">
 								<a
 									class="center_ailgn w-100 py-2 btn btn-outline-dark rounded-3"
 									style="border-color: silver;" type="reset"
-									href="javascript:history.back()"> <svg class="bi me-1 " width="0px"
-										height="16"></svg>취소
+									href="javascript:history.back()"> <svg class="bi me-1 "
+										width="0px" height="16"></svg>취소
 								</a>
 							</div>
 							<div class="col-6">
