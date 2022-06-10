@@ -139,9 +139,9 @@ input[id*="popup"]+label+div>div {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 1200px;
+	
 	height: 550px;
-	background: rgba(0, 0, 0, 0.045);
+	background: rgba(0, 0, 0, 0.0);
 	z-index: 2;
 }
 
@@ -487,12 +487,12 @@ input[id="tab03"]:checked ~ .con3 {
 							%>
 							<c:forEach var="docPost" items="${docPost }">
 								<div class="col square">
-									<div class="card shadow-sm inner" style="text-align: center;">
+									<div class="card shadow-sm inner" style="text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
 										<!-- 시작 -->
 										<input type="checkbox" id="docpopup<%=j%>">
 										<!-- 버튼 클릭시 팝업창 오픈 -->
-										<label for="docpopup<%=j%>"> <a style="color: black;">${docPost.content }
-										</a>
+										<label for="docpopup<%=j%>" style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;"> 
+											<a style="color: black;">${docPost.content }</a>
 										</label>
 										<div>
 											<div>
@@ -505,7 +505,7 @@ input[id="tab03"]:checked ~ .con3 {
 														style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 														<!-- 오른쪽 -->
 														<div class="col-6"
-															style="margin: 0px; padding: 0px; height: 549px; text-align: center; background-color: white; border: solid 1px silver;">
+															style="margin: 0px; padding: 0px; height: 549px;background-color: white; border: solid 1px silver;display: flex;justify-content: center;align-items: center;font-weight: bold;">
 															<a style="color: black;">${docPost.content }</a>
 														</div>
 														<!-- 원쪽 -->
@@ -607,12 +607,12 @@ input[id="tab03"]:checked ~ .con3 {
 							<c:forEach var="saveFeed" items="${saveFeed }">
 								<c:if test="${saveFeed.f_pic != null}">
 									<div class="col square">
-										<div class="card shadow-sm inner" style="text-align: center;">
+										<div class="card shadow-sm inner" style="text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
 											<!-- 시작 -->
 											<input type="checkbox" id="savepopup<%=k%>">
 											<!-- 버튼 클릭시 팝업창 오픈 -->
-											<label for="savepopup<%=k%>"> <img
-												src="../img_src/feed/${saveFeed.f_pic }"
+											<label for="savepopup<%=k%>" style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;"> 
+											<img src="../img_src/feed/${saveFeed.f_pic }"
 												class="card-img-top">
 											</label>
 											<div>
@@ -730,12 +730,12 @@ input[id="tab03"]:checked ~ .con3 {
 								</c:if>
 								<c:if test="${saveFeed.f_pic == null}">
 									<div class="col square">
-										<div class="card shadow-sm inner" style="text-align: center;">
+										<div class="card shadow-sm inner" style="text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
 											<!-- 시작 -->
 											<input type="checkbox" id="savepopup<%=k%>">
 											<!-- 버튼 클릭시 팝업창 오픈 -->
-											<label for="savepopup<%=k%>"> <a
-												style="color: black;"> ${saveFeed.content } </a>
+											<label for="savepopup<%=k%>" style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;"> 
+												<a style="color: black;"> ${saveFeed.content } </a>
 											</label>
 											<div>
 												<div>
@@ -748,7 +748,7 @@ input[id="tab03"]:checked ~ .con3 {
 															style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 															<!-- 왼쪽 -->
 															<div class="col-6"
-																style="margin: 0px; padding: 0px; height: 549px; text-align: center; background-color: white; border: solid 1px silver;">
+																style="margin: 0px; padding: 0px; height: 549px;background-color: white; border: solid 1px silver;display: flex;justify-content: center;align-items: center;font-weight: bold;">
 																<a style="color: black;">${saveFeed.content }</a>
 															</div>
 															<!-- 오른쪽 -->
