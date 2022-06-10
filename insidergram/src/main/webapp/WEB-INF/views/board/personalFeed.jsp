@@ -139,7 +139,7 @@ input[id*="popup"]+label+div>div {
 	transform: translate(-50%, -50%);
 	width: 1200px;
 	height: 550px;
-	background: rgba(0, 0, 0, 0.045);
+	background: rgba(0, 0, 0, 0.0);
 	z-index: 2;
 }
 
@@ -519,8 +519,7 @@ input[id="tab03"]:checked ~ .con3 {
 												<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
 												<label for="docpopup<%=j%>"></label>
 												<!-- 내용 추가 -->
-												<div class="container"
-													style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
+												<div class="container"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 													<div class="row square"
 														style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">
 														<!-- 왼쪽 -->
@@ -621,8 +620,8 @@ input[id="tab03"]:checked ~ .con3 {
 							<c:forEach var="saveFeed" items="${saveFeed }">
 
 								<c:if test="${saveFeed.f_pic != null}">
-									<div class="col square">
-										<div class="card shadow-sm inner" style="text-align: center;">
+									<div class="col square" style="height: 246px;">
+										<div class="card shadow-sm inner" style="text-align: center;" >
 											<img src="../img_src/feed/${saveFeed.f_pic }"
 												 class="card-img-top"
 												 onclick="modalAjax(${saveFeed.f_idx})">
@@ -630,7 +629,7 @@ input[id="tab03"]:checked ~ .con3 {
 									</div>
 								</c:if>
 								<c:if test="${saveFeed.f_pic == null}">
-									<div class="col square">
+									<div class="col square" style="height: 246px;display: flex;justify-content: center;align-items: center;font-weight: bold;">
 										<div class="card shadow-sm inner" style="text-align: center;" onclick="modalAjax(${saveFeed.f_idx})">
 												<c:out value="${saveFeed.content }" />
 										</div>
@@ -658,6 +657,8 @@ function modalAjax(f_idx) {
 	var dispHtml = "";
 			console.log("성공~~~");
 			console.log(data);
+			
+	dispHtml += '<div class="container"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">';
 	dispHtml += '<div class="row square" style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">';
 				/* <!-- 왼 --> */
 		if(data.f_pic != null) {
@@ -686,8 +687,8 @@ function modalAjax(f_idx) {
 			dispHtml += '</div>';
 			dispHtml += '</div></a>';
 		} else {
-			/* <!-- 이미지 --> */
-			dispHtml += '<div class="col-6" style="margin: 0px 0px 0px auto; padding: 0px; height: 550px;">';	
+			/* <!-- 글 --> */
+			dispHtml += '<div class="col-6" style="margin: 0px 0px 0px auto; padding: 0px; height: 550px;background-color: white; border: solid 1px silver;display: flex;justify-content: center;align-items: center;font-weight: bold;">';	
 			dispHtml += data.content;
 			dispHtml += '</div>';
 			
@@ -723,7 +724,7 @@ function modalAjax(f_idx) {
 	dispHtml += '<input style="height: 40px; border-radius: 20px; margin: 10px 5px 10px 10px; padding: 3px 12px;" type="text" class="form-control" id="commBlock" placeholder="메시지 입력..." aria-label="Recipient\'s username" aria-describedby="button-addon2">';
 	dispHtml += '<button class="btn btn-outline-primary" type="button" id="button-addon2" style="background-color: #0d6efd; color: white; border-radius: 70%; width: 35px; height: 35px; padding: 0px; margin: 10px;" onclick="writeComm('+ data.f_idx + ')">';
 	dispHtml += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" /></svg>';	
-	dispHtml += '</button></div></div></div>';
+	dispHtml += '</button></div></div></div></div>';
 	
 	$("#modalContainer").html(dispHtml);
 		},
