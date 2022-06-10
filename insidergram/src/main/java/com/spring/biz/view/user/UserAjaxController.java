@@ -25,14 +25,6 @@ public class UserAjaxController {
 		@Autowired
 		private UserService userService;
 		
-		@Autowired 
-		private ChatService chatService;
-		
-		@Autowired
-		private FeedService feedService;
-
-		@Autowired
-		private CommentService commentService;
 		//@ResponseBody // response 응답객체의 몸체(body)에 데이터 전달
 //		public List<BoardVO> getAjaxBoardList(BoardVO vo) {
 //			System.out.println("======= BoardAjaxController.getAjaxBoardList() 실행");
