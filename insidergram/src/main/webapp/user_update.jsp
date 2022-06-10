@@ -59,6 +59,7 @@
 				<form action="user/insertFeed.do" method="post"
 					enctype="multipart/form-data">
 					<div class="row">
+
 						<div class="col-6 modal-body" style="padding: 30px 48px;">
 
 							<div class="form-floating mb-3">
@@ -72,15 +73,8 @@
 											<img id="user_image" src="./img_src/test/kkkk.png" alt=""
 												style="height: 100%; width: 100%;">
 										</div>
-										<div class="row" style="margin-top: 10px;">
-											<div class="Col-12"
-												style="display: flex; justify-content: space-around">
-												<input class="form-control" accept=".jpg"
-													onchange="PreviewImage();" name="uploadFile" type="file"
-													id="user_profile_img" />
-											</div>
-										</div>
 									</div>
+
 									<div class="row" style="margin-top: 10px;"></div>
 									<hr class="my-4">
 								</div>
@@ -162,16 +156,17 @@
 												onblur="this.placeholder='날이 좋아서 날이 ...'">
 										</div>
 									</div>
-									<div class="row" style="margin-top: 25px;">
+									<div class="row" style="margin: 20px 0;">
 										<div class="Col-12"
 											style="display: flex; justify-content: space-around">
 											<input class="form-control" accept=".jpg"
 												onchange="PreviewImage();" name="uploadFile" type="file"
 												id="user_profile_img" />
 										</div>
-
 									</div>
-									<div class="row" style="margin-top: 25px;">
+
+									<br> <br>
+									<div class="row" style=" margin: 5px 0;"> 
 										<div class="col-6">
 											<a
 												class="center_ailgn w-100 py-2 btn btn-outline-dark rounded-3"
@@ -186,13 +181,15 @@
 												type="submit" value="수정" style="">
 
 										</div>
-										<div class="Col-12">
-										</div>
+									</div>
+									<div class="row" style="margin-top: 5px;">
+
 										<hr class="my-4" style="border: solid 0.6px;">
 									</div>
 								</div>
 							</div>
 						</div>
+					</div>
 				</form>
 			</div>
 		</div>
