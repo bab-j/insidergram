@@ -51,7 +51,8 @@
 	<jsp:include page="./header.jsp"></jsp:include>
 
 	<div class="modal modal-signin position-static d-block bg-light py-5"
-		tabindex="-1" role="dialog" id="modalSignin" style="">
+		tabindex="-1" role="dialog" id="modalSignin" style="    padding-top: 48px! important;
+    padding-bottom: 0px! important;">
 		<div class="modal-dialog" role="document" style="max-width: 1000px;">
 
 			<div class="modal-content rounded-4 shadow align-items-md-center">
