@@ -129,6 +129,26 @@ UNION
   		INSERT INTO FOLLOWER (ER_IDX, TO_ID, FROM_ID)
   		VALUES((SELECT NVL(MAX(ER_IDX), 0) + 1 FROM FOLLOWER), #{target_id}, #{my_id})
   	</insert>
+  	
+  	<delete id="deleteFeeds" parameterType="String">
+  		DELETE FROM FEED
+  		WHERE U_ID = #{u_id}
+  	</delete>
+  	
+  	<delete id="deleteFollow" parameterType="String">
+  		DELETE FROM FOLLOWER
+  		WHERE TO_ID = #{u_id} OR FROM_ID = #{u_id}
+  	</delete>
+  	
+  	<delete id="deleteLikes" parameterType="String">
+  		DELETE FROM LIKE_LIST
+  		WHERE U_ID = #{u_id}
+  	</delete>
+  	
+  	<delete id="deleteSaves" parameterType="String">
+  		DELETE FROM SAVED
+  		WHERE U_ID = #{u_id}
+  	</delete>
 </mapper>
 
 

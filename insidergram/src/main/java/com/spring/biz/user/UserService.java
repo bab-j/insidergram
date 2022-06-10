@@ -9,4 +9,5 @@ public interface UserService {
 	int findId(UserVO vo);
 	List<UserVO> searchUser(String u_id);
 	UserVO getUserInfo(String u_id);
+	void deleteAccount(String u_id);
 }

@@ -72,4 +72,10 @@ public class UserController {
 		userService.insertUser(vo);
 		return "user/login";
 	}
+	
+	@RequestMapping("/deleteAccount.do")
+	public String deleteAccount(String u_id) {
+		userService.deleteAccount(u_id);
+		return "user/login";
+	}
 }
