@@ -96,8 +96,6 @@ public class FeedAjaxController {
 		}
 					// -----------------------------------------------------
 		System.out.println(list);
-//		List<Integer> likeList = feedService.confirmLike(u_id);
-//		mo.addAttribute("likeList", likeList);
 		mo.addAttribute("saveList", saveList);
 
 		//----------------------------------------------------------
@@ -120,14 +118,13 @@ public class FeedAjaxController {
 	public Map<String, Object> writeComm(String comm, String u_id, int f_idx) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int result = commService.writeComm(comm, u_id, f_idx);
-		List<UserVO> list = userService.searchUser(u_id);
-		System.out.println(list.toString());
-		System.out.println("유저 사진 : " + list.get(2).getU_pic());
+		UserVO uvo = userService.getUserInfo(u_id);
+		System.out.println("유저 사진 : " + uvo.getU_pic());
 		if (result == 1) {
 			map.put("comm", comm);
 			map.put("u_id", u_id);
 			map.put("f_idx", f_idx);
-			map.put("u_pic", list.get(2).getU_pic());
+			map.put("u_pic", uvo.getU_pic());
 			map.put("check", 1);
 		} else {
 			map.put("check", 0);

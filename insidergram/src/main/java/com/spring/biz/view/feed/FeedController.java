@@ -12,12 +12,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.biz.comment.CommentService;
-import com.spring.biz.comment.CommentVO;
 import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
 import com.spring.biz.feed.Paging;
@@ -89,10 +87,6 @@ import com.spring.biz.user.UserVO;
 			List<FeedVO> docPost = new ArrayList<FeedVO>();
 			List<FeedVO> saveFeed = feedService.saveFeedList(u_id);
 			
-//			for(FeedVO fvo : list) {
-//				fvo.setComm(commService.getCommList(fvo.getF_idx())); 		
-//				System.out.println("fvo.toString() : " + fvo.toString());
-//			}
 			for(FeedVO sFvo : saveFeed) {
 				sFvo.setComm(commService.getCommList(sFvo.getF_idx()));
 			}
