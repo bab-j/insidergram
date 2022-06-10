@@ -139,7 +139,6 @@ input[id*="popup"]+label+div>div {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	
 	height: 550px;
 	background: rgba(0, 0, 0, 0.0);
 	z-index: 2;
@@ -238,6 +237,7 @@ input[id="tab02"]:checked ~ .con2 {
 input[id="tab03"]:checked ~ .con3 {
 	display: block;
 }
+
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -375,7 +375,7 @@ input[id="tab03"]:checked ~ .con3 {
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 						
 							<c:forEach var="picList" items="${picPost }">
-								<div class="col square">
+								<div class="col square" style="height: 246px; display: flex; align-items: stretch;">
 										<img src="../img_src/feed/${picList.f_pic }" class="card-img-top" onclick="modalAjax(${picList.f_idx})">
 								</div>
 							</c:forEach>
@@ -386,7 +386,7 @@ input[id="tab03"]:checked ~ .con3 {
 					<div class="conbox con2">
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 							<c:forEach var="docPost" items="${docPost }">
-								<div class="col square">
+								<div class="col square" style="height: 246px;display: flex;justify-content: center;align-items: center;font-weight: bold;">
 									<div onclick="modalAjax(${docPost.f_idx})" class="card shadow-sm inner" style="text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
 											<a style="color: black;">${docPost.content }</a>
 									</div>
@@ -399,9 +399,9 @@ input[id="tab03"]:checked ~ .con3 {
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 							<c:forEach var="saveFeed" items="${saveFeed }">
 								<c:if test="${saveFeed.f_pic != null}">
-									<div class="col square">
+									<div class="col square" style="height: 246px; display: flex; align-items: stretch;">
 										<div class="card shadow-sm inner" style="text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
-											<div style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;">
+											<div style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: stretch;">
 												<img src="../img_src/feed/${saveFeed.f_pic }"
 													onclick="modalAjax(${saveFeed.f_idx})"
 													class="card-img-top">
@@ -410,7 +410,7 @@ input[id="tab03"]:checked ~ .con3 {
 									</div>
 								</c:if>
 								<c:if test="${saveFeed.f_pic == null}">
-									<div class="col square">
+									<div class="col square" style="height: 246px;display: flex;justify-content: center;align-items: center;font-weight: bold;">
 										<div class="card shadow-sm inner" style="text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
 											<div style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;" onclick="modalAjax(${saveFeed.f_idx})"> 
 												<a style="color: black;"> ${saveFeed.content } </a>
@@ -505,10 +505,10 @@ input[id="tab03"]:checked ~ .con3 {
 					dispHtml += '<div style="height: 424px; overflow-y: auto; background-color: white;" id="commBox">';
 					dispHtml += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style="border: none; height: 100px; margin-top: 0px;">';
 					dispHtml += '<img src="../img_src/profile/' + data.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0">';
-					dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
+					dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between" style="text-align: left;">';
 					dispHtml += '<div>';
 					dispHtml += '<h6 class="mb-0">' + data.u_id + '</h6>';
-					dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px; font-size: 13px;">' + data.content + '</p>';
+					dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px; font-size: 15px;text-align: left;">' + data.content + '</p>';
 					dispHtml += '</div>';
 					dispHtml += '</div></a>';
 				} else {
@@ -535,10 +535,10 @@ input[id="tab03"]:checked ~ .con3 {
 				dispHtml += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style="border: none; height: 100px; margin-top: 0px;">';
 				dispHtml += '<img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40"';
 				dispHtml += 'class="rounded-circle flex-shrink-0">';
-				dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
+				dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between" style="text-align: left;">';
 				dispHtml += '<div>';
 				dispHtml += '<h6 class="mb-0">' + obj.u_id + '</h6>';
-				dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px; font-size: 13px;">' + obj.comm + '</p>';
+				dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px; font-size: 15px;text-align: left;">' + obj.comm + '</p>';
 				dispHtml += '</div>';
 				dispHtml += '<small class="opacity-50 text-nowrap">3분전</small>'	;
 				dispHtml += '</div></a>';
@@ -582,11 +582,11 @@ input[id="tab03"]:checked ~ .con3 {
 									dispHtml += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style="border: none; height: 100px; margin-top: 0px;">';
 									dispHtml += '<img src="../img_src/profile/' + data.u_pic + '" width="40" height="40"';
 			dispHtml += 'class="rounded-circle flex-shrink-0">';
-									dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
+									dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between" style=" text-align: left;">';
 									dispHtml += '<div>';
 									dispHtml += '<h6 class="mb-0">' + data.u_id
 											+ '</h6>';
-									dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px;">'
+									dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px; font-size: 15px;text-align: left;">'
 											+ data.comm + '</p>';
 									dispHtml += '</div>';
 									dispHtml += '<small class="opacity-50 text-nowrap">3분전</small>';

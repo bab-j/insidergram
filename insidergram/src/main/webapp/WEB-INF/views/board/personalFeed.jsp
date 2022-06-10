@@ -417,7 +417,7 @@ input[id="tab03"]:checked ~ .con3 {
 							style="padding-bottom: 100px;">
 							<c:forEach var="picList" items="${picPost }">
 
-								<div class="col square" onclick="modalAjax(${picList.f_idx})">
+								<div class="col square"  style="height: 246px; display: flex; align-items: stretch;" onclick="modalAjax(${picList.f_idx})">
 									<div class="card shadow-sm inner">
 										<img src="../img_src/feed/${picList.f_pic }"
 											class="card-img-top"
@@ -432,7 +432,7 @@ input[id="tab03"]:checked ~ .con3 {
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
 							style="padding-bottom: 100px;">
 							<c:forEach var="docPost" items="${docPost }">
-								<div class="col square">
+								<div class="col square" style="height: 246px;display: flex;justify-content: center;align-items: center;font-weight: bold;">
 									<div class="card shadow-sm inner"
 										onclick="modalAjax(${docPost.f_idx})"
 										style="text-align: center; justify-content: space-around; align-items: center; font-size: 100%; overflow: hidden;">
@@ -450,8 +450,8 @@ input[id="tab03"]:checked ~ .con3 {
 							<c:forEach var="saveFeed" items="${saveFeed }">
 
 								<c:if test="${saveFeed.f_pic != null}">
-									<div class="col square" style="height: 246px;">
-										<div class="card shadow-sm inner" style="text-align: center;">
+									<div class="col square" style="height: 246px; display: flex; align-items: stretch;">
+										<div class="card shadow-sm inner" style="text-align: center;display: flex;flex-direction: row;">
 											<img src="../img_src/feed/${saveFeed.f_pic }"
 												class="card-img-top" onclick="modalAjax(${saveFeed.f_idx})">
 										</div>
