@@ -37,6 +37,11 @@
 		resultType="user">
 		SELECT * FROM USER_INFO WHERE U_ID = #{u_id}
 	</select>
+	
+	<delete id="daleteAccount" parameterType="String">
+		DELETE FROM USER_INFO
+		WHERE U_ID = #{u_id}
+	</delete>
 </mapper>
 
 

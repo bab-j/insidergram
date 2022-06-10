@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.biz.chat.ChatHeaderVO;
+import com.spring.biz.chat.ChatService;
+import com.spring.biz.comment.CommentService;
+import com.spring.biz.feed.FeedService;
 import com.spring.biz.user.UserService;
 import com.spring.biz.user.UserVO;
 
@@ -20,7 +24,15 @@ public class UserAjaxController {
 
 		@Autowired
 		private UserService userService;
+		
+		@Autowired 
+		private ChatService chatService;
+		
+		@Autowired
+		private FeedService feedService;
 
+		@Autowired
+		private CommentService commentService;
 		//@ResponseBody // response 응답객체의 몸체(body)에 데이터 전달
 //		public List<BoardVO> getAjaxBoardList(BoardVO vo) {
 //			System.out.println("======= BoardAjaxController.getAjaxBoardList() 실행");

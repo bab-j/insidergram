@@ -52,4 +52,8 @@
 		VALUES((SELECT NVL(MAX(H_IDX), 0) + 1 FROM CHAT_HEADER), #{my_id}, #{target_id}, TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS'))
 	</insert>
 	
+	<delete id="deleteChatHeader" parameterType="int">
+		DELETE FROM CHAT_HEADER WHERE H_IDX = #{h_idx}
+	</delete>
+	
 </mapper>

@@ -49,4 +49,10 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDAO.getUserInfo(u_id);
 	}
+
+	@Override
+	public void deleteAccount(String u_id) {
+		userDAO.deleteAccount(u_id);
+		
+	}
 }

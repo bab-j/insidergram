@@ -21,6 +21,11 @@
 		DELETE FROM COMM
 		 WHERE CO_IDX = #{co_idx}
 	</delete>
+	
+	<delete id="deleteComments" parameterType="String">
+		DELETE FROM COMM 
+		WHERE U_ID = #{u_id}
+	</delete>
 
 </mapper>
 

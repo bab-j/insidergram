@@ -20,4 +20,8 @@
 		SELECT * FROM CHAT_MESSAGE
 		WHERE (FROM_ID = #{my_id} AND TO_ID = #{target_id}) OR (FROM_ID = #{target_id} AND TO_ID = #{my_id})
 	</select>
+	
+	<delete id="deleteChatMessages" parameterType="int">
+		DELETE FROM CHAT_MESSAGE WHERE H_IDX = #{h_idx}
+	</delete>
 </mapper>
