@@ -212,9 +212,9 @@ input[id*="popup"]:checked+label+div {
 						<!-- 버튼 클릭시 팝업창 오픈 -->
 
 						<label for="popup"
-							style="font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 20; margin: 20px;"><span
-							class="material-symbols-outlined"> chat_bubble </span> </label>
-
+							><span
+							class="material-symbols-outlined " style="font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 20; margin: 20px;"> chat_bubble </span> </label>
+						
 						<div>
 							<div style="border-radius: 5px; height: 400px;">
 								<!-- 닫기 기능 1(모서리 상단에 숨어 있음) -->
@@ -230,6 +230,9 @@ input[id*="popup"]:checked+label+div {
 							<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
 							<label for="popup" id="close"></label>
 						</div>
+						<a href="../../biz/user/getMyFeed.do">
+						<div style="font-size : 25px; font-weight: bold; padding :15px 0; text-align:center;"> ${userVO.u_id }</div>
+						</a>
 					</div>
 					<!-- 여기까지  -->
 					<div id="chatHeaderList" class="border-top"
@@ -238,7 +241,7 @@ input[id*="popup"]:checked+label+div {
 							<c:if test="${vo.from_id eq userVO.u_id }">
 								<a id="hId${vo.h_idx }" class="row d-flex chat_header"
 									href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
-									<div class="col-2">
+									<div class="col-3" style="    width: 20%;">
 										<div class="box">
 											<div class="img_box">
 												<img id="img${vo.h_idx }" class="img_size"
@@ -246,7 +249,7 @@ input[id*="popup"]:checked+label+div {
 											</div>
 										</div>
 									</div>
-									<div class="col-7" style="text-overflow: ellipsis;">
+									<div class="col-6" style="text-overflow: ellipsis;  margin: 5px 0 5px 0;">
 										<c:if test="${ vo.from_status eq '0'}">
 											<div>
 												<p id="u_id${vo.h_idx }"
@@ -269,7 +272,7 @@ input[id*="popup"]:checked+label+div {
 							<c:if test="${vo.from_id ne userVO.u_id }">
 								<a id="hId${vo.h_idx }" class="row d-flex chat_header"
 									href="javascript:getChatMessageList(${vo.h_idx }, '${userVO.u_id }')">
-									<div class="col-2">
+									<div class="col-3" style="    width: 20%;">
 										<div class="box">
 											<div class="img_box">
 												<img id="img${vo.h_idx }" class="img_size "
@@ -277,7 +280,7 @@ input[id*="popup"]:checked+label+div {
 											</div>
 										</div>
 									</div>
-									<div class="col-7" style="text-overflow: ellipsis;">
+									<div class="col-6" style="text-overflow: ellipsis;     margin: 5px 0 5px 0; ">
 										<c:if test="${ vo.to_status eq '0'}">
 											<div>
 												<p id="u_id${vo.h_idx }"
