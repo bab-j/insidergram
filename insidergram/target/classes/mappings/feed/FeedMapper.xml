@@ -134,6 +134,10 @@ UNION
   		DELETE FROM FEED
   		WHERE U_ID = #{u_id}
   	</delete>
+  	<delete id="deleteFeed" parameterType="int">
+  		DELETE FROM FEED
+  		WHERE F_IDX = #{f_idx}
+  	</delete>
   	
   	<delete id="deleteFollow" parameterType="String">
   		DELETE FROM FOLLOWER

@@ -113,6 +113,12 @@ public class FeedServiceImpl implements FeedService {
 	}
 
 
+	@Override
+	public int deleteFeed(int f_idx) {
+		return feedDAO.deleteFeed(f_idx);
+	}
+
+
 
 	
 }

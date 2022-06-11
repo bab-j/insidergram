@@ -1,11 +1,13 @@
 package com.spring.biz.view.feed;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import com.spring.biz.comment.CommentService;
 import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
 import com.spring.biz.feed.Paging;
+import com.spring.biz.feed.Path;
 import com.spring.biz.follower.LikeVO;
 import com.spring.biz.user.UserService;
 import com.spring.biz.user.UserVO;
@@ -130,6 +133,19 @@ public class FeedAjaxController {
 			map.put("check", 0);
 		}
 		return map;
+	}
+	// 피드 삭제
+	@RequestMapping("user/deleteFeed.do")
+	public int deleteFeed(int f_idx) {
+		FeedVO fvo = new FeedVO();
+		fvo = feedService.oneFeed(f_idx);
+		Path path = new Path();
+		File file = new File(path.getPath() + fvo.getF_pic());
+		if(file.exists()) { // 파일이 존재하면
+			boolean result = file.delete();
+		}
+		int result = feedService.deleteFeed(f_idx);
+		return result;
 	}
 	
 	@RequestMapping("user/follow.do")

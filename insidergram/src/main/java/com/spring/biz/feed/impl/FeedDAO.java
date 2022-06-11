@@ -52,6 +52,11 @@ public class FeedDAO {
 		List<FeedVO> list = mybatis.selectList("feedDAO.getMyFeedList", u_id);
 		return list;
 	}
+	// 게시글 삭제
+	public int deleteFeed(int f_idx) {
+		int result = mybatis.delete("feedDAO.deleteFeed", f_idx);
+		return result;
+	}
 
 	// 좋아요 상태 확인
 	public List<Integer> confirmLike(String u_id) {
