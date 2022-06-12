@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,13 +108,26 @@ public class FeedAjaxController {
 	
 	// 모달창에 띄울 피드정보 보내기
 	@RequestMapping("/user/modal.do")
-	public FeedVO getFeed(int f_idx) {
+	public Map<String, Object> getFeed(int f_idx, String u_id, HttpSession session) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		FeedVO fvo = feedService.oneFeed(f_idx);
 		fvo.setComm(commService.getCommList(f_idx));
 		fvo.setCountLike(feedService.countLike(f_idx));
-		System.out.println("@@@@@@@@ fvo @@@@@@@ : " + fvo);
-		
-		return fvo;
+		UserVO uvo = (UserVO)session.getAttribute("userVO");
+		List<FeedVO> list = feedService.getMyFeed(uvo.getU_id());
+		// 내 피드 리스트에 f_idx를 다른 리스트에 담기
+		List<Integer> idxList = new ArrayList<Integer>();
+		for (FeedVO vo : list) {
+			idxList.add(vo.getF_idx());
+		}
+		Boolean confirm = false;
+		if(idxList.contains(f_idx)) {
+			 confirm = true;
+		}
+		map.put("fvo", fvo);
+		map.put("confirm", confirm);
+		System.out.println("confirm : " + confirm);
+		return map;
 	}
 	
 	// 댓글 삽입

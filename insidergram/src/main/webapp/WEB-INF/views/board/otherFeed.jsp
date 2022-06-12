@@ -238,6 +238,27 @@ input[id="tab03"]:checked ~ .con3 {
 	display: block;
 }
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -399,7 +420,7 @@ input[id="tab03"]:checked ~ .con3 {
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 							<c:forEach var="saveFeed" items="${saveFeed }">
 								<c:if test="${saveFeed.f_pic != null}">
-									<div class="col square" style="height: 246px; display: flex; align-items: stretch;">
+									<div id="posts${saveFeed.f_idx }" class="col square" style="height: 246px; display: flex; align-items: stretch;">
 										<div class="card shadow-sm inner" style="text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
 											<div style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: stretch;">
 												<img src="../img_src/feed/${saveFeed.f_pic }"
@@ -411,7 +432,7 @@ input[id="tab03"]:checked ~ .con3 {
 								</c:if>
 								<c:if test="${saveFeed.f_pic == null}">
 									<div class="col square" style="height: 246px;display: flex;justify-content: center;align-items: center;font-weight: bold;">
-										<div class="card shadow-sm inner" style="text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
+										<div id="posts${saveFeed.f_idx }" class="card shadow-sm inner" style="text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
 											<div style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;" onclick="modalAjax(${saveFeed.f_idx})"> 
 												<a style="color: black;"> ${saveFeed.content } </a>
 											</div>
@@ -470,6 +491,47 @@ input[id="tab03"]:checked ~ .con3 {
 				}
 			});
 		}
+		function myFunction() {
+			  document.getElementById("myDropdown").classList.toggle("show");
+			}
+
+			// Close the dropdown if the user clicks outside of it
+			window.onclick = function(event) {
+			  if (!event.target.matches('.dropbtn')) {
+			    var dropdowns = document.getElementsByClassName("dropdown-content");
+			    var i;
+			    for (i = 0; i < dropdowns.length; i++) {
+			      var openDropdown = dropdowns[i];
+			      if (openDropdown.classList.contains('show')) {
+			        openDropdown.classList.remove('show');
+			      }
+			    }
+			  }
+			}
+		function deleteFeed(f_idx) {
+			confirm("게시물을 삭제 하시겠습니까?")
+			$
+			.ajax(
+					"deleteFeed.do",
+					{
+						type : "get",
+						data : {
+							"f_idx" : f_idx,
+							"u_id" : '${userVO.u_id}'
+						},
+						dataType : "text",
+						success : function(data) {
+							console.log("성공~~~");
+							console.log(data)
+							$("#post"+f_idx).remove();
+							$("#posts"+f_idx).remove();
+							$("#popup").click();
+						},
+						error : function() {
+							alert("실패~~~");
+						}
+					});
+		}
 		function modalAjax(f_idx) {
 			
 			$.ajax("modal.do", {
@@ -484,54 +546,63 @@ input[id="tab03"]:checked ~ .con3 {
 			dispHtml += '<div class="container"style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">';
 			dispHtml += '<div class="row square" style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">';
 						/* <!-- 왼 --> */
-				if(data.f_pic != null) {
+				if(data.fvo.f_pic != null) {
 					/* <!-- 이미지 --> */
 					dispHtml += '<div class="col-6" style="margin: 0px 0px 0px auto; padding: 0px; height: 550px;">';	
-					dispHtml += '<img src="../img_src/feed/' + data.f_pic + '" class="card-img-top" style="height: 550px; border-radius: 0px; margin-left: auto;">';
+					dispHtml += '<img src="../img_src/feed/' + data.fvo.f_pic + '" class="card-img-top" style="height: 550px; border-radius: 0px; margin-left: auto;">';
 					dispHtml += '</div>';
 					/* <!-- 오른쪽 --> */
 					dispHtml += '<div class="col-5" style="margin: 0px auto 0px 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">';
 					/* <!-- 상단 닉네임 --> */
 					dispHtml += '<a href="#" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center" style="height: 66px; background-color: white; border-top-right-radius: 5px;">';
-					dispHtml += '<img src="../img_src/profile/' + data.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;">';
+					dispHtml += '<img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;">';
 					dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
-					dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.u_id + '</h6></div>';
-					dispHtml += '<div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16" onclick="myFunction()">';
-					dispHtml += '<path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />';
-					dispHtml += '</svg></div></div>';
-					dispHtml += '</a>';
+					dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.fvo.u_id + '</h6></div></div></a>';
+					if(data.confirm == true) {
+						dispHtml += '<div class="dropdown" style="height:20px; font-size:20px; text-align:left">';
+						dispHtml += '<button onclick="myFunction()" class="dropbtn">...</button>';
+						dispHtml += '<div id="myDropdown" class="dropdown-content">';
+						dispHtml += '<a href="updateFeed.do?f_idx=(' + data.fvo.f_idx + ')">edit</a>';
+						dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
+						dispHtml += '</div></div>';
+					}
 					
 					/* <!-- 댓글창 --> */
 					dispHtml += '<div style="height: 424px; overflow-y: auto; background-color: white;" id="commBox">';
 					dispHtml += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style="border: none; height: 100px; margin-top: 0px;">';
-					dispHtml += '<img src="../img_src/profile/' + data.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0">';
+					dispHtml += '<img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0">';
 					dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between" style="text-align: left;">';
 					dispHtml += '<div>';
-					dispHtml += '<h6 class="mb-0">' + data.u_id + '</h6>';
-					dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px; font-size: 15px;text-align: left;">' + data.content + '</p>';
+					dispHtml += '<h6 class="mb-0">' + data.fvo.u_id + '</h6>';
+					dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px; font-size: 15px;text-align: left;">' + data.fvo.content + '</p>';
 					dispHtml += '</div>';
 					dispHtml += '</div></a>';
 				} else {
 					/* <!-- 글 --> */
 					dispHtml += '<div class="col-6" style="margin: 0px 0px 0px auto; padding: 0px; height: 550px;background-color: white; border: solid 1px silver;display: flex;justify-content: center;align-items: center;font-weight: bold;">';	
-					dispHtml += data.content;
+					dispHtml += data.fvo.content;
 					dispHtml += '</div>';
 					
 					/* <!-- 오른쪽 --> */
 					dispHtml += '<div class="col-5" style="margin: 0px auto 0px 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">';
 					/* <!-- 상단 닉네임 --> */
 					dispHtml += '<a href="#" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center" style="height: 66px; background-color: white; border-top-right-radius: 5px;">';
-					dispHtml += '<img src="../img_src/profile/' + data.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;">';
+					dispHtml += '<img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;">';
 					dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
-					dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.u_id + '</h6></div>';
-					dispHtml += '<div href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">';
-					dispHtml += '<path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />';
-					dispHtml += '</svg></div></div></a>';
+					dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.fvo.u_id + '</h6></div></div></a>';
+					if(data.confirm == true) {
+						dispHtml += '<div class="dropdown" style="height:20px; font-size:20px; text-align:left">';
+						dispHtml += '<button onclick="myFunction()" class="dropbtn">...</button>';
+						dispHtml += '<div id="myDropdown" class="dropdown-content">';
+						dispHtml += '<a href="updateFeed.do?f_idx=(' + data.fvo.f_idx + ')">edit</a>';
+						dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
+						dispHtml += '</div></div>';
+					}
 					/* <!-- 댓글창 --> */
 					dispHtml += '<div style="height: 424px; overflow-y: auto; background-color: white;" id="commBox">';
 					
 				}
-			$.each(data.comm, function(index, obj){
+			$.each(data.fvo.comm, function(index, obj){
 				dispHtml += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style="border: none; height: 100px; margin-top: 0px;">';
 				dispHtml += '<img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40"';
 				dispHtml += 'class="rounded-circle flex-shrink-0">';
