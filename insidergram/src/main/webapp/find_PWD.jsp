@@ -84,8 +84,7 @@ body {
 								<div class=col-8>
 									<input class="form-control rounded-3" type="email" name="email"
 										id="email" placeholder="abc123@abc.com"
-										onfocus="this.placeholder=''"
-										onblur="confirmEmail()" required>
+										onfocus="this.placeholder=''" onblur="confirmEmail()" required>
 								</div>
 							</div>
 						</div>
@@ -100,8 +99,7 @@ body {
 								<div class=col-8>
 									<input class="form-control rounded-3" type="text" name="phone"
 										id="phone" placeholder="- 제외하고 입력해 주세요"
-										onfocus="this.placeholder=''"
-										onblur="confirmPhone()" required>
+										onfocus="this.placeholder=''" onblur="confirmPhone()" required>
 								</div>
 							</div>
 						</div>
@@ -116,8 +114,7 @@ body {
 								<div class=col-8>
 									<input class="form-control rounded-3" type="text" name="birth"
 										id="birth" placeholder="생년월일 6자리"
-										onfocus="this.placeholder=''"
-										onblur="confirmBirth()" required>
+										onfocus="this.placeholder=''" onblur="confirmBirth()" required>
 								</div>
 							</div>
 						</div>
@@ -202,14 +199,15 @@ body {
 					}
 				} else {
 					document.getElementById("subm").disabled = true;
-
 				}
+			} else {
+				document.getElementById("subm").disabled = true;
 			}
 		}
 
 		function confirmId() {
 			var id = $("uid").val();
-			if (id ==="") {
+			if (id === "") {
 				idOk(false);
 				submitRq();
 			} else {

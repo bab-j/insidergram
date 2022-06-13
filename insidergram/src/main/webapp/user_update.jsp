@@ -57,7 +57,7 @@
 
 			<div class="modal-content rounded-4 shadow align-items-md-center">
 
-				<form action="user/updateUserOk.do" method="post"
+				<form action="javascript:userUpdateOk('${userVO.u_id }')" method="post"
 					enctype="multipart/form-data">
 					<div class="row">
 
@@ -71,8 +71,8 @@
 									<div class="Col-12 square"
 										style="display: inline-block; text-align: center; overflow: hidden; padding: 0px; display: flex; justify-content: space-around;">
 										<div class="inner">
-											<img id="user_image" src="./img_src/profile/${userVO.u_pic }" alt=""
-												style="height: 100%; width: 100%;">
+											<img id="user_image" src="./img_src/profile/${userVO.u_pic }"
+												alt="" style="height: 100%; width: 100%;">
 										</div>
 									</div>
 
@@ -97,9 +97,9 @@
 											class=col-4>새 비밀번호</div>
 										<div class=col-8>
 											<input class="form-control rounded-3" type="password"
-												name=uPwd id="pwd" placeholder="Password"
-												onfocus="this.placeholder=''" onblur="confirmPwd()"
-												value="${userVO.password }" required>
+												name=uPwd id="password" placeholder="Password"
+												value="${userVO.password }"
+												required>
 										</div>
 									</div>
 
@@ -111,9 +111,9 @@
 										</div>
 										<div class=col-8>
 											<input class="form-control rounded-3" type="password"
-												id="pwdOk" name=uPwdOk placeholder="Confirm Password"
-												onfocus="this.placeholder=''" onblur="confirmPwdOk()"
-												value="${userVO.password }" required>
+												id="passwordOk" name=uPwdOk placeholder="Confirm Password"
+												value="${userVO.password }"
+												required>
 										</div>
 									</div>
 
@@ -126,7 +126,6 @@
 										<div class=col-8>
 											<input class="form-control rounded-3" type="email" id="email"
 												name="email" placeholder="abc123@abc.com"
-												onfocus="this.placeholder=''" onblur="confirmEmail()"
 												value="${userVO.email }" required>
 										</div>
 									</div>
@@ -140,7 +139,6 @@
 										<div class=col-8>
 											<input class="form-control rounded-3" type="text" id="phone"
 												name="phone" placeholder="010-0000-0000"
-												onfocus="this.placeholder=''" onblur="confirmPhone()"
 												value="${userVO.phone }" required>
 										</div>
 									</div>
@@ -153,9 +151,9 @@
 										</div>
 										<div class=col-8>
 											<input class="form-control rounded-3" name="bio" id="bio"
-												placeholder="날이 좋아서 날이 ..." onfocus="this.placeholder=''"
+												placeholder="날이 좋아서 날이 ..."
 												onblur="this.placeholder='날이 좋아서 날이 ...'"
-												value="${userVO.bio }" >
+												value="${userVO.bio }">
 										</div>
 									</div>
 									<div class="row" style="margin: 20px 0;">
@@ -180,7 +178,7 @@
 										<div class="col-6">
 											<input
 												class="center_ailgn w-100 py-2 btn btn-outline-primary rounded-3"
-												type="submit" value="수정" style="">
+												id="subm" type="submit" value="수정" style="">
 
 										</div>
 									</div>
@@ -198,102 +196,21 @@
 	</div>
 
 	<script>
-		var bPassword = false;
-		var bPasswordOk = false;
-		var bEmail = false;
-		var bPhone = false;
-
-		function passwordOk(bool) {
-			bPassword = bool;
-		}
-		function passwordOkOk(bool) {
-			bPasswordOk = bool;
-		}
-		function emailOk(bool) {
-			bEmail = bool;
-		}
-		function phoneOk(bool) {
-			bPhone = bool;
-		}
-		function submitRq() {
-			if (bPassword == true) {
-
-				if (bPassword == true) {
-					if (bPasswordOk == true) {
-						if (bEmail == true) {
-							document.getElementById("subm").disabled = false;
-						} else {
-							document.getElementById("subm").disabled = true;
-						}
-					} else {
-						document.getElementById("subm").disabled = true;
-					}
-				} else {
-					document.getElementById("subm").disabled = true;
-				}
-			} else {
-				document.getElementById("subm").disabled = true;
-			}
-		}
-
-		function confirmEmail() {
+		function userUpdateOk(u_id) {
+			var password = $("#password").val();
+			var passwordOk = $("#passwordOk").val();
 			var email = $("#email").val();
-			if (email === "") {
-				emailOk(false);
-				submitRq();
-
-			} else {
-				emailOk(true);
-				submitRq();
-			}
-
-		}
-		function confirmPhone() {
 			var phone = $("#phone").val();
-			if (phone === "") {
-				phoneOk(false);
-				submitRq();
-
+			var bio = $("#bio").val();
+			
+			if(password != passwordOk) {
+				alert("비밀번호를 확인해주세요.");
 			} else {
-				phoneOk(true);
-				submitRq();
-			}
-
-		}
-		function confirmPwd() {
-			var pwd = $("#pwd").val();
-			if (pwd === "") {
-				passwordOk(false);
-				submitRq();
-
-			} else {
-				passwordOk(true);
-				submitRq();
-			}
-
-		}
-		function confirmPwdOk() {
-			var passwordOk = $("#pwdOk").val();
-			var password = $("#pwd").val();
-			if (password === passwordOk) {
-				if (password == "") {
-					alert("비밀번호를 입력해주세요");
-					pwdOkOk(false);
-					submitRq();
-
-				} else {
-					alert("비밀번호가 일치합니다.");
-					pwdOkOk(true);
-					submitRq();
-				}
-
-			} else {
-				alert("비밀번호가 다릅니다.");
-				pwdOkOk(false);
-				submitRq();
+				location.href="user/userUpdateOk.do?u_id=" + u_id + "&password=" + password + "&email=" + email + "&phone=" + phone + "&bio=" + bio;
 			}
 		}
-
+	
+	
 		function PreviewImage() {
 			// 파일리더 생성 
 			var preview = new FileReader();

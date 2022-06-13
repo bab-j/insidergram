@@ -108,4 +108,8 @@ public class UserDAO {
 	public String forgetPwd(UserVO vo) {
 		return mybatis.selectOne("userDAO.forgetPwd", vo);
 	}
+	
+	public void updateUser(UserVO vo) {
+		mybatis.update("userDAO.updateUser", vo);
+	}
 }

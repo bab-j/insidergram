@@ -82,8 +82,11 @@ public class UserController {
 		return "user/login";
 	}
 	
-	@RequestMapping("/updateUser.do")
-	public String updateUser(HttpSession session) {
-		return "redirect:퍼스널.";
+	
+	@RequestMapping("/userUpdateOk.do") 
+	public String userUpdateOk(UserVO vo, HttpSession session) {
+		userService.updateUser(vo);
+		session.setAttribute("userVO", userService.getUserInfo(vo.getU_id()));
+		return "redirect:getMyFeed.do";
 	}
 }

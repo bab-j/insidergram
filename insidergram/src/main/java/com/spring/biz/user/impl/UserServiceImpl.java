@@ -67,4 +67,9 @@ public class UserServiceImpl implements UserService {
 	public String forgetPwd(UserVO vo) {
 		return userDAO.forgetPwd(vo);		
 	}
+
+	@Override
+	public void updateUser(UserVO vo) {
+		userDAO.updateUser(vo);
+	}
 }
