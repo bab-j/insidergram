@@ -284,12 +284,14 @@ input[id="tab03"]:checked ~ .con3 {
 					<div class="row">
 						<!-- 1 -->
 						<div class="col-12 my-4">
-							<a style="font-size: xx-large;">${userInfo.u_id }</a> <a
+							<a style=" font-size: xx-large;">${userInfo.u_id }</a> <a
 								href="../chat/feedToDm.do?my_id=${userVO.u_id}&target_id=${userInfo.u_id }"
+								style="margin-left : 50px;"
 								class="btn btn-secondary btn-sm" role="button">메시지 보내기</a>
 
 							<c:if test="${fn:contains(followerList, userVO.u_id)}">
 								<a href="javascript:unFollow('${userVO.u_id}', '${userInfo.u_id}')" id="btnUnFollow"
+								style="padding : 5px 10px; display : inline;"
 									class="btn btn-secondary" role="button"> <svg
 										xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 										fill="currentColor" class="bi bi-person-check-fill"
@@ -301,12 +303,13 @@ input[id="tab03"]:checked ~ .con3 {
 							</svg>
 								</a>
 								<a href="javascript:follow('${userVO.u_id}', '${userInfo.u_id}')" id="btnFollow"
-									class="btn btn-primary" role="button" style="display: none;">팔로우</a>
+								
+									class="btn btn-primary" role="button" style="display: none; padding : 5px 10px; ">팔로우</a>
 							</c:if>
 
 							<c:if test="${not fn:contains(followerList, userVO.u_id)}">
 								<a href="javascript:unfollow('${userVO.u_id}', '${userInfo.u_id}')" id="btnUnFollow"
-									class="btn btn-secondary" role="button" style="display: none;">
+									class="btn btn-secondary" role="button" style="display: none; padding : 5px 10px;">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 										fill="currentColor" class="bi bi-person-check-fill"
 										viewBox="0 0 16 16">
@@ -317,7 +320,7 @@ input[id="tab03"]:checked ~ .con3 {
 							</svg>
 								</a>
 								<a href="javascript:follow('${userVO.u_id}', '${userInfo.u_id}')" id="btnFollow"
-									class="btn btn-primary" role="button" style="display: inline;">팔로우</a>
+									class="btn btn-primary" role="button" style="display: inline; padding : 5px 10px;">팔로우</a>
 							</c:if>
 
 
@@ -579,7 +582,7 @@ input[id="tab03"]:checked ~ .con3 {
 					dispHtml += '</div></a>';
 				} else {
 					/* <!-- 글 --> */
-					dispHtml += '<div class="col-6" style="margin: 0px 0px 0px auto; padding: 0px; height: 550px;background-color: white; border: solid 1px silver;display: flex;justify-content: center;align-items: center;font-weight: bold;">';	
+					dispHtml += '<div class="col-6" style="margin: 0px 0px 0px auto; padding: 0px; height: 550px;background-color: white; border: solid 1px silver;display: flex;justify-content: center;align-items: center;font-weight: bold; font-size : xx-large;">';	
 					dispHtml += data.fvo.content;
 					dispHtml += '</div>';
 					
