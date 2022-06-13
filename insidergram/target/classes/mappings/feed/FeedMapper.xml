@@ -57,6 +57,13 @@ UNION
 		    VALUES((SELECT NVL(MAX(F_IDX), 0) + 1 FROM FEED), TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS'), #{f_pic}, #{content}, #{u_id})
   	</insert>
   	
+  	<!-- 게시물 수정 -->
+  	<update id="updateFeed">
+  		UPDATE FEED
+  		   SET CONTENT = #{content}
+  		 WHERE F_IDX = #{f_idx}
+  	</update>
+  	
 	<!-- 좋아요 상태 확인 -->
 	<select id="confirmLike" resultType="int" parameterType="String">
 		SELECT F_IDX
