@@ -42,6 +42,7 @@
 @import
 	url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<jsp:include page="../../../header.jsp"></jsp:include>
@@ -70,7 +71,7 @@
 							<div class="square"
 								style="display: inline-block; text-align: center; overflow: hidden; padding: 0px; display: flex; justify-content: space-around;">
 								<div class="inner">
-									<img id="user_image" src="./img_src/test/kkkk.png" alt=""
+									<img id="user_image" src="../img_src/feed/${fvo.f_pic }" alt=""
 										style="height: 100%; width: 100%;">
 								</div>
 							</div>

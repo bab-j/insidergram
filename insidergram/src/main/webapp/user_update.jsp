@@ -44,7 +44,7 @@
 @import
 	url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
 </style>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -57,7 +57,7 @@
 
 			<div class="modal-content rounded-4 shadow align-items-md-center">
 
-				<form action="user/insertFeed.do" method="post"
+				<form action="user/updateUserOk.do" method="post"
 					enctype="multipart/form-data">
 					<div class="row">
 
@@ -71,7 +71,7 @@
 									<div class="Col-12 square"
 										style="display: inline-block; text-align: center; overflow: hidden; padding: 0px; display: flex; justify-content: space-around;">
 										<div class="inner">
-											<img id="user_image" src="./img_src/test/kkkk.png" alt=""
+											<img id="user_image" src="./img_src/profile/${userVO.u_pic }" alt=""
 												style="height: 100%; width: 100%;">
 										</div>
 									</div>
@@ -111,7 +111,7 @@
 										</div>
 										<div class=col-8>
 											<input class="form-control rounded-3" type="password"
-												id="pwd" name=uPwdOk placeholder="Confirm Password"
+												id="pwdOk" name=uPwdOk placeholder="Confirm Password"
 												onfocus="this.placeholder=''" onblur="confirmPwdOk()"
 												value="${userVO.password }" required>
 										</div>
@@ -124,7 +124,7 @@
 											<a>이메일</a>
 										</div>
 										<div class=col-8>
-											<input class="form-control rounded-3" type="email" id="pwdOk"
+											<input class="form-control rounded-3" type="email" id="email"
 												name="email" placeholder="abc123@abc.com"
 												onfocus="this.placeholder=''" onblur="confirmEmail()"
 												value="${userVO.email }" required>
@@ -261,7 +261,7 @@
 
 		}
 		function confirmPwd() {
-			var pwd = $("#password").val();
+			var pwd = $("#pwd").val();
 			if (pwd === "") {
 				passwordOk(false);
 				submitRq();
@@ -273,8 +273,8 @@
 
 		}
 		function confirmPwdOk() {
-			var passwordOk = $("#passwordOk").val();
-			var password = $("#password").val();
+			var passwordOk = $("#pwdOk").val();
+			var password = $("#pwd").val();
 			if (password === passwordOk) {
 				if (password == "") {
 					alert("비밀번호를 입력해주세요");
