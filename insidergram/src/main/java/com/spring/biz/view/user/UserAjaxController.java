@@ -47,10 +47,12 @@ public class UserAjaxController {
 			return str;
 		}
 		
-		@RequestMapping("/findId.do")
-		public UserVO findId(UserVO vo) {
-			
-			return null;
+		@RequestMapping("/forgetId.do")
+		public String forgetId(UserVO vo) {
+			System.out.println("vo :>> " + vo.getU_id() + vo.getPhone() + vo.getBirth());
+			String idString = userService.forgetId(vo);
+			System.out.println(idString);
+			return idString;
 		}
 		
 		@RequestMapping("/seachUser.do")

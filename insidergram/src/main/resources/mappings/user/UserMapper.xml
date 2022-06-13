@@ -42,6 +42,11 @@
 		DELETE FROM USER_INFO
 		WHERE U_ID = #{u_id}
 	</delete>
+	
+	<select id="forgetId" resultType="String" parameterType="user">
+		SELECT U_ID FROM USER_INFO
+		WHERE EMAIL = #{email} AND PHONE = #{phone} AND BIRTH = #{birth}
+	</select>
 </mapper>
 
 

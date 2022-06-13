@@ -1,6 +1,8 @@
 package com.spring.biz.user.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,4 +75,10 @@ public class UserDAO {
 		//계정삭제
 		mybatis.delete("userDAO.daleteAccount", u_id);
 		}
+	
+	public String forgetId(UserVO vo) {
+		System.out.println("다오vo: " + vo.toString());
+		Map<String, String> map = new HashMap<String, String>();
+		return mybatis.selectOne("userDAO.forgetId", vo);
+	}
 }

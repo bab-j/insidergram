@@ -10,4 +10,5 @@ public interface UserService {
 	List<UserVO> searchUser(String u_id);
 	UserVO getUserInfo(String u_id);
 	void deleteAccount(String u_id);
+	String forgetId(UserVO vo);
 }

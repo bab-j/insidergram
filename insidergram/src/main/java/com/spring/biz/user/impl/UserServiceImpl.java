@@ -55,4 +55,11 @@ public class UserServiceImpl implements UserService {
 		userDAO.deleteAccount(u_id);
 		
 	}
+
+	@Override
+	public String forgetId(UserVO vo) {
+		// TODO Auto-generated method stub
+		System.out.println("서비스임플 vo:" + vo.toString());
+		return userDAO.forgetId(vo);
+	}
 }

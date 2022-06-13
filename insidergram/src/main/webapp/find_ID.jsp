@@ -58,7 +58,7 @@ body {
 				<!-- 틀 만들기 -->
 				<div class="modal-body p-5 pt-0">
 					<!-- 이메일 -->
-					<form action="findId()" method="post">
+					<form action="javascript: findId()" method="post">
 						<div class="form-floating mb-3">
 							<div class="row">
 								<div
@@ -85,9 +85,9 @@ body {
 								</div>
 								<div class=col-8>
 									<input class="form-control rounded-3" type="text" name="phone"
-										id="phone" placeholder="010-0000-0000"
+										id="phone" placeholder="- 제외하고 입력해 주세요"
 										onfocus="this.placeholder=''" onfocusout="confirmPhone()"
-										onblur="this.placeholder='010-0000-0000'" required>
+										onblur="this.placeholder='- 제외하고 입력해 주세요' " required>
 								</div>
 							</div>
 						</div>
@@ -132,15 +132,16 @@ body {
 
 	<script>
 		function findId() {
-			var id = $("#email").val();
+			var email = $("#email").val();
 			var phone = $("#phone").val();
 			var birth = $("#birth").val();
-			$.ajax("confirmID.do", {
+			$.ajax("user/forgetId.do", {
 				type : "get",
-				data : {"u_id": id, "phone" : phone, "birth":birth},
-				dataType : "json",
+				data : {"email": email, "phone" : phone, "birth":birth},
+				dataType : "text",
 				success : function(data) {
-					alert("ID : " + data.u_id);
+					console.log(data);
+					alert("ID : " + data);
 				},
 				error : function() {
 					alert("실패~~~");
