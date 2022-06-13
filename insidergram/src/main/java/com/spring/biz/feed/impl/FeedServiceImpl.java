@@ -119,6 +119,12 @@ public class FeedServiceImpl implements FeedService {
 	}
 
 
+	@Override
+	public void updateFeed(FeedVO fvo) {
+		feedDAO.updateFeed(fvo);
+	}
+
+
 
 	
 }

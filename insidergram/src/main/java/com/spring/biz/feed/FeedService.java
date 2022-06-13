@@ -24,4 +24,5 @@ public interface FeedService {
 	int unSaveFeed(int f_idx, String u_id);
 	void follow(String my_id, String target_id);
 	void unFollow(String my_id, String target_id);
+	void updateFeed(FeedVO fvo);
 }

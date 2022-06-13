@@ -59,7 +59,7 @@
 
 			<div class="modal-body p-5 pt-0 col-12 "
 				style="display: inline-flex; float: left;padding: 40px 48px 40px 48px! important;">
-				<form action="user/insertFeed.do" method="post"
+				<form action="user/updateFeed.do" method="post"
 					enctype="multipart/form-data" class="col-12">
 					<div class="form-floating mb-3 col-6"
 						style="display: flex; float: left;">
@@ -76,20 +76,15 @@
 							</div>
 
 							<hr class="my-4">
-							<div class=""
-								style="display: flex; justify-content: space-around">
-								<input class="form-control" accept=".jpg"
-									onchange="PreviewImage();" name="uploadFile" type="file"
-									id="user_profile_img" />
-							</div>
 						</div>
 					</div>
 
 					<div class="col-6" style="display: inline-block; float: right;">
 						<hr class="my-4">
 						<br>
-						<textarea class="form-control" placeholder="내용 입력" name="content"
-							rows="14" style="width: 100%;line-height: 1.57;"></textarea>
+						<textarea class="form-control" placeholder="" name="content"
+							rows="14" style="width: 100%;line-height: 1.57;">${fvo.content }</textarea>
+							<input name="f_idx" value="${fvo.f_idx }" type="hidden">
 						<br>
 						<hr class="my-4">
 						<div class="row">

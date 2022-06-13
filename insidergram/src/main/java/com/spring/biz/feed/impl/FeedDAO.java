@@ -147,4 +147,8 @@ public class FeedDAO {
 		map.put("target_id", target_id);
 		mybatis.delete("feedDAO.unFollow", map);
 	}
+	
+	public void updateFeed(FeedVO fvo) {
+		mybatis.update("feedDAO.updateFeed", fvo);
+	}
 }

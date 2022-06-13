@@ -173,8 +173,38 @@ import com.spring.biz.user.UserVO;
 			return "redirect:getFeedList.do";
 		}
 		//게시물 수정
-		@RequestMapping("updateFeed.do")
-		public String updateFeed() {
+		@RequestMapping("goUpdate.do")
+		public String goUpdate(int f_idx, Model mo) {
+			FeedVO fvo = feedService.oneFeed(f_idx);
+			
+			mo.addAttribute("fvo", fvo);
 			return "board/updateFeed";
 		}
+		
+		@RequestMapping("updateFeed.do")
+		public String updateFeed(FeedVO fvo, Model mo) {
+			System.out.println("fvo: " + fvo.toString());
+			feedService.updateFeed(fvo);
+			return "redirect:getFeedList.do";
+		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

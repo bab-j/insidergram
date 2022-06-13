@@ -48,7 +48,7 @@
 </head>
 
 <body>
-	<jsp:include page="./header.jsp"></jsp:include>
+	<jsp:include page="../../../header.jsp"></jsp:include>
 
 	<div class="modal modal-signin position-static d-block bg-light py-5"
 		tabindex="-1" role="dialog" id="modalSignin" style="    padding-top: 48px! important;
@@ -94,7 +94,7 @@
 									<div class="row" style="margin-top: 25px;">
 										<div
 											style="text-align: center; font-weight: bold; font-size: 18px; text-align: left;"
-											class=col-4>비밀번호</div>
+											class=col-4>새 비밀번호</div>
 										<div class=col-8>
 											<input class="form-control rounded-3" type="password"
 												name=upwd id="pwd" placeholder="Password"

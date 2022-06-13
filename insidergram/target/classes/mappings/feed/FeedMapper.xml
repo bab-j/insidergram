@@ -58,7 +58,7 @@ UNION
   	</insert>
   	
   	<!-- 게시물 수정 -->
-  	<update id="updateFeed">
+  	<update id="updateFeed" parameterType="feed">
   		UPDATE FEED
   		   SET CONTENT = #{content}
   		 WHERE F_IDX = #{f_idx}

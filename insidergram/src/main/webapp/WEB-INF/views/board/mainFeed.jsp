@@ -265,7 +265,7 @@ input[id*="popup"]:checked+label+div {
 									<div class="dropdown">
 										<button onclick="myFunction(${feed.f_idx })" class="dropbtn">...</button>
 										<div id="myDropdown${feed.f_idx }" class="dropdown-content">
-											<a href="updateFeed.do?f_idx=${feed.f_idx }">edit</a> <a
+											<a href="goUpdate.do?f_idx=${feed.f_idx }">edit</a> <a
 												href="javascript:deleteFeed(${feed.f_idx }, true)">delete</a>
 										</div>
 									</div>
@@ -474,7 +474,7 @@ input[id*="popup"]:checked+label+div {
 																									dispHtml += '<div class="dropdown">';
 																									dispHtml += '<button onclick="myFunction(' + obj.f_idx + '" class="dropbtn">...</button>';
 																									dispHtml += '<div id="myDropdown' + obj.f_idx + '" class="dropdown-content">';
-																									dispHtml += ' <a href="updateFeed.do?f_idx=' + obj.f_idx + '">edit</a>';
+																									dispHtml += ' <a href="goUpdate.do?f_idx=' + obj.f_idx + '">edit</a>';
 																									dispHtml += ' <a href="javascript:deleteFeed(' + obj.f_idx + ', true)">delete</a>';
 																									dispHtml += '</div></div></div>';
 																								}
@@ -747,7 +747,7 @@ input[id*="popup"]:checked+label+div {
 													dispHtml += '<div class="dropdown">';
 													dispHtml += '<button onclick="modalFunction(' + data.fvo.f_idx + ')" class="dropbtn">...</button>';
 													dispHtml += '<div id="modalDropdown' + data.fvo.f_idx + '" class="dropdown-content">';
-													dispHtml += '<a href="updateFeed.do?f_idx=(' + data.fvo.f_idx + ')">edit</a>';
+													dispHtml += '<a href="goUpdate.do?f_idx=' + data.fvo.f_idx + '">edit</a>';
 													dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ', false)">delete</a>';
 													dispHtml += '</div></div>';
 												}
@@ -781,7 +781,7 @@ input[id*="popup"]:checked+label+div {
 													dispHtml += '<div class="dropdown">';
 													dispHtml += '<button onclick="modalFunction(' + data.fvo.f_idx + ')" class="dropbtn">...</button>';
 													dispHtml += '<div id="modalDropdown' + data.fvo.f_idx + '" class="dropdown-content">';
-													dispHtml += '<a href="updateFeed.do?f_idx=(' + data.fvo.f_idx + ')">edit</a>';
+													dispHtml += '<a href="goUpdate.do?f_idx=' + data.fvo.f_idx + '">edit</a>';
 													dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ', false)">delete</a>';
 													dispHtml += '</div></div>';
 												}

@@ -566,7 +566,7 @@ input[id="tab03"]:checked ~ .con3 {
 						dispHtml += '<div class="dropdown" style="margin-left: 270px;font-size: 30px;">';
 						dispHtml += '<button onclick="myFunction()" class="dropbtn" style="background-color: white;padding-bottom: 15px;">...</button>';
 						dispHtml += '<div id="myDropdown" class="dropdown-content" style="font-size: 15px;">';
-						dispHtml += '<a href="updateFeed.do?f_idx=(' + data.fvo.f_idx + ')">edit</a>';
+						dispHtml += '<a href="goUpdate.do?f_idx=' + data.fvo.f_idx + '">edit</a>';
 						dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
 						dispHtml += '</div></div></div>';
 						
@@ -606,7 +606,7 @@ input[id="tab03"]:checked ~ .con3 {
 						dispHtml += '<div class="dropdown" style="margin-left: 270px;font-size: 30px;">';
 						dispHtml += '<button onclick="myFunction()" class="dropbtn" style="background-color: white;padding-bottom: 15px;">...</button>';
 						dispHtml += '<div id="myDropdown" class="dropdown-content" style="font-size: 15px;">';
-						dispHtml += '<a href="updateFeed.do?f_idx=(' + data.fvo.f_idx + ')">edit</a>';
+						dispHtml += '<a href="goUpdate.do?f_idx=' + data.fvo.f_idx + '">edit</a>';
 						dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
 						dispHtml += '</div></div></div>';
 						
