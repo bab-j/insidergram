@@ -557,21 +557,29 @@ input[id="tab03"]:checked ~ .con3 {
 					/* <!-- 오른쪽 --> */
 					dispHtml += '<div class="col-5" style="margin: 0px auto 0px 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">';
 					/* <!-- 상단 닉네임 --> */
-					dispHtml += '<a href="#" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center" style="height: 66px; background-color: white; border-top-right-radius: 5px;">';
-					dispHtml += '<img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;">';
-					dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
-					dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.fvo.u_id + '</h6></div></div></a>';
 					if(data.confirm == true) {
-						dispHtml += '<div class="dropdown" style="height:20px; font-size:20px; text-align:left">';
-						dispHtml += '<button onclick="myFunction()" class="dropbtn">...</button>';
-						dispHtml += '<div id="myDropdown" class="dropdown-content">';
+						dispHtml += '<div class="col-12 p-3" style="display: flex;align-items: center;background-color: white; border-top-right-radius: 5px;">';
+						dispHtml += '<a href="otherFeed.do?u_id=' + data.fvo.u_id + '" class="text-center" style="display: flex;flex-direction: row;align-items: center;">';
+						dispHtml += '<div><img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;"></div>';
+						dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.fvo.u_id + '</h6></div></a>';
+							
+						dispHtml += '<div class="dropdown" style="margin-left: 270px;font-size: 30px;">';
+						dispHtml += '<button onclick="myFunction()" class="dropbtn" style="background-color: white;padding-bottom: 15px;">...</button>';
+						dispHtml += '<div id="myDropdown" class="dropdown-content" style="font-size: 15px;">';
 						dispHtml += '<a href="updateFeed.do?f_idx=(' + data.fvo.f_idx + ')">edit</a>';
 						dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
-						dispHtml += '</div></div>';
+						dispHtml += '</div></div></div>';
+						
+						/* <!-- 댓글창 --> */
+						dispHtml += '<div style="height: 413px; overflow-y: auto; background-color: white;" id="commBox">';
+					} else {
+						dispHtml += '<a href="otherFeed.do?u_id=' + data.fvo.u_id + '" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center" style="height: 66px; background-color: white; border-top-right-radius: 5px;">';
+						dispHtml += '<img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;">';
+						dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
+						dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.fvo.u_id + '</h6></div></div></a>';
+						/* <!-- 댓글창 --> */
+						dispHtml += '<div style="height: 424px; overflow-y: auto; background-color: white;" id="commBox">';
 					}
-					
-					/* <!-- 댓글창 --> */
-					dispHtml += '<div style="height: 424px; overflow-y: auto; background-color: white;" id="commBox">';
 					dispHtml += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style="border: none; height: 100px; margin-top: 0px;">';
 					dispHtml += '<img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0">';
 					dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between" style="text-align: left;">';
@@ -589,21 +597,29 @@ input[id="tab03"]:checked ~ .con3 {
 					/* <!-- 오른쪽 --> */
 					dispHtml += '<div class="col-5" style="margin: 0px auto 0px 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">';
 					/* <!-- 상단 닉네임 --> */
-					dispHtml += '<a href="#" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center" style="height: 66px; background-color: white; border-top-right-radius: 5px;">';
-					dispHtml += '<img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;">';
-					dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
-					dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.fvo.u_id + '</h6></div></div></a>';
 					if(data.confirm == true) {
-						dispHtml += '<div class="dropdown" style="height:20px; font-size:20px; text-align:left">';
-						dispHtml += '<button onclick="myFunction()" class="dropbtn">...</button>';
-						dispHtml += '<div id="myDropdown" class="dropdown-content">';
+						dispHtml += '<div class="col-12 p-3" style="display: flex;align-items: center;background-color: white; border-top-right-radius: 5px;">';
+						dispHtml += '<a href="otherFeed.do?u_id=' + data.fvo.u_id + '" class="text-center" style="display: flex;flex-direction: row;align-items: center;">';
+						dispHtml += '<div><img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;"></div>';
+						dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.fvo.u_id + '</h6></div></a>';
+							
+						dispHtml += '<div class="dropdown" style="margin-left: 270px;font-size: 30px;">';
+						dispHtml += '<button onclick="myFunction()" class="dropbtn" style="background-color: white;padding-bottom: 15px;">...</button>';
+						dispHtml += '<div id="myDropdown" class="dropdown-content" style="font-size: 15px;">';
 						dispHtml += '<a href="updateFeed.do?f_idx=(' + data.fvo.f_idx + ')">edit</a>';
 						dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
-						dispHtml += '</div></div>';
+						dispHtml += '</div></div></div>';
+						
+						/* <!-- 댓글창 --> */
+						dispHtml += '<div style="height: 413px; overflow-y: auto; background-color: white;" id="commBox">';
+					} else {
+						dispHtml += '<a href="otherFeed.do?u_id=' + data.fvo.u_id + '" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center" style="height: 66px; background-color: white; border-top-right-radius: 5px;">';
+						dispHtml += '<img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;">';
+						dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
+						dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.fvo.u_id + '</h6></div></div></a>';
+						/* <!-- 댓글창 --> */
+						dispHtml += '<div style="height: 424px; overflow-y: auto; background-color: white;" id="commBox">';
 					}
-					/* <!-- 댓글창 --> */
-					dispHtml += '<div style="height: 424px; overflow-y: auto; background-color: white;" id="commBox">';
-					
 				}
 			$.each(data.fvo.comm, function(index, obj){
 				dispHtml += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style="border: none; height: 100px; margin-top: 0px;">';
@@ -621,7 +637,7 @@ input[id="tab03"]:checked ~ .con3 {
 				/* <!-- 메시지 보내기 --> */
 			dispHtml += '<div class="input-group mb-3" style="background-color: white; border-bottom-right-radius: 5px;">';
 			dispHtml += '<input style="height: 40px; border-radius: 20px; margin: 10px 5px 10px 10px; padding: 3px 12px;" type="text" class="form-control" id="commBlock" placeholder="메시지 입력..." aria-label="Recipient\'s username" aria-describedby="button-addon2">';
-			dispHtml += '<button class="btn btn-outline-primary" type="button" id="button-addon2" style="background-color: #0d6efd; color: white; border-radius: 70%; width: 35px; height: 35px; padding: 0px; margin: 10px;" onclick="writeComm('+ data.f_idx + ')">';
+			dispHtml += '<button class="btn btn-outline-primary" type="button" id="button-addon2" style="background-color: #0d6efd; color: white; border-radius: 70%; width: 35px; height: 35px; padding: 0px; margin: 10px;" onclick="writeComm('+ data.fvo.f_idx + ')">';
 			dispHtml += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" /></svg>';	
 			dispHtml += '</button><div></div></div></div></div>';
 			
