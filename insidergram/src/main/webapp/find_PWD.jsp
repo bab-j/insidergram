@@ -19,26 +19,23 @@
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 		Helvetica, Arial, sans-serif;
-	text-align: center;
-	
-	--bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;
-	
-	
-
+	text-align: center; -
+	-bs-bg-opacity: 1;
+	background-color: rgba(var(- -bs-light-rgb), var(- -bs-bg-opacity))
+		!important;
 }
 
 #confirm1 {
 	text-align: center;
 	border: 1px solid silver;
-    border-radius: 3px;
-    height: 34px;
-    margin-top: 2px;
+	border-radius: 3px;
+	height: 34px;
+	margin-top: 2px;
 }
-
 </style>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </style>
@@ -46,101 +43,226 @@ body {
 </head>
 
 <body>
-	
 
-	<div id="Header" class="modal modal-signin position-static d-block bg-light py-5" tabindex="-1" role="dialog" id="modalSignin">
+
+	<div id="Header"
+		class="modal modal-signin position-static d-block bg-light py-5"
+		tabindex="-1" role="dialog" id="modalSignin">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content rounded-4 shadow align-items-md-center">
 				<div class="modal-header p-5 pb-4 border-bottom-0 cen">
 					<h2 class="fw-bold mb-0"
-					style="font-family: 'Carattere', cursive; 
-					font-size: 70px; padding-bottom: 20px;">
-					insidergram
-					</h2>
+						style="font-family: 'Carattere', cursive; font-size: 70px; padding-bottom: 20px;">
+						insidergram</h2>
 				</div>
 				<!-- 틀 만들기 -->
 				<div class="modal-body p-5 pt-0">
 					<!-- 아이디 -->
-					<form action="usercontroller?type=UserIdChk" method="post">
+					<form action="javascript:forgetPwd()" method="post">
 						<div class="form-floating mb-3">
 							<div class="row">
-								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 18px; text-align: left;" 
-								class=col-4> <a>아이디</a></div>
+								<div
+									style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 18px; text-align: left;"
+									class=col-4>
+									<a>아이디</a>
+								</div>
 								<div class=col-8>
-									<input class="form-control rounded-3" type="text" name=u_id id="uid"
-											placeholder="ID" onfocus="this.placeholder=''"
-											onblur="this.placeholder='Username'"> 
+									<input class="form-control rounded-3" type="text" name=u_id
+										id="uid" placeholder="ID" onfocus="this.placeholder=''"
+										onblur="confirmId()" required>
 								</div>
 							</div>
 						</div>
-					</form>
-					<!-- 이메일 -->
-					<form action="usercontroller?type=FindID" method="post">
+						<!-- 이메일 -->
 						<div class="form-floating mb-3">
 							<div class="row">
-								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;" 
-								class=col-4> <a>이메일</a></div>
+								<div
+									style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;"
+									class=col-4>
+									<a>이메일</a>
+								</div>
 								<div class=col-8>
 									<input class="form-control rounded-3" type="email" name="email"
-									placeholder="abc123@abc.com" onfocus="this.placeholder=''"
-									onblur="this.placeholder='abc123@abc.com'"> 
+										id="email" placeholder="abc123@abc.com"
+										onfocus="this.placeholder=''"
+										onblur="confirmEmail()" required>
 								</div>
 							</div>
 						</div>
-					</form>
-					<!-- 전화번호 -->
-					<form action="usercontroller?type=FindID" method="post">
+						<!-- 전화번호 -->
 						<div class="form-floating mb-3">
 							<div class="row">
-								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;" 
-								class=col-4> <a>전화번호</a></div>
+								<div
+									style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;"
+									class=col-4>
+									<a>전화번호</a>
+								</div>
 								<div class=col-8>
 									<input class="form-control rounded-3" type="text" name="phone"
-									placeholder="010-0000-0000" onfocus="this.placeholder=''"
-									onblur="this.placeholder='010-0000-0000'"> 
+										id="phone" placeholder="- 제외하고 입력해 주세요"
+										onfocus="this.placeholder=''"
+										onblur="confirmPhone()" required>
 								</div>
 							</div>
 						</div>
-					</form>
-					<!-- 생년월일 -->
-					<form action="usercontroller?type=FindID" method="post">
+						<!-- 생년월일 -->
 						<div class="form-floating mb-3">
 							<div class="row">
-								<div style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;" 
-								class=col-4> <a>생년월일</a></div>
+								<div
+									style="text-align: center; padding-top: 5px; font-weight: bold; font-size: 17px; text-align: left;"
+									class=col-4>
+									<a>생년월일</a>
+								</div>
 								<div class=col-8>
-									<input class="form-control rounded-3" type="text" name="birth" placeholder="생년월일 6자리"
-									onfocus="this.placeholder=''"
-									onblur="this.placeholder='생년월일 6자리'"> 
+									<input class="form-control rounded-3" type="text" name="birth"
+										id="birth" placeholder="생년월일 6자리"
+										onfocus="this.placeholder=''"
+										onblur="confirmBirth()" required>
 								</div>
 							</div>
 						</div>
+						<hr class="my-4">
+						<div class="row">
+							<div class="col-6">
+								<a
+									class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
+									style="border-color: silver;" href="user/login.do"> <svg
+										class="bi me-1 " width="0px" height="16"></svg>취소
+								</a>
+							</div>
+							<div class="col-6">
+								<input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
+									style="height: 42px; font-size: 17px" type="submit" id="subm"
+									value="비밀번호 찾기" disabled>
+								<!-- <input type="hidden" name="uID" value="${uid }"> -->
+							</div>
+						</div>
 					</form>
-					<hr class="my-4">
-					<div class="row">
-						<div class="col-6">
-							<a class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
-								style="border-color: silver;" type="submit" href="user/login.do">
-								<svg class="bi me-1 " width="0px" height="16"></svg>취소
-							</a>
-						</div>
-						<div class="col-6">
-							<input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
-							style="height: 42px; font-size: 17px" type="submit" id="subm" value="비밀번호 찾기"> 
-							<!-- <input type="hidden" name="uID" value="${uid }"> -->
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-			crossorigin="anonymous">
+	<script>
+		function forgetPwd() {
+			var id = $("#uid").val();
+			var email = $("#email").val();
+			var phone = $("#phone").val();
+			var birth = $("#birth").val();
+			console.log("forgetPwd() 실행>>" + id + " " + email + " " + phone
+					+ " " + birth + " ");
+			$.ajax("user/forgetPwd.do", {
+				type : "get",
+				data : {
+					"u_id" : id,
+					"email" : email,
+					"phone" : phone,
+					"birth" : birth
+				},
+				dataType : "text",
+				success : function(data) {
+					console.log(data);
+					alert("PASSWORD : " + data);
+				},
+				error : function() {
+					alert("실패~~~");
+				}
+			});
+		}
+
+		var bId = false;
+		var bEmail = false;
+		var bPhone = false;
+		var bBirth = false;
+
+		function idOk(bool) {
+			bId = bool;
+		}
+		function emailOk(bool) {
+			bEmail = bool;
+		}
+		function phoneOk(bool) {
+			bPhone = bool;
+		}
+		function birthOk(bool) {
+			bBirth = bool;
+		}
+
+		function submitRq() {
+			if (bId == true) {
+				if (bEmail == true) {
+					if (bPhone == true) {
+						if (bBirth == true) {
+							document.getElementById("subm").disabled = false;
+						} else {
+							document.getElementById("subm").disabled = true;
+						}
+					} else {
+						document.getElementById("subm").disabled = true;
+					}
+				} else {
+					document.getElementById("subm").disabled = true;
+
+				}
+			}
+		}
+
+		function confirmId() {
+			var id = $("uid").val();
+			if (id ==="") {
+				idOk(false);
+				submitRq();
+			} else {
+				idOk(true);
+				submitRq();
+			}
+		}
+		function confirmEmail() {
+			var email = $("#email").val();
+			if (email === "") {
+				emailOk(false);
+				submitRq();
+
+			} else {
+				emailOk(true);
+				submitRq();
+			}
+
+		}
+
+		function confirmPhone() {
+			var phone = $("#phone").val();
+			if (phone === "") {
+				phoneOk(false);
+				submitRq();
+
+			} else {
+				phoneOk(true);
+				submitRq();
+			}
+
+		}
+
+		function confirmBirth() {
+			var birth = $("#birth").val();
+			if (birth === "") {
+				birthOk(false);
+				submitRq();
+
+			} else {
+				birthOk(true);
+				submitRq();
+			}
+
+		}
+	</script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous">
 		
-		</script>
+	</script>
 </body>
 </html>
 

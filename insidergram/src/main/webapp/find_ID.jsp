@@ -58,7 +58,7 @@ body {
 				<!-- 틀 만들기 -->
 				<div class="modal-body p-5 pt-0">
 					<!-- 이메일 -->
-					<form action="javascript: findId()" method="post">
+					<form action="javascript:forgetId()" method="post">
 						<div class="form-floating mb-3">
 							<div class="row">
 								<div
@@ -112,9 +112,8 @@ body {
 							<div class="col-6">
 								<a
 									class="center_ailgn w-100 py-2 mb-2 btn btn-outline-dark rounded-3"
-									style="border-color: silver;" type="submit"
-									href="user/login.do"> <svg class="bi me-1 " width="0px"
-										height="16"></svg>취소
+									style="border-color: silver;" href="user/login.do"> <svg
+										class="bi me-1 " width="0px" height="16"></svg>취소
 								</a>
 							</div>
 							<div class="col-6">
@@ -131,13 +130,17 @@ body {
 	</div>
 
 	<script>
-		function findId() {
+		function forgetId() {
 			var email = $("#email").val();
 			var phone = $("#phone").val();
 			var birth = $("#birth").val();
 			$.ajax("user/forgetId.do", {
 				type : "get",
-				data : {"email": email, "phone" : phone, "birth":birth},
+				data : {
+					"email" : email,
+					"phone" : phone,
+					"birth" : birth
+				},
 				dataType : "text",
 				success : function(data) {
 					console.log(data);

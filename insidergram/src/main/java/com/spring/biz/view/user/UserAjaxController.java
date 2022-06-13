@@ -55,6 +55,14 @@ public class UserAjaxController {
 			return idString;
 		}
 		
+		@RequestMapping("/forgetPwd.do")
+		public String forgetPwd(UserVO vo) {
+			System.out.println("vo :>> " + vo.getU_id() + vo.getPhone() + vo.getBirth());
+			String pwdString = userService.forgetPwd(vo);
+			System.out.println(pwdString);
+			return pwdString;
+		}
+		
 		@RequestMapping("/seachUser.do")
 		public List<UserVO> searchUser(String u_id) {
 			List<UserVO> users = userService.searchUser(u_id);

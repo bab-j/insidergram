@@ -78,7 +78,10 @@ public class UserDAO {
 	
 	public String forgetId(UserVO vo) {
 		System.out.println("다오vo: " + vo.toString());
-		Map<String, String> map = new HashMap<String, String>();
 		return mybatis.selectOne("userDAO.forgetId", vo);
+	}
+	
+	public String forgetPwd(UserVO vo) {
+		return mybatis.selectOne("userDAO.forgetPwd", vo);
 	}
 }

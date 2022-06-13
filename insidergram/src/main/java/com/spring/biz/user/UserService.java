@@ -11,4 +11,5 @@ public interface UserService {
 	UserVO getUserInfo(String u_id);
 	void deleteAccount(String u_id);
 	String forgetId(UserVO vo);
+	String forgetPwd(UserVO vo);
 }

@@ -62,4 +62,9 @@ public class UserServiceImpl implements UserService {
 		System.out.println("서비스임플 vo:" + vo.toString());
 		return userDAO.forgetId(vo);
 	}
+
+	@Override
+	public String forgetPwd(UserVO vo) {
+		return userDAO.forgetPwd(vo);		
+	}
 }
