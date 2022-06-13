@@ -329,9 +329,9 @@ input[id="tab03"]:checked ~ .con3 {
 						<div class="col-12 my-3">
 							<a>게시물</a><span
 								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${picPost.size() + docPost.size() }</span>
-							<a>팔로워</a><span
+							<a href="javascript:followInfo(true)">팔로워</a><span
 								id="followerCnt" style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followerList.size()}</span>
-							<a>팔로우</a><span
+							<a href="javascript:followInfo(false)">팔로우</a><span
 								id="followCnt" style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followingList.size()}</span>
 						</div>
 						<!-- 3 -->
@@ -394,6 +394,22 @@ input[id="tab03"]:checked ~ .con3 {
 		<label for="popup"></label>
 	</div>
 	<!-- --------------------------------------------------------------------------- -->
+					<!--=------------------ 팔로우 팔로워 팝업 껍데기 -----------------------=-->
+	<input type="checkbox" id="followpopup">
+	<!-- 버튼 클릭시 팝업창 오픈 -->
+	<label for="followpopup" id="followpopupLabel" style="padding: 3px 10px 3px 0px;">
+	</label>
+	<div>
+		<div>
+			<!-- 내용 추가 -->
+			<div class="container" id="followModalContainer" style="margin: 0px; padding: 0px; width: 500px; height: 550px; border: 1px solid black; background-color: #F5F5F5;">
+
+			</div>
+		</div>
+		<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
+		<label for="followpopup"></label>
+	</div>
+	<!-- --------------------------------------------------------------------------- -->
 					<!--========================================== 사진 피드 ===================================================-->
 					<div class="conbox con1">
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -452,6 +468,17 @@ input[id="tab03"]:checked ~ .con3 {
 	</main>
 
 	<script>
+		function followInfo(bool) {
+			if (bool == true) {
+				
+			var followInfoBox = "";
+				followInfoBox += '<div style="border: 1px solid black" width="400px" height="100px">';
+				followInfoBox += '';
+				followInfoBox += '</div>'
+				$("#followModalContainer").append(followInfoBox);
+				$("#followpopup").click();
+			}
+		}	
 		function unFollow(my_id, target_id) {
 			$("#btnUnFollow").css('display', 'none');
 			$("#btnFollow").css('display', 'inline');
