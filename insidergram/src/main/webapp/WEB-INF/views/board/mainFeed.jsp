@@ -156,6 +156,27 @@ input[id*="popup"]:checked+label+div {
 .likeCommentBox {
 	float: left;
 }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
 </style>
 <script>
 	//$(window).on('load', function() {
@@ -212,36 +233,39 @@ input[id*="popup"]:checked+label+div {
 				</c:when>
 				<c:otherwise>
 					<c:forEach var="feed" items="${feedList }">
-
+					<div>
 
 						<div class="row col-6" id="k1" style="-bs-gutter-x: 0;">
 							<!-- 틀 -->
 
 							<div class="col-12">
-								<a href="otherFeed.do?u_id=${feed.u_id }"
-									class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
-									style="background-color: white;"> <img
-									src="../img_src/profile/${feed.u_pic } " width="45" height="45"
-									class="rounded-circle flex-shrink-0" style="border-radius: 70%">
-
-									<div class="d-flex gap-2 w-100 justify-content-between">
-
-										<div>
-											<h6 class="mb-0"
-												style="font-size: 20px; margin: 10px 20px; font-weight: bold;">${feed.u_id }</h6>
-										</div>
-
-										<div href="#">
-											<svg xmlns="http://www.w3.org/2000/svg" width="16"
-												height="16" fill="currentColor" class="bi bi-three-dots"
-												viewBox="0 0 16 16" style="    margin: 10px 5px;">
-							<path
-													d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-							</svg>
-										</div>
+								<div class="d-flex gap-2 w-100 justify-content-between">
+									<div>
+										<a href="otherFeed.do?u_id=${feed.u_id }"
+											class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
+											style="background-color: white;"> <img
+											src="../img_src/profile/${feed.u_pic }" width="45" height="45"
+											class="rounded-circle flex-shrink-0" style="border-radius: 70%">
+											<span class="mb-0" style="font-size: 20px; margin: 10px 20px; font-weight: bold;">${feed.u_id }</span>
+										</a>
 									</div>
-								</a>
+								</div>
 							</div>
+										<c:set var="feedIdx" value="${feed.f_idx }" scope="page" />
+<%List<Integer> myPost = (List<Integer>)request.getAttribute("myFidxList");
+  boolean confirmMyPost = myPost.contains(pageContext.getAttribute("feedIdx"));
+  pageContext.setAttribute("confirmMyPost", confirmMyPost);
+%>
+									<c:if test="${confirmMyPost }">
+										<div class="dropdown">
+										  <button onclick="myFunction(${feed.f_idx })" class="dropbtn">...</button>
+										  <div id="myDropdown${feed.f_idx }" class="dropdown-content">
+										    <a href="#">edit</a>
+										    <a href="javascript:deleteFeed(${feed.f_idx })">delete</a>
+										  </div>
+										</div>
+									</c:if>
+						</div>
 							<div class="col-12 square"
 								style="display: flex; align-items: center;">
 								<div class="inner"
@@ -261,7 +285,6 @@ input[id*="popup"]:checked+label+div {
 								<div>
 									<div class="likeCommentBox">
 										<!---------------------- 게시물 좋아요 상태 설정 -------------------------- -->
-										<c:set var="feedIdx" value="${feed.f_idx }" scope="page" />
 										<%
 										boolean like = list.contains(pageContext.getAttribute("feedIdx"));
 										pageContext.setAttribute("like", like);
@@ -300,9 +323,9 @@ input[id*="popup"]:checked+label+div {
 
 
 									<!---------------------- 게시물 즐겨찾기 상태 설정 -------------------------- -->
-									<c:set var="idx" value="${feed.f_idx }" scope="page" />
+									<%-- <c:set var="idx" value="${feed.f_idx }" scope="page" /> --%>
 									<%
-									boolean save = saveList.contains(pageContext.getAttribute("idx"));
+									boolean save = saveList.contains(pageContext.getAttribute("feedIdx"));
 									pageContext.setAttribute("save", save);
 									%>
 									<!-- ------------------------------------------------------------- -->
@@ -368,16 +391,16 @@ input[id*="popup"]:checked+label+div {
 										<b style="margin: 5px 20px 5px 0; display: inline-flex;">
 											${comm.getU_id() }</b>  ${comm.getComm() }<br>
 									</c:forEach>
-									</label>
 								</div>
 								<br>
 							</div>
-						</div>
+							</div>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 		</div>
 	</div>
+	
 
 	<script>
 		var nowPage = 1;
@@ -391,16 +414,9 @@ input[id*="popup"]:checked+label+div {
 														document).height()
 														- $(window).height()) {
 
-													let likeList = $
-													{
-														likeList
-													}
-													;
-													let saveList = $
-													{
-														saveList
-													}
-													;
+													let likeList = ${ likeList };
+													let myFidxList = ${ myFidxList };
+													let saveList = ${ saveList };
 													alert("스크롤이벤트 발생~!"
 															+ likeList);
 													nowPage++;
@@ -424,7 +440,7 @@ input[id*="popup"]:checked+label+div {
 																							function(
 																									index,
 																									obj) {
-																								dispHtml += '<div class="row col-6" id="k1" style="-bs-gutter-x: 0;">';
+																								/* dispHtml += '<div class="row col-6" id="k1" style="-bs-gutter-x: 0;">';
 																								dispHtml += '<div class="col-12">';
 																								dispHtml += '<a href="otherFeed.do?_id='
 																										+ obj.u_id
@@ -439,7 +455,24 @@ input[id*="popup"]:checked+label+div {
 																										+ '</h6>';
 																								dispHtml += '</div>';
 																								dispHtml += '<div href="#">	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots"	viewBox="0 0 16 16"> <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />';
-																								dispHtml += '</svg></div></div></a></div>';
+																								dispHtml += '</svg></div></div></a></div>'; */
+																								dispHtml += '<div class="row col-6" id="k1" style="-bs-gutter-x: 0;">';
+																								dispHtml += '<div class="col-12">';
+																								dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
+																								dispHtml += '<div>';
+																								dispHtml += '<a href="otherFeed.do?u_id=${feed.u_id }"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="background-color: white;"> <img src="../img_src/profile/${feed.u_pic }" width="45" height="45" class="rounded-circle flex-shrink-0" style="border-radius: 70%">';
+																								dispHtml += '<span class="mb-0" style="font-size: 20px; margin: 10px 20px; font-weight: bold;">${feed.u_id }</span>'
+																								dispHtml += '</a></div></div></div>'
+																								
+																								if(myFidxList.includes(obj.f_idx)) {
+																									dispHtml += '<div class="dropdown">';
+																									dispHtml += '<button onclick="myFunction(' + obj.f_idx + '" class="dropbtn">...</button>';
+																									dispHtml += '<div id="myDropdown' + obj.f_idx + '" class="dropdown-content">';
+																									dispHtml += ' <a href="#">edit</a>';
+																									dispHtml += ' <a href="javascript:deleteFeed(' + obj.f_idx + ')">delete</a>';
+																									dispHtml += '</div></div></div>';
+																								}
+																								
 																								dispHtml += '<div class="col-12 square"	style="display: flex; align-items: center;">';
 																								dispHtml += '<div class="inner">';
 																								if (obj.f_pic == null) {
@@ -626,7 +659,48 @@ input[id*="popup"]:checked+label+div {
 								}
 							});
 		}
+		function deleteFeed(f_idx) {
+			confirm("게시물을 삭제 하시겠습니까?")
+			$
+			.ajax(
+					"deleteFeed.do",
+					{
+						type : "get",
+						data : {
+							"f_idx" : f_idx,
+							"u_id" : '${userVO.u_id}'
+						},
+						dataType : "text",
+						success : function(data) {
+							console.log("성공~~~");
+							console.log(data)
+							$("#post"+f_idx).remove();
+							$("#posts"+f_idx).remove();
+							$("#popup").click();
+						},
+						error : function() {
+							alert("실패~~~");
+						}
+					});
+		}
 
+		function myFunction(f_idx) {
+			  document.getElementById("myDropdown" + f_idx).classList.toggle("show");
+			}
+
+			// Close the dropdown if the user clicks outside of it
+			window.onclick = function(event) {
+			  if (!event.target.matches('.dropbtn')) {
+			    var dropdowns = document.getElementsByClassName("dropdown-content");
+			    var i;
+			    for (i = 0; i < dropdowns.length; i++) {
+			      var openDropdown = dropdowns[i];
+			      if (openDropdown.classList.contains('show')) {
+			        openDropdown.classList.remove('show');
+			      }
+			    }
+			  }
+			}
 		function modalAjax(f_idx) {
 			alert("연결 될까요옹?!" + f_idx);
 			$
@@ -644,58 +718,68 @@ input[id*="popup"]:checked+label+div {
 									console.log(data);
 									dispHtml += '<div class="row square" style="margin: 0px; padding: 0px; width: 1200px; height: 550px;">';
 									/* <!-- 왼 --> */
-									if (data.f_pic != null) {
+									if (data.fvo.f_pic != null) {
 										/* <!-- 이미지 --> */
 										dispHtml += '<div class="col-6" style="margin: 0px 0px 0px auto; padding: 0px; height: 550px;">';
-										dispHtml += '<img src="../img_src/feed/' + data.f_pic + '" class="card-img-top" style="height: 550px; border-radius: 0px; margin-left: auto;">';
+										dispHtml += '<img src="../img_src/feed/' + data.fvo.f_pic + '" class="card-img-top" style="height: 550px; border-radius: 0px; margin-left: auto;">';
 										dispHtml += '</div>';
 										/* <!-- 오른쪽 --> */
 										dispHtml += '<div class="col-5" style="margin: 0px auto 0px 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">';
 										/* <!-- 상단 닉네임 --> */
 										dispHtml += '<a href="#" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center" style="height: 66px; background-color: white; border-top-right-radius: 5px;">';
-										dispHtml += '<img src="../img_src/profile/' + data.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;">';
+										dispHtml += '<img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;">';
 										dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
 										dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">'
-												+ data.u_id + '</h6></div>';
-										dispHtml += '<div href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">';
-										dispHtml += '<path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />';
-										dispHtml += '</svg></div></div></a>';
+												+ data.fvo.u_id + '</h6></div></div></a>';
+												if(data.confirm == true) {
+													dispHtml += '<div class="dropdown">';
+													dispHtml += '<button onclick="myFunction()" class="dropbtn">...</button>';
+													dispHtml += '<div id="myDropdown" class="dropdown-content">';
+													dispHtml += '<a href="updateFeed.do?f_idx=(' + data.fvo.f_idx + ')">edit</a>';
+													dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
+													dispHtml += '</div></div>';
+												}
 										/* <!-- 댓글창 --> */
-										dispHtml += '<div style="height: 424px; overflow-y: auto; background-color: white;">';
+										dispHtml += '<div style="height: 424px; overflow-y: auto; background-color: white;" id="commBox">';
 										dispHtml += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style="border: none; height: 100px; margin-top: 0px;">';
-										dispHtml += '<img src="../img_src/profile/' + data.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0">';
+										dispHtml += '<img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0">';
 										dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
 										dispHtml += '<div>';
 										dispHtml += '<h6 class="mb-0">'
-												+ data.u_id + '</h6>';
+												+ data.fvo.u_id + '</h6>';
 										dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px;">'
-												+ data.content + '</p>';
+												+ data.fvo.content + '</p>';
 										dispHtml += '</div>';
 										dispHtml += '</div></a>';
 									} else {
 										/* <!-- 글 --> */
 										dispHtml += '<div class="col-6" style="margin: 0px 0px 0px auto; padding: 0px; height: 550px;display: flex;justify-content: center;align-items: center;background-color: white;font-weight: bold;">';
-										dispHtml += data.content;
+										dispHtml += data.fvo.content;
 										dispHtml += '</div>';
 
 										/* <!-- 오른쪽 --> */
 										dispHtml += '<div class="col-5" style="margin: 0px auto 0px 0px; padding: 0px; height: 550px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">';
 										/* <!-- 상단 닉네임 --> */
 										dispHtml += '<a href="#" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center" style="height: 66px; background-color: white; border-top-right-radius: 5px;">';
-										dispHtml += '<img src="../img_src/profile/' + data.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;">';
+										dispHtml += '<img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;">';
 										dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
 										dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">'
-												+ data.u_id + '</h6></div>';
-										dispHtml += '<div href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">';
-										dispHtml += '<path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />';
-										dispHtml += '</svg></div></div></a>';
+												+ data.fvo.u_id + '</h6></div></div></a>';
+												if(data.confirm == true) {
+													dispHtml += '<div class="dropdown">';
+													dispHtml += '<button onclick="myFunction()" class="dropbtn">...</button>';
+													dispHtml += '<div id="myDropdown" class="dropdown-content">';
+													dispHtml += '<a href="updateFeed.do?f_idx=(' + data.fvo.f_idx + ')">edit</a>';
+													dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
+													dispHtml += '</div></div>';
+												}
 										/* <!-- 댓글창 --> */
 										dispHtml += '<div style="height: 424px; overflow-y: auto; background-color: white;" id="commBox">';
 
 									}
 									$
 											.each(
-													data.comm,
+													data.fvo.comm,
 													function(index, obj) {
 														dispHtml += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style="border: none; height: 100px; margin-top: 0px;">';
 														dispHtml += '<img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40"';
@@ -717,7 +801,7 @@ input[id*="popup"]:checked+label+div {
 									dispHtml += '<div class="input-group mb-3" style="background-color: white; border-bottom-right-radius: 5px;">';
 									dispHtml += '<input style="height: 40px; border-radius: 20px; margin: 10px 5px 10px 10px; padding: 3px 12px;" type="text" class="form-control" id="commBlock" placeholder="메시지 입력..." aria-label="Recipient\'s username" aria-describedby="button-addon2">';
 									dispHtml += '<button class="btn btn-outline-primary" type="button" id="button-addon2" style="background-color: #0d6efd; color: white; border-radius: 70%; width: 35px; height: 35px; padding: 0px; margin: 10px;" onclick="writeComm('
-											+ data.f_idx + ')">';
+											+ data.fvo.f_idx + ')">';
 									dispHtml += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" /></svg>';
 									dispHtml += '</button></div></div></div>';
 

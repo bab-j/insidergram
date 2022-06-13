@@ -70,10 +70,15 @@ import com.spring.biz.user.UserVO;
 				saveList.add(fvo.getF_idx());
 			}
 			// -----------------------------------------------------
+			List<Integer> myFidxList = new ArrayList<Integer>();
+			for(FeedVO fvo : feedService.getMyFeed(uvo.getU_id())) {
+				myFidxList.add(fvo.getF_idx()); 
+			}
 			List<Integer> likeList = feedService.confirmLike(uvo.getU_id());
 			mo.addAttribute("saveList", saveList);
 			mo.addAttribute("feedList", list);
 			mo.addAttribute("likeList", likeList);
+			mo.addAttribute("myFidxList", myFidxList);
 			
 			return "board/mainFeed";
 		}
