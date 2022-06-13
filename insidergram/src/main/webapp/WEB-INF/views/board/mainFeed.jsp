@@ -104,7 +104,7 @@ input[id*="popup"]+label+div>label {
 input[id*="popup"]+label+div {
 	opacity: 0;
 	visibility: hidden;
-	transition: all 0.3s;
+	transition: all 0.1s;
 }
 
 input[id*="popup"]:checked+label+div {
@@ -158,32 +158,36 @@ input[id*="popup"]:checked+label+div {
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	overflow: auto;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
 }
 
 .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown a:hover {
+	background-color: #ddd;
+}
 
-.show {display: block;}
+.show {
+	display: block;
+}
 </style>
 <script>
 	//$(window).on('load', function() {
 	//});
 
 	$(document).ready(function() {
-
+		
 	});
 </script>
 </head>
@@ -193,7 +197,7 @@ input[id*="popup"]:checked+label+div {
 	<!-- 버튼 클릭시 팝업창 오픈 -->
 	<label for="popup" id="popupLabel" style="padding: 3px 10px 3px 0px;">
 	</label>
-	<div>
+	<div id="popupShowOrHide">
 		<div>
 			<!-- 내용 추가 -->
 			<div class="container" id="modalContainer"
@@ -223,7 +227,7 @@ input[id*="popup"]:checked+label+div {
 		style="display: flex; flex-direction: column-reverse; align-content: space-around; flex-wrap: wrap;">
 		<div id="feedBox">
 			<%
-			List<String> list = (List<String>) request.getAttribute("likeList");
+				List<String> list = (List<String>) request.getAttribute("likeList");
 			List<Integer> saveList = (List<Integer>) request.getAttribute("saveList");
 			%>
 			<!-- 중간 정렬 -->
@@ -233,39 +237,40 @@ input[id*="popup"]:checked+label+div {
 				</c:when>
 				<c:otherwise>
 					<c:forEach var="feed" items="${feedList }">
-					<div>
+						<div id="post${feed.f_idx }">
+							<div class="row col-6" id="k1" style="-bs-gutter-x: 0;">
+								<!-- 틀 -->
 
-						<div class="row col-6" id="k1" style="-bs-gutter-x: 0;">
-							<!-- 틀 -->
-
-							<div class="col-12">
-								<div class="d-flex gap-2 w-100 justify-content-between">
-									<div>
-										<a href="otherFeed.do?u_id=${feed.u_id }"
-											class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
-											style="background-color: white;"> <img
-											src="../img_src/profile/${feed.u_pic }" width="45" height="45"
-											class="rounded-circle flex-shrink-0" style="border-radius: 70%">
-											<span class="mb-0" style="font-size: 20px; margin: 10px 20px; font-weight: bold;">${feed.u_id }</span>
-										</a>
+								<div class="col-12">
+									<div class="d-flex gap-2 w-100 justify-content-between">
+										<div>
+											<a href="otherFeed.do?u_id=${feed.u_id }"
+												class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"
+												style="background-color: white;"> <img
+												src="../img_src/profile/${feed.u_pic }" width="45"
+												height="45" class="rounded-circle flex-shrink-0"
+												style="border-radius: 70%"> <span class="mb-0"
+												style="font-size: 20px; margin: 10px 20px; font-weight: bold;">${feed.u_id }</span>
+											</a>
+										</div>
 									</div>
 								</div>
-							</div>
-										<c:set var="feedIdx" value="${feed.f_idx }" scope="page" />
-<%List<Integer> myPost = (List<Integer>)request.getAttribute("myFidxList");
-  boolean confirmMyPost = myPost.contains(pageContext.getAttribute("feedIdx"));
-  pageContext.setAttribute("confirmMyPost", confirmMyPost);
-%>
-									<c:if test="${confirmMyPost }">
-										<div class="dropdown">
-										  <button onclick="myFunction(${feed.f_idx })" class="dropbtn">...</button>
-										  <div id="myDropdown${feed.f_idx }" class="dropdown-content">
-										    <a href="updateFeed.do?f_idx=${feed.f_idx }">edit</a>
-										    <a href="javascript:deleteFeed(${feed.f_idx })">delete</a>
-										  </div>
+								<c:set var="feedIdx" value="${feed.f_idx }" scope="page" />
+								<%
+									List<Integer> myPost = (List<Integer>) request.getAttribute("myFidxList");
+								boolean confirmMyPost = myPost.contains(pageContext.getAttribute("feedIdx"));
+								pageContext.setAttribute("confirmMyPost", confirmMyPost);
+								%>
+								<c:if test="${confirmMyPost }">
+									<div class="dropdown">
+										<button onclick="myFunction(${feed.f_idx })" class="dropbtn">...</button>
+										<div id="myDropdown${feed.f_idx }" class="dropdown-content">
+											<a href="updateFeed.do?f_idx=${feed.f_idx }">edit</a> <a
+												href="javascript:deleteFeed(${feed.f_idx }, true)">delete</a>
 										</div>
-									</c:if>
-						</div>
+									</div>
+								</c:if>
+							</div>
 							<div class="col-12 square"
 								style="display: flex; align-items: center;">
 								<div class="inner"
@@ -286,7 +291,7 @@ input[id*="popup"]:checked+label+div {
 									<div class="likeCommentBox">
 										<!---------------------- 게시물 좋아요 상태 설정 -------------------------- -->
 										<%
-										boolean like = list.contains(pageContext.getAttribute("feedIdx"));
+											boolean like = list.contains(pageContext.getAttribute("feedIdx"));
 										pageContext.setAttribute("like", like);
 										%>
 										<!-- ------------------------------------------------------------- -->
@@ -325,7 +330,7 @@ input[id*="popup"]:checked+label+div {
 									<!---------------------- 게시물 즐겨찾기 상태 설정 -------------------------- -->
 									<%-- <c:set var="idx" value="${feed.f_idx }" scope="page" /> --%>
 									<%
-									boolean save = saveList.contains(pageContext.getAttribute("feedIdx"));
+										boolean save = saveList.contains(pageContext.getAttribute("feedIdx"));
 									pageContext.setAttribute("save", save);
 									%>
 									<!-- ------------------------------------------------------------- -->
@@ -370,7 +375,7 @@ input[id*="popup"]:checked+label+div {
 									</div>
 								</c:if>
 								<hr>
-								<div>
+								<div id="commDiv${feed.f_idx }">
 									<c:if test="${feed.comm.size() > 2 }">
 										<a style="display: inline-flex; color: grey"
 											href="javascript:modalAjax(${feed.f_idx })">댓글
@@ -379,11 +384,11 @@ input[id*="popup"]:checked+label+div {
 										<br>
 									</c:if>
 									<%
-									int twoComm = 0;
+										int twoComm = 0;
 									%>
 									<c:forEach var="comm" items="${feed.comm }">
 										<%
-										twoComm++;
+											twoComm++;
 										if (twoComm == 3) {
 											break;
 										}
@@ -394,13 +399,13 @@ input[id*="popup"]:checked+label+div {
 								</div>
 								<br>
 							</div>
-							</div>
+						</div>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 		</div>
 	</div>
-	
+
 
 	<script>
 		var nowPage = 1;
@@ -456,6 +461,7 @@ input[id*="popup"]:checked+label+div {
 																								dispHtml += '</div>';
 																								dispHtml += '<div href="#">	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots"	viewBox="0 0 16 16"> <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />';
 																								dispHtml += '</svg></div></div></a></div>'; */
+																								dispHtml += '<div id="post' + obj.f_idx + '">'
 																								dispHtml += '<div class="row col-6" id="k1" style="-bs-gutter-x: 0;">';
 																								dispHtml += '<div class="col-12">';
 																								dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
@@ -469,7 +475,7 @@ input[id*="popup"]:checked+label+div {
 																									dispHtml += '<button onclick="myFunction(' + obj.f_idx + '" class="dropbtn">...</button>';
 																									dispHtml += '<div id="myDropdown' + obj.f_idx + '" class="dropdown-content">';
 																									dispHtml += ' <a href="updateFeed.do?f_idx=' + obj.f_idx + '">edit</a>';
-																									dispHtml += ' <a href="javascript:deleteFeed(' + obj.f_idx + ')">delete</a>';
+																									dispHtml += ' <a href="javascript:deleteFeed(' + obj.f_idx + ', true)">delete</a>';
 																									dispHtml += '</div></div></div>';
 																								}
 																								
@@ -584,6 +590,7 @@ input[id*="popup"]:checked+label+div {
 																								dispHtml += '</div>';
 																								dispHtml += '</div>';
 																								dispHtml += '</div>';
+																								dispHtml += '</div>';
 																							});
 																			$(
 																					"#feedBox")
@@ -659,7 +666,7 @@ input[id*="popup"]:checked+label+div {
 								}
 							});
 		}
-		function deleteFeed(f_idx) {
+		function deleteFeed(f_idx, bool) {
 			confirm("게시물을 삭제 하시겠습니까?")
 			$
 			.ajax(
@@ -675,8 +682,9 @@ input[id*="popup"]:checked+label+div {
 							console.log("성공~~~");
 							console.log(data)
 							$("#post"+f_idx).remove();
-							$("#posts"+f_idx).remove();
-							$("#popup").click();
+							if(bool != true) {
+								$("#popupLabel").click();								
+							}
 						},
 						error : function() {
 							alert("실패~~~");
@@ -688,6 +696,9 @@ input[id*="popup"]:checked+label+div {
 			  document.getElementById("myDropdown" + f_idx).classList.toggle("show");
 			}
 
+		function modalFunction(f_idx) {
+			  document.getElementById("modalDropdown" + f_idx).classList.toggle("show");
+			}
 			// Close the dropdown if the user clicks outside of it
 			window.onclick = function(event) {
 			  if (!event.target.matches('.dropbtn')) {
@@ -701,6 +712,7 @@ input[id*="popup"]:checked+label+div {
 			    }
 			  }
 			}
+			
 		function modalAjax(f_idx) {
 			alert("연결 될까요옹?!" + f_idx);
 			$
@@ -733,10 +745,10 @@ input[id*="popup"]:checked+label+div {
 												+ data.fvo.u_id + '</h6></div></div></a>';
 												if(data.confirm == true) {
 													dispHtml += '<div class="dropdown">';
-													dispHtml += '<button onclick="myFunction()" class="dropbtn">...</button>';
-													dispHtml += '<div id="myDropdown" class="dropdown-content">';
+													dispHtml += '<button onclick="modalFunction(' + data.fvo.f_idx + ')" class="dropbtn">...</button>';
+													dispHtml += '<div id="modalDropdown' + data.fvo.f_idx + '" class="dropdown-content">';
 													dispHtml += '<a href="updateFeed.do?f_idx=(' + data.fvo.f_idx + ')">edit</a>';
-													dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
+													dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ', false)">delete</a>';
 													dispHtml += '</div></div>';
 												}
 										/* <!-- 댓글창 --> */
@@ -767,10 +779,10 @@ input[id*="popup"]:checked+label+div {
 												+ data.fvo.u_id + '</h6></div></div></a>';
 												if(data.confirm == true) {
 													dispHtml += '<div class="dropdown">';
-													dispHtml += '<button onclick="myFunction()" class="dropbtn">...</button>';
-													dispHtml += '<div id="myDropdown" class="dropdown-content">';
+													dispHtml += '<button onclick="modalFunction(' + data.fvo.f_idx + ')" class="dropbtn">...</button>';
+													dispHtml += '<div id="modalDropdown' + data.fvo.f_idx + '" class="dropdown-content">';
 													dispHtml += '<a href="updateFeed.do?f_idx=(' + data.fvo.f_idx + ')">edit</a>';
-													dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
+													dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ', false)">delete</a>';
 													dispHtml += '</div></div>';
 												}
 										/* <!-- 댓글창 --> */
@@ -813,7 +825,8 @@ input[id*="popup"]:checked+label+div {
 							});
 			$("#popupLabel").click();
 		}
-
+		
+		
 		function saveFeed(f_idx) {
 			$
 					.ajax(
@@ -864,10 +877,6 @@ input[id*="popup"]:checked+label+div {
 									console.log("성공~~~");
 									console.log(data);
 									$("#commBlock").val("");
-									var commCNT = $("#commCNT" + data.f_idx)
-											.html();
-									commCNT++;
-									alert(commCNT);
 									var dispHtml = "";
 									dispHtml += '<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style="border: none; height: 100px; margin-top: 0px;">';
 									dispHtml += '<img src="../img_src/profile/' + data.u_pic + '" width="40" height="40"';
@@ -882,7 +891,6 @@ input[id*="popup"]:checked+label+div {
 									dispHtml += '<small class="opacity-50 text-nowrap">3분전</small>';
 									dispHtml += '</div></a>';
 									$("#commBox").append(dispHtml);
-									$("#commCNT" + data.f_idx).html(commCNT);
 									$('#commBox').scrollTop(
 											$('#commBox')[0].scrollHeight);
 								},
@@ -890,6 +898,24 @@ input[id*="popup"]:checked+label+div {
 									alert("실패~~~");
 								}
 							});
+			console.log("댓글수 : " + $("#commDiv" +f_idx).children("b").length);
+			if( $("#commDiv" +f_idx).children("b").length < 2) {
+				$("#commDiv" + f_idx).append('<b style="margin:5px 20px 5px 0; display: inline-flex;"> ${userVO.u_id}</b>' + $("#commBlock").val() + '<br>');
+			} else if ($("#commDiv" +f_idx).children("b").length == 2)  {
+				if ($("#commDiv" +f_idx).children("a").length == 0) {
+					var aTag = "";
+					aTag += '<a style="display: inline-flex; color: grey" href="javascript:modalAjax(${feed.f_idx })">댓글';
+					aTag += '<p id="commCNT' + f_idx + '">3</p>개 모두 보기';
+					aTag += '</a>';
+					aTag += '<br>';
+					$("#commDiv" + f_idx).prepend(aTag);
+				} else {
+					var commCNT = $("#commCNT" + f_idx).html();
+					console.log(commCNT);
+					commCNT++;
+					$("#commCNT" + f_idx).html(commCNT);
+				}
+			}
 		}
 	</script>
 	<script
