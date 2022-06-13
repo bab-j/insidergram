@@ -1,5 +1,7 @@
 package com.spring.biz.view.user;
 
+import java.io.File;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.biz.feed.Path;
 import com.spring.biz.user.UserService;
 import com.spring.biz.user.UserVO;
 

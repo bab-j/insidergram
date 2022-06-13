@@ -162,7 +162,7 @@ import com.spring.biz.user.UserVO;
 					System.out.println(">>> 원본파일명 : " + fileName);
 					System.out.println(">>> 저장파일명 : " + UUID.randomUUID().toString());
 						try {
-							uploadFile.transferTo(new File(path.getPath() + fileName));
+							uploadFile.transferTo(new File(path.getPath() + "/feed/" + fileName));
 						} catch (IllegalStateException | IOException e) {
 							e.printStackTrace();
 						}						
