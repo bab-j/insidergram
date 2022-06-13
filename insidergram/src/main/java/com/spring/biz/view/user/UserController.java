@@ -81,4 +81,9 @@ public class UserController {
 		userService.deleteAccount(u_id);
 		return "user/login";
 	}
+	
+	@RequestMapping("/updateUser.do")
+	public String updateUser(HttpSession session) {
+		return "redirect:퍼스널.";
+	}
 }

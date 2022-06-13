@@ -48,11 +48,11 @@
 </head>
 
 <body>
-	<jsp:include page="../../../header.jsp"></jsp:include>
+	<jsp:include page="./header.jsp"></jsp:include>
 
 	<div class="modal modal-signin position-static d-block bg-light py-5"
-		tabindex="-1" role="dialog" id="modalSignin" style="    padding-top: 48px! important;
-    padding-bottom: 0px! important;">
+		tabindex="-1" role="dialog" id="modalSignin"
+		style="padding-top: 48px ! important; padding-bottom: 0px ! important;">
 		<div class="modal-dialog" role="document" style="max-width: 1000px;">
 
 			<div class="modal-content rounded-4 shadow align-items-md-center">
@@ -97,9 +97,9 @@
 											class=col-4>새 비밀번호</div>
 										<div class=col-8>
 											<input class="form-control rounded-3" type="password"
-												name=upwd id="pwd" placeholder="Password"
-												onfocus="this.placeholder=''"
-												onblur="this.placeholder='Password'">
+												name=uPwd id="pwd" placeholder="Password"
+												onfocus="this.placeholder=''" onblur="confirmPwd()"
+												value="${userVO.password }" required>
 										</div>
 									</div>
 
@@ -111,9 +111,9 @@
 										</div>
 										<div class=col-8>
 											<input class="form-control rounded-3" type="password"
-												name=uPwdOk placeholder="Confirm Password"
-												onfocus="this.placeholder=''"
-												onblur="this.placeholder='Confirm Password'">
+												id="pwd" name=uPwdOk placeholder="Confirm Password"
+												onfocus="this.placeholder=''" onblur="confirmPwdOk()"
+												value="${userVO.password }" required>
 										</div>
 									</div>
 
@@ -124,10 +124,10 @@
 											<a>이메일</a>
 										</div>
 										<div class=col-8>
-											<input class="form-control rounded-3" type="email"
+											<input class="form-control rounded-3" type="email" id="pwdOk"
 												name="email" placeholder="abc123@abc.com"
-												onfocus="this.placeholder=''"
-												onblur="this.placeholder='abc123@abc.com'">
+												onfocus="this.placeholder=''" onblur="confirmEmail()"
+												value="${userVO.email }" required>
 										</div>
 									</div>
 
@@ -138,10 +138,10 @@
 											<a>전화번호</a>
 										</div>
 										<div class=col-8>
-											<input class="form-control rounded-3" type="text"
+											<input class="form-control rounded-3" type="text" id="phone"
 												name="phone" placeholder="010-0000-0000"
-												onfocus="this.placeholder=''"
-												onblur="this.placeholder='010-0000-0000'">
+												onfocus="this.placeholder=''" onblur="confirmPhone()"
+												value="${userVO.phone }" required>
 										</div>
 									</div>
 
@@ -152,9 +152,10 @@
 											<a>한줄 소개</a>
 										</div>
 										<div class=col-8>
-											<input class="form-control rounded-3"
+											<input class="form-control rounded-3" name="bio" id="bio"
 												placeholder="날이 좋아서 날이 ..." onfocus="this.placeholder=''"
-												onblur="this.placeholder='날이 좋아서 날이 ...'">
+												onblur="this.placeholder='날이 좋아서 날이 ...'"
+												value="${userVO.bio }" >
 										</div>
 									</div>
 									<div class="row" style="margin: 20px 0;">
@@ -167,7 +168,7 @@
 									</div>
 
 									<br> <br>
-									<div class="row" style=" margin: 5px 0;"> 
+									<div class="row" style="margin: 5px 0;">
 										<div class="col-6">
 											<a
 												class="center_ailgn w-100 py-2 btn btn-outline-dark rounded-3"
@@ -197,6 +198,102 @@
 	</div>
 
 	<script>
+		var bPassword = false;
+		var bPasswordOk = false;
+		var bEmail = false;
+		var bPhone = false;
+
+		function passwordOk(bool) {
+			bPassword = bool;
+		}
+		function passwordOkOk(bool) {
+			bPasswordOk = bool;
+		}
+		function emailOk(bool) {
+			bEmail = bool;
+		}
+		function phoneOk(bool) {
+			bPhone = bool;
+		}
+		function submitRq() {
+			if (bPassword == true) {
+
+				if (bPassword == true) {
+					if (bPasswordOk == true) {
+						if (bEmail == true) {
+							document.getElementById("subm").disabled = false;
+						} else {
+							document.getElementById("subm").disabled = true;
+						}
+					} else {
+						document.getElementById("subm").disabled = true;
+					}
+				} else {
+					document.getElementById("subm").disabled = true;
+				}
+			} else {
+				document.getElementById("subm").disabled = true;
+			}
+		}
+
+		function confirmEmail() {
+			var email = $("#email").val();
+			if (email === "") {
+				emailOk(false);
+				submitRq();
+
+			} else {
+				emailOk(true);
+				submitRq();
+			}
+
+		}
+		function confirmPhone() {
+			var phone = $("#phone").val();
+			if (phone === "") {
+				phoneOk(false);
+				submitRq();
+
+			} else {
+				phoneOk(true);
+				submitRq();
+			}
+
+		}
+		function confirmPwd() {
+			var pwd = $("#password").val();
+			if (pwd === "") {
+				passwordOk(false);
+				submitRq();
+
+			} else {
+				passwordOk(true);
+				submitRq();
+			}
+
+		}
+		function confirmPwdOk() {
+			var passwordOk = $("#passwordOk").val();
+			var password = $("#password").val();
+			if (password === passwordOk) {
+				if (password == "") {
+					alert("비밀번호를 입력해주세요");
+					pwdOkOk(false);
+					submitRq();
+
+				} else {
+					alert("비밀번호가 일치합니다.");
+					pwdOkOk(true);
+					submitRq();
+				}
+
+			} else {
+				alert("비밀번호가 다릅니다.");
+				pwdOkOk(false);
+				submitRq();
+			}
+		}
+
 		function PreviewImage() {
 			// 파일리더 생성 
 			var preview = new FileReader();

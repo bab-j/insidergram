@@ -281,7 +281,7 @@ input[id="tab03"]:checked ~ .con3 {
 </style>
 <script>
 	function updateUser() {
-		location.href = "user/updateUser.do"
+		location.href = "../user_update.jsp"
 	}
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
