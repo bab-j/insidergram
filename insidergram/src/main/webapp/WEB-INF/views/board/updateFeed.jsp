@@ -77,6 +77,12 @@
 							</div>
 
 							<hr class="my-4">
+							<div class=""
+								style="display: flex; justify-content: space-around">
+								<input class="form-control" accept=".jpg"
+									onchange="PreviewImage();" name="uploadFile" type="file"
+									id="user_profile_img" />
+							</div>
 						</div>
 					</div>
 
