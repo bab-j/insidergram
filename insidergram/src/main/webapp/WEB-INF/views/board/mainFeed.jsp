@@ -460,8 +460,8 @@ input[id*="popup"]:checked+label+div {
 																								dispHtml += '<div class="col-12">';
 																								dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
 																								dispHtml += '<div>';
-																								dispHtml += '<a href="otherFeed.do?u_id=${feed.u_id }"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="background-color: white;"> <img src="../img_src/profile/${feed.u_pic }" width="45" height="45" class="rounded-circle flex-shrink-0" style="border-radius: 70%">';
-																								dispHtml += '<span class="mb-0" style="font-size: 20px; margin: 10px 20px; font-weight: bold;">${feed.u_id }</span>'
+																								dispHtml += '<a href="otherFeed.do?u_id=' + obj.u_id + '"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="background-color: white;"> <img src="../img_src/profile/' + obj.u_pic + '" width="45" height="45" class="rounded-circle flex-shrink-0" style="border-radius: 70%">';
+																								dispHtml += '<span class="mb-0" style="font-size: 20px; margin: 10px 20px; font-weight: bold;">' + obj.u_id + '</span>'
 																								dispHtml += '</a></div></div></div>'
 																								
 																								if(myFidxList.includes(obj.f_idx)) {
