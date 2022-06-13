@@ -172,4 +172,9 @@ import com.spring.biz.user.UserVO;
 				System.out.println(">>>>>>>최종 insert : " + result);
 			return "redirect:getFeedList.do";
 		}
+		//게시물 수정
+		@RequestMapping("updateFeed.do")
+		public String updateFeed() {
+			return "board/updateFeed";
+		}
 	}
