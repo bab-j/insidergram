@@ -141,7 +141,7 @@ input[id*="popup"]:checked+label+div {
 }
 
 .contentBox {
-	padding: 5px 5px 5px 15px;
+	padding: 5px 5px 5px 10px;
 	width: 100%;
 	height: auto;
 	overflow: inherit;
@@ -194,7 +194,7 @@ input[id*="popup"]:checked+label+div {
 </script>
 </head>
 
-<body style="background-color: #F5F5F5;">
+<body  style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;">
 	<input type="checkbox" id="popup">
 	<!-- 버튼 클릭시 팝업창 오픈 -->
 	<label for="popup" id="popupLabel" style="padding: 3px 10px 3px 0px;">
@@ -241,7 +241,7 @@ input[id*="popup"]:checked+label+div {
 				<c:otherwise>
 					<c:forEach var="feed" items="${feedList }">
 						<div id="post${feed.f_idx }"
-							style="background-color: white; display: flex; flex-direction: column; align-items: center; margin-top: 30px; border: solid 0.5px silver; border-radius: 5px;">
+							style="background-color: white; display: flex; flex-direction: column; align-items: center; margin: 30px; border: solid 0.5px silver; border-radius: 5px;">
 							<div class="row col-6" id="k1"
 								style="-bs-gutter-x: 0; margin-top: 0px; margin-bottom: 0px; border-bottom: solid 0.5px silver; border-top-left-radius: 5px; border-top-right-radius: 5px;">
 								<!-- 틀 -->
@@ -297,7 +297,7 @@ input[id*="popup"]:checked+label+div {
 								<div class="col-12"
 									style="margin-top: 10px; margin-bottom: 0px;">
 									<div>
-										<div class="likeCommentBox" style="margin-left: 15px;">
+										<div class="likeCommentBox" style="margin-left: 5px;">
 											<!---------------------- 게시물 좋아요 상태 설정 -------------------------- -->
 											<%
 												boolean like = list.contains(pageContext.getAttribute("feedIdx"));
@@ -374,7 +374,7 @@ input[id*="popup"]:checked+label+div {
 										<!-- ---------------------------------------------------------------------------- -->
 									</div>
 									<div
-										style="padding: 0 0 3px 5px; font-weight: bold; font-size: 15px; margin: 10px 0; margin-left: 10px;">
+										style="padding: 0 0 3px 0px; font-weight: bold; font-size: 15px; margin: 10px 0; margin-left: 10px;">
 										좋아요 <span id="countLike${feed.f_idx}">${feed.countLike }</span>
 										개
 									</div>
@@ -433,8 +433,6 @@ input[id*="popup"]:checked+label+div {
 													let likeList = ${ likeList };
 													let myFidxList = ${ myFidxList };
 													let saveList = ${ saveList };
-													alert("스크롤이벤트 발생~!"
-															+ likeList);
 													nowPage++;
 													$
 															.ajax(
@@ -487,7 +485,7 @@ input[id*="popup"]:checked+label+div {
 																								
 																								dispHtml += '<div class="col-12" style="margin-top: 10px; margin-bottom: 10px;">';
 																								dispHtml += '<div>';
-																								dispHtml += '<div class="likeCommentBox" style="margin-left: 15px;">';
+																								dispHtml += '<div class="likeCommentBox" style="margin-left: 5px;">';
 
 																								dispHtml += '<a href="javascript:likeFeed(' + obj.f_idx + ')">';
 																								if (likeList.includes(obj.f_idx)) {
@@ -673,7 +671,6 @@ input[id*="popup"]:checked+label+div {
 			}
 			
 		function modalAjax(f_idx) {
-			alert("연결 될까요옹?!" + f_idx);
 			$
 					.ajax(
 							"modal.do",
