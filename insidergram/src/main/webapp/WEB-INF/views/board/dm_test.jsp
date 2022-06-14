@@ -197,7 +197,7 @@ input[id*="popup"]:checked+label+div {
 <meta charset="UTF-8">
 <title>insidergram : DM test</title>
 </head>
-<body>
+<body style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;">
 	<jsp:include page="/header.jsp" />
 	<div class="h-100 w-100 position-fixed"
 		style="background-color: #F5F5F5; margin-top: 50px;">

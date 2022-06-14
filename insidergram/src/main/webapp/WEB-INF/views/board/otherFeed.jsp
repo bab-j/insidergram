@@ -266,8 +266,7 @@ input[id="tab03"]:checked ~ .con3 {
 <title>상대방 페이지</title>
 </head>
 <body>
-<body
-	style="background-color: #F5F5F5; display: flex; justify-content: space-around; align-content: space-around; flex-wrap: wrap;">
+<body style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important; display: flex; justify-content: space-around; align-content: space-around; flex-wrap: wrap;">
 
 	<jsp:include page="../../../header.jsp"></jsp:include>
 	<main class="container py-3"
