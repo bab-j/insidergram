@@ -4,11 +4,20 @@ public class FollowerVO {
 	private int er_idx;
 	private String to_id;
 	private String from_id;
+	private String u_pic;
 	
 	public FollowerVO() {
 		super();
 	}
 	
+	public String getU_pic() {
+		return u_pic;
+	}
+
+	public void setU_pic(String u_pic) {
+		this.u_pic = u_pic;
+	}
+
 	public int getEr_idx() {
 		return er_idx;
 	}
@@ -30,7 +39,7 @@ public class FollowerVO {
 
 	@Override
 	public String toString() {
-		return "FollowerVO [er_idx=" + er_idx + ", to_id=" + to_id + ", from_id=" + from_id + "]";
+		return "FollowerVO [er_idx=" + er_idx + ", to_id=" + to_id + ", from_id=" + from_id + ", u_pic=" + u_pic + "]";
 	}
 	
 }

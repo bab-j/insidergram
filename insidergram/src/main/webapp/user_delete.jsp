@@ -91,9 +91,9 @@ body { -
 								</a>
 							</div>
 							<div class="col-6">
-								<input class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
-									style="height: 42px; font-size: 17px" type="submit" id="subm"
-									value="수정">
+								<input class="w-100 mb-2 btn btn-lg rounded-3"
+									style="height: 42px; font-size: 17px; background-color: #F45C43;color: white;font-weight: 550;" type="submit" id="subm"
+									value="삭제">
 							</div>
 						</div>
 					</form>

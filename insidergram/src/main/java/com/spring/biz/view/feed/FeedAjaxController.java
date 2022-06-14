@@ -165,11 +165,33 @@ public class FeedAjaxController {
 	
 	// 팔로우 팔로워 리스트
 	@RequestMapping("user/followInfo.do") 
-	public String followInfo(String u_id) {
-		
-//		List<FollowerVO> myFollowingList = feedService.getFollowingList(uvo.getU_id()); // 팔로잉 정보
-//		List<FollowerVO> myFollowerList = feedService.getFollowerList(uvo.getU_id()); // 팔로워 정보
-		return null;
+	public Map<String, Object> followInfo(String u_id, String otherId) {
+		List<FollowerVO> myFollowingList = feedService.getFollowingList(u_id); // 팔로잉 정보
+		List<FollowerVO> myFollowerList = feedService.getFollowerList(u_id); // 팔로워 정보
+		List<FollowerVO> followingList = feedService.getFollowingList(otherId); // 팔로잉 정보
+		List<FollowerVO> followerList = feedService.getFollowerList(otherId); // 팔로워 정보
+		System.out.println(myFollowingList.toString());
+		System.out.println(myFollowerList.toString());
+		System.out.println(followingList.toString());
+		System.out.println(followerList.toString());
+		List<String> myList = new ArrayList<String>();
+		for(FollowerVO fVo : myFollowingList) {
+			myList.add(fVo.getTo_id());
+		}
+		for(FollowerVO fVo : followerList) {
+			UserVO uvo = userService.getUserInfo(fVo.getFrom_id());
+			fVo.setU_pic(uvo.getU_pic());
+		}
+		for(FollowerVO fVo : followingList) {
+			UserVO uvo = userService.getUserInfo(fVo.getTo_id());
+			fVo.setU_pic(uvo.getU_pic());
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("myFollowerList", myFollowerList);
+		map.put("myFollowingList", myList);// 내가 팔로잉하는 아이디 리스트
+		map.put("followerList", followerList);
+		map.put("followingList", followingList);
+		return map;
 	}
 	@RequestMapping("user/follow.do")
 	public String follow(String my_id, String target_id) {
