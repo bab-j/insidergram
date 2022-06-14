@@ -28,7 +28,6 @@
 
 <style>
 #k1 { /* 틀 */
-	
 	width: 500px;
 	height: auto;
 	margin: 20px 0;
@@ -181,7 +180,7 @@ input[id*="popup"]:checked+label+div {
 	display: block;
 }
 
-#x{
+#x {
 	height: 0.5px;
 }
 </style>
@@ -226,8 +225,10 @@ input[id*="popup"]:checked+label+div {
 	} */
 	
 %>	 --%>
-	<div class="container" style="display: flex; flex-direction: column-reverse; align-content: space-around; flex-wrap: wrap;">
-		<div id="feedBox" style="display: flex;flex-direction: column;align-items: center;">
+	<div class="container"
+		style="display: flex; flex-direction: column-reverse; align-content: space-around; flex-wrap: wrap;">
+		<div id="feedBox"
+			style="display: flex; flex-direction: column; align-items: center;">
 			<%
 				List<String> list = (List<String>) request.getAttribute("likeList");
 			List<Integer> saveList = (List<Integer>) request.getAttribute("saveList");
@@ -239,8 +240,10 @@ input[id*="popup"]:checked+label+div {
 				</c:when>
 				<c:otherwise>
 					<c:forEach var="feed" items="${feedList }">
-						<div id="post${feed.f_idx }" style="background-color: white;display: flex;flex-direction: column;align-items: center;margin-top: 30px;border: solid 0.5px silver;border-radius: 5px;">
-							<div class="row col-6" id="k1" style="-bs-gutter-x: 0;margin-top: 0px;margin-bottom: 0px;border-bottom: solid 0.5px silver;border-top-left-radius: 5px;border-top-right-radius: 5px;">
+						<div id="post${feed.f_idx }"
+							style="background-color: white; display: flex; flex-direction: column; align-items: center; margin-top: 30px; border: solid 0.5px silver; border-radius: 5px;">
+							<div class="row col-6" id="k1"
+								style="-bs-gutter-x: 0; margin-top: 0px; margin-bottom: 0px; border-bottom: solid 0.5px silver; border-top-left-radius: 5px; border-top-right-radius: 5px;">
 								<!-- 틀 -->
 
 								<div class="col-12">
@@ -257,15 +260,17 @@ input[id*="popup"]:checked+label+div {
 										</div>
 										<c:set var="feedIdx" value="${feed.f_idx }" scope="page" />
 										<%
-										List<Integer> myPost = (List<Integer>) request.getAttribute("myFidxList");
+											List<Integer> myPost = (List<Integer>) request.getAttribute("myFidxList");
 										boolean confirmMyPost = myPost.contains(pageContext.getAttribute("feedIdx"));
 										pageContext.setAttribute("confirmMyPost", confirmMyPost);
 										%>
 										<c:if test="${confirmMyPost }">
-											<div class="dropdown" style="display: flex;align-items: center;font-size: 30px;">
+											<div class="dropdown"
+												style="display: flex; align-items: center; font-size: 30px;">
 												<button onclick="myFunction(${feed.f_idx })" class="dropbtn"
-												style="background-color: white;border: none;margin-bottom: 15px;">...</button>
-												<div id="myDropdown${feed.f_idx }" class="dropdown-content" style="font-size: 15px; margin-top: 100px;">
+													style="background-color: white; border: none; margin-bottom: 15px;">...</button>
+												<div id="myDropdown${feed.f_idx }" class="dropdown-content"
+													style="font-size: 15px; margin-top: 100px;">
 													<a href="goUpdate.do?f_idx=${feed.f_idx }">edit</a> <a
 														href="javascript:deleteFeed(${feed.f_idx }, true)">delete</a>
 												</div>
@@ -273,137 +278,137 @@ input[id*="popup"]:checked+label+div {
 										</c:if>
 									</div>
 								</div>
-								
-								
-							
-							</div>
-							<div class="col-12 square"
-								style="display: flex; align-items: center;">
-								<div class="inner"
-									style="display: flex; justify-content: center; align-items: center; font-weight: bold;">
-									<c:if test="${feed.f_pic == null }">
+
+
+								<div class="col-12 square"
+									style="display: flex; align-items: center;">
+									<div class="inner"
+										style="display: flex; justify-content: center; align-items: center; font-weight: bold;">
+										<c:if test="${feed.f_pic == null }">
 								${feed.content }
 							</c:if>
-									<!-- 중간 이미지 -->
-									<c:if test="${feed.f_pic != null }">
-										<img src="../img_src/feed/${feed.f_pic }" class="inner1">
-									</c:if>
+										<!-- 중간 이미지 -->
+										<c:if test="${feed.f_pic != null }">
+											<img src="../img_src/feed/${feed.f_pic }" class="inner1">
+										</c:if>
 
+									</div>
 								</div>
-							</div>
-							<div class="col-12"
-								style="margin-top: 10px; margin-bottom: 0px;">
-								<div>
-									<div class="likeCommentBox" style="margin-left: 15px;">
-										<!---------------------- 게시물 좋아요 상태 설정 -------------------------- -->
+								<div class="col-12"
+									style="margin-top: 10px; margin-bottom: 0px;">
+									<div>
+										<div class="likeCommentBox" style="margin-left: 15px;">
+											<!---------------------- 게시물 좋아요 상태 설정 -------------------------- -->
+											<%
+												boolean like = list.contains(pageContext.getAttribute("feedIdx"));
+											pageContext.setAttribute("like", like);
+											%>
+											<!-- ------------------------------------------------------------- -->
+											<a href="javascript:likeFeed(${feed.f_idx})"> <c:choose>
+													<c:when test="${like }">
+														<span id="fillHeart${feed.f_idx }"
+															class="material-symbols-outlined likeFill"
+															style="margin: 0px 0px 3px 2px; font-size: 32px;">favorite</span>
+														<span id="emptyHeart${feed.f_idx }"
+															class="material-icons-outlined"
+															style="display: none; margin: 0px 0px 3px 2px; font-size: 32px;">favorite_border</span>
+													</c:when>
+													<c:otherwise>
+														<span id="fillHeart${feed.f_idx }"
+															class="material-symbols-outlined likeFill"
+															style="display: none; margin: 0px 0px 3px 2px; font-size: 32px;">favorite</span>
+														<span id="emptyHeart${feed.f_idx }"
+															class="material-icons-outlined"
+															style="margin: 0px 0px 3px 2px; font-size: 32px">favorite_border</span>
+													</c:otherwise>
+												</c:choose>
+											</a>
+										</div>
+
+										<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 메시지 버튼 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+										<a style="margin-left: 10px;"
+											href="javascript:modalAjax(${feed.f_idx })"> <span
+											class="material-symbols-outlined"
+											style="font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; margin: 1px 0px 0px 2%; font-size: 30px;">
+												chat_bubble </span>
+										</a>
+										<!-- --------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+										<!---------------------- 게시물 즐겨찾기 상태 설정 -------------------------- -->
+										<%-- <c:set var="idx" value="${feed.f_idx }" scope="page" /> --%>
 										<%
-											boolean like = list.contains(pageContext.getAttribute("feedIdx"));
-										pageContext.setAttribute("like", like);
+											boolean save = saveList.contains(pageContext.getAttribute("feedIdx"));
+										pageContext.setAttribute("save", save);
 										%>
 										<!-- ------------------------------------------------------------- -->
-										<a href="javascript:likeFeed(${feed.f_idx})"> <c:choose>
-												<c:when test="${like }">
-													<span id="fillHeart${feed.f_idx }"
-														class="material-symbols-outlined likeFill"
-														style="margin: 0px 0px 3px 2px; font-size: 32px;">favorite</span>
-													<span id="emptyHeart${feed.f_idx }"
-														class="material-icons-outlined"
-														style="display: none; margin: 0px 0px 3px 2px; font-size: 32px;">favorite_border</span>
-												</c:when>
-												<c:otherwise>
-													<span id="fillHeart${feed.f_idx }"
-														class="material-symbols-outlined likeFill"
-														style="display: none; margin: 0px 0px 3px 2px; font-size: 32px;">favorite</span>
-													<span id="emptyHeart${feed.f_idx }"
-														class="material-icons-outlined"
-														style="margin: 0px 0px 3px 2px; font-size: 32px">favorite_border</span>
-												</c:otherwise>
-											</c:choose>
-										</a>
+										<!------------------------------------ 저장하기 버튼 ------------------------------------>
+										<c:choose>
+											<c:when test="${save }">
+												<a href="javascript:saveFeed(${feed.f_idx })"
+													style="display: inline-flex; float: right; margin: 0px 15px 0px 0px; font-size: 32px;">
+													<span id="fillSave${feed.f_idx }"
+													class="material-icons-outlined"
+													style="display: inline; margin: 0px 0px 0px 0px; font-size: 32px;">
+														bookmark </span> <span id="emptySave${feed.f_idx }"
+													class="material-icons-outlined"
+													style="display: none; float: right; margin: 0px 0px 0px 0px; font-size: 32px;">
+														bookmark_border </span>
+												</a>
+											</c:when>
+											<c:otherwise>
+												<a href="javascript:saveFeed(${feed.f_idx })"
+													style="display: inline-flex; float: right; margin: 0px 15px 0px 0px; font-size: 32px;">
+													<span id="fillSave${feed.f_idx }"
+													class="material-icons-outlined"
+													style="display: none; float: right; margin: 0px 0px 0px 0px; font-size: 32px;">
+														bookmark </span> <span id="emptySave${feed.f_idx }"
+													class="material-icons-outlined"
+													style="display: inline; margin: 0px 0px 0px 0px; font-size: 32px;">
+														bookmark_border </span>
+
+												</a>
+											</c:otherwise>
+										</c:choose>
+										<!-- ---------------------------------------------------------------------------- -->
 									</div>
-
-									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 메시지 버튼 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-									<a style="margin-left: 10px;"
-										href="javascript:modalAjax(${feed.f_idx })"> <span
-										class="material-symbols-outlined"
-										style="font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; margin: 1px 0px 0px 2%; font-size: 30px;">
-											chat_bubble </span>
-									</a>
-									<!-- --------------------------------------------------------------------------------------------------------------------- -->
-
-
-
-									<!---------------------- 게시물 즐겨찾기 상태 설정 -------------------------- -->
-									<%-- <c:set var="idx" value="${feed.f_idx }" scope="page" /> --%>
-									<%
-										boolean save = saveList.contains(pageContext.getAttribute("feedIdx"));
-									pageContext.setAttribute("save", save);
-									%>
-									<!-- ------------------------------------------------------------- -->
-									<!------------------------------------ 저장하기 버튼 ------------------------------------>
-									<c:choose>
-										<c:when test="${save }">
-											<a href="javascript:saveFeed(${feed.f_idx })"
-												style="display: inline-flex; float: right; margin: 0px 15px 0px 0px; font-size: 32px;">
-												<span id="fillSave${feed.f_idx }"
-												class="material-icons-outlined"
-												style="display: inline; margin: 0px 0px 0px 0px; font-size: 32px;">
-													bookmark </span> <span id="emptySave${feed.f_idx }"
-												class="material-icons-outlined"
-												style="display: none; float: right; margin: 0px 0px 0px 0px; font-size: 32px;">
-													bookmark_border </span>
-											</a>
-										</c:when>
-										<c:otherwise>
-											<a href="javascript:saveFeed(${feed.f_idx })"
-												style="display: inline-flex; float: right; margin: 0px 15px 0px 0px; font-size: 32px;">
-												<span id="fillSave${feed.f_idx }"
-												class="material-icons-outlined"
-												style="display: none; float: right; margin: 0px 0px 0px 0px; font-size: 32px;">
-													bookmark </span> <span id="emptySave${feed.f_idx }"
-												class="material-icons-outlined"
-												style="display: inline; margin: 0px 0px 0px 0px; font-size: 32px;">
-													bookmark_border </span>
-
-											</a>
-										</c:otherwise>
-									</c:choose>
-									<!-- ---------------------------------------------------------------------------- -->
-								</div>
-								<div
-									style="padding: 0 0 3px 5px; font-weight: bold; font-size: 15px; margin: 10px 0;margin-left: 10px;">
-									좋아요 <span id="countLike${feed.f_idx}">${feed.countLike }</span>
-									개
-								</div>
-								<c:if test="${feed.f_pic != null }">
-									<div class="contentBox">
-										<b>${feed.u_id }</b>&nbsp;&nbsp; ${feed.content }
+									<div
+										style="padding: 0 0 3px 5px; font-weight: bold; font-size: 15px; margin: 10px 0; margin-left: 10px;">
+										좋아요 <span id="countLike${feed.f_idx}">${feed.countLike }</span>
+										개
 									</div>
-								</c:if>
-								<hr id="x">
-								<div id="commDiv${feed.f_idx }" style="margin-left: 15px;">
-									<c:if test="${feed.comm.size() > 2 }">
-										<a style="display: inline-flex; color: grey"
-											href="javascript:modalAjax(${feed.f_idx })">댓글
-											<p id="commCNT${feed.f_idx }">${feed.comm.size() }</p>개 모두 보기
-										</a>
-										<br>
+									<c:if test="${feed.f_pic != null }">
+										<div class="contentBox">
+											<b>${feed.u_id }</b>&nbsp;&nbsp; ${feed.content }
+										</div>
 									</c:if>
-									<%
-										int twoComm = 0;
-									%>
-									<c:forEach var="comm" items="${feed.comm }">
+									<hr id="x">
+									<div id="commDiv${feed.f_idx }" style="margin-left: 15px;">
+										<c:if test="${feed.comm.size() > 2 }">
+											<a style="display: inline-flex; color: grey"
+												href="javascript:modalAjax(${feed.f_idx })">댓글
+												<p id="commCNT${feed.f_idx }">${feed.comm.size() }</p>개 모두
+												보기
+											</a>
+											<br>
+										</c:if>
 										<%
-											twoComm++;
-										if (twoComm == 3) {
-											break;
-										}
+											int twoComm = 0;
 										%>
-										<b style="margin: 5px 20px 5px 0; display: inline-flex;">
-											${comm.getU_id() }</b>  ${comm.getComm() }<br>
-									</c:forEach>
+										<c:forEach var="comm" items="${feed.comm }">
+											<%
+												twoComm++;
+											if (twoComm == 3) {
+												break;
+											}
+											%>
+											<b style="margin: 5px 20px 5px 0; display: inline-flex;">
+												${comm.getU_id() }</b>  ${comm.getComm() }<br>
+										</c:forEach>
+									</div>
+									<br>
 								</div>
-								<br>
 							</div>
 						</div>
 					</c:forEach>
@@ -469,7 +474,7 @@ input[id*="popup"]:checked+label+div {
 																									dispHtml += ' <a href="javascript:deleteFeed(' + obj.f_idx + ', true)">delete</a>';
 																									dispHtml += '</div></div>';
 																								}
-																								dispHtml += '</div></div></div>';
+																								dispHtml += '</div></div>';
 																								dispHtml += '<div class="col-12 square"	style="display: flex; align-items: center;">';
 																								dispHtml += '<div class="inner" style="display: flex; justify-content: center; align-items: center; font-weight: bold;">';
 																								if (obj.f_pic == null) {
@@ -523,8 +528,8 @@ input[id*="popup"]:checked+label+div {
 																									dispHtml += '</div>';
 																								}
 																								dispHtml += '<hr id="x">';
+																								dispHtml += '<div id="commDiv' + obj.f_idx + '" style="margin-left: 15px;">';
 																								if (obj.comm.length > 2) {
-																									dispHtml += '<div id="commDiv' + obj.f_idx + '" style="margin-left: 15px;">';
 																									dispHtml += '<a style="display: inline-flex; color: grey" href="javascript:modalAjax(' + obj.f_idx + ')">';
 																									dispHtml += '댓글 <p id="commCNT' + obj.f_idx + '">' + obj.comm.length + '</p>개 모두 보기';
 																									dispHtml += '</a><br>';
@@ -535,11 +540,12 @@ input[id*="popup"]:checked+label+div {
 																									if (twoComm == 3) {
 																										return false;
 																									}
-																									dispHtml += '<b style="margin: 5px 20px 5px 0; display: inline-flex;"> '+ obj2.u_id +' </br>';
+																									dispHtml += '<b style="margin: 5px 20px 5px 0; display: inline-flex;"> '+ obj2.u_id +' </b>';
 																									dispHtml += obj2.comm + '<br>';
 																								});
 																								dispHtml += '</div>';
 																								dispHtml += '<br>';
+																								dispHtml += '</div>';
 																								dispHtml += '</div>';
 																								dispHtml += '</div>';
 																							});
