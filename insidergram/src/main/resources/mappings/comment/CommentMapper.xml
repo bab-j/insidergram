@@ -8,7 +8,7 @@
   FROM COMM C JOIN USER_INFO U
     ON C.U_ID = U.U_ID
  WHERE F_IDX = #{f_idx}
- ORDER BY CO_IDX
+ ORDER BY CO_IDX 
 	</select>
 	
 	<insert id="writeComm" parameterType="map">
