@@ -406,9 +406,7 @@ input[id="tab03"]:checked ~ .con3 {
 			<label for="followpopup" style="background-color: white;">x</label>
 			<!-- 내용 추가 -->
 			<div id="followModalContainer" class="row" style="margin: 0px; padding: 0px; width: 100%; height: 100%; border: solid 0.5px silver;flex-direction: column;">
-				<div class="col-12 p-3"style="height: 50px;border-bottom: solid 0.5px silver;display: flex;justify-content: center;align-items: center;">
-					<h5 style="font-weight: bold;margin: 0px;">팔로워</h5>
-				</div>
+				
 				
 			</div>
 		</div>
@@ -475,11 +473,113 @@ input[id="tab03"]:checked ~ .con3 {
 
 	<script>
 		function followInfo(bool) {
-			let array = ${followerList};
-			var followInfoBox = "";
+			console.log("${userInfo.u_id}");
+						var followInfoBox = "";
 			$.ajax("../user/followInfo.do", {
 				type: "get",
-				data: { "u_id": "${userVO.u_id}" },
+				data: { "u_id": "${userVO.u_id}", "otherId" : "${userInfo.u_id}" },
+				dataType: "json",
+				success: function(data){
+					console.log("성공~~~~");
+					console.log("내 팔로워들 : " + data.myFollowerList);
+					console.log("내 팔로잉들 : " + data.myFollowingList);
+					console.log("현재 계정 팔로워 : " + data.followerList);
+					console.log("현재 계정 팔로잉 : " + data.followingList);
+				 	if (bool == true) {// 팔로워 모달창
+				 		console.log("팔로워 받아오기~");
+							followInfoBox += '<div class="col-12 p-3"style="height: 50px;border-bottom: solid 0.5px silver;display: flex;justify-content: center;align-items: center;">';
+							followInfoBox += '<h5 style="font-weight: bold;margin: 0px;">팔로워</h5></div>';
+						$.each(data.followerList, function(index, obj) {
+							if (obj.from_id == '${userVO.u_id}') {
+								followInfoBox += '<div class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
+								followInfoBox += '<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
+								followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
+								followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.from_id + '</h6></span>';
+								followInfoBox += '</a></div>';
+							} else {
+									
+								followInfoBox += '<div class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
+								followInfoBox += '<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
+								followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
+								followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.from_id + '</h6></span>';
+								followInfoBox += '</a></div>';
+							 /* ----------------- 들어온 상세계정의 팔로워들 중 내가 팔로우 한 계정과 안한 계정 판별해서 버튼 출력 ----------------- */
+								  if(data.myFollowingList.includes(obj.from_id)) {
+									followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" style="padding : 5px 10px; display : inline; margin-left: 150px;"  class="btn btn-secondary" role="button">';
+									followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
+									followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
+									followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
+									followInfoBox += '</svg></a>';
+									followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: none; padding : 5px 10px; margin-left: 145px;">팔로우</a>';
+								} else {
+									followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" class="btn btn-secondary" role="button" style="display: none; padding : 5px 10px;">';
+									followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
+									followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
+									followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
+									followInfoBox += '</svg></a>';
+									followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: inline; padding : 5px 10px;margin-left: 145px;">팔로우</a>';
+								}
+							}
+								// ---------------------------------------------------------------------------------------------------
+						});
+						
+				 	}
+					else { // 팔로잉 모달창
+						console.log("팔로잉 받아오기~");
+						followInfoBox += '<div class="col-12 p-3"style="height: 50px;border-bottom: solid 0.5px silver;display: flex;justify-content: center;align-items: center;">';
+						followInfoBox += '<h5 style="font-weight: bold;margin: 0px;">팔로잉</h5></div>';
+					$.each(data.followingList, function(index, obj) {
+						if (obj.to_id == '${userVO.u_id}') {
+							followInfoBox += '<div class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
+							followInfoBox += '<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
+							followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
+							followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.to_id + '</h6></span>';
+							followInfoBox += '</a></div>';
+						} else {
+								
+							followInfoBox += '<div class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
+							followInfoBox += '<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
+							followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
+							followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.to_id + '</h6></span>';
+							followInfoBox += '</a></div>';
+						 /* ----------------- 들어온 상세계정의 팔로잉들 중 내가 팔로우 한 계정과 안한 계정 판별해서 버튼 출력 ----------------- */
+							  if(data.myFollowingList.includes(obj.to_id)) {
+								followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" style="padding : 5px 10px; display : inline; margin-left: 150px;"  class="btn btn-secondary" role="button">';
+								followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
+								followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
+								followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
+								followInfoBox += '</svg></a>';
+								followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: none; padding : 5px 10px; margin-left: 145px;">팔로우</a>';
+							} else {
+								followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" class="btn btn-secondary" role="button" style="display: none; padding : 5px 10px;">';
+								followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
+								followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
+								followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
+								followInfoBox += '</svg></a>';
+								followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: inline; padding : 5px 10px;margin-left: 145px;">팔로우</a>';
+							}
+						}
+							// ---------------------------------------------------------------------------------------------------
+					});
+					}
+				 	
+				 	
+				$("#followModalContainer").html(followInfoBox);
+					},
+				error: function(){
+					alert("실패~~")
+				}
+			});
+				$("#followpopup").click();
+			
+		}	
+		function modalUnfollow(my_id, target_id, er_idx) {
+			$("#btnUnFollow" + er_idx).css('display', 'none');
+			$("#btnFollow" + er_idx).css('display', 'inline');
+			
+			$.ajax("../user/unFollow.do", {
+				type: "get",
+				data: {"my_id": my_id, "target_id": target_id}, // {"seq":1} 문자열 서버로 전송(JSON 문자열)
 				dataType: "text",
 				success: function(data){
 					console.log(data);
@@ -489,45 +589,24 @@ input[id="tab03"]:checked ~ .con3 {
 					alert("실패~~")
 				}
 			});
-			if (bool == true) {// 팔로워 모달창
-				//$.each(JSON.parse("${followerList}").FollowerVO, function(index, obj) {
-				for(var i = 0; i < array.length; i++) {
-					followInfoBox += '<div class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
-					followInfoBox += '<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
-					followInfoBox += '<span><img src="../img_src/test/1.jpg" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
-					followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + array[i].from_id + '</h6></span>';
-					followInfoBox += '</a></div>'
-					 /* ----------------- 들어온 상세계정의 팔로워들 중 내가 팔로우 한 계정과 안한 계정 판별해서 버튼 출력 ----------------- */
-					/* if(${myFollowingList}.includes(obj.from_id)) {
-						followInfoBox += '<a href="javascript:unFollow("${userVO.u_id}", ' + obj.from_id + ')" id="btnUnFollow" style="padding : 5px 10px; display : inline; margin-left: 150px;"  class="btn btn-secondary" role="button">';
-						followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
-						followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
-						followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
-						followInfoBox += '</svg></a>';
-						followInfoBox += '<a href="javascript:follow('${userVO.u_id}', '${userInfo.u_id}')" id="btnFollow" class="btn btn-primary" role="button" style="display: none; padding : 5px 10px; margin-left: 145px;">팔로우</a>';
-					} else {
-						followInfoBox += '<a href="javascript:unfollow('${userVO.u_id}', '${userInfo.u_id}')" id="btnUnFollow" class="btn btn-secondary" role="button" style="display: none; padding : 5px 10px;">';
-						followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
-						followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
-						followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
-						followInfoBox += '</svg></a>';
-						followInfoBox += '<a href="javascript:follow('${userVO.u_id}', '${userInfo.u_id}')" id="btnFollow" class="btn btn-primary" role="button" style="display: inline; padding : 5px 10px;margin-left: 145px;">팔로우</a>';
-					}*/
-					// ---------------------------------------------------------------------------------------------------
-				//});
-				}
+		}
+		function modalFollow(my_id, target_id, er_idx) {
+			$("#btnFollow" + er_idx).css('display', 'none');
+			$("#btnUnFollow" + er_idx).css('display', 'inline');
 			
-			} else { // 팔로잉 모달창
-				$.each("${followingList}", function(idx, obj) {
-					followInfoBox += '<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
-					followInfoBox += '<span><img src="../img_src/test/1.jpg" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
-					followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.to_id + '</h6></span>';
-					followInfoBox += '</a>'
-				});
-			}
-				$("#followModalContainer").append(followInfoBox);
-				$("#followpopup").click();
-		}	
+			$.ajax("../user/follow.do", {
+				type: "get",
+				data: {"my_id": my_id, "target_id": target_id},
+				dataType: "text",
+				success: function(data){
+					console.log(data);
+					
+				},
+				error: function(){
+					alert("실패~~")
+				}
+			});
+		}
 		function unFollow(my_id, target_id) {
 			$("#btnUnFollow").css('display', 'none');
 			$("#btnFollow").css('display', 'inline');
@@ -588,28 +667,30 @@ input[id="tab03"]:checked ~ .con3 {
 			  }
 			}
 		function deleteFeed(f_idx) {
-			confirm("게시물을 삭제 하시겠습니까?")
-			$
-			.ajax(
-					"deleteFeed.do",
-					{
-						type : "get",
-						data : {
-							"f_idx" : f_idx,
-							"u_id" : '${userVO.u_id}'
-						},
-						dataType : "text",
-						success : function(data) {
-							console.log("성공~~~");
-							console.log(data)
-							$("#post"+f_idx).remove();
-							$("#posts"+f_idx).remove();
-							$("#popup").click();
-						},
-						error : function() {
-							alert("실패~~~");
-						}
-					});
+			let result = confirm("게시물을 삭제 하시겠습니까?");
+			if (result == true) {
+				$
+				.ajax(
+						"deleteFeed.do",
+						{
+							type : "get",
+							data : {
+								"f_idx" : f_idx,
+								"u_id" : '${userVO.u_id}'
+							},
+							dataType : "text",
+							success : function(data) {
+								console.log("성공~~~");
+								console.log(data)
+								$("#post"+f_idx).remove();
+								$("#posts"+f_idx).remove();
+								$("#popup").click();
+							},
+							error : function() {
+								alert("실패~~~");
+							}
+						});
+			}
 		}
 		function modalAjax(f_idx) {
 			
