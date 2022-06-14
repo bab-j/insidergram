@@ -37,7 +37,7 @@ body { -
 
 
 </head>
-<body>
+<body style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;">
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
       fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16"
       style="margin: 10px 5px;" type="button" id="	"

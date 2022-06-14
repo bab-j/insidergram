@@ -266,14 +266,13 @@ input[id="tab03"]:checked ~ .con3 {
 <title>상대방 페이지</title>
 </head>
 <body>
-<body
-	style="background-color: #F5F5F5; display: flex; justify-content: space-around; align-content: space-around; flex-wrap: wrap;">
+<body style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important; display: flex; justify-content: space-around; align-content: space-around; flex-wrap: wrap;">
 
 	<jsp:include page="../../../header.jsp"></jsp:include>
 	<main class="container py-3"
-		style="background-color: #F5F5F5; width: 935px;">
+		style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important; width: 935px;">
 		<div class="container-fluid pb-3 my-3 p-3"
-			style="background-color: #F5F5F5;">
+			style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;">
 			<div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
 				<div class="rounded-3"
 					style="height: 200px; width: 200px; margin-top: 25px; margin-left: 40px;">
@@ -357,7 +356,7 @@ input[id="tab03"]:checked ~ .con3 {
 			</div>
 		</div>
 		<!-- 시작 -->
-		<div class="album" style="background-color: #F5F5F5;">
+		<div class="album" style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;">
 			<div class="container">
 				<div class="tab_content"
 					style="margin-top: 0px; border-top: solid 1px gray;">
