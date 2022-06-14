@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="commDAO">
 	<select id="getCommList" resultType="comm" parameterType="int">
-		SELECT CO_IDX, REGDATE, COMM, F_IDX, C.U_ID, U.U_PIC
+		SELECT CO_IDX, TO_CHAR(TO_DATE(REGDATE, 'YYYY/MM/DD HH24:MI:SS')+(9/24),'YYYY/MM/DD HH24:MI:SS') AS REGDATE, COMM, F_IDX, C.U_ID, U.U_PIC
   FROM COMM C JOIN USER_INFO U
     ON C.U_ID = U.U_ID
  WHERE F_IDX = #{f_idx}

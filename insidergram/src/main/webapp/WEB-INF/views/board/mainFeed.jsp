@@ -768,6 +768,7 @@ input[id*="popup"]:checked+label+div {
 										dispHtml += '<h6 class="mb-0">' + obj.u_id + '</h6>';
 										dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px;">' + obj.comm + '</p>';
 										dispHtml += '</div>';
+										dispHtml += '<small class-"opacity-50 text-nonwrap">' + obj.regdate + '</small>';
 										dispHtml += '</div></a>';
 									});
 									dispHtml += '</div>';
@@ -850,7 +851,7 @@ input[id*="popup"]:checked+label+div {
 									dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px;">'
 											+ data.comm + '</p>';
 									dispHtml += '</div>';
-									dispHtml += '<small class="opacity-50 text-nowrap">3분전</small>';
+									dispHtml += '<small class="opacity-50 text-nowrap">방금전</small>';
 									dispHtml += '</div></a>';
 									$("#commBox").append(dispHtml);
 									$('#commBox').scrollTop(

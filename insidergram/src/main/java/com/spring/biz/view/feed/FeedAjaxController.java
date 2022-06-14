@@ -2,7 +2,10 @@ package com.spring.biz.view.feed;
 
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.biz.comment.CommentService;
+import com.spring.biz.comment.CommentVO;
 import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
 import com.spring.biz.feed.Paging;
@@ -25,6 +29,7 @@ import com.spring.biz.follower.FollowerVO;
 import com.spring.biz.follower.LikeVO;
 import com.spring.biz.user.UserService;
 import com.spring.biz.user.UserVO;
+import com.spring.common.TIME_MAXIMUM;
 //@Controller
 @RestController
 public class FeedAjaxController {
@@ -109,11 +114,20 @@ public class FeedAjaxController {
 	
 	// 모달창에 띄울 피드정보 보내기
 	@RequestMapping("/user/modal.do")
-	public Map<String, Object> getFeed(int f_idx, String u_id, HttpSession session) {
+	public Map<String, Object> getFeed(int f_idx, String u_id, HttpSession session) throws ParseException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		FeedVO fvo = feedService.oneFeed(f_idx);
-		fvo.setComm(commService.getCommList(f_idx));
+		List<CommentVO> commList = commService.getCommList(f_idx);
+		for(CommentVO cvo : commList) {
+			String timeString = cvo.getRegdate();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date timeDate = format.parse(timeString);
+			String time = TIME_MAXIMUM.formatTimeString(timeDate);
+			System.out.println("몇분전 : " + time);
+			cvo.setRegdate(time);
+		}
 		fvo.setCountLike(feedService.countLike(f_idx));
+		fvo.setComm(commList);
 		UserVO uvo = (UserVO)session.getAttribute("userVO");
 		List<FeedVO> list = feedService.getMyFeed(uvo.getU_id());
 		// 내 피드 리스트에 f_idx를 다른 리스트에 담기

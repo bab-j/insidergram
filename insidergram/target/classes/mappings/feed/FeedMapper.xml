@@ -37,7 +37,7 @@ UNION
 	</select>
 	
 	<select id="oneFeed" resultType="feed" parameterType="int">
-		SELECT F.F_IDX, F.REGDATE, F.CONTENT, F.U_ID, F.F_PIC, U.U_PIC
+		SELECT F.F_IDX, TO_CHAR(TO_DATE(F.REGDATE, 'YYYY/MM/DD HH24:MI:SS')+(9/24),'YYYY/MM/DD HH24:MI:SS') AS REGDATE, F.CONTENT, F.U_ID, F.F_PIC, U.U_PIC
 		  FROM FEED F, USER_INFO U
 		 WHERE F.U_ID = U.U_ID
 		   AND F.F_IDX = #{f_idx}
