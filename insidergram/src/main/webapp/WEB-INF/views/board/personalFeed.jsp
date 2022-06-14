@@ -353,10 +353,10 @@ input[id="tab03"]:checked ~ .con3 {
 						<div class="col-12 my-3">
 							<a>게시물</a><span
 								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${picPost.size() + docPost.size() }</span>
-							<a>팔로워</a><span
-								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followerList.size() }</span>
-							<a>팔로우</a><span
-								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followingList.size() }</span>
+							<a href="javascript:followInfo(true)">팔로워</a><span
+								id="followerCnt" style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followerList.size() }</span>
+							<a href="javascript:followInfo(false)">팔로우</a><span
+								id="followCnt" style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followingList.size() }</span>
 						</div>
 						<!-- 3 -->
 						<div class="col-12 my-3">
@@ -401,7 +401,25 @@ input[id="tab03"]:checked ~ .con3 {
 								d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
 	                </svg>&nbsp; SAVED
 					</label>
+					<!--=------------------ 팔로우 팔로워 팝업 껍데기 -----------------------=-->
 					
+	<input type="checkbox" id="followpopup">
+	<!-- 버튼 클릭시 팝업창 오픈 -->
+	<label for="followpopup" id="followpopupLabel" style="padding: 3px 10px 3px 0px;">
+	</label>
+	<div>
+		<div style="width: 400px;height: 500px; background:#f5f5f5;border-radius: 10px;display: flex;flex-direction: column;align-items: center;">
+			<label for="followpopup" style="background-color: white;">x</label>
+			<!-- 내용 추가 -->
+			<div id="followModalContainer" class="row" style="margin: 0px; padding: 0px; width: 100%; height: 100%; border: solid 0.5px silver;flex-direction: column;">
+				
+				
+			</div>
+		</div>
+		<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
+		<label for="followpopup"></label>
+	</div>
+	<!-- --------------------------------------------------------------------------- -->
 					<!--========================================== 사진 피드 ===================================================-->
 					<div class="conbox con1">
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
@@ -470,7 +488,153 @@ input[id="tab03"]:checked ~ .con3 {
 	<br>
 	<br>
 	<script>
-
+	function unFollow(my_id, target_id, er_idx) {
+		$("#btnUnFollow" + er_idx).css('display', 'none');
+		$("#btnFollow" + er_idx).css('display', 'inline');
+		var followCnt = $("#followCnt").html();
+		followCnt = Number(followCnt - 1);
+		$("#followCnt").html(followCnt);
+		
+		$.ajax("../user/unFollow.do", {
+			type: "get",
+			data: {"my_id": my_id, "target_id": target_id}, // {"seq":1} 문자열 서버로 전송(JSON 문자열)
+			dataType: "text",
+			success: function(data){
+				console.log(data);
+				
+			},
+			error: function(){
+				alert("실패~~")
+			}
+		});
+	}
+	function follow(my_id, target_id, er_idx) {
+		$("#btnFollow" + er_idx).css('display', 'none');
+		$("#btnUnFollow" + er_idx).css('display', 'inline');
+		var followCnt = $("#followCnt").html();
+		followCnt = Number(followCnt) + 1;
+		$("#followCnt").html(followCnt);
+		
+		$.ajax("../user/follow.do", {
+			type: "get",
+			data: {"my_id": my_id, "target_id": target_id},
+			dataType: "text",
+			success: function(data){
+				console.log(data);
+				
+			},
+			error: function(){
+				alert("실패~~")
+			}
+		});
+	}
+	function modalUnfollow(my_id, target_id, er_idx) {
+		let result = confirm("정말 삭제 하시겠습니까?") 
+		if (result == true) {
+		$("#btnFollow" + er_idx).css('display', 'none');
+			var followerCnt = $("#followerCnt").html();
+			followerCnt = Number(followerCnt - 1);
+			console.log("언팔 팔로워 카운트:" + followerCnt);
+			$("#followerCnt").html(followerCnt);
+			
+			$.ajax("../user/unFollow.do", {
+				type: "get",
+				data: {"my_id": my_id, "target_id": target_id}, // {"seq":1} 문자열 서버로 전송(JSON 문자열)
+				dataType: "text",
+				success: function(data){
+					console.log(data);
+					$("#erInfo" + er_idx).remove();
+				},
+				error: function(){
+					alert("실패~~")
+				}
+			});
+		}
+	}
+	function modalFollow(my_id, target_id, er_idx) {
+		$("#btnFollow" + er_idx).css('display', 'none');
+		$("#btnUnFollow" + er_idx).css('display', 'inline');
+		
+		$.ajax("../user/follow.do", {
+			type: "get",
+			data: {"my_id": my_id, "target_id": target_id},
+			dataType: "text",
+			success: function(data){
+				console.log(data);
+				
+			},
+			error: function(){
+				alert("실패~~")
+			}
+		});
+	}
+	function followInfo(bool) {
+					var followInfoBox = "";
+		$.ajax("../user/followInfo.do", {
+			type: "get",
+			data: { "u_id": "${userVO.u_id}" },
+			dataType: "json",
+			success: function(data){
+				console.log("성공~~~~");
+				console.log("내 팔로워들 : " + data.myFollowerList);
+				console.log("내 팔로잉들 : " + data.myFollowingList);
+			 	if (bool == true) {// 팔로워 모달창
+			 		console.log("팔로워 받아오기~");
+					followInfoBox += '<div class="col-12 p-3"style="height: 50px;border-bottom: solid 0.5px silver;display: flex;justify-content: center;align-items: center;">';
+					followInfoBox += '<h5 style="font-weight: bold;margin: 0px;">팔로워</h5></div>';
+					$.each(data.myFollowerList, function(index, obj) {
+							
+						followInfoBox += '<div id="erInfo' + obj.er_idx + '" class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
+						followInfoBox += '<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
+						followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
+						followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.from_id + '</h6></span>';
+						followInfoBox += '</a></div>';
+					 /* ----------------- 팔로워 리스트 삭제 버튼 출력 ----------------- */
+						followInfoBox += '<a href="javascript:modalUnfollow(\'' + obj.from_id + '\', \'${userVO.u_id}\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" style="padding : 5px 10px; display : inline; margin-left: 150px;"  class="btn btn-secondary" role="button">';
+						followInfoBox += '삭제</a>';
+						
+						
+							// ---------------------------------------------------------------------------------------------------
+					});
+			 	}
+				else { // 팔로잉 모달창
+					console.log("팔로잉 받아오기~");
+					followInfoBox += '<div class="col-12 p-3"style="height: 50px;border-bottom: solid 0.5px silver;display: flex;justify-content: center;align-items: center;">';
+					followInfoBox += '<h5 style="font-weight: bold;margin: 0px;">팔로잉</h5></div>';
+					$.each(data.myFollowingList2, function(index, obj) {
+						followInfoBox += '<div class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
+						followInfoBox += '<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
+						followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
+						followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.to_id + '</h6></span>';
+						followInfoBox += '</a></div>';
+						 /* ----------------- 들어온 상세계정의 팔로잉들 중 내가 팔로우 한 계정과 안한 계정 판별해서 버튼 출력 ----------------- */
+						followInfoBox += '<a href="javascript:unFollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" style="padding : 5px 10px; display : inline; margin-left: 150px;"  class="btn btn-secondary" role="button">';
+						followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
+						followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
+						followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
+						followInfoBox += '</svg></a>';
+						followInfoBox += '<a href="javascript:follow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: none; padding : 5px 10px; margin-left: 145px;">팔로우</a>';
+							/* else {
+								followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" class="btn btn-secondary" role="button" style="display: none; padding : 5px 10px;">';
+								followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
+								followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
+								followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
+								followInfoBox += '</svg></a>';
+								followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: inline; padding : 5px 10px;margin-left: 145px;">팔로우</a>';
+							} */
+						
+							// ---------------------------------------------------------------------------------------------------
+					});
+				}
+			 	$("#followModalContainer").html(followInfoBox);
+			},
+		error: function(){
+			alert("실패~~")
+		}
+	});
+		$("#followpopup").click();
+	
+}	
 	
 
 	

@@ -200,7 +200,7 @@ input[id*="popup"]:checked+label+div {
 <body style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;">
 	<jsp:include page="/header.jsp" />
 	<div class="h-100 w-100 position-fixed"
-		style="background-color: #F5F5F5; margin-top: 50px;">
+		style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important; margin-top: 50px;">
 
 		<div class="container h-100 pt-3 pb-3 " style="width: 1250px;">
 			<div class="row h-100 pb-5">

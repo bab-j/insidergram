@@ -3,6 +3,8 @@ package com.spring.biz.view.feed;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.biz.comment.CommentService;
+import com.spring.biz.comment.CommentVO;
 import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
 import com.spring.biz.feed.Paging;
@@ -59,7 +62,9 @@ import com.spring.biz.user.UserVO;
 			//------------------각 게시물 댓글 리스트에 Set-------------------
 			for(FeedVO fvo : list) {
 				fvo.setCountLike(feedService.countLike(fvo.getF_idx()));
-				fvo.setComm(commService.getCommList(fvo.getF_idx()));
+				List<CommentVO> comments = commService.getCommList(fvo.getF_idx());
+				Collections.reverse(comments);
+				fvo.setComm(comments);
 				System.out.println("fvo.toString() : " + fvo.toString());
 			}
 			//----------------------------------------------------------
