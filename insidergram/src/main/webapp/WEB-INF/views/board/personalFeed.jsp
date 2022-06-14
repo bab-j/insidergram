@@ -471,8 +471,12 @@ input[id="tab03"]:checked ~ .con3 {
 	<br>
 	<script>
 
+	
+
+	
+	
 function deleteFeed(f_idx) {
-	confirm("게시물을 삭제 하시겠습니까?")
+	 if (confirm("정말 삭제하시겠습니까??") == true){    //확인
 	$
 	.ajax(
 			"deleteFeed.do",
@@ -494,6 +498,10 @@ function deleteFeed(f_idx) {
 					alert("실패~~~");
 				}
 			});
+	  } 
+	 
+	 
+	 
 }
 
 function myFunction() {
@@ -547,8 +555,8 @@ function modalAjax(f_idx) {
 				dispHtml += '<div class="dropdown" style="margin-left: 270px;font-size: 30px;padding-left : 50px;">';
 				dispHtml += '<button onclick="myFunction()" class="dropbtn" style="background-color: white;padding-bottom: 15px;">...</button>';
 				dispHtml += '<div id="myDropdown" class="dropdown-content" style="font-size: 15px;">';
-				dispHtml += '<a href="goUpdate.do?f_idx=' + data.fvo.f_idx + '">edit</a>';
-				dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
+				dispHtml += '<a href="goUpdate.do?f_idx=' + data.fvo.f_idx + '">수정</a>';
+				dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">삭제</a>';
 				dispHtml += '</div></div></div>';
 				
 				/* <!-- 댓글창 --> */
@@ -587,8 +595,8 @@ function modalAjax(f_idx) {
 				dispHtml += '<div class="dropdown" style="margin-left: 270px;font-size: 30px;padding-left : 50px;">';
 				dispHtml += '<button onclick="myFunction()" class="dropbtn" style="background-color: white;padding-bottom: 15px; ">...</button>';
 				dispHtml += '<div id="myDropdown" class="dropdown-content" style="font-size: 15px;">';
-				dispHtml += '<a href="goUpdate.do?f_idx=' + data.fvo.f_idx + '">edit</a>';
-				dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
+				dispHtml += '<a href="goUpdate.do?f_idx=' + data.fvo.f_idx + '">수정</a>';
+				dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">삭제</a>';
 				dispHtml += '</div></div></div>';
 				
 				/* <!-- 댓글창 --> */
@@ -657,7 +665,7 @@ function writeComm(f_idx) {
 							dispHtml += '<p class="mb-0 opacity-75" style="padding-top: 10px; width: 300px;">'
 									+ data.comm + '</p>';
 							dispHtml += '</div>';
-							dispHtml += '<small class="opacity-50 text-nowrap">3분전</small>';
+							dispHtml += '<small class="opacity-50 text-nowrap">' + data.regdate +'</small>';
 							dispHtml += '</div></a>';
 							$("#commBox").append(dispHtml);
 							$('#commBox').scrollTop(
