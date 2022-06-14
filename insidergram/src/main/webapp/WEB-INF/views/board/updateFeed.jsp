@@ -55,19 +55,17 @@
 		tabindex="-1" role="dialog" id="modalSignin"
 		style="padding-bottom: 50px;"></div>
 	<div class="modal-dialog" role="document "
-		style="max-width: 1000px; width: 1000px; height: 800px;margin-top: 70px;">
+		style="max-width: 1000px; width: 1000px; height: 800px; margin-top: 70px;">
 		<div class="modal-content rounded-4 shadow align-items-md-center">
 
+			<br> <br> <br>
 			<div class="modal-body p-5 pt-0 col-12 "
-				style="display: inline-flex; float: left;padding: 40px 48px 40px 48px! important;">
+				style="display: inline-flex; float: left; padding: 40px 48px 40px 48px ! important;">
 				<form action="user/updateFeed.do" method="post"
 					enctype="multipart/form-data" class="col-12">
 					<div class="form-floating mb-3 col-6"
 						style="display: flex; float: left;">
-						<div class="row">
-
-							<hr class="my-4">
-
+						<div class="row" style="width: 100%;">
 							<div class="square"
 								style="display: inline-block; text-align: center; overflow: hidden; padding: 0px; display: flex; justify-content: space-around;">
 								<div class="inner">
@@ -75,25 +73,18 @@
 										style="height: 100%; width: 100%;">
 								</div>
 							</div>
+							<br style="line-height: 30px;">
 
-							<hr class="my-4">
-							<div class=""
-								style="display: flex; justify-content: space-around">
-								<input class="form-control" accept=".jpg"
-									onchange="PreviewImage();" name="uploadFile" type="file"
-									id="user_profile_img" />
-							</div>
+
 						</div>
 					</div>
 
 					<div class="col-6" style="display: inline-block; float: right;">
-						<hr class="my-4">
-						<br>
 						<textarea class="form-control" placeholder="" name="content"
-							rows="14" style="width: 100%;line-height: 1.57;">${fvo.content }</textarea>
-							<input name="f_idx" value="${fvo.f_idx }" type="hidden">
+							rows="14" style="width: 100%; line-height: 1.57;">${fvo.content }</textarea>
+						<input name="f_idx" value="${fvo.f_idx }" type="hidden"> <br>
 						<br>
-						<hr class="my-4">
+						<br>
 						<div class="row">
 							<div class="col-6">
 								<a
@@ -110,6 +101,9 @@
 
 							</div>
 						</div>
+						<br>
+						<br>
+						<br>
 					</div>
 				</form>
 			</div>
