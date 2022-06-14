@@ -272,7 +272,7 @@ input[id*="popup"]:checked+label+div {
 												<div id="myDropdown${feed.f_idx }" class="dropdown-content"
 													style="font-size: 15px; margin-top: 100px;">
 													<a href="goUpdate.do?f_idx=${feed.f_idx }">edit</a> <a
-														href="javascript:deleteFeed(${feed.f_idx }, true)">delete</a>
+														href="javascript:deleteFeed(${feed.f_idx }, t	rue)">delete</a>
 												</div>
 											</div>
 										</c:if>
@@ -702,8 +702,8 @@ input[id*="popup"]:checked+label+div {
 											dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.fvo.u_id + '</h6></div></a>';
 												
 											dispHtml += '<div class="dropdown" style="margin-left: 270px;font-size: 30px;">';
-											dispHtml += '<button onclick="myFunction(' + data.fvo.f_idx + ')" class="dropbtn" style="background-color: white;padding-bottom: 15px;border: none;">...</button>';
-											dispHtml += '<div id="myDropdown' + data.fvo.f_idx + '" class="dropdown-content" style="font-size: 15px;">';
+											dispHtml += '<button onclick="modalFunction(' + data.fvo.f_idx + ')" class="dropbtn" style="background-color: white;padding-bottom: 15px;border: none;">...</button>';
+											dispHtml += '<div id="modalDropdown' + data.fvo.f_idx + '" class="dropdown-content" style="font-size: 15px;">';
 											dispHtml += '<a href="goUpdate.do?f_idx=' + data.fvo.f_idx + '">edit</a>';
 											dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
 											dispHtml += '</div></div></div>';
@@ -742,8 +742,8 @@ input[id*="popup"]:checked+label+div {
 											dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.fvo.u_id + '</h6></div></a>';
 												
 											dispHtml += '<div class="dropdown" style="margin-left: 270px;font-size: 30px;">';
-											dispHtml += '<button onclick="myFunction(' + data.fvo.f_idx + ')" class="dropbtn" style="background-color: white;padding-bottom: 15px;border: none;">...</button>';
-											dispHtml += '<div id="myDropdown' + data.fvo.f_idx + '" class="dropdown-content" style="font-size: 15px;">';
+											dispHtml += '<button onclick="modalFunction(' + data.fvo.f_idx + ')" class="dropbtn" style="background-color: white;padding-bottom: 15px;border: none;">...</button>';
+											dispHtml += '<div id="modalDropdown' + data.fvo.f_idx + '" class="dropdown-content" style="font-size: 15px;">';
 											dispHtml += '<a href="goUpdate.do?f_idx=' + data.fvo.f_idx + '">edit</a>';
 											dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
 											dispHtml += '</div></div></div>';
@@ -867,7 +867,7 @@ input[id*="popup"]:checked+label+div {
 			} else if ($("#commDiv" +f_idx).children("b").length == 2)  {
 				if ($("#commDiv" +f_idx).children("a").length == 0) {
 					var aTag = "";
-					aTag += '<a style="display: inline-flex; color: grey" href="javascript:modalAjax(${feed.f_idx })">댓글';
+					aTag += '<a style="display: inline-flex; color: grey" href="javascript:modalAjax(' + f_idx + ')">댓글';
 					aTag += '<p id="commCNT' + f_idx + '">3</p>개 모두 보기';
 					aTag += '</a>';
 					aTag += '<br>';
