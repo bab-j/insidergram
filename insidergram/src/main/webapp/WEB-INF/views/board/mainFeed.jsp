@@ -226,9 +226,8 @@ input[id*="popup"]:checked+label+div {
 	} */
 	
 %>	 --%>
-	<div class="container"
-		style="display: flex; flex-direction: column-reverse; align-content: space-around; flex-wrap: wrap;">
-		<div id="feedBox">
+	<div class="container" style="display: flex; flex-direction: column-reverse; align-content: space-around; flex-wrap: wrap;">
+		<div id="feedBox" style="display: flex;flex-direction: column;align-items: center;">
 			<%
 				List<String> list = (List<String>) request.getAttribute("likeList");
 			List<Integer> saveList = (List<Integer>) request.getAttribute("saveList");
@@ -452,42 +451,27 @@ input[id*="popup"]:checked+label+div {
 																							function(
 																									index,
 																									obj) {
-																								/* dispHtml += '<div class="row col-6" id="k1" style="-bs-gutter-x: 0;">';
-																								dispHtml += '<div class="col-12">';
-																								dispHtml += '<a href="otherFeed.do?_id='
-																										+ obj.u_id
-																										+ '" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center" style="background-color: white;">';
-																								dispHtml += '<img src="../img_src/profile/'
-																										+ obj.u_pic
-																										+ '" width="45" height="45" class="rounded-circle flex-shrink-0" style="border-radius: 70%">';
-																								dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
-																								dispHtml += '<div>';
-																								dispHtml += '<h6 class="mb-0" style="margin-left: 15px;">'
-																										+ obj.u_id
-																										+ '</h6>';
-																								dispHtml += '</div>';
-																								dispHtml += '<div href="#">	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots"	viewBox="0 0 16 16"> <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />';
-																								dispHtml += '</svg></div></div></a></div>'; */
-																								dispHtml += '<div id="post' + obj.f_idx + '">'
-																								dispHtml += '<div class="row col-6" id="k1" style="-bs-gutter-x: 0;">';
+																								
+																								dispHtml += '<div id="post' + obj.f_idx + '" style="background-color: white;display: flex;flex-direction: column;align-items: center;margin: 30px;border: solid 0.5px silver;border-radius: 5px;">'
+																								dispHtml += '<div class="row col-6" id="k1" style="-bs-gutter-x: 0;margin-top: 0px;margin-bottom: 0px;border-bottom: solid 0.5px silver;border-top-left-radius: 5px;border-top-right-radius: 5px;">';
 																								dispHtml += '<div class="col-12">';
 																								dispHtml += '<div class="d-flex gap-2 w-100 justify-content-between">';
 																								dispHtml += '<div>';
-																								dispHtml += '<a href="otherFeed.do?u_id=' + obj.u_id + '"class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom text-center"style="background-color: white;"> <img src="../img_src/profile/' + obj.u_pic + '" width="45" height="45" class="rounded-circle flex-shrink-0" style="border-radius: 70%">';
+																								dispHtml += '<a href="otherFeed.do?u_id=' + obj.u_id + '" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none text-center"style="background-color: white;"> <img src="../img_src/profile/' + obj.u_pic + '" width="45" height="45" class="rounded-circle flex-shrink-0" style="border-radius: 70%">';
 																								dispHtml += '<span class="mb-0" style="font-size: 20px; margin: 10px 20px; font-weight: bold;">' + obj.u_id + '</span>'
-																								dispHtml += '</a></div></div></div>'
+																								dispHtml += '</a></div>'
 																								
 																								if(myFidxList.includes(obj.f_idx)) {
-																									dispHtml += '<div class="dropdown">';
-																									dispHtml += '<button onclick="myFunction(' + obj.f_idx + '" class="dropbtn">...</button>';
-																									dispHtml += '<div id="myDropdown' + obj.f_idx + '" class="dropdown-content">';
+																									dispHtml += '<div class="dropdown" style="display: flex;align-items: center;font-size: 30px;">';
+																									dispHtml += '<button onclick="myFunction(' + obj.f_idx + ')" class="dropbtn" style="background-color: white;border: none;margin-bottom: 15px;">...</button>';
+																									dispHtml += '<div id="myDropdown' + obj.f_idx + '" class="dropdown-content" style="font-size: 15px; margin-top: 100px;">';
 																									dispHtml += ' <a href="goUpdate.do?f_idx=' + obj.f_idx + '">edit</a>';
 																									dispHtml += ' <a href="javascript:deleteFeed(' + obj.f_idx + ', true)">delete</a>';
-																									dispHtml += '</div></div></div>';
+																									dispHtml += '</div></div>';
 																								}
-																								
+																								dispHtml += '</div></div></div>';
 																								dispHtml += '<div class="col-12 square"	style="display: flex; align-items: center;">';
-																								dispHtml += '<div class="inner">';
+																								dispHtml += '<div class="inner" style="display: flex; justify-content: center; align-items: center; font-weight: bold;">';
 																								if (obj.f_pic == null) {
 																									dispHtml += obj.content;
 																								}
@@ -495,107 +479,67 @@ input[id*="popup"]:checked+label+div {
 																									dispHtml += '<img src="../img_src/feed/' + obj.f_pic + '" class="inner1">';
 																								}
 																								dispHtml += '</div></div>';
+																								
 																								dispHtml += '<div class="col-12" style="margin-top: 10px; margin-bottom: 10px;">';
 																								dispHtml += '<div>';
-																								dispHtml += '<div class="likeCommentBox">';
+																								dispHtml += '<div class="likeCommentBox" style="margin-left: 15px;">';
 
-																								dispHtml += '<a href="javascript:likeFeed('
-																										+ obj.f_idx
-																										+ ')">';
-																								if (likeList
-																										.includes(obj.f_idx)) {
-																									dispHtml += '<span id="fillHeart'
-																											+ obj.f_idx
-																											+ '" class="material-symbols-outlined likeFill" style="margin: 2px 0px 0px 2%;">favorite</span>';
-																									dispHtml += '<span id="emptyHeart'
-																											+ obj.f_idx
-																											+ '" class="material-icons-outlined" style="display: none; margin: 2px 0px 0px 2%;">favorite_border</span>';
+																								dispHtml += '<a href="javascript:likeFeed(' + obj.f_idx + ')">';
+																								if (likeList.includes(obj.f_idx)) {
+																									dispHtml += '<span id="fillHeart' + obj.f_idx + '" class="material-symbols-outlined likeFill" style="margin: 0px 0px 3px 2px; font-size: 32px; display: inline;">favorite</span>';
+																									dispHtml += '<span id="emptyHeart' + obj.f_idx + '" class="material-icons-outlined" style="display: none; margin: 0px 0px 3px 2px; font-size: 32px;">favorite_border</span>';
 																								} else {
-																									dispHtml += '<span id="fillHeart'
-																											+ obj.f_idx
-																											+ '" class="material-symbols-outlined likeFill" style="display: none; margin: 2px 0px 0px 2%;">favorite</span>';
-																									dispHtml += '<span id="emptyHeart'
-																											+ obj.f_idx
-																											+ '" class="material-icons-outlined" style="margin: 2px 0px 0px 2%;">favorite_border</span>';
+																									dispHtml += '<span id="fillHeart' + obj.f_idx + '" class="material-symbols-outlined likeFill" style="margin: 0px 0px 3px 2px; font-size: 32px; display: none;">favorite</span>';
+																									dispHtml += '<span id="emptyHeart' + obj.f_idx + '" class="material-icons-outlined" style="display: inline; margin: 0px 0px 3px 2px; font-size: 32px;">favorite_border</span>';
 																								}
 																								dispHtml += '</a></div>';
 
-																								/* <!-- 버튼 클릭시 팝업창 오픈 --> */
-																								dispHtml += '<a style="margin-left: 10px;" href="javascript:modalAjax('
-																										+ obj.f_idx
-																										+ ')">';
-
-																								dispHtml += '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">';
-																								dispHtml += '<path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />';
-																								dispHtml += '</svg></a>';
-																								/* dispHtml += '<div><div>' */
+																								/* <!-- 메시지 버튼 --> */
+																								dispHtml += '<a style="margin-left: 10px;" href="javascript:modalAjax(' + obj.f_idx + ')">';
+																								dispHtml += '<span class="material-symbols-outlined" style="font-variation-settings: \'FILL\' 0, \'wght\' 400, \'GRAD\' 0, \'opsz\' 20; margin: 1px 0px 0px 2%; font-size: 30px;">chat_bubble</span>';
+																								dispHtml += '</a>';
 																								/* <!------------------------------------ 저장하기 버튼 ------------------------------------> */
 																								if (saveList
 																										.includes(obj.f_idx)) {
-																									dispHtml += '<a href="javascript:saveFeed('
-																											+ obj.f_idx
-																											+ ')" style="display: inline-flex; float: right; margin: 0px 10px 0px 0px;">';
-																									dispHtml += '<span id="fillSave' + obj.f_idx + '" class="material-icons-outlined" style="display: inline; margin: 0px 10px 0px 0px;"> bookmark </span>';
-																									dispHtml += '<span id="emptySave' + obj.f_idx + '" class="material-icons-outlined" style="display: none; float: right; margin: 0px 10px 0px 0px;">bookmark_border </span>';
+																									dispHtml += '<a href="javascript:saveFeed(' + obj.f_idx + ')" style="display: inline-flex; float: right; margin: 0px 15px 0px 0px; font-size: 32px;">';
+																									dispHtml += '<span id="fillSave' + obj.f_idx + '" class="material-icons-outlined" style="display: inline; float: right; margin: 0px; font-size: 32px;"> bookmark </span>';
+																									dispHtml += '<span id="emptySave' + obj.f_idx + '" class="material-icons-outlined" style="display: none; margin: 0px; font-size: 32px;">bookmark_border </span>';
 																									dispHtml += '</a>';
 																								} else {
-																									dispHtml += '<a href="javascript:saveFeed('
-																											+ obj.f_idx
-																											+ ')" style="display: inline-flex; float: right; margin: 0px 10px 0px 0px;">';
-																									dispHtml += '<span id="fillSave' + obj.f_idx + '" class="material-icons-outlined" style="display: none; float: right; margin: 0px 10px 0px 0px;"> bookmark </span>';
-																									dispHtml += '<span id="emptySave' + obj.f_idx + '" class="material-icons-outlined" style="display: inline; margin: 0px 10px 0px 0px;">bookmark_border </span>';
+																									dispHtml += '<a href="javascript:saveFeed(' + obj.f_idx + ')" style="display: inline-flex; float: right; margin: 0px 15px 0px 0px; font-size: 32px;">';
+																									dispHtml += '<span id="fillSave' + obj.f_idx + '" class="material-icons-outlined" style="display: none; float: right; margin: 0px; font-size: 32px;"> bookmark </span>';
+																									dispHtml += '<span id="emptySave' + obj.f_idx + '" class="material-icons-outlined" style="display: inline; margin: 0px; font-size: 32px;">bookmark_border </span>';
 																									dispHtml += '</a>';
 																								}
 
 																								/* <!-- ---------------------------------------------------------------------------- --> */
 																								dispHtml += '</div>';
-																								dispHtml += '<hr style="border: 1px solid silver;">';
-																								dispHtml += '<div style="padding: 0 0 3px 5px; font-weight: bold; font-size: 15px;">';
-																								dispHtml += '좋아요 <span id="countLike' + obj.f_idx + '">'
-																										+ obj.countLike
-																										+ '</span>개';
+																								dispHtml += '<div style="padding: 0 0 3px 5px; font-weight: bold; font-size: 15px; margin: 10px 0;margin-left: 10px;">';
+																								dispHtml += '좋아요 <span id="countLike' + obj.f_idx + '">' + obj.countLike + '</span>개';
 																								dispHtml += '</div>';
 																								if (obj.f_pic != null) {
 																									dispHtml += '<div class="contentBox">';
-																									dispHtml += '<b>'
-																											+ obj.u_id
-																											+ '</b>&nbsp;&nbsp; '
-																											+ obj.content;
-																									dispHtml += '<hr>';
-																									dispHtml += '<div>';
+																									dispHtml += '<b>' + obj.u_id + '</b> &nbsp;&nbsp; ' + obj.content;
+																									dispHtml += '</div>';
 																								}
+																								dispHtml += '<hr id="x">';
 																								if (obj.comm.length > 2) {
-																									dispHtml += '<a style="display:inline-flex; margin-bottom: 20px;" href="javascript:modalAjax('
-																											+ obj.f_idx
-																											+ ')">';
-																									dispHtml += '댓글 <p id="commCNT' + obj.f_idx + '">'
-																											+ obj.comm.length
-																											+ '</p>개 모두 보기 <br>';
+																									dispHtml += '<div id="commDiv' + obj.f_idx + '" style="margin-left: 15px;">';
+																									dispHtml += '<a style="display: inline-flex; color: grey" href="javascript:modalAjax(' + obj.f_idx + ')">';
+																									dispHtml += '댓글 <p id="commCNT' + obj.f_idx + '">' + obj.comm.length + '</p>개 모두 보기';
 																									dispHtml += '</a><br>';
 																								}
-																								/* dispHtml += '<div>'; */
 																								let twoComm = 0;
-																								$
-																										.each(
-																												obj.comm,
-																												function(
-																														idx,
-																														obj2) {
-																													twoComm++;
-
-																													if (twoComm == 3) {
-																														return false;
-																													}
-																													dispHtml += obj2.u_id
-																															+ ':'
-																															+ obj2.comm
-																															+ '<br>';
-																												});
-																								/* dispHtml += '</div>'; */
+																								$.each( obj.comm,function( idx,obj2) {
+																									twoComm++;
+																									if (twoComm == 3) {
+																										return false;
+																									}
+																									dispHtml += '<b style="margin: 5px 20px 5px 0; display: inline-flex;"> '+ obj2.u_id +' </br>';
+																									dispHtml += obj2.comm + '<br>';
+																								});
 																								dispHtml += '</div>';
-																								dispHtml += '</div>';
-																								dispHtml += '</div>';
-																								dispHtml += '</div>';
+																								dispHtml += '<br>';
 																								dispHtml += '</div>';
 																								dispHtml += '</div>';
 																							});
