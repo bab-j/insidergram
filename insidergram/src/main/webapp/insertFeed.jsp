@@ -42,6 +42,7 @@
 @import
 	url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<jsp:include page="./header.jsp"></jsp:include>
@@ -59,7 +60,7 @@
 
 			<div class="modal-body p-5 pt-0 col-12 "
 				style="display: inline-flex; float: left;padding: 40px 48px 40px 48px! important;">
-				<form action="user/insertFeed.do" method="post"
+				<form action="user/insertFeed.do" method="post" id="insertFeedForm"
 					enctype="multipart/form-data" class="col-12">
 					<div class="form-floating mb-3 col-6"
 						style="display: flex; float: left;">
@@ -88,8 +89,8 @@
 					<div class="col-6" style="display: inline-block; float: right;">
 						<hr class="my-4">
 						<br>
-						<textarea class="form-control" placeholder="내용 입력" name="content"
-							rows="14" style="width: 100%;line-height: 1.57;"></textarea>
+						<textarea class="form-control" placeholder="내용 입력" name="content" id="content"
+							rows="14" style="width: 100%;line-height: 1.57;" required></textarea>
 						<br>
 						<hr class="my-4">
 						<div class="row">
@@ -104,7 +105,7 @@
 							<div class="col-6">
 								<input
 									class="center_ailgn w-100 py-2 btn btn-outline-primary rounded-3"
-									type="submit" value="새글 등록" style="">
+									type="button" value="새글 등록" onclick="insertFeed()">
 
 							</div>
 						</div>
@@ -121,6 +122,9 @@
 
 
 	<script>
+		function insertFeed() {
+			$( "#insertFeedForm" ).submit();
+		}
 		function PreviewImage() {
 			// 파일리더 생성 
 			var preview = new FileReader();
