@@ -674,7 +674,8 @@ input[id*="popup"]:checked+label+div {
 							});
 		}
 		function deleteFeed(f_idx, bool) {
-			confirm("게시물을 삭제 하시겠습니까?")
+			var result = confirm("게시물을 삭제 하시겠습니까?")
+			if(result == true) {
 			$
 			.ajax(
 					"deleteFeed.do",
@@ -697,6 +698,7 @@ input[id*="popup"]:checked+label+div {
 							alert("실패~~~");
 						}
 					});
+			}
 		}
 
 		function myFunction(f_idx) {

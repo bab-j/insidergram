@@ -476,8 +476,19 @@ input[id="tab03"]:checked ~ .con3 {
 	<script>
 		function followInfo(bool) {
 			let array = ${followerList};
-			alert(array[1]);
 			var followInfoBox = "";
+			$.ajax("../user/followInfo.do", {
+				type: "get",
+				data: { "u_id": "${userVO.u_id}" },
+				dataType: "text",
+				success: function(data){
+					console.log(data);
+					
+				},
+				error: function(){
+					alert("실패~~")
+				}
+			});
 			if (bool == true) {// 팔로워 모달창
 				//$.each(JSON.parse("${followerList}").FollowerVO, function(index, obj) {
 				for(var i = 0; i < array.length; i++) {

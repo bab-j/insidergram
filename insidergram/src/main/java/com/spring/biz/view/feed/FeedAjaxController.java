@@ -21,6 +21,7 @@ import com.spring.biz.feed.FeedService;
 import com.spring.biz.feed.FeedVO;
 import com.spring.biz.feed.Paging;
 import com.spring.biz.feed.Path;
+import com.spring.biz.follower.FollowerVO;
 import com.spring.biz.follower.LikeVO;
 import com.spring.biz.user.UserService;
 import com.spring.biz.user.UserVO;
@@ -162,6 +163,14 @@ public class FeedAjaxController {
 		return result;
 	}
 	
+	// 팔로우 팔로워 리스트
+	@RequestMapping("user/followInfo.do") 
+	public String followInfo(String u_id) {
+		
+//		List<FollowerVO> myFollowingList = feedService.getFollowingList(uvo.getU_id()); // 팔로잉 정보
+//		List<FollowerVO> myFollowerList = feedService.getFollowerList(uvo.getU_id()); // 팔로워 정보
+		return null;
+	}
 	@RequestMapping("user/follow.do")
 	public String follow(String my_id, String target_id) {
 		feedService.follow(my_id, target_id);

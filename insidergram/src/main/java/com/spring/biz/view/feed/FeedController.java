@@ -139,8 +139,7 @@ import com.spring.biz.user.UserVO;
 			UserVO userInfo = userService.getUserInfo(u_id); // 해당 유저 정보
 			List<FollowerVO> followingList = feedService.getFollowingList(u_id); // 팔로잉 정보
 			List<FollowerVO> followerList = feedService.getFollowerList(u_id); // 팔로워 정보
-			List<FollowerVO> myFollowingList = feedService.getFollowingList(uvo.getU_id()); // 팔로잉 정보
-			List<FollowerVO> myFollowerList = feedService.getFollowerList(uvo.getU_id()); // 팔로워 정보
+		
 			System.out.println("followerList : " + followerList.toString());
 			System.out.println("followingList : " + followingList.toString());
 			mo.addAttribute("saveFeed", saveFeed);
@@ -149,8 +148,6 @@ import com.spring.biz.user.UserVO;
 			mo.addAttribute("userInfo", userInfo);
 			mo.addAttribute("followerList", followerList);
 			mo.addAttribute("followingList", followingList);
-			mo.addAttribute("myFollowerList", myFollowerList);
-			mo.addAttribute("myFollowingList", myFollowingList);
 			return "board/otherFeed";
 		}
 		//게시물 등록
