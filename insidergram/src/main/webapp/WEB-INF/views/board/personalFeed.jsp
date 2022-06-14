@@ -146,13 +146,10 @@ input[id*="popup"]+label+div>div {
 /* 상단 닫기버튼 */
 input[id*="popup"]+label+div>div>label {
 	position: absolute;
-	top: 0%;
-	right: 0%;
+	top: 4.5%;
+	right: 6%;
 	transform: translate(40%, -40%);
-	padding: 20px;
-	background: none;
-	border-radius: 100%;
-	z-index: 1;
+	cursor: pointer;
 }
 
 /* 여백 클릭시 닫기 처리 */
@@ -289,9 +286,9 @@ input[id="tab03"]:checked ~ .con3 {
 <title>자기 페이지</title>
 
 </head>
-<body>
+
 <body
-	style="background-color: #F5F5F5; display: flex; justify-content: space-around; align-content: space-around; flex-wrap: wrap; padding-bottom: 50px;">
+	style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important; display: flex; justify-content: space-around; align-content: space-around; flex-wrap: wrap; padding-bottom: 50px;">
 
 	<!--=------------------ 팝업 껍데기 -----------------------=-->
 	<input type="checkbox" id="popup">
@@ -315,9 +312,9 @@ input[id="tab03"]:checked ~ .con3 {
 	%>
 	<jsp:include page="../../../header.jsp"></jsp:include>
 	<main class="container py-3"
-		style="background-color: #F5F5F5; width: 935px;">
+		style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important; width: 935px;">
 		<div class="container-fluid pb-3 my-3 p-3"
-			style="background-color: #F5F5F5;">
+			style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;">
 			<div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
 				<div class="rounded-3"
 					style="height: 200px; width: 200px; margin-top: 25px; margin-left: 40px;">
@@ -372,7 +369,7 @@ input[id="tab03"]:checked ~ .con3 {
 			</div>
 		</div>
 		<!-- 시작 -->
-		<div class="album" style="background-color: #F5F5F5;">
+		<div class="album" style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;">
 			<div class="container">
 				<div class="tab_content"
 					style="margin-top: 0px; border-top: solid 1px gray;">
@@ -403,22 +400,27 @@ input[id="tab03"]:checked ~ .con3 {
 					</label>
 					<!--=------------------ 팔로우 팔로워 팝업 껍데기 -----------------------=-->
 					
-	<input type="checkbox" id="followpopup">
-	<!-- 버튼 클릭시 팝업창 오픈 -->
-	<label for="followpopup" id="followpopupLabel" style="padding: 3px 10px 3px 0px;">
-	</label>
-	<div>
-		<div style="width: 400px;height: 500px; background:#f5f5f5;border-radius: 10px;display: flex;flex-direction: column;align-items: center;">
-			<label for="followpopup" style="background-color: white;">x</label>
-			<!-- 내용 추가 -->
-			<div id="followModalContainer" class="row" style="margin: 0px; padding: 0px; width: 100%; height: 100%; border: solid 0.5px silver;flex-direction: column;">
-				
-				
-			</div>
-		</div>
-		<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
-		<label for="followpopup"></label>
-	</div>
+					<input type="checkbox" id="followpopup">
+					<!-- 버튼 클릭시 팝업창 오픈 -->
+					<label for="followpopup" id="followpopupLabel"
+						style="padding: 3px 10px 3px 0px;"> </label>
+					<div>
+						<div
+							style="width: 400px; height: 500px; background: #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
+							<label for="followpopup"><span
+								class="material-symbols-outlined"
+								style="width: 100%; height: 100%; background-color: inherit;">
+									close</span></label>
+							<!-- 내용 추가 -->
+							<div id="followModalContainer" class="row"
+								style="margin: 0px; padding: 0px; width: 100%; height: 100%; border: solid 0.5px silver; flex-direction: column; border-radius: 10px;display: flex;align-items: center;">
+
+
+							</div>
+						</div>
+						<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
+						<label for="followpopup"></label>
+					</div>
 	<!-- --------------------------------------------------------------------------- -->
 					<!--========================================== 사진 피드 ===================================================-->
 					<div class="conbox con1">
@@ -583,17 +585,18 @@ input[id="tab03"]:checked ~ .con3 {
 					followInfoBox += '<div class="col-12 p-3"style="height: 50px;border-bottom: solid 0.5px silver;display: flex;justify-content: center;align-items: center;">';
 					followInfoBox += '<h5 style="font-weight: bold;margin: 0px;">팔로워</h5></div>';
 					$.each(data.myFollowerList, function(index, obj) {
-							
-						followInfoBox += '<div id="erInfo' + obj.er_idx + '" class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
+						followInfoBox += '<div class="row">';	
+						followInfoBox += '<div id="erInfo' + obj.er_idx + '" class="col-6 p-3" style="height: 64px;display: flex;flex-direction: row;align-items: center;">';
 						followInfoBox += '<a href="otherFeed.do?u_id=' + obj.from_id + '" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
 						followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
 						followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.from_id + '</h6></span>';
 						followInfoBox += '</a></div>';
 					 /* ----------------- 팔로워 리스트 삭제 버튼 출력 ----------------- */
-						followInfoBox += '<a href="javascript:modalUnfollow(\'' + obj.from_id + '\', \'${userVO.u_id}\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" style="padding : 5px 10px; display : inline; margin-left: 150px;"  class="btn btn-secondary" role="button">';
+						followInfoBox += '<div class="col-6 p-3">';
+					 	followInfoBox += '<a href="javascript:modalUnfollow(\'' + obj.from_id + '\', \'${userVO.u_id}\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" style="padding : 5px 10px; display : inline; margin-left: 80px;"  class="btn btn-secondary" role="button">';
 						followInfoBox += '삭제</a>';
-						
-						
+						followInfoBox += '</div>';
+						followInfoBox += '</div>';
 							// ---------------------------------------------------------------------------------------------------
 					});
 			 	}
@@ -602,27 +605,22 @@ input[id="tab03"]:checked ~ .con3 {
 					followInfoBox += '<div class="col-12 p-3"style="height: 50px;border-bottom: solid 0.5px silver;display: flex;justify-content: center;align-items: center;">';
 					followInfoBox += '<h5 style="font-weight: bold;margin: 0px;">팔로잉</h5></div>';
 					$.each(data.myFollowingList2, function(index, obj) {
-						followInfoBox += '<div class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
+						followInfoBox += '<div class="row">';	
+						followInfoBox += '<div class="col-6 p-3" style="height: 64px;display: flex;flex-direction: row;align-items: center;">';
 						followInfoBox += '<a href="otherFeed.do?u_id=' + obj.to_id + '" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
 						followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
 						followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.to_id + '</h6></span>';
 						followInfoBox += '</a></div>';
 						 /* ----------------- 들어온 상세계정의 팔로잉들 중 내가 팔로우 한 계정과 안한 계정 판별해서 버튼 출력 ----------------- */
-						followInfoBox += '<a href="javascript:unFollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" style="padding : 5px 10px; display : inline; margin-left: 150px;"  class="btn btn-secondary" role="button">';
+						followInfoBox += '<div class="col-6 p-3">';
+						followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" style="display : inline; padding: 2px 12px; margin-left: 80px;"  class="btn btn-secondary" role="button">';
 						followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
 						followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
 						followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
 						followInfoBox += '</svg></a>';
-						followInfoBox += '<a href="javascript:follow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: none; padding : 5px 10px; margin-left: 145px;">팔로우</a>';
-							/* else {
-								followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" class="btn btn-secondary" role="button" style="display: none; padding : 5px 10px;">';
-								followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
-								followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
-								followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
-								followInfoBox += '</svg></a>';
-								followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: inline; padding : 5px 10px;margin-left: 145px;">팔로우</a>';
-							} */
-						
+						followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: none; padding: 2px 12px; margin-left: 60px;">팔로우</a>';
+						followInfoBox += '</div>';
+						followInfoBox += '</div>';
 							// ---------------------------------------------------------------------------------------------------
 					});
 				}
