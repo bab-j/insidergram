@@ -89,7 +89,7 @@ body {
 </style>
 
 </head>
-<body>
+<body style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;">
 
 	<div class="modal modal-signin position-static d-block bg-light py-5"
 		tabindex="-1" role="dialog" id="modalSignin">
