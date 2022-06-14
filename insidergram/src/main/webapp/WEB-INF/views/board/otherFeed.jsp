@@ -142,19 +142,15 @@ input[id*="popup"]+label+div>div {
 	height: 550px;
 	background: rgba(0, 0, 0, 0.0);
 	z-index: 2;
-	
 }
 
 /* 상단 닫기버튼 */
 input[id*="popup"]+label+div>div>label {
 	position: absolute;
-	top: 4.2%;
+	top: 4.5%;
 	right: 6%;
 	transform: translate(40%, -40%);
-	padding: 20px;
-	color: black;
-	z-index: 1;
-	
+	cursor: pointer;
 }
 
 /* 여백 클릭시 닫기 처리 */
@@ -240,26 +236,29 @@ input[id="tab03"]:checked ~ .con3 {
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	overflow: auto;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
 }
 
 .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown a:hover {
+	background-color: #ddd;
+}
 
-.show {display: block;}
-
+.show {
+	display: block;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -278,21 +277,23 @@ input[id="tab03"]:checked ~ .con3 {
 			<div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
 				<div class="rounded-3"
 					style="height: 200px; width: 200px; margin-top: 25px; margin-left: 40px;">
-					<img class="bigProfile_img" src="../img_src/profile/${userInfo.u_pic }" />
+					<img class="bigProfile_img"
+						src="../img_src/profile/${userInfo.u_pic }" />
 				</div>
 
 				<div class="rounded-3" style="margin-left: 20px;">
 					<div class="row">
 						<!-- 1 -->
 						<div class="col-12 my-4">
-							<a style=" font-size: xx-large;">${userInfo.u_id }</a> <a
+							<a style="font-size: xx-large;">${userInfo.u_id }</a> <a
 								href="../chat/feedToDm.do?my_id=${userVO.u_id}&target_id=${userInfo.u_id }"
-								style="margin-left : 50px;"
-								class="btn btn-secondary btn-sm" role="button">메시지 보내기</a>
+								style="margin-left: 50px;" class="btn btn-secondary btn-sm"
+								role="button">메시지 보내기</a>
 
 							<c:if test="${fn:contains(followerList, userVO.u_id)}">
-								<a href="javascript:unFollow('${userVO.u_id}', '${userInfo.u_id}')" id="btnUnFollow"
-								style="padding : 5px 10px; display : inline;"
+								<a
+									href="javascript:unFollow('${userVO.u_id}', '${userInfo.u_id}')"
+									id="btnUnFollow" style="padding: 5px 10px; display: inline;"
 									class="btn btn-secondary" role="button"> <svg
 										xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 										fill="currentColor" class="bi bi-person-check-fill"
@@ -303,15 +304,18 @@ input[id="tab03"]:checked ~ .con3 {
 											d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
 							</svg>
 								</a>
-								<a href="javascript:follow('${userVO.u_id}', '${userInfo.u_id}')" id="btnFollow"
-								
-									class="btn btn-primary" role="button" style="display: none; padding : 5px 10px; ">팔로우</a>
+								<a
+									href="javascript:follow('${userVO.u_id}', '${userInfo.u_id}')"
+									id="btnFollow" class="btn btn-primary" role="button"
+									style="display: none; padding: 5px 10px;">팔로우</a>
 							</c:if>
 
 							<c:if test="${not fn:contains(followerList, userVO.u_id)}">
-								<a href="javascript:unfollow('${userVO.u_id}', '${userInfo.u_id}')" id="btnUnFollow"
-									class="btn btn-secondary" role="button" style="display: none; padding : 5px 10px;">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								<a
+									href="javascript:unfollow('${userVO.u_id}', '${userInfo.u_id}')"
+									id="btnUnFollow" class="btn btn-secondary" role="button"
+									style="display: none; padding: 5px 10px;"> <svg
+										xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 										fill="currentColor" class="bi bi-person-check-fill"
 										viewBox="0 0 16 16">
   							<path fill-rule="evenodd"
@@ -320,8 +324,10 @@ input[id="tab03"]:checked ~ .con3 {
 											d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
 							</svg>
 								</a>
-								<a href="javascript:follow('${userVO.u_id}', '${userInfo.u_id}')" id="btnFollow"
-									class="btn btn-primary" role="button" style="display: inline; padding : 5px 10px;">팔로우</a>
+								<a
+									href="javascript:follow('${userVO.u_id}', '${userInfo.u_id}')"
+									id="btnFollow" class="btn btn-primary" role="button"
+									style="display: inline; padding: 5px 10px;">팔로우</a>
 							</c:if>
 
 
@@ -331,9 +337,11 @@ input[id="tab03"]:checked ~ .con3 {
 							<a>게시물</a><span
 								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${picPost.size() + docPost.size() }</span>
 							<a href="javascript:followInfo(true)">팔로워</a><span
-								id="followerCnt" style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followerList.size()}</span>
+								id="followerCnt"
+								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followerList.size()}</span>
 							<a href="javascript:followInfo(false)">팔로우</a><span
-								id="followCnt" style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followingList.size()}</span>
+								id="followCnt"
+								style="margin-left: 5px; margin-right: 20px; font-weight: bold;">${followingList.size()}</span>
 						</div>
 						<!-- 3 -->
 						<div class="col-12 my-3">
@@ -379,60 +387,70 @@ input[id="tab03"]:checked ~ .con3 {
 	                </svg>&nbsp; SAVED
 					</label>
 					<!--=------------------ 팝업 껍데기 -----------------------=-->
-	<input type="checkbox" id="popup">
-	<!-- 버튼 클릭시 팝업창 오픈 -->
-	<label for="popup" id="popupLabel" style="padding: 3px 10px 3px 0px;">
-	</label>
-	<div>
-		<div>
-			<!-- 내용 추가 -->
-			<div class="container" id="modalContainer"
-				style="margin: 0px; padding: 0px; width: 1200px; height: 550px; border-radius: 5px;">
+					<input type="checkbox" id="popup">
+					<!-- 버튼 클릭시 팝업창 오픈 -->
+					<label for="popup" id="popupLabel"
+						style="padding: 3px 10px 3px 0px;"> </label>
+					<div>
+						<div>
+							<!-- 내용 추가 -->
+							<div class="container" id="modalContainer"
+								style="margin: 0px; padding: 0px; width: 1200px; height: 550px; border-radius: 5px;">
 
-			</div>
-		</div>
-		<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
-		<label for="popup"></label>
-	</div>
-	<!-- --------------------------------------------------------------------------- -->
+							</div>
+						</div>
+						<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
+						<label for="popup"></label>
+					</div>
+					<!-- --------------------------------------------------------------------------- -->
 					<!--=------------------ 팔로우 팔로워 팝업 껍데기 -----------------------=-->
-					
-	<input type="checkbox" id="followpopup">
-	<!-- 버튼 클릭시 팝업창 오픈 -->
-	<label for="followpopup" id="followpopupLabel" style="padding: 3px 10px 3px 0px;">
-	</label>
-	<div>
-		<div style="width: 400px;height: 500px; background:#f5f5f5;border-radius: 10px;display: flex;flex-direction: column;align-items: center;">
-			<label for="followpopup" style="background-color: white;">x</label>
-			<!-- 내용 추가 -->
-			<div id="followModalContainer" class="row" style="margin: 0px; padding: 0px; width: 100%; height: 100%; border: solid 0.5px silver;flex-direction: column;">
-				
-				
-			</div>
-		</div>
-		<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
-		<label for="followpopup"></label>
-	</div>
-	<!-- --------------------------------------------------------------------------- -->
+
+					<input type="checkbox" id="followpopup">
+					<!-- 버튼 클릭시 팝업창 오픈 -->
+					<label for="followpopup" id="followpopupLabel"
+						style="padding: 3px 10px 3px 0px;"> </label>
+					<div>
+						<div
+							style="width: 400px; height: 500px; background: #f5f5f5; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
+							<label for="followpopup"><span
+								class="material-symbols-outlined"
+								style="width: 100%; height: 100%; background-color: inherit;">
+									close</span></label>
+							<!-- 내용 추가 -->
+							<div id="followModalContainer" class="row"
+								style="margin: 0px; padding: 0px; width: 100%; height: 100%; border: solid 0.5px silver; flex-direction: column; border-radius: 10px;">
+
+
+							</div>
+						</div>
+						<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
+						<label for="followpopup"></label>
+					</div>
+					<!-- --------------------------------------------------------------------------- -->
 					<!--========================================== 사진 피드 ===================================================-->
 					<div class="conbox con1">
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-						
+
 							<c:forEach var="picList" items="${picPost }">
-								<div class="col square" style="height: 246px; display: flex; align-items: stretch;">
-										<img src="../img_src/feed/${picList.f_pic }" class="card-img-top" onclick="modalAjax(${picList.f_idx})">
+								<div class="col square"
+									style="height: 246px; display: flex; align-items: stretch;">
+									<img src="../img_src/feed/${picList.f_pic }"
+										class="card-img-top" onclick="modalAjax(${picList.f_idx})">
 								</div>
 							</c:forEach>
-							
+
 						</div>
 					</div>
 					<!--========================================== 글 피드 ===================================================-->
 					<div class="conbox con2">
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 							<c:forEach var="docPost" items="${docPost }">
-								<div class="col square" style="height: 246px;display: flex;justify-content: center;align-items: center;font-weight: bold;">
-									<div onclick="modalAjax(${docPost.f_idx})" class="card shadow-sm inner" style="text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
-											<a style="color: black;">${docPost.content }</a>
+								<div class="col square"
+									style="height: 246px; display: flex; justify-content: center; align-items: center; font-weight: bold;">
+									<div onclick="modalAjax(${docPost.f_idx})"
+										class="card shadow-sm inner"
+										style="text-align: center; display: flex; justify-content: center; align-items: center; font-weight: bold;">
+										<a style="color: black;">${docPost.content }</a>
 									</div>
 								</div>
 							</c:forEach>
@@ -443,20 +461,26 @@ input[id="tab03"]:checked ~ .con3 {
 						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 							<c:forEach var="saveFeed" items="${saveFeed }">
 								<c:if test="${saveFeed.f_pic != null}">
-									<div id="posts${saveFeed.f_idx }" class="col square" style="height: 246px; display: flex; align-items: stretch;">
-										<div class="card shadow-sm inner" style="text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
-											<div style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: stretch;">
+									<div id="posts${saveFeed.f_idx }" class="col square"
+										style="height: 246px; display: flex; align-items: stretch;">
+										<div class="card shadow-sm inner"
+											style="text-align: center; display: flex; justify-content: center; align-items: center; font-weight: bold;">
+											<div
+												style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: stretch;">
 												<img src="../img_src/feed/${saveFeed.f_pic }"
-													onclick="modalAjax(${saveFeed.f_idx})"
-													class="card-img-top">
+													onclick="modalAjax(${saveFeed.f_idx})" class="card-img-top">
 											</div>
 										</div>
 									</div>
 								</c:if>
 								<c:if test="${saveFeed.f_pic == null}">
-									<div class="col square" style="height: 246px;display: flex;justify-content: center;align-items: center;font-weight: bold;">
-										<div id="posts${saveFeed.f_idx }" class="card shadow-sm inner" style="text-align: center;display: flex;justify-content: center;align-items: center;font-weight: bold;">
-											<div style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;" onclick="modalAjax(${saveFeed.f_idx})"> 
+									<div class="col square"
+										style="height: 246px; display: flex; justify-content: center; align-items: center; font-weight: bold;">
+										<div id="posts${saveFeed.f_idx }" class="card shadow-sm inner"
+											style="text-align: center; display: flex; justify-content: center; align-items: center; font-weight: bold;">
+											<div
+												style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"
+												onclick="modalAjax(${saveFeed.f_idx})">
 												<a style="color: black;"> ${saveFeed.content } </a>
 											</div>
 										</div>
@@ -465,7 +489,7 @@ input[id="tab03"]:checked ~ .con3 {
 							</c:forEach>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
@@ -487,37 +511,44 @@ input[id="tab03"]:checked ~ .con3 {
 					console.log("현재 계정 팔로잉 : " + data.followingList);
 				 	if (bool == true) {// 팔로워 모달창
 				 		console.log("팔로워 받아오기~");
-							followInfoBox += '<div class="col-12 p-3"style="height: 50px;border-bottom: solid 0.5px silver;display: flex;justify-content: center;align-items: center;">';
+							followInfoBox += '<div class="col-12 p-3"style="height: 50px;display: flex;justify-content: center;align-items: center;">';
 							followInfoBox += '<h5 style="font-weight: bold;margin: 0px;">팔로워</h5></div>';
+							followInfoBox += '<hr>';
 						$.each(data.followerList, function(index, obj) {
 							if (obj.from_id == '${userVO.u_id}') {
-								followInfoBox += '<div class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
+								followInfoBox += '<div class="col-12 p-3" style="height: 64px;display: flex;flex-direction: row;align-items: center;">';
 								followInfoBox += '<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
 								followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
 								followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.from_id + '</h6></span>';
 								followInfoBox += '</a></div>';
 							} else {
-									
-								followInfoBox += '<div class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
+								followInfoBox += '<div class="row">';	
+								followInfoBox += '<div class="col-6 p-3" style="height: 64px;display: flex;flex-direction: row;align-items: center;">';
 								followInfoBox += '<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
 								followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
 								followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.from_id + '</h6></span>';
 								followInfoBox += '</a></div>';
 							 /* ----------------- 들어온 상세계정의 팔로워들 중 내가 팔로우 한 계정과 안한 계정 판별해서 버튼 출력 ----------------- */
 								  if(data.myFollowingList.includes(obj.from_id)) {
-									followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" style="padding : 5px 10px; display : inline; margin-left: 150px;"  class="btn btn-secondary" role="button">';
+									followInfoBox += '<div class="col-6 p-3">';
+									followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" style="padding : 5px 10px; display : inline; padding: 2px 12px; margin-left: 80px;"  class="btn btn-secondary" role="button">';
 									followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
 									followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
 									followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
 									followInfoBox += '</svg></a>';
-									followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: none; padding : 5px 10px; margin-left: 145px;">팔로우</a>';
+									followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: none; padding: 2px 12px; margin-left: 80px;">팔로우</a>';
+									followInfoBox += '</div>';
+									followInfoBox += '</div>';
 								} else {
-									followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" class="btn btn-secondary" role="button" style="display: none; padding : 5px 10px;">';
+									followInfoBox += '<div class="col-6 p-3">';
+									followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" class="btn btn-secondary" role="button" style="display: none; padding: 2px 12px; margin-left: 80px;">';
 									followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
 									followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
 									followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
 									followInfoBox += '</svg></a>';
-									followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: inline; padding : 5px 10px;margin-left: 145px;">팔로우</a>';
+									followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: inline; padding: 2px 12px; margin-left: 80px;">팔로우</a>';
+									followInfoBox += '</div>';
+									followInfoBox += '</div>';
 								}
 							}
 								// ---------------------------------------------------------------------------------------------------
