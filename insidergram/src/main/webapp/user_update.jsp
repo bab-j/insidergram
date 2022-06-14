@@ -57,8 +57,8 @@
 
 			<div class="modal-content rounded-4 shadow align-items-md-center">
 
-				<form action="javascript:userUpdateOk('${userVO.u_id }')" method="post"
-					enctype="multipart/form-data">
+				<form action="user/userUpdateOk.do" method="post"
+					enctype="multipart/form-data" id="updateForm">
 					<div class="row">
 
 						<div class="col-6 modal-body" style="padding: 30px 48px;">
@@ -97,7 +97,7 @@
 											class=col-4>새 비밀번호</div>
 										<div class=col-8>
 											<input class="form-control rounded-3" type="password"
-												name=uPwd id="password" placeholder="Password"
+												name=password id="password" placeholder="Password"
 												value="${userVO.password }"
 												required>
 										</div>
@@ -178,7 +178,7 @@
 										<div class="col-6">
 											<input
 												class="center_ailgn w-100 py-2 btn btn-outline-primary rounded-3"
-												id="subm" type="submit" value="수정" style="">
+												id="subm" type="button" value="수정" onclick="javascript:userUpdateOk('${userVO.u_id }')">
 
 										</div>
 									</div>
@@ -197,6 +197,7 @@
 
 	<script>
 		function userUpdateOk(u_id) {
+			alert("userUpdateOk() >>");
 			var password = $("#password").val();
 			var passwordOk = $("#passwordOk").val();
 			var email = $("#email").val();
@@ -206,7 +207,7 @@
 			if(password != passwordOk) {
 				alert("비밀번호를 확인해주세요.");
 			} else {
-				location.href="user/userUpdateOk.do?u_id=" + u_id + "&password=" + password + "&email=" + email + "&phone=" + phone + "&bio=" + bio;
+				$( "#updateForm" ).submit();
 			}
 		}
 	

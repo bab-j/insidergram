@@ -54,7 +54,7 @@
 	</select>
 	<update id="updateUser" parameterType="user">
 		UPDATE USER_INFO
-		SET PASSWORD = #{password}, EMAIL = #{email}, PHONE = #{phone}, BIO = #{bio}
+		SET PASSWORD = #{password}, EMAIL = #{email}, PHONE = #{phone}, BIO = #{bio}, U_PIC = #{u_pic}
 		WHERE U_ID = #{u_id}
 	</update>
 </mapper>

@@ -1,6 +1,8 @@
 package com.spring.biz.view.user;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.biz.feed.Path;
 import com.spring.biz.user.UserService;
@@ -84,7 +87,30 @@ public class UserController {
 	
 	
 	@RequestMapping("/userUpdateOk.do") 
-	public String userUpdateOk(UserVO vo, HttpSession session) {
+	public String userUpdateOk(UserVO vo, HttpSession session, MultipartFile uploadFile) {
+		System.out.println(vo.toString());
+		
+		UserVO uvo =(UserVO)session.getAttribute("userVO");
+		vo.setU_id(uvo.getU_id());
+		
+		if(!uploadFile.isEmpty()) {
+			Path path = new Path();
+			vo.setU_pic(uvo.getU_pic());
+			File file = new File(path.getPath() + "/profile/" + vo.getU_pic());
+			if(file.exists()) { // 파일이 존재하면
+				file.delete();
+			}
+			vo.setU_pic(uploadFile.getOriginalFilename());
+			String fileName = uploadFile.getOriginalFilename();
+			System.out.println(">>> 원본파일명 : " + fileName);
+			System.out.println(">>> 저장파일명 : " + UUID.randomUUID().toString());
+				try {
+					uploadFile.transferTo(new File(path.getPath() + "/profile/" + fileName));
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}						
+		} else vo.setU_pic(uvo.getU_pic());
+		
 		userService.updateUser(vo);
 		session.setAttribute("userVO", userService.getUserInfo(vo.getU_id()));
 		return "redirect:getMyFeed.do";
