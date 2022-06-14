@@ -544,7 +544,7 @@ function modalAjax(f_idx) {
 				dispHtml += '<div><img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;"></div>';
 				dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.fvo.u_id + '</h6></div></a>';
 					
-				dispHtml += '<div class="dropdown" style="margin-left: 270px;font-size: 30px;">';
+				dispHtml += '<div class="dropdown" style="margin-left: 270px;font-size: 30px;padding-left : 50px;">';
 				dispHtml += '<button onclick="myFunction()" class="dropbtn" style="background-color: white;padding-bottom: 15px;">...</button>';
 				dispHtml += '<div id="myDropdown" class="dropdown-content" style="font-size: 15px;">';
 				dispHtml += '<a href="goUpdate.do?f_idx=' + data.fvo.f_idx + '">edit</a>';
@@ -584,8 +584,8 @@ function modalAjax(f_idx) {
 				dispHtml += '<div><img src="../img_src/profile/' + data.fvo.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 20px;"></div>';
 				dispHtml += '<div><h6 class="mb-0" style="margin-left: 15px;">' + data.fvo.u_id + '</h6></div></a>';
 					
-				dispHtml += '<div class="dropdown" style="margin-left: 270px;font-size: 30px;">';
-				dispHtml += '<button onclick="myFunction()" class="dropbtn" style="background-color: white;padding-bottom: 15px;">...</button>';
+				dispHtml += '<div class="dropdown" style="margin-left: 270px;font-size: 30px;padding-left : 50px;">';
+				dispHtml += '<button onclick="myFunction()" class="dropbtn" style="background-color: white;padding-bottom: 15px; ">...</button>';
 				dispHtml += '<div id="myDropdown" class="dropdown-content" style="font-size: 15px;">';
 				dispHtml += '<a href="goUpdate.do?f_idx=' + data.fvo.f_idx + '">edit</a>';
 				dispHtml += '<a href="javascript:deleteFeed(' + data.fvo.f_idx + ')">delete</a>';
