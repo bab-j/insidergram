@@ -585,7 +585,7 @@ input[id="tab03"]:checked ~ .con3 {
 					$.each(data.myFollowerList, function(index, obj) {
 							
 						followInfoBox += '<div id="erInfo' + obj.er_idx + '" class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
-						followInfoBox += '<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
+						followInfoBox += '<a href="otherFeed.do?u_id=' + obj.from_id + '" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
 						followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
 						followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.from_id + '</h6></span>';
 						followInfoBox += '</a></div>';
@@ -603,7 +603,7 @@ input[id="tab03"]:checked ~ .con3 {
 					followInfoBox += '<h5 style="font-weight: bold;margin: 0px;">팔로잉</h5></div>';
 					$.each(data.myFollowingList2, function(index, obj) {
 						followInfoBox += '<div class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
-						followInfoBox += '<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
+						followInfoBox += '<a href="otherFeed.do?u_id=' + obj.to_id + '" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
 						followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
 						followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.to_id + '</h6></span>';
 						followInfoBox += '</a></div>';
