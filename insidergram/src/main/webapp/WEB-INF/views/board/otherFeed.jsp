@@ -265,7 +265,7 @@ input[id="tab03"]:checked ~ .con3 {
 <meta charset="UTF-8">
 <title>상대방 페이지</title>
 </head>
-<body>
+
 <body style=" --bs-bg-opacity: 1; background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important; display: flex; justify-content: space-around; align-content: space-around; flex-wrap: wrap;">
 
 	<jsp:include page="../../../header.jsp"></jsp:include>
@@ -417,7 +417,7 @@ input[id="tab03"]:checked ~ .con3 {
 									close</span></label>
 							<!-- 내용 추가 -->
 							<div id="followModalContainer" class="row"
-								style="margin: 0px; padding: 0px; width: 100%; height: 100%; border: solid 0.5px silver; flex-direction: column; border-radius: 10px;">
+								style="margin: 0px; padding: 0px; width: 100%; height: 100%; border: solid 0.5px silver; flex-direction: column; border-radius: 10px;display: flex;align-items: center;">
 
 
 							</div>
@@ -515,6 +515,7 @@ input[id="tab03"]:checked ~ .con3 {
 							followInfoBox += '<hr>';
 						$.each(data.followerList, function(index, obj) {
 							if (obj.from_id == '${userVO.u_id}') {
+								followInfoBox += '<div class="row">';
 								followInfoBox += '<div class="col-12 p-3" style="height: 64px;display: flex;flex-direction: row;align-items: center;">';
 								followInfoBox += '<a href="otherFeed.do?u_id=' + obj.from_id + '" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
 								followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
@@ -535,7 +536,7 @@ input[id="tab03"]:checked ~ .con3 {
 									followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
 									followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
 									followInfoBox += '</svg></a>';
-									followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: none; padding: 2px 12px; margin-left: 80px;">팔로우</a>';
+									followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: none; padding: 2px 12px; margin-left: 60px;">팔로우</a>';
 									followInfoBox += '</div>';
 									followInfoBox += '</div>';
 								} else {
@@ -545,7 +546,7 @@ input[id="tab03"]:checked ~ .con3 {
 									followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
 									followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
 									followInfoBox += '</svg></a>';
-									followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: inline; padding: 2px 12px; margin-left: 80px;">팔로우</a>';
+									followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.from_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: inline; padding: 2px 12px; margin-left: 60px;">팔로우</a>';
 									followInfoBox += '</div>';
 									followInfoBox += '</div>';
 								}
@@ -560,33 +561,41 @@ input[id="tab03"]:checked ~ .con3 {
 						followInfoBox += '<h5 style="font-weight: bold;margin: 0px;">팔로잉</h5></div>';
 					$.each(data.followingList, function(index, obj) {
 						if (obj.to_id == '${userVO.u_id}') {
-							followInfoBox += '<div class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
-							followInfoBox += '<a href="otherFeed.do?u_id=' + obj.to_id + '" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
+							followInfoBox += '';
+							followInfoBox += '<div class="col-12 p-3" style="height: 64px;display: flex;flex-direction: row;align-items: center;">';
+							followInfoBox += '<a href="otherFeed.do?u_id=' + obj.to_id + '" class="text-center" style="display: flex;flex-direction: row;align-items: center; padding-left: 12px;">'; 
 							followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
 							followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.to_id + '</h6></span>';
 							followInfoBox += '</a></div>';
 						} else {
-								
-							followInfoBox += '<div class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
+							followInfoBox += '<div class="row">';	
+							followInfoBox += '<div class="col-6 p-3" style="height: 64px;display: flex;flex-direction: row;align-items: center;">';
 							followInfoBox += '<a href="otherFeed.do?u_id=' + obj.to_id + '" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
 							followInfoBox += '<span><img src="../img_src/profile/' + obj.u_pic + '" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
 							followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.to_id + '</h6></span>';
 							followInfoBox += '</a></div>';
+							
 						 /* ----------------- 들어온 상세계정의 팔로잉들 중 내가 팔로우 한 계정과 안한 계정 판별해서 버튼 출력 ----------------- */
 							  if(data.myFollowingList.includes(obj.to_id)) {
-								followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" style="padding : 5px 10px; display : inline; margin-left: 150px;"  class="btn btn-secondary" role="button">';
+								followInfoBox += '<div class="col-6 p-3">';
+								followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" style="display : inline; padding: 2px 12px; margin-left: 80px;"  class="btn btn-secondary" role="button">';
 								followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
 								followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
 								followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
 								followInfoBox += '</svg></a>';
-								followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: none; padding : 5px 10px; margin-left: 145px;">팔로우</a>';
+								followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: none; padding: 2px 12px; margin-left: 60px;">팔로우</a>';
+								followInfoBox += '</div>';
+								followInfoBox += '</div>';
 							} else {
-								followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" class="btn btn-secondary" role="button" style="display: none; padding : 5px 10px;">';
+								followInfoBox += '<div class="col-6 p-3">';
+								followInfoBox += '<a href="javascript:modalUnfollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnUnFollow' + obj.er_idx + '" class="btn btn-secondary" role="button" style="display: none; padding: 2px 12px; margin-left: 80px;">';
 								followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
 								followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
 								followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
 								followInfoBox += '</svg></a>';
-								followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: inline; padding : 5px 10px;margin-left: 145px;">팔로우</a>';
+								followInfoBox += '<a href="javascript:modalFollow(\'${userVO.u_id}\', \'' + obj.to_id + '\', ' + obj.er_idx + ')" id="btnFollow' + obj.er_idx + '" class="btn btn-primary" role="button" style="display: inline; padding: 2px 12px; margin-left: 60px;">팔로우</a>';
+								followInfoBox += '</div>';
+								followInfoBox += '</div>';
 							}
 						}
 							// ---------------------------------------------------------------------------------------------------
