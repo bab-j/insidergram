@@ -405,58 +405,11 @@ input[id="tab03"]:checked ~ .con3 {
 		<div style="width: 400px;height: 500px; background:#f5f5f5;border-radius: 10px;display: flex;flex-direction: column;align-items: center;">
 			<label for="followpopup" style="background-color: white;">x</label>
 			<!-- 내용 추가 -->
-			<div class="row" id="followModalContainer" style="margin: 0px; padding: 0px; width: 100%; height: 100%; border: solid 0.5px silver;flex-direction: column;">
+			<div id="followModalContainer" class="row" style="margin: 0px; padding: 0px; width: 100%; height: 100%; border: solid 0.5px silver;flex-direction: column;">
 				<div class="col-12 p-3"style="height: 50px;border-bottom: solid 0.5px silver;display: flex;justify-content: center;align-items: center;">
 					<h5 style="font-weight: bold;margin: 0px;">팔로워</h5>
 				</div>
-				<div class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">
-					<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">
-						<div>
-							<img src="../img_src/test/1.jpg" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;">
-						</div>
-						<div>
-							<h6 class="mb-0" style="margin-left: 15px;">kimdonguk</h6>
-						</div>
-					</a>
-					<c:if test="${fn:contains(followerList, userVO.u_id)}">
-						<a href="javascript:unFollow('${userVO.u_id}', '${userInfo.u_id}')" id="btnUnFollow"
-						style="padding : 5px 10px; display : inline;"
-							class="btn btn-secondary" role="button"> <svg
-								xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-person-check-fill"
-								viewBox="0 0 16 16">
-							<path fill-rule="evenodd"
-									d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-							<path
-									d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-					</svg>
-						</a>
-						<a href="javascript:follow('${userVO.u_id}', '${userInfo.u_id}')" id="btnFollow"
-						class="btn btn-primary" role="button" style="display: none; padding : 5px 10px; margin-left: 145px;">팔로우</a>
-					</c:if>
-
-					<c:if test="${not fn:contains(followerList, userVO.u_id)}">
-						<a href="javascript:unfollow('${userVO.u_id}', '${userInfo.u_id}')" id="btnUnFollow"
-							class="btn btn-secondary" role="button" style="display: none; padding : 5px 10px;">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-person-check-fill"
-								viewBox="0 0 16 16">
-							<path fill-rule="evenodd"
-									d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-							<path
-									d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-					</svg>
-						</a>
-						<a href="javascript:follow('${userVO.u_id}', '${userInfo.u_id}')" id="btnFollow"
-							class="btn btn-primary" role="button" style="display: inline; padding : 5px 10px;margin-left: 145px;">팔로우</a>
-					</c:if>
-				</div>
-				<div class="col-12 p-3"style="height: 64px;border-bottom: solid 0.5px silver;">
 				
-				</div>
-				<div class="col-12 p-3"style="height: 64px;border-bottom: solid 0.5px silver;">
-				
-				</div>
 			</div>
 		</div>
 		<!-- 닫기 기능 2(박스 아웃 쪽 클릭시 닫기 처리됨) -->
@@ -522,15 +475,47 @@ input[id="tab03"]:checked ~ .con3 {
 
 	<script>
 		function followInfo(bool) {
-			if (bool == true) {
-				
+			let array = ${followerList};
+			alert(array[1]);
 			var followInfoBox = "";
-			/*	followInfoBox += '<div style="border: 1px solid black" width="400px" height="100px">'; */
-				followInfoBox += '';
-			/*	followInfoBox += '</div>' */
+			if (bool == true) {// 팔로워 모달창
+				//$.each(JSON.parse("${followerList}").FollowerVO, function(index, obj) {
+				for(var i = 0; i < array.length; i++) {
+					followInfoBox += '<div class="col-12 p-3" style="height: 64px;border-bottom: solid 0.5px silver;display: flex;flex-direction: row;align-items: center;">';
+					followInfoBox += '<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
+					followInfoBox += '<span><img src="../img_src/test/1.jpg" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
+					followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + array[i].from_id + '</h6></span>';
+					followInfoBox += '</a></div>'
+					 /* ----------------- 들어온 상세계정의 팔로워들 중 내가 팔로우 한 계정과 안한 계정 판별해서 버튼 출력 ----------------- */
+					/* if(${myFollowingList}.includes(obj.from_id)) {
+						followInfoBox += '<a href="javascript:unFollow("${userVO.u_id}", ' + obj.from_id + ')" id="btnUnFollow" style="padding : 5px 10px; display : inline; margin-left: 150px;"  class="btn btn-secondary" role="button">';
+						followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
+						followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
+						followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
+						followInfoBox += '</svg></a>';
+						followInfoBox += '<a href="javascript:follow('${userVO.u_id}', '${userInfo.u_id}')" id="btnFollow" class="btn btn-primary" role="button" style="display: none; padding : 5px 10px; margin-left: 145px;">팔로우</a>';
+					} else {
+						followInfoBox += '<a href="javascript:unfollow('${userVO.u_id}', '${userInfo.u_id}')" id="btnUnFollow" class="btn btn-secondary" role="button" style="display: none; padding : 5px 10px;">';
+						followInfoBox += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">';
+						followInfoBox += '<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />';
+						followInfoBox += '<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />';
+						followInfoBox += '</svg></a>';
+						followInfoBox += '<a href="javascript:follow('${userVO.u_id}', '${userInfo.u_id}')" id="btnFollow" class="btn btn-primary" role="button" style="display: inline; padding : 5px 10px;margin-left: 145px;">팔로우</a>';
+					}*/
+					// ---------------------------------------------------------------------------------------------------
+				//});
+				}
+			
+			} else { // 팔로잉 모달창
+				$.each("${followingList}", function(idx, obj) {
+					followInfoBox += '<a href="#" class="text-center" style="display: flex;flex-direction: row;align-items: center;">'; 
+					followInfoBox += '<span><img src="../img_src/test/1.jpg" width="40" height="40" class="rounded-circle flex-shrink-0" style="margin-left: 10px;"></span>';
+					followInfoBox += '<span><h6 class="mb-0" style="margin-left: 15px;">' + obj.to_id + '</h6></span>';
+					followInfoBox += '</a>'
+				});
+			}
 				$("#followModalContainer").append(followInfoBox);
 				$("#followpopup").click();
-			}
 		}	
 		function unFollow(my_id, target_id) {
 			$("#btnUnFollow").css('display', 'none');
